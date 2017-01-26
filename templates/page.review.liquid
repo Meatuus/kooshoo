@@ -1,0 +1,389 @@
+{% comment %}
+<div id="crumbs" class="sixteen columns">
+    <a href="/" title="Home">Home</a>
+    &raquo;
+    <a href="{{ page.url }}">{{ page.title }}</a>
+</div><!-- #crumbs -->
+
+{% if settings.show_social_page %}
+<div class="social floating">
+    <span class="label">{{ settings.text_sharethis }}</span>
+    {% include 'social-sharing' %}
+</div>
+{% endif %}
+
+<div class="ten columns">
+    <h1>{{ page.title }}</h1>
+    {% include 'process-html' with page.content %}
+</div>
+
+<aside class="five columns offset-by-one widgets">
+    {% assign data = settings.widget_s1_handle %}
+    {% unless data == '' %}{% include settings.widget_s1_type %}{% endunless %}
+    
+    {% assign data = settings.widget_s2_handle %}
+    {% unless data == '' %}{% include settings.widget_s2_type %}{% endunless %}
+    
+    {% assign data = settings.widget_s3_handle %}
+    {% unless data == '' %}{% include settings.widget_s3_type %}{% endunless %}
+</aside>
+{% endcomment %}
+
+<style>
+  @font-face {
+    font-family: 'bryant_promedium_alternate';
+    src: url({{'bryantpro-mediumalt-webfont.eot' | asset_url }});
+    src: url({{'bryantpro-mediumalt-webfont.eot?#iefix' | asset_url }}) format('embedded-opentype'),
+      url({{'bryantpro-mediumalt-webfont.woff2' | asset_url }}) format('woff2'),
+      url({{'bryantpro-mediumalt-webfont.woff' | asset_url }}) format('woff'),
+      url({{'bryantpro-mediumalt-webfont.ttf' | asset_url }}) format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }  
+  @font-face {
+    font-family: 'bryant_proregular_alternate';
+    src: url({{'bryantpro-regularalt-webfont.eot' | asset_url }});
+    src: url({{'bryantpro-regularalt-webfont.eot?#iefix' | asset_url }}) format('embedded-opentype'),
+      url({{'bryantpro-regularalt-webfont.woff2' | asset_url }}) format('woff2'),
+      url({{'bryantpro-regularalt-webfont.woff' | asset_url }}) format('woff'),
+      url({{'bryantpro-regularalt-webfont.ttf' | asset_url }}) format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'bryant_pro_regularregular';
+    src: url({{'bryantpro-regular-webfont.eot' | asset_url }});
+    src: url({{'bryantpro-regular-webfont.eot?#iefix' | asset_url }}) format('embedded-opentype'),
+      url({{'bryantpro-regular-webfont.woff2' | asset_url }}) format('woff2'),
+      url({{'bryantpro-regular-webfont.woff' | asset_url }}) format('woff'),
+      url({{'bryantpro-regular-webfont.ttf' | asset_url }}) format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+  .rev_center{
+    text-align: center;
+    margin-top: 15px;
+    width: 1002px;
+  }
+  #maincontent .rev_center h2{
+    font-family: 'bryant_proregular_alternate';
+    -webkit-border:none;
+    -moz-border:none;
+    -o-border:none;
+    border:none;
+    color: #666;
+    margin-bottom: 4px;
+    font-size:36px;
+  }
+  #maincontent .rev_center p{
+    font-family: 'bryant_pro_regularregular';
+    color: #666;
+    font-size: 24px;
+    line-height: 28px;
+    margin: 0 0 22px;
+  }
+   #maincontent .rev_center p.rev_marg{
+    margin: 0 0 6px;
+  }
+  #maincontent .rev_center a{
+    color: #666;
+  }
+  #maincontent .rev_center img.rev_marg{
+    margin-bottom: 13px;
+  }
+  #review{
+    cursor: pointer;
+    display: table;
+    width:100%;
+  }
+  #review img{
+    margin-bottom: 18px;
+  }
+  .rev_ol{
+    display:none;
+  }
+  .rev_ital{
+    font-family: 'Homemade Apple', cursive;;
+  }
+  ol.rev_ol{
+    text-align: left;
+    color:#000;
+    font-size: 22px;
+    line-height: 30px;
+    margin-bottom: 95px;
+    float:right;
+    width: 687px;
+  }
+  ol.rev_ol li{
+    margin-bottom: 16px;
+    font-size: 24px;
+    font-family: 'bryant_proregular_alternate';
+    display: table;
+  }
+  .rev_ol b{
+    float:left;
+    width:46px;    
+  }
+  .width_bl{
+    width: 600px;
+    float: left;
+  }
+  #maincontent .rev_center .rev_ol a{
+    -webkit-border-bottom:1px #666 solid;
+    -moz-border-bottom:1px #666 solid;
+    -o-border-bottom:1px #666 solid;
+    border-bottom:1px #666 solid;    
+    color:#000;
+  }  
+  p.rev_padd{
+    padding:0px 48px;
+  }
+  .r_mar{
+    margin-bottom: 34px;
+  } 
+  #review span{
+    margin-top: 40px;
+    display: block;
+    font-size:24px;
+    padding-left: 49px;
+  }  
+  .rev_but{
+    display:table;
+    width:100%;
+  }
+  .rev_upper{
+    text-transform: uppercase;
+    font-size:16px;
+  }
+  .rev_two{
+    display: table;
+    width: 775px;
+    margin: 0 auto;
+    margin-top:45px;
+  }
+  .rev_two .one_fifth{
+    float:left;
+    margin:0px 8px 5px;
+    width: 139px;
+  }
+  .rev_two h4{
+    text-transform: uppercase;
+    font-size: 16px;
+    line-height: 17px;
+    color: #666;
+    font-family: 'bryant_proregular_alternate';
+  }
+  .rev_two span{
+    width:100%;
+    display: table;
+    margin-bottom: 30px;
+  }
+  .rev_si{
+    font-size:23px;
+    font-family: bryanta;
+  }
+  .r_mar_320{
+    display:none;
+    font-family: 'bryant_promedium_alternate';
+  }
+@media only screen and (min-width: 960px) and (max-width: 1120px) {
+  .rev_center {
+    width: 100%;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 959px) {
+  .rev_center {
+    width: 95%;
+    margin: 20px auto;
+  }
+  .r_mar {
+    width: 100%;
+  }
+  .rev_two {
+    width: 730px;
+  }
+  .rev_two .one_fifth {
+    margin: 0px 3px;
+    width: 139px;
+  }
+}
+@media only screen and (max-width: 767px) { 
+  .rev_center {
+    margin: 0px;
+    width:100%;
+  }
+  #maincontent .rev_center h2{
+    font: 28px/30px "Bryant",sans-serif;
+  }
+  #maincontent .rev_center p, ol.rev_ol li {
+    font-size: 20px;
+    line-height: 28px;
+    margin: 0px 0px 8px;
+  }
+  p.rev_padd {
+    padding: 0px;
+  }
+  .r_mar {
+    width: 100%;
+    display:none;
+  }
+  ol.rev_ol {
+    font-size: 20px;
+    line-height: 30px;
+    margin-bottom: 44px;
+    width: 100%;
+  }
+  .rev_two {
+    width: 100%;
+  }
+  .rev_two .one_fifth {
+    width: 50%;
+    margin:0px 0px 10px;
+  }
+  .rev_two .one_fifth:last-child {
+    margin:0px auto;
+    float:none;
+    display: table;
+  }
+  .r_mar_320{
+    display: block;
+    text-align: left;
+    float: left;
+    margin-bottom: 20px;
+  }
+  .r_mar_320 img{
+    float: left;
+    position: relative;
+  }
+  .pink_block{
+    float: left;
+    background: #ED6081 none repeat scroll 0% 0%;
+    color: #FFF;
+    font-size: 20px;
+    border-radius: 20px;
+    width: 322px;
+    margin-left: -50px;
+    margin-top: 10px;
+    padding: 7px 0px 7px 56px;
+  }
+  .width_bl{
+    width: 367px;
+  }
+  #review span{
+    font-size: 20px;
+    line-height: 28px;
+  }
+  .rev_si{
+    font-size:18px;
+  }
+}
+@media only screen and (max-width: 479px) {  
+  .pink_block {
+    float: left;
+    background: #ED6081 none repeat scroll 0% 0%;
+    color: #FFF;
+    font-size: 20px;
+    border-radius: 31px;
+    width: 201px;
+    margin-left: -42px;
+    padding: 7px 4px 7px 46px;
+    margin-top: 0px;
+  }
+  .width_bl {
+    width: 237px;
+  }
+}
+</style>
+
+<div class="rev_center">
+  <h2>Review Your KOOSHOO Product</h2>  
+   <img class="rev_marg" src="{{ 'stars.png' | asset_url }}" alt="..." />
+  <p>Thank you for your purchase and choosing KOOSHOO.</p>
+  <p>We'd love to hear from you. As a small company product reviews are  how we get discovered. They're also how we improve and provide you with the best 'feel good' KOOSHOO experience.</p>
+  <p class="rev_padd">If for any reason you would rate your experience less than five stars please write to us at: <a href="mailto:connect@kooshoo.com">connect@kooshoo.com</a>. You deserve the best and we want to provide that for you.</p>
+  <p>We truly appreciate your time and feedback.</p>
+  <p class="rev_marg">Sincerely,&nbsp; <span class="rev_ital"> Rachel &amp; Jesse, </span><span class="rev_upper">kooshoo founders</span></p>
+  <img class="r_mar" src="{{ 'pink_click.png' | asset_url }}" alt="..." />
+  <div class="r_mar_320">
+    <img src="{{ 'blue_flower.png' | asset_url }}" alt="..." />
+    <div class="pink_block">Click on the website below where you purchased your KOOSHOO product.</div>
+  </div>
+  <div id="review">
+    <div class="rev_but" id="button_one">
+      <img src="{{ 'button_kooshoo.png' | asset_url }}" alt="..." />
+    </div>
+    <ol class="rev_ol" id="button_one_ol">
+      <li><b>1</b>Click <a href="/collections/shawls-and-headbands-for-women" target="_blank">here for WOMEN</a> or <a href="/collections/men-headbands" target="_blank">here for MEN</a>.</li>
+      <li><b>2</b>Click on the product you'd like to review.</li>
+      <li><b>3</b>Scroll down to the bottom of the product's page.</li>
+      <li><b>4</b>Click on "Write a Review".</li>
+      <li><b>5</b>Submit your review.</li>
+      <span>Thank you. You Rock!</span>
+    </ol>    
+  </div>
+  <div id="review">
+    <div class="rev_but" id="button_two">
+      <img src="{{ 'button_etsy.png' | asset_url }}" alt="..." />
+    </div>
+    <ol class="rev_ol" id="button_two_ol">
+      <li><b class="big_p">1</b>Sign in to your <a href="https://www.etsy.com/join" target="_blank">ETSY account</a>.</li>
+      <li><b>2</b>Click on "You" in top right of screen.</li>
+      <li><b>3</b>Click on "Purchases &amp; Reviews".</li>
+      <li><b>4</b>Submit your review.</li>
+      <span>Much Appreciated &Uuml; </span>
+    </ol>    
+  </div>
+  <div id="review">
+    <div class="rev_but" id="button_three">
+      <img src="{{ 'button_amazon.png' | asset_url }}" alt="..." />
+    </div>
+    <ol class="rev_ol" id="button_three_ol">
+      <li><b>1</b>Sign in to your <a href="https://www.amazon.com/gp/css/homepage.html/ref=ap_frn_ya" target="_blank">Amazon account</a>.</li>
+      <li><b>2</b>Click on "Your Orders".</li>
+      <li><b>3</b><div class="width_bl">Find your KOOSHOO product.<br> Click on "Write a product review".</div></li>
+      <li><b>4</b>Submit your review.</li>
+      <span>Means a lot. Thank you big time! </span>
+    </ol>    
+  </div>
+  <div class="rev_two">
+    <span class="rev_si">- you may also be interested in -</span>
+    <div class="one_fifth">
+      <a href="/collections/enso-headbands-and-head-wraps">
+        <img src="{{ 'enso.jpg' | asset_url }}" alt="..." />
+        <h4>enso</h4>
+      </a>
+    </div>
+    <div class="one_fifth">
+      <a href="/collections/hu-sweatbands">
+        <img src="{{ 'hu.jpg' | asset_url }}" alt="..." />
+        <h4>hu</h4>
+      </a>
+    </div>
+    <div class="one_fifth">
+      <a href="/collections/aurea-headbands">
+        <img src="{{ 'aurea.jpg' | asset_url }}" alt="..." />
+        <h4>aurea</h4>
+      </a>
+    </div>
+    <div class="one_fifth">
+      <a href="/collections/lila-hairties">
+        <img src="{{ 'lila.jpg' | asset_url }}" alt="..." />
+        <h4>lila</h4>
+      </a>
+    </div>
+    <div class="one_fifth">
+      <a href="/collections/shawls">
+        <img src="{{ 'shawls.jpg' | asset_url }}" alt="..." />
+        <h4>shawls</h4>
+      </a>
+    </div>
+  </div>  
+</div>
+<script>
+  $(document).ready(function(){
+   $("#button_one").click(function(){$("#button_one_ol").slideToggle(1000)});   
+    $("#button_two").click(function(){$("#button_two_ol").slideToggle(1000)}); 
+    $("#button_three").click(function(){$("#button_three_ol").slideToggle(1000)}); 
+   });
+
+</script>

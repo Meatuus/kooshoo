@@ -1,0 +1,149 @@
+
+<div class="sixteen columns art_share">
+    <div class="sh_top">
+      <h1> Invite Friends, Get $10 Credit</h1>
+            <h4>
+  Invite your friends to KOOSHOO and earn $10 when they make their first purchase. 
+              <br>Your friend will ALSO receive $10 towards their first purchase. 
+            </h4>
+    </div>
+    <div class="sh_heart">
+    </div>
+    <div class="ten columns">
+        <div class="sh_field first">
+            <h6> Sign Up </h6>
+            <p> 
+              Sign up below with your email address and you will then be <br>prompted to invite friends via Email, Facebook and/or Twitter.
+			</p>
+          <!-- Begin Talkable integration code -->
+<script>
+  //<![CDATA[
+    var _curebitq = _curebitq || [];
+    _curebitq.push(['init', {
+      site_id: 'kooshoo--3', // REQUIRED - Talkable Site ID
+    }]);
+
+    _curebitq.push(['register_affiliate', {
+      iframe: { // REQUIRED - html attributes for iframe tag to fit page design
+        width: '100%', // REQUIRED - width of the iframe
+        height: 960, // REQUIRED - initial height of the iframe. Will be automatically updated if responsive option is set to true
+        id: 'new_curebit_affiliate_member' // OPTIONAL - any other HTML attribute
+      },
+
+      affiliate_member: { 
+        email: 'customer@example.com', // OPTIONAL - customer email
+        first_name: 'John', // OPTIONAL - customer first name
+        last_name: 'Smith', // OPTIONAL - customer last name      
+      },
+      responsive: true, // OPTIONAL - fit iframe into viewport (also on resize) 
+      campaign_tags: ['default'] // OPTIONAL - campaign tags for offer targeting
+    }]);
+  //]]>
+</script>
+<script src="//d2jjzw81hqbuqv.cloudfront.net/integration/curebit-1.0.min.js" type="text/javascript"></script>
+<!-- End Talkable integration code -->
+        </div>
+    </div>
+    <div class="ten columns">
+        <div class="sh_field second">
+            <h6> Track Your Rewards</h6>
+            <p>  When your friend(s) makes their first purchase, you’ll receive $10 in store credit. It will be emailed to you as a promo code to be used at check out. Valid for up to a total of 20 friends.</p>
+            <!--<div class="sh_border">
+                jesse@kooshoo.com  Invited, not yet joined 
+            </div>-->
+        </div>    
+    </div>
+    
+    <!--<div class="sh_ban">
+    
+    </div>-->
+</div>
+</div>
+
+<div id="bus_art">
+    <div class="container art_rnhj">
+      <div class="sh_top">
+        <h2>
+          Giving to Charity
+        </h2>
+      </div>
+    </div>
+    <div class="sh_ban_d container art_rnhj" id="business">
+      
+      <!--<h3>{{ settings.sgo_a }}</h3>
+      <p>{{ settings.sgo_b }}</p>-->
+    </div>
+    
+    <div class="sh_btm container art_rnhj">
+        <div class="shb_center">
+            {{ settings.sg_c }}
+        </div>
+        <div class="shb_left">
+            {{ settings.sg_a }}
+        </div>
+        <div class="sh_right">
+            {{ settings.sg_b }}
+        </div>
+    </div>
+    
+</div>
+
+<div class="rel_block">
+  <div class="rel_title">
+    <p>
+    - you may also be interested in -
+  	</p>
+  </div>
+  <div class="rel_bxre">
+  		{% for collection in collections %}
+  			{% if collection.products.size > 0 %}
+				{% if collection.handle == 'aurea-headbands' %}
+  				<div class="rel_itbox">
+                    <a href="{{ collection.url }}">
+                        {% for product in collection.products limit:1 %}
+                            <img src="{{ product.featured_image | product_img_url: 'compact' }}"  />
+                        {% endfor %} 
+                        <h6>AUREA</h6>  
+                    </a>
+  				</div>
+  				{% elsif collection.handle == 'enso-headbands' %}
+    			<div class="rel_itbox">
+                    <a href="{{ collection.url }}">
+                        {% for product in collection.products  limit:1 %}
+                            <img src="{{ product.featured_image | product_img_url: 'compact' }}"  />
+                        {% endfor %} 
+                        <h6>ENSO</h6>  
+                    </a>
+  				</div>
+  				{% elsif collection.handle == 'hu-headbands' %}
+    			<div class="rel_itbox">
+                    <a href="{{ collection.url }}">
+                        {% for product in collection.products  limit:1 offset:5 %}
+                            <img src="{{ product.featured_image | product_img_url: 'compact' }}"  />
+                        {% endfor %} 
+                        <h6>HU</h6>  
+                    </a>
+  				</div>
+  				{% elsif collection.handle == 'hairties' %}
+    			<div class="rel_itbox">
+                    <a href="{{ collection.url }}">
+                        {% for product in collection.products limit:1 %}
+                            <img src="{{ product.featured_image | product_img_url: 'compact' }}"  />
+                        {% endfor %} 
+                        <h6>HAIRTIES</h6>  
+                    </a>
+  				</div>
+  				{% elsif collection.handle == 'shawls' %}
+    			<div class="rel_itbox">
+                    <a href="{{ collection.url }}">
+                        {% for product in collection.products limit:1 offset:1 %}
+                            <img src="{{ product.featured_image | product_img_url: 'compact' }}"  />
+                        {% endfor %} 
+                        <h6>SHAWLS</h6>  
+                    </a>
+  				</div>
+                {% endif %} 
+  			{% endif %} 
+        {% endfor %} 
+  </div>
+</div>

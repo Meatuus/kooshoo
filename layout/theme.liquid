@@ -1,0 +1,585 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <script type="text/javascript">
+(function e(){var e=document.createElement("script");e.type="text/javascript",e.async=true,e.src="//staticw2.yotpo.com/H7ajQ9mi6ax5QJdkHA2zuw0geWpSfJC4I6L0kZmd/widget.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)})();
+</script>
+<meta name="google-site-verification" content="fA8f4HHMwr1ajHdg7DPR3gYQ5pjB56tqDFbJMYAuxAI" />
+<!-- Clean v1.0.6e -->
+{% include 'theme-meta' %}
+{{ content_for_header }}
+<!-- TESTINGTESTING -->
+{{ 'style.css' | asset_url | stylesheet_tag }}
+{{ 'skeleton.css' | asset_url | stylesheet_tag }}
+
+{% comment %} Google Web Font imports {% endcomment %}
+{% assign font_heading_type_split = settings.font_heading_type | split: '|' %}
+{% assign font_logo_type_split = settings.font_logo_type | split: '|' %}
+{% assign font_nav_type_split = settings.font_nav_type | split: '|' %}
+{% assign font_standard_type_split = settings.font_standard_type | split: '|' %}
+
+{% if settings.font_heading_type == 'GWF|CUSTOM' %}
+    <link href="https://fonts.googleapis.com/css?family={{ settings.font_heading_type_custom }}" rel="stylesheet" type="text/css"/>
+{% elsif font_heading_type_split.first == 'GWF' %}
+    <link href="https://fonts.googleapis.com/css?family={{ font_heading_type_split.last }}" rel="stylesheet" type="text/css"/>
+{% endif %}
+{% if settings.font_logo_type == 'GWF|CUSTOM' %}
+    <link href="https://fonts.googleapis.com/css?family={{ settings.font_logo_type_custom }}" rel="stylesheet" type="text/css"/>
+{% elsif font_logo_type_split.first == 'GWF' %}
+    <link href="https://fonts.googleapis.com/css?family={{ font_logo_type_split.last }}" rel="stylesheet" type="text/css"/>
+{% endif %}
+{% if settings.font_nav_type == 'GWF|CUSTOM' %}
+    <link href="https://fonts.googleapis.com/css?family={{ settings.font_nav_type_custom }}" rel="stylesheet" type="text/css"/>
+{% elsif font_nav_type_split.first == 'GWF' %}
+    <link href="https://fonts.googleapis.com/css?family={{ font_nav_type_split.last }}" rel="stylesheet" type="text/css"/>
+{% endif %}
+{% if settings.font_standard_type == 'GWF|CUSTOM' %}
+    <link href="https://fonts.googleapis.com/css?family={{ settings.font_standard_type_custom }}" rel="stylesheet" type="text/css"/>
+{% elsif font_standard_type_split.first == 'GWF' %}
+    <link href="https://fonts.googleapis.com/css?family={{ font_standard_type_split.last }}" rel="stylesheet" type="text/css"/>
+{% endif %}
+
+<link href='https://fonts.googleapis.com/css?family=Homemade+Apple' rel='stylesheet' type='text/css'>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+{{ 'api.jquery.js' | shopify_asset_url | script_tag }}
+{{ 'option_selection.js' | shopify_asset_url | script_tag }}
+
+<!--[if lte IE 7]>
+    {{ 'json2.js' | shopify_asset_url | script_tag }}
+<![endif]-->
+{% if template contains 'customers' %}
+    {{ "shopify_common.js" | shopify_asset_url | script_tag }}
+    {{ "customer_area.js"  | shopify_asset_url | script_tag }}
+{% endif %}
+
+{% comment %} Required before custom JS {% endcomment %}
+<script>
+var underIE9 = false;
+
+//Indicate to do image fade-in
+$('html').addClass('doimgfade');
+
+//Global colours
+var color_body_bg = '{{ settings.color_bg_main }}';
+var color_divider = '{{ settings.color_general_divider }}';
+
+//For Ajax
+Shopify.money_format = '{{shop.money_format | replace: "'", '"'}}';
+
+//Acquire loading graphic asap
+var loadingGraphic = new Image();
+loadingGraphic.src = '{{ settings.loading_graphic | asset_url }}';
+{% if template == 'collection' or template == 'search' %}
+    var productsPerRow = {{ settings.products_per_row_coll }};
+{% elsif template == 'list-collections' %}
+    var productsPerRow = {{ settings.collrow_numperrow }};
+{% elsif template == 'search' %}
+    var productsPerRow = {{ settings.products_per_row_coll }};
+{% elsif template == 'product' %}
+    var productsPerRow = 4;
+{% else %}
+    var productsPerRow = {{ settings.products_per_row_home }};
+{% endif %}
+var vertSnapWidth = 725;//When window is under this width, everything is vertically aligned
+
+var thumbZoomOptions = {
+    zoomType: 'innerzoom',
+    lens:true,
+{% if settings.prod_preload_thumb_zoom %}
+    preloadImages: !!!('ontouchstart' in window) ? 1 : 0, //Only repload if not touch
+{% else %}
+    preloadImages: false,
+{% endif %}
+    alwaysOn:false,
+    title:false,
+    showEffect:'fadein',
+    hideEffect:'fadeout',
+    preloadText:'',
+    blockClicks: false
+};
+</script>
+
+<!--[if lte IE 9]>
+<script>
+underIE9 = true;
+</script>
+<![endif]-->
+
+<!--[if lte IE 9]>
+<script>
+    document.createElement('header');
+	document.createElement('nav');
+	document.createElement('section');
+	document.createElement('article');
+	document.createElement('figure');
+	document.createElement('aside');
+    document.createElement('footer');
+    document.createElement('cite');
+    document.createElement('canvas');
+</script>
+<![endif]-->
+
+{{ "slimbox2.js" | asset_url | script_tag }}
+{{ "jquery.flexslider-min.js" | asset_url | script_tag }}
+{{ "jquery.tweet.js" | asset_url | script_tag }}
+{{ "jquery.jqzoom-core-pack.js" | asset_url | script_tag }}
+{% if template contains 'blog' and settings.blog_display != 'onecolumn_side' %}
+    {{ "jquery.masonry.min.js" | asset_url | script_tag }}
+{% endif %}
+{% if template contains 'collection' and settings.use_inf_scroll == true %}
+    {{ "jquery.infinitescroll.min.js" | asset_url | script_tag }}
+{% endif %}
+{{ "blackandwhite.js" | asset_url | script_tag }}
+{% if template == 'product' %}
+  {{ "jquery.prettyPhoto.js" | asset_url | script_tag }}
+  {{ 'prettyPhoto.css' | asset_url | stylesheet_tag }}
+{% endif %}
+
+
+<script>
+  $(function(){
+    $(window).resize(function() {
+        //Do things when theme snaps - and on DOM ready
+        var $mainCont = $('#maincontent.container');
+        var contWidth = $mainCont.width();
+        if(typeof($mainCont.data('prevwidth')) == 'undefined'
+                || $mainCont.data('prevwidth') != contWidth) {
+            //When CSS framework 'snaps'
+
+            var productsPerRowRightNow = $(window).width() >= vertSnapWidth ? productsPerRow : 1;
+            var collsPerRowRightNow = $(window).width() >= vertSnapWidth ? {{ settings.collrow_numperrow }} : 1;
+
+            $('.productlist').normaliseHeights({
+                numPerRow:productsPerRowRightNow,
+                itemClass:'.product',
+                textRegionClasses:'.imgcont, .title, .desc, .price'
+            });
+            $('.widgets:not(.collection-row)').normaliseHeights({
+                numPerRow:productsPerRowRightNow,
+                itemClass:'.widget',
+                textRegionClasses:'h6, .title, .align',
+                affectOnlyDirectlyChildren: true
+            });
+            $('.widgets.collection-row').normaliseHeights({
+                numPerRow:collsPerRowRightNow,
+                itemClass:'.widget',
+                textRegionClasses:'.title, .align',
+                affectOnlyDirectlyChildren: true
+            });
+            $('#mainslider').each(function(){
+                //Images?
+                var $img = $(this).find('img:first');
+                if($img.length > 0) {
+                    $(this).find('.slides li').height($img[0].naturalHeight * $(this).width() / $img[0].naturalWidth);
+                    $(this).find('.slides').css('height', '');
+                }
+            });
+            //Product pile
+            $('.productpilewidget ul').normaliseHeights({
+                numPerRow:3,
+                itemClass:'li',
+                textRegionClasses:'a'
+            });
+            //Product thumb zoom
+            $('.zoomPad').each(function(){
+                var $img = $(this).children('img');
+                var w = $img.width();
+                var h = $img.height();
+                $(this).find('.zoomPup, .zoomWindow .zoomWrapper').width(w).height(h);
+            });
+            {% if template contains 'blog' and settings.blog_display != 'onecolumn_side' %}
+            //Masonry is used to tile blog articles
+            $('.masonry').masonry({
+                itemSelector : 'article',
+                columnWidth: function( containerWidth ) {
+                    {% if settings.blog_display == 'tiled_3' %}
+                        return containerWidth / 3;
+                    {% else %}
+                        return containerWidth / 2;
+                    {% endif %}
+                }
+            });
+            {% endif %}
+
+            {% if settings.prod_thumb_hover_method == 'zoom' %}
+            //Rebuild product thumb zoom *if it already exists*
+            $('.productlist .product .delayedzoom').each(function(){
+                if(typeof($(this).data('jqzoom')) != 'undefined') {
+                    //Rebuild zoom
+                    $(this).find('.zoomPad > img').unwrap();
+                    $(this).data('jqzoom', null).find('.zoomPup, .zoomWindow, .zoomPreload').remove();
+                    $(this).jqzoom(thumbZoomOptions);
+                }
+            });
+            {% elsif settings.prod_thumb_hover_method == 'duelimage' %}
+            //If in image-fade-mode, vertically align second image & resize the hover viewport
+            $('.productlist .product .imgswitch').each(function(){
+                $(this).find('.altimg').cropCentral({alignTop:true});
+                $(this).find('.altimgcont').height($(this).find('img:first').height());
+            });
+            {% endif %}
+        }
+        $mainCont.data('prevwidth', contWidth);
+    }).trigger('resize');
+
+    //Trigger again once any fonts are loaded - force resize event
+    $(window).load(function(){
+        $('#maincontent.container').data('prevwidth', null);
+        $(window).trigger('resize');
+    });
+
+    {% if template contains 'blog' and settings.blog_display != 'onecolumn_side' %}
+    //Fade in images, and resize masonry
+    $('.masonry img').css('visibility', 'hidden');
+    $('.masonry').imagesLoaded(function(){
+        $('.masonry img').hide().css('visibility','visible').fadeIn(200);
+        $('.masonry').masonry({
+            itemSelector : 'article',
+            columnWidth: function( containerWidth ) {
+                {% if settings.blog_display == 'tiled_3' %}
+                    return containerWidth / 3;
+                {% else %}
+                    return containerWidth / 2;
+                {% endif %}
+            }
+        });
+    });
+    {% endif %}
+    });
+</script>
+
+{% comment %} CSS that needs snippets {% endcomment %}
+<style type="text/css">
+{% assign hex2rgb_hex = settings.color_highlight_hover %}
+{% include 'hex2rgb' %}
+a.highlight:hover,
+input:focus, textarea:focus {
+    -webkit-box-shadow:inset 0px 0px 60px rgba({{ hex2rgb_r }},{{ hex2rgb_g }},{{ hex2rgb_b }}, 0.3);
+    -moz-box-shadow:inset 0px 0px 60px rgba({{ hex2rgb_r }},{{ hex2rgb_g }},{{ hex2rgb_b }}, 0.3);
+    box-shadow:inset 0px 0px 60px rgba({{ hex2rgb_r }},{{ hex2rgb_g }},{{ hex2rgb_b }}, 0.3);
+}
+
+{% assign hex2rgb_hex = settings.color_general_divider %}
+{% include 'hex2rgb' %}
+#util-bar #searchcont input.search,
+#pagefooter .registercont .registerform input[type=email] {
+    border-bottom:1px solid rgba({{ hex2rgb_r }},{{ hex2rgb_g }},{{ hex2rgb_b }}, 0.5);
+}
+
+{% assign hex2rgb_hex = settings.color_slider_mask %}
+{% include 'hex2rgb' %}
+#mainslider .overlay {
+    background:{{ settings.color_slider_mask }};
+    background:rgba({{ hex2rgb_r }},{{ hex2rgb_g }},{{ hex2rgb_b }}, 0.5);
+}
+</style>
+
+<!--[if IE]>
+<style type="text/css">
+#mainslider .lowerdesc {
+    background:transparent;
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99{{ settings.color_slider_mask | replace:'#','' }},endColorstr=#99{{ settings.color_slider_mask | replace:'#','' }});
+    -ms-filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99{{ settings.color_slider_mask | replace:'#','' }},endColorstr=#99{{ settings.color_slider_mask | replace:'#','' }});
+    zoom: 1;
+}
+</style>
+
+<![endif]-->
+<meta name="google-site-verification" content="fA8f4HHMwr1ajHdg7DPR3gYQ5pjB56tqDFbJMYAuxAI" />
+<meta name="alexaVerifyID" content="3Ep5aW_gkLCKMKOMmpS-g7h6ykk" />
+<!-- Added by Lexity. DO NOT REMOVE/EDIT -->
+<meta name="google-site-verification" content="MfT3T1u_VHbY1QHrfhk7aNQVANybsbfsTA2QIT_5o2s" />
+<script type="text/javascript">
+(function (d, w) {
+  var x = d.getElementsByTagName('SCRIPT')[0], g = d.createElement('SCRIPT');
+  g.type = 'text/javascript';
+  g.async = true;
+  g.src = ('https:' == d.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  x.parentNode.insertBefore(g, x);
+}(document, window));
+</script>
+{{ "cookie.js" | asset_url | script_tag }}
+<!-- End of addition by Lexity. DO NOT REMOVE/EDIT -->
+
+{% if template == 'page.kickstarter' %}
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css' />
+  {{ 'share.css' | asset_url | stylesheet_tag }}
+  {% comment %}
+  {{ "jquery.prettyPhoto.js" | asset_url | script_tag }}
+  {% endcomment %}
+{% endif %}
+{% if template == 'page.share_kids' %}
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css' />
+  {{ 'share_kids.css' | asset_url | stylesheet_tag }}
+{% endif %}
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-N4V8XC"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-N4V8XC');</script>
+<!-- End Google Tag Manager -->
+</head>
+
+<body class="{% if customer %}customer-logged-in {% endif %}template-{{ template | split: '.' | first }}">
+  	{% if template == 'index' %}
+		<div id="fb-root"></div>
+		<script>(function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_EN/all.js#xfbml=1";
+            fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
+  		</script>
+	{% endif %}
+    {% include 'theme-header' %}
+
+ {% if template == 'index' %}
+  {% unless settings.mainslider_type == 'off' %}
+<section id="mainslider" class="sixteen columns flexslider slideshow row">
+    <ul class="slides">
+    {% if settings.mainslider_on %}
+
+        {% if settings.mainslider_en_1 %}
+        {% assign slideimage = 'mainslider_img_1.jpg' %}
+        {% assign slidetext_title = settings.mainslider_img_1_overlay_t %}
+        {% assign slidetext_class = settings.mainslider_img_1_overlay_pos %}
+        {% include 'homepage-slide' with settings.mainslider_handle_1 %}
+        {% endif %}
+
+        {% if settings.mainslider_en_2 %}
+        {% assign slideimage = 'mainslider_img_2.jpg' %}
+        {% assign slidetext_title = settings.mainslider_img_2_overlay_t %}
+        {% assign slidetext_class = settings.mainslider_img_2_overlay_pos %}
+        {% include 'homepage-slide' with settings.mainslider_handle_2 %}
+        {% endif %}
+
+        {% if settings.mainslider_en_3 %}
+        {% assign slideimage = 'mainslider_img_3.jpg' %}
+        {% assign slidetext_title = settings.mainslider_img_3_overlay_t %}
+        {% assign slidetext_class = settings.mainslider_img_3_overlay_pos %}
+        {% include 'homepage-slide' with settings.mainslider_handle_3 %}
+        {% endif %}
+
+        {% if settings.mainslider_en_4 %}
+        {% assign slideimage = 'mainslider_img_4.jpg' %}
+        {% assign slidetext_title = settings.mainslider_img_4_overlay_t %}
+        {% assign slidetext_class = settings.mainslider_img_4_overlay_pos %}
+        {% include 'homepage-slide' with settings.mainslider_handle_4 %}
+        {% endif %}
+
+        {% if settings.mainslider_en_5 %}
+        {% assign slideimage = 'mainslider_img_5.jpg' %}
+        {% assign slidetext_title = settings.mainslider_img_5_overlay_t %}
+        {% assign slidetext_class = settings.mainslider_img_5_overlay_pos %}
+        {% include 'homepage-slide' with settings.mainslider_handle_5 %}
+        {% endif %}
+
+    {% endif %}
+	</ul>
+</section>
+{% endunless %}
+{% if settings.ind_ban1c or settings.ind_ban2c %}
+<div id="inda_ban">
+</div>
+{% endif %}
+   {% endif %}
+
+    	<div id="maincontent" class="{% unless template == "page.kids_pants" %}container{% endunless %}">
+
+            {% if template == 'list-collections' %}
+                {% include 'collection-listing' %}
+            {% else %}
+{% include 'lockdown' %}
+<script>
+  console.log('000-','wh_check-','{{ allowed }}');
+</script>
+{% if allowed %}
+    {{ content_for_layout }}
+{% else %}
+    {% if template contains 'cart' %}
+        {{ content_for_layout }}
+    {% elsif customer %}
+        {% include 'lock-message' %}
+    {% else %}
+        <meta content="0; url=/account/login?checkout_url={{ return_url }}" http-equiv="refresh" />
+    {% endif %}
+{% endif %}
+            {% endif %}
+            {% if social_is_on_the_page and template != 'product' %}<div class="socialspacer"></div>{% endif %}
+        </div>
+    </div><!-- .bodywrap -->
+    {% include 'theme-footer' %}
+    <a id="scrolltotop" href="#util-bar">Scroll to top</a>
+    {% if template == 'index' %}
+        <div id="body_bacground" style="display: none;">
+            <div id="ab_body" style="display: block;">
+                <div id="body_form">
+                    <div id="left_image"></div>
+                    <div id="rigth_image">
+                        <div id="rigth_text_top">
+                            <!--<h2></h2>-->
+                          <h3>{{ settings.pp_a }}</h3>
+                          <h4>{{ settings.pp_b }}</h4>
+
+
+                            <p>{{ settings.pp_c }}</p>
+
+                            <!--<br>
+                            <p>{{ settings.pp_d }}</p>
+                            <p>{{ settings.pp_e }}</p>
+                            <p>{{ settings.pp_f }}</p> -->
+                        </div>
+                        <div id="rigth_form">
+
+                                <input type="text" name="E-MAIL" class="formtext" placeholder="Enter email address">
+                                <div  class="formbutton">
+                                SUBMIT
+                                </div>
+                        </div>
+                        <div id="rigth_text_buttom">
+                            <p>{{ settings.pp_d }}</p>
+                        </div>
+                      <div class="fb-like" data-href="https://www.facebook.com/KOOSHOO.smile" data-width="352" data-show-faces="true" data-send="false"></div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div id="body_exit">
+
+                </div>
+            </div>
+        </div>
+  		<script type="text/javascript">
+             $(document).ready(function() {
+                if($(window).width() >= 725 ){
+                var str = $.cookie('suject');
+
+                  /*  $('#body_bacground').show();*/
+                if (str !== '1') {
+                    $('#body_bacground').show();
+                    }
+                    $("#body_exit").click(function() {
+                         $("#body_bacground").hide();
+                         createCookie("suject", '1');
+                         return false;
+                    });
+                     $('.formbutton').click(function(){
+                         var art_f = $(".formtext").val();
+                         $("#mailinglist_email").val(art_f);
+                         createCookie("suject", '1');
+                         $(".contact-form").submit();
+                     });
+                };
+            });
+            function createCookie(name, value, days) {
+                if (days) {
+                    var date = new Date();
+                    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                    var expires = "; expires=" + date.toGMTString();
+                }
+                else
+                    var expires = "";
+                document.cookie = name + "=" + value + expires + "; path=/";
+            }
+            function readCookie(name) {
+                var nameEQ = name + "=";
+                var ca = document.cookie.split(';');
+                for (var i = 0; i < ca.length; i++) {
+                    var c = ca[i];
+                    while (c.charAt(0) == ' ')
+                        c = c.substring(1, c.length);
+                    if (c.indexOf(nameEQ) == 0)
+                        return c.substring(nameEQ.length, c.length);
+                }
+                return null;
+            }
+  		</script>
+	{% endif %}
+  	{% if template == 'product' %}
+        <script type="text/javascript" charset="utf-8">
+            $(document).ready(function(){
+              function image_marg() {
+                  $("a[rel^='prettyPhoto']").prettyPhoto({ social_tools: false });
+                  $('#inst_log').show();
+                if ($('.inst_img').length){
+                    var aery = $('.inst_img').length;
+
+                    var inst_pages = Math.ceil(aery/18);
+                    $('.inst_tot').html(inst_pages);
+                    $('.inst_cur, .inst_tot, .inst_nav').show();
+                    if (inst_pages > 1){
+                          inst_hw();
+                          inst_cl();
+
+                    }
+
+                }
+                /*  inst_hw();*/
+
+              }
+   				 setTimeout(image_marg, 2000);
+            });
+          function inst_hw(){
+              var cur = $('.inst_cur').html();
+              var tot = $('.inst_tot').html();
+              if( cur < tot){
+                  	if( cur != 1){
+                		$('.inst_left, .inst_right').show();
+                    }else{
+                        $('.inst_left').hide();
+                        $('.inst_right').show();
+                    }
+              }else{
+                  $('.inst_left').show();
+                  $('.inst_right').hide();
+              }
+          };
+           function inst_cl(){
+             $('.inst_right').click(function(){
+             	$('.inst_cont').animate({ marginTop: '-=480px'}, 1000);
+                var in_cc = parseFloat($('.inst_cur').html());
+                var in_cn = (in_cc+1);
+                $('.inst_cur').html(in_cn);
+               inst_hw();
+             });
+             $('.inst_left').click(function(){
+             	$('.inst_cont').animate({ marginTop: '+=480px'}, 1000);
+                var in_cc = $('.inst_cur').html();
+                $('.inst_cur').html((in_cc-1));
+                inst_hw();
+             });
+           };
+		</script>
+	{% endif %}
+  {% if template contains "product" %}
+  {% include 'size-guide-popup' %}
+  {% endif %}
+<script type="text/javascript">
+adroll_adv_id = "WH52RXZBXFAKHIKNQFSLV5";
+adroll_pix_id = "DTTDOATTVRFHNMLPUNXK5G";
+(function () {
+var oldonload = window.onload;
+window.onload = function(){
+   __adroll_loaded=true;
+   var scr = document.createElement("script");
+   var host = (("https:" == document.location.protocol) ? "https://s.adroll.com" : "http://a.adroll.com");
+   scr.setAttribute('async', 'true');
+   scr.type = "text/javascript";
+   scr.src = host + "/j/roundtrip.js";
+   ((document.getElementsByTagName('head') || [null])[0] ||
+    document.getElementsByTagName('script')[0].parentNode).appendChild(scr);
+   if(oldonload){oldonload()}};
+}());
+</script>
+
+<script>
+jQuery('a[href^="http"]').not('a[href^="{{ shop.url }}"]').attr('target', '_blank');
+</script>
+
+</body>
+</html>

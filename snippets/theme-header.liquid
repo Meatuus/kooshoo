@@ -1,0 +1,236 @@
+<div id="util-bar">
+    {% if shop.customer_accounts_enabled and customer %}
+        <div class="container cf util-bar-upperarea">
+            <div class="sixteen columns">
+                <a class="button" href="/account">Manage your account</a>
+                <a class="button" href="/account/logout">Logout</a>
+            </div>
+        </div>
+    {% elsif shop.customer_accounts_enabled %}
+    	<div id="util-bar-login" class="container cf util-bar-upperarea">
+            <div class="inputwrap sixteen columns formfields">
+                <form action="/account/login" method="post">
+        			<span class="title">{{ settings.text_login }}</span>
+                    <div class="nameinputcont inputrow">
+                        <label for="headername" class="hoverlabel">Email address</label>
+        			    <input id="headername" type="text" class="nameinput" name="customer[email]" />
+                    </div>
+        			<div class="passwordinputcont inputrow">
+                        <label for="headerpassword" class="hoverlabel">Password</label>
+        				<input id="headerpassword" type="password" class="password" name="customer[password]" />
+        				<span class="forgot"><a href="/account/login">Forgot your password?</a></span>
+        			</div>
+                    <input type="submit" class="button pink" value="{{ settings.text_login }}" />
+                </form>
+            </div>
+    	</div>
+    {% endif %}
+    <div class="top_header">
+    <div class="container">
+       
+        
+        <div class="cartsocialcont sixteen columns">
+           {% if settings.sm_rss or settings.sm_facebook or settings.sm_twitter or settings.sm_tumblr or settings.sm_pinterest %}
+        		<div class="socialicons">
+        			<ul>
+                    {% if settings.sm_rss %}
+                        <li class=""><a title="Follow our RSS" target="_blank" href="{{ blogs[settings.sm_rss_blog].url }}.atom"><img src="{{ 'icon_rss.png' | asset_url }}"/></a></li>
+                    {% endif %}
+                    {% if settings.sm_facebook %}
+                        <li class=""><a title="Follow us on Facebook" target="_blank" href="{{settings.sm_facebook_link}}"><img src="{{ 'icon_fb.png' | asset_url }}"/></a></li>
+                    {% endif %}
+                    {% if settings.sm_twitter %}
+                        <li class=""><a title="Follow us on Twitter" target="_blank" href="{{settings.sm_twitter_link}}"><img src="{{ 'icon_tw.png' | asset_url }}"/></a></li>
+                    {% endif %}
+                    {% if settings.sm_tumblr %}
+                        <li class=""><a title="Follow our Tumblr" target="_blank" href="{{settings.sm_tumblr_link}}"><img src="{{ 'icon_ig.png' | asset_url }}"/></a></li>
+                    {% endif %}
+                    {% if settings.sm_pinterest %}
+                        <li class=""><a title="Follow us on Pinterest" target="_blank" href="{{settings.sm_pinterest_link}}"><img src="{{ 'icon_pt.png' | asset_url }}"/></a></li>
+                    {% endif %}
+                    {% if settings.sm_youtube %}
+                        <li class=""><a title="Follow us on Youtube" target="_blank" href="{{settings.sm_youtube_link}}"><img src="{{ 'icon_yt.png' | asset_url }}"/></a></li>
+                    {% endif %}
+                      <li class=""><a title="Follow us on Intagram" target="_blank" href="http://instagram.com/feelingkooshoo"><img src="{{ 'icon_ig.png' | asset_url }}"/></a></li>
+        			</ul>
+                </div>
+                {% endif %}
+            <span class="tagline">{{ settings.head_tagline }}&nbsp;</span>
+    		<div class="actions">
+                
+               
+                
+                {% if shop.customer_accounts_enabled and customer %}
+                    <a href="#" class="account logindrop">{{ settings.text_youraccount }}</a>
+                {% elsif shop.customer_accounts_enabled %}
+    			    <a href="#" class="account logindrop">{{ settings.text_login }}</a>
+                {% endif %}
+                
+    			<a href="/{% if template != 'cart' %}cart{% else %}checkout{% endif %}" id="cartsummary"><!--{{ settings.text_cart }}-->Shopping Bag <span id="headercartvals">({{ cart.item_count }}) items<!--{{ cart.total_price | money_with_currency }}--></span></a>
+                
+                
+            </div>
+        <div id="search_top">
+        <div class="top_btn_s">
+            <a href="#" class="searchbtn">Search</a>
+        </div>
+            <div id="searchcont" class="formfields dohover smarttextinput" style="width: 0px;">
+                <div class="searchformwrap">
+                        <form class="inputrow" action="/search" method="get">
+                         
+                            <input class="search defaulttextjs" name="q" id="searchinput" type="text" placeholder="Search"/>
+                            <input type="submit" value="→" />
+                        </form>
+                    </div>
+                </div>
+            </div>
+		</div>
+
+	</div>
+           
+    </div>
+    <div id="logo" class="sixteen columns">
+            {% if settings.use_logo_image %}
+            <a href="/"><img src="{{ 'logo.png' | asset_url }}" alt="{{ shop.name }}" title="{{ shop.name }}" /></a>
+            {% else %}
+            <a href="/"><h1>{{ shop.name }}</h1></a>
+            {% endif %}
+    	</div>
+    <header id="pageheader" class="container">
+
+    	<nav class="sixteen columns">
+            {% assign dropdownMarkup = '' %}
+            {% assign firstliclass = '' %}
+    		<ul>
+        	  	{% for link in linklists.main-menu.links %}
+        			<li{{ firstliclass }} class="list_nav">
+                        
+                        {% comment %} If catalog nav, show collections underneath {% endcomment %}
+                        {% if link.title == 'Catalog' %}
+                            <a class="hasdropdown" href="{{ link.url }}">{{ settings.text_catalog }}</a>
+                            {% capture dropdownMarkup %}{{ dropdownMarkup }}<option value="{{ link.url }}">{{ link.title }}</option>{% endcapture %}
+                            <ul class="dd_men">
+                            {% for collection in collections %}
+                                {% assign handlefirst = collection.handle | split: '-' | first %}
+                                {% if collection.handle != 'all' and handlefirst != 'frontpage' %}
+                                <li>{{ collection.title | link_to: collection.url }}</li>
+                                {% capture dropdownMarkup %}{{ dropdownMarkup }}<option value="{{ collection.url }}">- {{ collection.title }}</option>{% endcapture %}
+                                {% endif %}
+                            {% endfor %}
+                            </ul>
+                            
+                            {% comment %}Show Vendor list right after collections{% endcomment %}
+                            {% if shop.vendors.size > 0 and settings.vendor_list_enabled == true %}
+                                </li>
+                                <li>
+                                    <a class="hasdropdown">{{ settings.text_vendor }}</a>
+                                    {% capture dropdownMarkup %}{{ dropdownMarkup }}<option value="">Vendor</option>{% endcapture %}
+                                    <ul class="dd_mena">
+                                        {% for vendor in shop.vendors %}
+                                            <li>{{ vendor | link_to_vendor }}</li>
+                                            {% capture dropdownMarkup %}{{ dropdownMarkup }}<option value="{{ vendor | url_for_vendor }}">- {{ vendor }}</option>{% endcapture %}
+                                        {% endfor %}
+                                    </ul>
+                            {% endif %}
+                            
+                            {% comment %}Show Types list right after vendors{% endcomment %}
+                            {% if shop.types.size > 0 and settings.type_list_enabled == true %}
+                                </li>
+                                <li>
+                                    <a class="hasdropdown">{{ settings.text_type }}</a>
+                                    {% capture dropdownMarkup %}{{ dropdownMarkup }}<option value="">Type</option>{% endcapture %}
+                                    <ul class="dd_menb">
+                                        {% for type in shop.types %}
+                                            <li>{{ type | link_to_type }}</li>
+                                            {% capture dropdownMarkup %}{{ dropdownMarkup }}<option value="{{ type | url_for_type }}">- {{ type }}</option>{% endcapture %}
+                                        {% endfor %}
+                                    </ul>
+                            {% endif %}
+                        {% else %}
+                            {% comment %} Get any lists named the same as the parent and treat as subnav {% endcomment %}
+                			{% capture child_list_handle %}{{ link.title | handle }}{% endcapture %}
+            				{% if linklists[child_list_handle] and linklists[child_list_handle].links.size > 0 %}
+                                <a class="hasdropdown" href="{{ link.url }}">{{ link.title }}</a>
+                              
+                                {% capture dropdownMarkup %}{{ dropdownMarkup }}<option value="{{ link.url }}">{{ link.title }}</option>{% endcapture %}
+                               
+                                  <div class="dd_body">
+                                    <div class="dd_left">
+                                        {% if link.title == 'Headbands' %}
+                                        <img class="active" src="{{ 'first_nav_a.jpg' | asset_url }}"/>
+                                        <img style="display:none" src="{{ 'first_nav_b.jpg' | asset_url }}"/>
+                                        <img style="display:none" src="{{ 'first_nav_c.jpg' | asset_url }}"/>
+                                        <img style="display:none" src="{{ 'first_nav_d.jpg' | asset_url }}"/>
+                                         {% endif %}
+                                         {% if link.title == 'Women' %}
+                                        <img class="active" src="{{ 'second_nav_a.jpg' | asset_url }}"/>
+                                        <img style="display:none" src="{{ 'second_nav_b.jpg' | asset_url }}"/>
+                                        <img style="display:none" src="{{ 'second_nav_c.jpg' | asset_url }}"/>
+                                        <img style="display:none" src="{{ 'second_nav_d.jpg' | asset_url }}"/>
+                                        <img style="display:none" src="{{ 'second_nav_e.jpg' | asset_url }}"/>
+                                        <img style="display:none" src="{{ 'second_nav_f.jpg' | asset_url }}"/>
+                                        <img style="display:none" src="{{ 'second_nav_g.jpg' | asset_url }}"/>
+                                         {% endif %}
+                                         {% if link.title == 'Men' %}
+                                        <img class="active" src="{{ 'third_nav_a.jpg' | asset_url }}"/>
+                                        <img style="display:none" src="{{ 'third_nav_b.jpg' | asset_url }}"/>
+                                        <img style="display:none" src="{{ 'third_nav_c.jpg' | asset_url }}"/>
+                                        <img style="display:none" src="{{ 'third_nav_d.jpg' | asset_url }}"/>
+                                        <img style="display:none" src="{{ 'third_nav_e.jpg' | asset_url }}"/>
+                                         {% endif %}
+                                         {% if link.title == 'Kids' %}
+                                        <img class="active" src="{{ 'fourth_nav_a.jpg' | asset_url }}"/>
+                                        <img style="display:none" src="{{ 'fourth_nav_b.jpg' | asset_url }}"/>
+                                        <img style="display:none" src="{{ 'fourth_nav_c.jpg' | asset_url }}"/>
+                                        <img style="display:none" src="{{ 'fourth_nav_d.jpg' | asset_url }}"/>
+                                        <img style="display:none" src="{{ 'fourth_nav_e.jpg' | asset_url }}"/>
+                                        <img style="display:none" src="{{ 'fourth_nav_f.jpg' | asset_url }}"/>
+                                         {% endif %}
+                                         {% if link.title == 'Wholesale' %}
+                                        <img class="active" src="{{ 'fifth_nav_a.jpg' | asset_url }}"/>
+                                        <img style="display:none" src="{{ 'fifth_nav_b.jpg' | asset_url }}"/>
+                                        <img style="display:none" src="{{ 'fifth_nav_c.jpg' | asset_url }}"/>
+                                        <img style="display:none" src="{{ 'fifth_nav_d.jpg' | asset_url }}"/>
+                                        <img style="display:none" src="{{ 'fifth_nav_e.jpg' | asset_url }}"/>
+                                        <img style="display:none" src="{{ 'fifth_nav_f.jpg' | asset_url }}"/>
+                                        <img style="display:none" src="{{ 'fifth_nav_g.jpg' | asset_url }}"/>
+                                         {% endif %}
+                                    </div>
+                                     <ul class="dd_menc">
+                                    {% for l in linklists[child_list_handle].links %}
+                					    <li><a href="{{ l.url }}">{{ l.title }}</a></li>
+                                        {% capture dropdownMarkup %}{{ dropdownMarkup }}<option value="{{ l.url }}">{{ l.title }}</option>{% endcapture %}
+                                    {% endfor %}
+                				</ul>
+                                </div>
+                            {% else %}
+                                <a href="{{ link.url }}">{{ link.title }}</a>
+                                {% capture dropdownMarkup %}{{ dropdownMarkup }}<option value="{{ link.url }}">{{ link.title }}</option>{% endcapture %}
+            				{% endif %}
+                        {% endif %}
+        			</li>
+    			{% endfor %}
+    		</ul>
+            <select id="dropdownNav" class="noreplace"><option value="">Go to...</option>{{ dropdownMarkup }}</select>
+    	</nav>
+    </header>
+</div>
+<script type="text/javascript">
+$(document).ready(function() {
+    $('.dd_menc').find('li').mouseover(function() {
+        var art_ind = $(this).index();
+        console.log(art_ind, 'art_ind');
+        var art_aimg = $(this).parent().parent().find('img.active');
+        var art_img = $(this).parent().parent().find('img').eq(art_ind);
+        $(art_aimg).hide();
+        $(art_aimg).removeClass('active');
+        $(art_img).show();
+        $(art_img).addClass('active');
+        console.log(art_aimg, 'art_aimg');
+        console.log(art_img, 'art_img');
+    });
+    });
+    </script>
+<div class="bodywrap">
+    
+    

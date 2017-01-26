@@ -1,0 +1,135 @@
+{% comment %}
+<div id="crumbs" class="sixteen columns">
+  <a href="/" title="Home">Home</a>
+  &raquo;
+  <a href="{{ page.url }}">{{ page.title }}</a>
+</div><!-- #crumbs -->
+
+{% if settings.show_social_page %}
+<div class="social floating">
+  <span class="label">{{ settings.text_sharethis }}</span>
+  {% include 'social-sharing' %}
+</div>
+{% endif %}
+{% endcomment %}
+<div id="kids_pan" >
+  <div class="kids_pants_bg">
+    <p class="kids_blubanner">Almost here... <br> Kids Pants to Make a Better World</p>
+  </div>
+  <div class="kids_pants">    
+    <div id="player"></div>
+  </div>
+
+  <div class="container">
+    <div class="twelve offset-by-two columns">
+      <div class="kids kids_rel">      
+
+        <span>1</span><p>Sign up to find out when KOOSHOO Kids Pants become available on this page:</p>
+        {% capture kids_mailchimp_form %}kids_mailchimp_form{% endcapture %}
+
+        {% if settings[kids_mailchimp_form] != ' ' %}
+        <form action="{{ settings[kids_mailchimp_form] }}" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+          <input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL" placeholder="Enter email address">
+          <input type="hidden" value="" name="FNAME" class="" id="mce-FNAME">
+          <input type="hidden" value="" name="LNAME" class="" id="mce-LNAME">
+
+          <input type="submit" value="SUBMIT" name="subscribe" id="mc-embedded-subscribe" class="button">
+          
+          <div id="mce-responses" class="clear">
+            <div class="response" id="mce-error-response" style="display:none"></div>
+            <div class="response" id="mce-success-response" style="display:none"></div>
+          </div> <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+          <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_c62e2e7fefd6ea6bed199b149_bf76e60cdd" tabindex="-1" value=""></div>
+         
+        </form>
+        {% endif %}
+      </div>
+
+ 
+
+    </div>
+  </div>
+</div>
+
+
+{% comment %}
+<div class="ten columns">
+  <h1>{{ page.title }}</h1>
+  {% include 'process-html' with page.content %}
+</div>
+
+
+<aside class="five columns offset-by-one widgets">
+  {% assign data = settings.widget_s1_handle %}
+  {% unless data == '' %}{% include settings.widget_s1_type %}{% endunless %}
+
+  {% assign data = settings.widget_s2_handle %}
+  {% unless data == '' %}{% include settings.widget_s2_type %}{% endunless %}
+
+  {% assign data = settings.widget_s3_handle %}
+  {% unless data == '' %}{% include settings.widget_s3_type %}{% endunless %}
+</aside>
+{% endcomment %}
+
+<script type='text/javascript' src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script>
+<script type='text/javascript'>(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';}(jQuery));var $mcj = jQuery.noConflict(true);</script>
+<script>
+  // 2. This code loads the IFrame Player API code asynchronously.
+  var tag = document.createElement('script');
+  tag.src = "https://www.youtube.com/iframe_api";
+  var firstScriptTag = document.getElementsByTagName('script')[0];
+  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+  // 3. This function creates an <iframe> (and YouTube player)
+  //    after the API code downloads.
+  var player;
+  function onYouTubeIframeAPIReady() {
+    player = new YT.Player('player', {
+      height: '450',
+      width: '800',
+      playerVars: {rel: 0},
+      //rel: 0,
+    //  showinfo: 0,
+      videoId: 'W130cdDX700',
+      events: {
+        'onReady': onPlayerReady,
+        'onStateChange': onPlayerStateChange
+      }
+    });
+  }
+  // 4. The API will call this function when the video player is ready.
+  function onPlayerReady(event) {
+  //  event.target.playVideo();
+    
+  }
+  // 5. The API calls this function when the player's state changes.
+  //    The function indicates that when playing a video (state=1),
+  //    the player should play for six seconds and then stop.
+  var done = false;
+  function onPlayerStateChange(event) {
+    if (event.data == YT.PlayerState.PLAYING && !done) {
+      setTimeout(stopVideo, 61000);
+      done = true;
+    }
+  }
+  function stopVideo() {
+    player.stopVideo();
+  }
+
+  $(document).ready(function () {
+    $("#mc-embedded-subscribe-form").submit(function (e) {
+      e.preventDefault();
+      send_form($(this));
+      if ($('#mc-embedded-subscribe-form').hasClass('done')) {
+        $('#mc-embedded-subscribe-form').submit();
+      }
+    });
+  });
+  function send_form(form) {
+    $.post(form.attr('action'), form.serialize());
+    $(form).addClass('done');
+    $(form).slideUp("slow", function () {
+      $(form).html('<div class="thank_mess">Thank you. Please check your email.</div>');
+      $(form).slideDown("slow");
+    });
+  }
+</script>

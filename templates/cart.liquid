@@ -1,0 +1,12 @@
+{% include 'cart.render' %}
+
+{% for product in cart.items %}
+    {% include 'lockdown' %}
+
+    {% if allowed == false %}
+        <script type="text/javascript">
+            document.getElementById('updates_'+{{ product.id }}).value = 0;
+            document.getElementById('cartform').submit();
+        </script>
+    {% endif %}
+{% endfor %}

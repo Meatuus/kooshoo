@@ -1,0 +1,24 @@
+<div class="size-chart-cover"></div>
+<div class="size-chart-popup">
+  <a class="close-popup"></a>
+    <img src="{{ 'pants_sizes.jpg' | asset_url }}">
+</div>
+<script>
+  $(document).ready(function(){
+    $('.art_size').click(function(e){
+      sizeChartOpen();
+    });
+    $('.size-chart-cover, .close-popup').click(function(e){
+      e.preventDefault();
+      sizeChartClose();
+    });
+  });
+  function sizeChartOpen(){
+    $(".size-chart-popup").addClass('show').fadeTo(300,1);
+    $(".size-chart-cover").show();
+  }
+  function sizeChartClose(){
+    $(".size-chart-popup").removeClass('show').fadeTo(300,0);
+    $(".size-chart-cover").hide();
+  }
+</script>

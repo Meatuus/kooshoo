@@ -1,0 +1,23 @@
+{% for product in collection.products %}
+  <div class="pr_pr">
+    <div class="prd_title">{{ product.title }}</div>
+    <div class="pr_price">{{ product.variants.first.price | money }}</div>
+    <div class="pr_url">{{shop.url }}{{collection.url}}{{ product.url }}</div>
+    <div class="pr_discru">{{ product.description }}</div>
+    <div class="pr_id">{{ product.variants.first.id }}</div>
+    <div class="pr_icons">
+    {% for variant in product.variants %}
+      <div class="va_price" data-id="{{ variant.id }}">{{ variant.price | money }}</div>
+    {% endfor %}
+      {% for image in product.images %}
+      <div class="pr_thumb">
+        <div class="pr_title">{{ image.alt }}</div>
+        <div class="pr_src">{{ image | product_img_url: 'small' }}</div>
+        <div class="pr_data-large">{{ image | product_img_url: 'large' }}</div>
+        <div class="pr_data-zoom">{{ image | product_img_url: 'original' }}</div>
+        <div class="pr_alt">{{ image.alt }}</div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endfor %}

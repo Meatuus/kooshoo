@@ -1,0 +1,17 @@
+{% paginate collections[data].products by 9 %}
+{% if collections[data].products.size > 0 %}
+<div class="productpilewidget widget cf{% if template == 'index' %} one-third column{% endif %}">
+    <a href="{{ collections[data].url }}"><h6>{{ collections[data].title }}</h6></a>
+    <ul>
+    {% assign counter = 0 %}
+    {% for product in collections[data].products limit: 9 %}
+    <li class="product{% if counter == 1 %} middle{% endif %}">
+        <a class="showpopuptext" data-popuptext="{{ product.title }}" href="{{ product.url }}">{{ product.featured_image | product_img_url: 'compact' | img_tag: product.featured_image.alt }}</a>
+    </li>
+    {% assign counter = counter | plus: 1 %}
+    {% if counter == 3 %}{% assign counter = 0 %}{% endif %}
+    {% endfor %}
+    </ul>
+</div>
+{% endif %}
+{% endpaginate %}

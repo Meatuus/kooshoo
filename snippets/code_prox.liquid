@@ -1,0 +1,76 @@
+
+    {% if product.title contains 'AUREA OMBRE' %}
+        {% for product in collection.products %}
+ 			{% if product.title contains 'AUREA OMBRE' %}
+                <div class="art_clr">
+                </div>
+			{% endif %}
+        {% endfor %}
+	{% elsif product.title contains 'AUREA' %}
+		{% for product in collection.products %}
+			{% if product.title contains 'AUREA OMBRE' %}
+ 			{% elsif product.title contains 'AUREA' %}
+                <div class="art_clr">
+                </div>
+			{% endif %}
+        {% endfor %}
+	{% endif %}
+
+	{% if product.title contains 'ENSO BATIK' %}
+        {% for product in collection.products %}
+ 			{% if product.title contains 'ENSO BATIK' %}
+               <div class="art_clr">
+                </div>
+			{% endif %}
+        {% endfor %}
+	{% elsif product.title contains 'ENSO' %}
+		{% for product in collection.products %}
+ 			{% if product.title contains 'ENSO BATIK' %}
+			{% elsif product.title contains 'ENSO' %}
+                <div class="art_clr">
+                </div>
+			{% endif %}
+        {% endfor %}
+	{% endif %}
+
+	{% if product.title contains 'LILA' %}
+        {% for product in collection.products %}
+ 			{% if product.title contains 'LILA' %}
+               <div class="art_clr">
+                </div>
+			{% endif %}
+        {% endfor %}
+	{% endif %}
+
+	{% if product.title contains 'HU' %}
+        {% for product in collection.products %}
+ 			{% if product.title contains 'HU' %}
+               <div class="art_clr">
+                </div>
+			{% endif %}
+        {% endfor %}
+	{% endif %}
+
+  {% if product.title contains 'SHAWL' %}
+        {% for product in collection.products %}
+ 			{% if product.title contains 'SHAWL' %}
+               <div class="art_clr">
+                </div>
+			{% endif %}
+        {% endfor %}
+	{% elsif product.title contains 'JOURNEY' %}
+		{% for product in collection.products %}
+			{% if product.title contains 'JOURNEY' %}
+                <div class="art_clr">
+                </div>
+			{% endif %}
+        {% endfor %}
+	{% endif %}
+	{% if product.title contains 'KIDS' %}
+        {% for product in collection.products %}
+ 			{% if product.title contains 'KIDS' %}
+               <div class="art_clr">
+                </div>
+			{% endif %}
+        {% endfor %}
+	{% endif %}

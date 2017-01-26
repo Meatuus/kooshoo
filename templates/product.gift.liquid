@@ -1,0 +1,450 @@
+<div id="crumbs" class="sixteen columns">
+    <a href="/" title="Home">Home</a>
+    &raquo;
+    {% if collection %}
+    {{ collection.title | link_to: collection.url }} &raquo;
+    {% endif %}
+	<a href="{{ product.url }}">{{ product.title }}</a>
+</div>
+
+<div id="productinfo" class="cf" data-featimgurl="{{ product.featured_image | product_img_url: 'small' }}" itemscope itemtype="http://schema.org/Product">
+    {% if product.images.size > 1 and settings.prod_det_gall_method != 'hide' %}
+    <div id="rg-gallery" class="rg-gallery eight columns">
+		<div class="rg-thumbs">
+			<!-- Elastislide Carousel Thumbnail Viewer -->
+			<div class="es-carousel-wrapper">
+				<div class="es-carousel">
+					<ul>
+                    {% for image in product.images %}<li><a href="#"><img class="ch_image_m" title="{{ image.alt }}" src="{{ image | product_img_url: 'small' }}" data-large="{{ image | product_img_url: 'large' }}" data-zoom="{{ image | product_img_url: 'original' }}" alt="{{ image.alt }}" data-description="" /></a></li>{% endfor %}
+					</ul>
+				</div>
+			</div>
+			<!-- End Elastislide Carousel Thumbnail Viewer -->
+		</div><!-- rg-thumbs -->
+        
+        <noscript>
+            <div class="rg-image-wrapper">
+    			<div class="rg-image"><img class="img_main_one" src="{{ product.featured_image | product_img_url: 'large' }}" /></div>
+    			<div class="rg-loading"></div>
+    			<div class="rg-caption-wrapper">
+    				<div class="rg-caption" style="display:none;">
+    					<p></p>
+    				</div>
+    			</div>
+    		</div>
+        </noscript>
+         
+         <script type="text/javascript">
+           $('.description').html(function(i, h) {
+                return h.replace(/\[\[start tab\]\]/g, '');
+            }); 
+           $('.description').html(function(i, h) {
+                return h.replace(/\[\[end tab\]\]/g, '');
+            }); 
+           
+           $('.description br').remove();
+        </script>
+	</div><!-- rg-gallery -->
+   
+    <script id="img-wrapper-tmpl" type="text/x-jquery-tmpl">    
+        <div class="rg-image-wrapper">
+			{{if itemsCount > 1}}
+				<div class="rg-image-nav">
+					<a href="#" class="rg-image-nav-prev">Previous Image</a>
+					<a href="#" class="rg-image-nav-next">Next Image</a>
+				</div>
+			{{/if}}
+			<div class="rg-image"></div>
+			<div class="rg-loading"></div>
+			<div class="rg-caption-wrapper">
+				<div class="rg-caption" style="display:none;">
+					<p></p>
+				</div>
+			</div>
+		</div>
+	</script>
+    {% elsif product.images.size == 1 or settings.prod_det_gall_method == 'hide' %}
+    <div class="singleimage eight columns">
+        {% if settings.prod_det_gall_method == 'zoom' %}
+    	<a href="{{ product.featured_image | product_img_url: 'original' }}" target="_blank"><img src="{{ product.featured_image | product_img_url: 'large' }}" alt="{{ product.featured_image.alt }}" /></a>
+        {% elsif settings.prod_det_gall_method == 'lightbox' %}
+        <a href="{{ product.featured_image | product_img_url: 'original' }}" target="_blank"><img src="{{ product.featured_image | product_img_url: 'large' }}" alt="{{ product.featured_image.alt }}" /></a>
+        {% else %}
+        <a href="{{ product.featured_image | product_img_url: 'original' }}" target="_blank"><img src="{{ product.featured_image | product_img_url: 'large' }}" alt="{{ product.featured_image.alt }}" /></a>
+        {% endif %}
+        
+        {% if settings.prod_det_gall_method == 'zoom' %}
+        <script>
+            //Not when touch
+            if( !!!('ontouchstart' in window) ? 1 : 0 ) {
+                $(function(){
+                    var opts = {};
+                    $.extend(opts, thumbZoomOptions);
+                    opts.blockClicks = true;
+                    $('#productinfo .singleimage a').jqzoom(opts);
+                    $('#productinfo .singleimage a').slimbox();
+                });
+            }
+        </script>
+        {% elsif settings.prod_det_gall_method == 'lightbox' %}
+        <script>
+            $(function(){
+                $('#productinfo .singleimage a').slimbox();
+            });
+        </script>
+        {% endif %}
+    </div>
+    {% endif %}
+    
+    
+    <div id="detail" class="seven columns offset-by-one">
+        <h1 itemprop="name" class="am_titl">{{ product.title }}</h1>
+        {% if settings.prod_show_vendor %}
+            <p>By <span itemprop="brand">{{ product.vendor | link_to_vendor }}</span></p>
+        {% endif %}
+        <div id="price-field" class="price" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+            <span class="art_price" itemprop="price">{{ product.variants.first.price | money }}</span>
+            {% if product.variants.first.compare_at_price > product.variants.first.price %}
+                <div class="was-price">was {{ product.variants.first.compare_at_price | money }}</div>
+            {% endif %}
+        </div>
+        <div class="art_colour jr_ac">
+           
+            
+<div class="art_cost" style="display: none;"> 
+
+
+{% include 'code_prod' %}
+
+    </div>
+  
+        </div>
+       
+        {% if product.available %}
+        <form action="/cart/add" method="post">
+            <div class="options">
+                <label class="jr_ac" for="quantity">QUANTITY:</label> <br>
+                <a href="javascript:modifyQuantity('#quantity', -1)" class="minibutton">-</a>
+                <input class="short" type="text" id="quantity" name="quantity" value="1" onfocus="this.select();" />
+                <a href="javascript:modifyQuantity('#quantity', 1)" class="minibutton art_right">+</a>
+            {% if product.variants.size == 1 %}
+                <input class="true_id" type="hidden" name="id" value="{{ product.variants.first.id }}" />
+            {% else %}
+                <div class="selectors">
+                    <label for="product-select">{{ product.options.first }}:</label>
+                    <select id="product-select" name="id" class="noreplace">
+            			{% for variant in product.variants %}
+        				    <option value="{{ variant.id }}">{{ variant.title }} - {{ variant.price | money }}</option>
+        				{% endfor %}
+    				</select>
+                </div>
+                <script type="text/javascript">
+                    var selectCallback = function(variant, selector) {
+                        if (variant && variant.available == true) {
+                            // selected a valid variant
+                            $('#productinfo #detail #purchase').removeClass('disabled').removeAttr('disabled'); // remove unavailable class from add-to-cart button, and re-enable button
+                            var newHtml = Shopify.formatMoney(variant.price, "{{shop.money}}");
+                            if(variant.compare_at_price > variant.price) {
+                                newHtml += '<div class="was-price">was ' + Shopify.formatMoney(variant.compare_at_price, "{{shop.money}}") + '</div>';
+                            }
+                            $('#price-field').html(newHtml);  // update price field
+                        } else {
+                            // variant doesn't exist
+                            $('#productinfo #detail #purchase').addClass('disabled').attr('disabled', 'disabled'); // set add-to-cart button to unavailable class and disable button
+                            var message = variant ? "Sold Out" : "Unavailable";
+                            $('#price-field').text(message); // update price-field message
+                        }
+                    };
+                    
+                    //Set up product inputs
+                    $(function() {
+                        new Shopify.OptionSelectors("product-select", { product: {{ product | json }}, onVariantSelected: selectCallback });
+                        {% if settings.prod_enable_linked_options and product.options.size > 1 %}
+                        Shopify.linkOptionSelectors({{ product | json }});
+                        {% endif %}
+                        {% assign found_one_in_stock = false %}
+                        {% for variant in product.variants %}
+                            {% if variant.available and found_one_in_stock == false %}
+                                {% assign found_one_in_stock = true %}
+                                {% for option in product.options %}
+                                    jQuery('.single-option-selector:eq(' + {{ forloop.index0 }} + ')').val({{ variant.options[forloop.index0] | json }}).trigger('change');
+                                {% endfor %}
+                            {% endif %}
+                        {% endfor %}
+                        
+                        //Hide original option label if we now have multiple options
+                        if($('.selector-wrapper .single-option-selector').length != 1) {
+                            $('#product-select').siblings('label[for="product-select"]').hide();
+                        }
+                        
+                        //Style any added select dropdowns
+                        $.selectReplace();
+                    });
+                </script>
+            {% endif %}
+            
+            {% comment %} If you are using Shopify's custom options, add them here! {% endcomment %}
+            {% if settings.prod_customizr_compat %}
+                {% include 'extra-product-options' %}
+            {% endif %}
+            </div>
+            
+            <div class="addbuttoncont">
+                <input type="submit" name ="add" id="purchase" class="button large plus" value="{{ settings.text_addtocart }}" />
+                <div class="art_buttext">
+                    FREE Shipping over $50 in North America 
+                </div>
+                
+            </div>
+            <div class="art_pr_soc">
+                <span class="socialitem facebookcont">
+                  <div id="socs_a"><fb:like send="false" layout="button_count" width="100" height="25" show_faces="true"></fb:like></div>
+                    <div id="fb-root"></div>
+                    <script>(function(d, s, id) {
+                      var js, fjs = d.getElementsByTagName(s)[0];
+                      if (d.getElementById(id)) return;
+                      js = d.createElement(s); js.id = id;
+                      js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+                      fjs.parentNode.insertBefore(js, fjs);
+                    }(document, 'script', 'facebook-jssdk'));</script>
+                </span>
+                <span class="socialitem twittercont">
+                  <div id="socs_b"><a href="https://twitter.com/share" class="twitter-share-button" data-count="none">Tweet</a></div>
+                    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+                </span>
+            </div>
+            <script>
+                Shopify.money_format = '{{shop.money_format | replace: "'", '"'}}';
+                
+                {% unless settings.prod_disable_ajax %}
+                //Override for default Shopify function
+                Shopify.onItemAdded = function(line_item) {
+                    //Make buttons usable again
+                    $('form input[type="submit"]').attr('disabled', false).removeClass('disabled');
+                    //Adding to cart successful, update cart
+                    Shopify.getCart();
+                    //Show 'item added'
+                    $('#purchase').siblings('.added').remove();
+                    $('<div>').addClass('added').html('<span class="yay">{{ settings.text_ty }}</span><a class="basket" href="/cart">{{ settings.text_cart }} &rarr;</a>')
+                        .insertBefore($('#purchase')).fadeIn(200).delay(5000).fadeOut(500, function(){ 
+                            $(this).remove();
+                        });
+                    return false;
+                }
+                
+                //Override for default Shopify function
+                Shopify.onError = function(XMLHttpRequest, textStatus) {
+                    //Make buttons usable again
+                    $('form input[type="submit"]').attr('disabled', false).removeClass('disabled');
+                    //Display error message
+                    var errmsg;
+                    var data = eval('(' + XMLHttpRequest.responseText + ')');
+                    if (!!data.message) {
+                        errmsg = data.message + '<br />' + data.description;
+                    } else {
+                        errmsg = Shopify.fullMessagesFromErrors(data).join('; ');
+                    }
+                    $('#purchase').siblings('.added').remove();
+                    $('<div>').addClass('added').addClass('error').html('<span>'+errmsg+'</span>')
+                        .insertBefore($('#purchase')).fadeIn(200).delay(5000).fadeOut(500, function(){ 
+                            $(this).remove();
+                        });
+                };
+                
+                //Override for default Shopify function
+                Shopify.onCartUpdate = function(cart) {
+                    //Update elements on screen that show cart info
+                    $('#headercartvals').html('(' + cart.item_count + ') ' + addCommas(Shopify.formatMoney(cart.total_price)));
+                }
+                
+                //Define the function that adds to the cart
+                function addToCart(e) {
+                    if (typeof e !== 'undefined') e.preventDefault();
+                    //Find variant id & quantity
+                    var $form = $(this).closest('form');
+                    var $inputs = $form.find('input[name="id"], select[name="id"]');
+                    if($inputs.length == 1) {
+                        Shopify.addItem($inputs.val(), $form.find('input[name="quantity"]').val());
+                    } else if($inputs.length > 1) {
+                        //Radios
+                        Shopify.addItem($inputs.is(':checked').val(), $form.find('input[name="quantity"]').val());
+                    }
+                }
+                
+                $(function(){
+                    //Action for clicking 'buy'
+                    $('#purchase').bind('click', addToCart);
+                });
+                {% endunless %}
+            </script>
+        </form>
+        {% else %}
+        <h3>{{ settings.text_soldout }}</h3>
+        {% endif %}
+    
+    </div><!-- #detail -->
+    <script type="text/javascript">
+     $(document).ready(function() {
+     	function resize_fn() {
+          /*  var widthElm = $("#util-bar").width();
+          if (widthElm > 768) {*/
+             if($(window).width() >= 960 ){
+              var f_het = $(".rg-image-wrapper").height();
+              if ( f_het > 100){
+              var s_het = $(".rg-thumbs").height();
+              var t_het = $("#detail").height();
+              var margin_b = (f_het + s_het) - t_het + 60;
+              $('#detail').css('marginBottom', margin_b);
+              }
+          }
+          else {
+              $('#detail').css('marginBottom', '15');
+          }
+}
+$(window).resize(function () { 
+    resize_fn();
+})
+})
+     </script>
+
+  
+<div class="PI_cont">
+    <div class="PI_top">
+    key features
+    </div>
+    <div class="PI_sec uno">
+    ORGANIC <br>&amp; NATURAL
+    </div>
+    <div class="PI_sec duo">
+     made<br>in l.a.
+    </div>
+    {% if collection.title contains 'HU' or collection.title contains 'LILA' or collection.title contains 'AUREA' or collection.title contains 'ENSO' %}
+    {% else %}
+        <div class="PI_sec tres">
+       solar powered
+        </div>
+    {% endif %}
+    {% if collection.title contains 'ENSO' %}
+       {% if product.title contains 'ENSO BATIK' %}
+       <div class="PI_sec tres">
+       solar powered
+        </div>
+       {% endif %}
+    {% endif %}    
+    <div class="PI_sec quat">
+       ETHICALLY OPERATED
+    </div>
+    {% if collection.title contains 'HU' or collection.title contains 'LILA' or collection.title contains 'AUREA' or collection.title contains 'ENSO' %}
+    {% else %}
+        <div class="PI_sec cinc">
+         dyed by hand
+        </div>
+    {% endif %}    
+    {% if collection.title contains 'AUREA' or collection.title contains 'ENSO' %}
+        {% if product.title contains 'AUREA OMBRE' or product.title contains 'ENSO BATIK'%}
+                <div class="PI_sec cinc">
+                 dyed by hand
+                </div>
+         {% endif %}
+    {% endif %}
+    <div class="PI_sec seis">
+     11% to charity
+    </div>
+    </div>
+  <div class="description contentsection" itemprop="description">{{ product.description }}</div>
+</div>
+
+{% include 'product-page-related' with product %}
+
+{{ "gallery.js" | asset_url | script_tag }}
+{{ "jquery.easing.1.3.js" | asset_url | script_tag }}
+{{ "jquery.elastislide.js" | asset_url | script_tag }}
+{{ "jquery.tmpl.min.js" | asset_url | script_tag }}
+
+{% if settings.prod_enable_linked_options %}
+<script>
+// (c) Copyright 2011 Caroline Schnapp. All Rights Reserved. Contact: mllegeorgesand@gmail.com
+// See http://wiki.shopify.com/Linked_Options
+var Shopify = Shopify || {};
+
+Shopify.optionsMap = {};
+
+Shopify.updateOptionsInSelector = function(selectorIndex) {
+    
+  switch (selectorIndex) {
+    case 0:
+      var key = 'root';
+      var selector = jQuery('.single-option-selector:eq(0)');
+      break;
+    case 1:
+      var key = jQuery('.single-option-selector:eq(0)').val();
+      var selector = jQuery('.single-option-selector:eq(1)');
+      break;
+    case 2:
+      var key = jQuery('.single-option-selector:eq(0)').val();
+      key += ' / ' + jQuery('.single-option-selector:eq(1)').val();
+      var selector = jQuery('.single-option-selector:eq(2)');
+  }
+  
+  var initialValue = selector.val();
+  selector.empty();
+  var availableOptions = Shopify.optionsMap[key];
+  if(typeof(availableOptions) != 'undefined') {
+    for (var i=0; i<availableOptions.length; i++) {
+    var option = availableOptions[i];
+    var newOption = jQuery('<option></option>').val(option).html(option);
+    selector.append(newOption);
+    }
+    if (jQuery.inArray(initialValue, availableOptions) !== -1) {
+    selector.val(initialValue);
+    }
+    selector.trigger('change');
+  }
+};
+
+Shopify.linkOptionSelectors = function(product) {
+  // Building our mapping object.
+  for (var i=0; i<product.variants.length; i++) {
+    var variant = product.variants[i];
+    if (variant.available) {
+      // Gathering values for the 1st drop-down.
+      Shopify.optionsMap['root'] = Shopify.optionsMap['root'] || [];
+      Shopify.optionsMap['root'].push(variant.option1);
+      Shopify.optionsMap['root'] = Shopify.uniq(Shopify.optionsMap['root']);
+      // Gathering values for the 2nd drop-down.
+      if (product.options.length > 1) {
+        var key = variant.option1;
+        Shopify.optionsMap[key] = Shopify.optionsMap[key] || [];
+        Shopify.optionsMap[key].push(variant.option2);
+        Shopify.optionsMap[key] = Shopify.uniq(Shopify.optionsMap[key]);
+      }
+      // Gathering values for the 3rd drop-down.
+      if (product.options.length === 3) {
+        var key = variant.option1 + ' / ' + variant.option2;
+        Shopify.optionsMap[key] = Shopify.optionsMap[key] || [];
+        Shopify.optionsMap[key].push(variant.option3);
+        Shopify.optionsMap[key] = Shopify.uniq(Shopify.optionsMap[key]);
+      }
+    }
+  }
+  // Update options right away.
+  Shopify.updateOptionsInSelector(0);
+  if (product.options.length > 1) Shopify.updateOptionsInSelector(1);
+  if (product.options.length === 3) Shopify.updateOptionsInSelector(2);
+  // When there is an update in the first dropdown.
+  jQuery(".single-option-selector:eq(0)").change(function() {
+    Shopify.updateOptionsInSelector(1);
+    if (product.options.length === 3) Shopify.updateOptionsInSelector(2);
+    return true;
+  });
+  // When there is an update in the second dropdown.
+  jQuery(".single-option-selector:eq(1)").change(function() {
+    if (product.options.length === 3) Shopify.updateOptionsInSelector(2);
+    return true;
+  });
+  
+};
+</script>
+{% endif %}
+ 
+

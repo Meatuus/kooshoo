@@ -1,0 +1,79 @@
+{% comment %}
+<div id="crumbs" class="sixteen columns">
+  <a href="/" title="Home">Home</a>
+  &raquo;
+  <a href="{{ page.url }}">{{ page.title }}</a>
+</div><!-- #crumbs -->
+
+{% if settings.show_social_page %}
+<div class="social floating">
+  <span class="label">{{ settings.text_sharethis }}</span>
+  {% include 'social-sharing' %}
+</div>
+{% endif %}
+
+<div class="ten columns">
+  <h1>{{ page.title }}</h1>
+  {% include 'process-html' with page.content %}
+</div>
+
+<aside class="five columns offset-by-one widgets">
+  {% assign data = settings.widget_s1_handle %}
+  {% unless data == '' %}{% include settings.widget_s1_type %}{% endunless %}
+
+  {% assign data = settings.widget_s2_handle %}
+  {% unless data == '' %}{% include settings.widget_s2_type %}{% endunless %}
+
+  {% assign data = settings.widget_s3_handle %}
+  {% unless data == '' %}{% include settings.widget_s3_type %}{% endunless %}
+</aside>
+{% endcomment %}
+<div class="sixteen columns"> 
+  <div class="share_kids">
+    Pretty please, <b>Share this Project</b>
+  </div>
+  <div class="share_img">
+    <img src="{{ 'Kooshoo_share_kids.jpg' | asset_url }}">
+  </div>
+  {% include 'process-html' with page.content %} 
+  <div id="container">
+    <p id="welcome">
+      <b>Dear friends, family &amp; backers,</b>
+      <br /><br />
+      We hope this finds you well. You’re here because you’re important to us and we know you have influence. When you share something, people pay attention. We would really appreciate if you took a moment to share the KOOSHOO Kids Pants story.
+      <br /><br />
+      <b>In gratitude,</b>
+      <br />
+      Rachel &amp; Jesse (KOOSHOO Founders)
+    </p>
+    <div class="progress-top-border"></div>
+    <div id="progress">
+      <div class="percent">
+        <div class="number">0%</div>
+      </div>
+    </div>
+    <ul id="actions">
+      <li>
+        <h4>1. Share on Facebook</h4>
+        <p>Share KOOSHOO Kids Pants with your friends</p>
+        <button class="facebook">Share</button>
+      </li>
+      <li>
+        <h4>2. Post on<br> Twitter</h4>
+        <p>Hook your following up</p>
+        <button class="twitter">Tweet</button>
+      </li>
+      <li>
+        <h4>3. Personal<br> Message</h4>
+        <p>Easily share the KOOSHOO Kids Pants story</p>
+        <button class="email">Email</button>
+      </li>
+      <li>
+        <h4>4. Watch our Video</h4>
+        <p>Thank you for backing KOOSHOO</p>
+        <button class="play">Play</button>
+      </li>
+    </ul>
+  </div>
+  {{ "share_kid.js" | asset_url | script_tag }}  
+</div>

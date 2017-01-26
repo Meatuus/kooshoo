@@ -1,0 +1,261 @@
+{% assign row_limit = settings.products_per_row_coll | plus: 0 %}
+{% assign total_prods_to_show = row_limit | times: settings.product_rows_on_coll_page %}
+{% paginate collection.products by total_prods_to_show %}
+<div class="sixteen columns">
+    <!--<div id="crumbs">
+        <a href="/" title="Home">Home</a>
+        &raquo;
+        <a href="{{ collection.url }}">{{ collection.title }}</a>
+    </div>-->
+  <!-- #crumbs -->
+
+    {% if settings.show_social_coll %}
+    <!--<div class="social floating">
+        <span class="label">{{ settings.text_sharethis }}</span>
+        {% include 'social-sharing' %}
+    </div>-->
+    {% endif %}
+
+{% if collection.title contains 'WOMEN' %}
+    {% if settings.slide_women_1 != false or settings.slide_women_2 != false or settings.slide_women_3 != false or settings.slide_women_4 != false %}
+        <section id="mainslider" class="sixteen columns flexslider slideshow row">
+            <ul class="slides">
+                {% for i in (1..5) %}
+                    {% capture show_slide %}slide_women_{{ i }}{% endcapture %}
+                    {% capture image %}slideshow_women_{{ i }}.jpg{% endcapture %}
+                    {% capture link %}slide_women_{{ i }}_link{% endcapture %}
+                    {% capture alt %}slide_women_{{ i }}_alt{% endcapture %}
+                    {% if settings[show_slide] %}
+                    <li>
+                        <a href="{{ settings[link] }}">
+                            <img src="{{ image | asset_url }}" alt="{{ settings[alt] | escape }}" />
+                        </a>
+                    </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </section>
+    {% endif %}
+{% elsif collection.title contains 'MEN' %}
+    {% if settings.slide_men_1 != false or settings.slide_men_2 != false or settings.slide_men_3 != false or settings.slide_men_4 != false %}
+        <section id="mainslider" class="sixteen columns flexslider slideshow row">
+            <ul class="slides">
+                {% for i in (1..5) %}
+                    {% capture show_slide %}slide_men_{{ i }}{% endcapture %}
+                    {% capture image %}slideshow_men_{{ i }}.jpg{% endcapture %}
+                    {% capture link %}slide_men_{{ i }}_link{% endcapture %}
+                    {% capture alt %}slide_men_{{ i }}_alt{% endcapture %}
+                    {% if settings[show_slide] %}
+                    <li>
+                        <a href="{{ settings[link] }}">
+                            <img src="{{ image | asset_url }}" alt="{{ settings[alt] | escape }}" />
+                        </a>
+                    </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </section>
+    {% endif %}
+{% elsif collection.handle == 'wholesale-headbands-and-scarves' %}
+    {% if settings.slide_whls_1 != false or settings.slide_whls_2 != false or settings.slide_whls_3 != false or settings.slide_whls_4 != false %}
+        <section id="mainslider" class="sixteen columns flexslider slideshow row">
+            <ul class="slides">
+                {% for i in (1..5) %}
+                    {% capture show_slide %}slide_whls_{{ i }}{% endcapture %}
+                    {% capture image %}slideshow_women_{{ i }}.jpg{% endcapture %}
+                    {% capture link %}slide_whls_{{ i }}_link{% endcapture %}
+                    {% capture alt %}slide_whls_{{ i }}_alt{% endcapture %}
+                    {% if settings[show_slide] %}
+                    <li>
+                        <a href="{{ settings[link] }}">
+                            <img src="{{ image | asset_url }}" alt="{{ settings[alt] | escape }}" />
+                        </a>
+                    </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </section>
+    {% endif %}
+{% endif %}
+
+
+
+    {% unless collection.handle == 'all' %}
+    <!--<h1>{{ collection.title }}</h1>-->
+    {% if collection.description != '' %}
+        <!--<div class="content-block row">
+            {{ collection.description }}
+        </div>--><!-- .pagecontent -->
+    {% endif %}
+    {% endunless %}
+  {% comment %}
+    {% if paginate.pages > 1 or collection.tags.size > 0 %}
+        <div class="ten columns alpha">
+            <div class="paging">
+            {% if paginate.pages > 1 %}
+                {% if paginate.previous %}
+                    <a class="prev" href="{{ paginate.previous.url }}">&#8249;</a>
+                {% endif %}
+                {% for part in paginate.parts %}
+                    {% if part.is_link %}
+                        <span class="page">{{ part.title | link_to: part.url }}</span>
+                    {% else %}
+                        <span class="page current">{{ part.title }}</span>
+                    {% endif %}
+                {% endfor %}
+                {% if paginate.next %}
+                    <a class="next" href="{{ paginate.next.url }}">&#8250;</a>
+                {% endif %}
+            {% endif %}
+            </div>&nbsp;
+        </div>
+
+        <div class="six columns omega collectionfilter">
+            {% if collection.handle and collection.tags.size > 0 %}
+            <select id="tagfilter">
+                {% if current_tags and current_tags.size > 0 %}
+                    <option value="{{ shop.url }}/collections/{{ collection.handle }}" selected="selected">All Products</option>
+                {% else %}
+                    <option value="{{ shop.url }}/collections/{{ collection.handle }}">All Products</option>
+                {% endif %}
+
+                {% for tag in collection.all_tags %}
+                    {% comment %}Don't show tags used for relating products together{% endcomment %}
+                    {% capture tagstart %}{{ tag | remove_first: 'related-' }}{% endcapture %}
+                    {% if tagstart == tag %}
+                        {% if current_tags contains tag %}
+                            <option value="{{ shop.url }}/collections/{{ collection.handle }}/{{ tag | handleize }}" selected="selected">{{ tag }}</option>
+                        {% else %}
+                            <option value="{{ shop.url }}/collections/{{ collection.handle }}/{{ tag | handleize }}">{{ tag }}</option>
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+            </select>
+            <script>
+            $(function(){
+                $('#tagfilter').change(function(){
+                    window.location = $(this).val();
+                });
+            });
+            </script>
+            {% endif %}
+        &nbsp;</div>
+    {% endif %}
+   {% endcomment %}
+</div>
+
+    <div class="productlist">
+            	{% if collection.title == 'WOMEN' %}
+      				<div class="cl_titm"><a href="{{ collections.aurea-headbands.url }}">AUREA headbands</a></div>
+                    {% for product in collections.aurea-headbands.products %}
+                        {% assign producturl = product.url | within: collections.aurea-headbands %}
+                        {% include 'product-list-repeatable-item_a' with product %}
+      				{% endfor %}
+      			{% elsif collection.title == 'MEN' %}
+      				<div class="cl_titm"><a href="{{ collections.aurea-headbands-mensonly.url }}">AUREA headbands</a></div>
+      				{% for product in collections.aurea-headbands-mensonly.products %}
+                        {% assign producturl = product.url | within: collections.aurea-headbands-mensonly %}
+                        {% include 'product-list-repeatable-item_a' with product %}
+      				{% endfor %}
+      			{% elsif collection.handle == 'wholesale-headbands-and-scarves' %}
+      				<div class="cl_titm"><a href="{{ collections.aurea-wholesale.url }}">AUREA headbands</a></div>
+      				{% for product in collections.aurea-wholesale.products %}
+                            {% assign producturl = product.url | within: collections.aurea-wholesale %}
+                            {% include 'product-list-repeatable-item_a' with product %}
+      				{% endfor %}
+      			{% endif %}
+
+      			{% if collection.title == 'WOMEN' %}
+        			<div class="cl_titm secms"><a href="{{ collections.enso-headbands.url }}">ENSO headbands</a></div>
+                    {% for product in collections.enso-headbands-and-head-wraps.products %}
+                        {% assign producturl = product.url | within: collections.enso-headbands-and-head-wraps %}
+                        {% include 'product-list-repeatable-item_a' with product %}
+      				{% endfor %}
+      			{% elsif collection.title == 'MEN' %}
+      				<div class="cl_titm secms"><a href="{{ collections.enso-headbands-mens-only.url }}">ENSO headbands</a></div>
+      				{% for product in collections.enso-headbands-mens-only.products %}
+                        {% assign producturl = product.url | within: collections.enso-headbands-mens-only %}
+                        {% include 'product-list-repeatable-item_a' with product %}
+      				{% endfor %}
+            	{% elsif collection.handle == 'wholesale-headbands-and-scarves' %}
+            		<div class="cl_titm secms"><a href="{{ collections.enso-wholesale.url }}">ENSO headbands</a></div>
+      				{% for product in collections.enso-wholesale.products %}
+                            {% assign producturl = product.url | within: collections.enso-wholesale %}
+                            {% include 'product-list-repeatable-item_a' with product %}
+      				{% endfor %}
+      			{% endif %}
+      			{% if collection.title == 'WOMEN' %}
+      				<div class="cl_titm secms"><a href="{{ collections.hu-headbands.url }}">HU headbands</a></div>
+                    {% for product in collections.hu-sweatbands.products %}
+                        {% assign producturl = product.url | within: collections.hu-sweatbands %}
+                        {% include 'product-list-repeatable-item_a' with product %}
+      				{% endfor %}
+      			{% elsif collection.title == 'MEN' %}
+      				<div class="cl_titm secms"><a href="{{ collections.hu-headbands-mens-only.url }}">HU headbands</a></div>
+      				{% for product in collections.hu-headbands-mens-only.products %}
+                        {% assign producturl = product.url | within: collections.hu-headbands-mens-only %}
+                        {% include 'product-list-repeatable-item_a' with product %}
+      				{% endfor %}
+      			{% elsif collection.handle == 'wholesale-headbands-and-scarves' %}
+                	<div class="cl_titm secms"><a href="{{ collections.hu-wholesale.url }}">HU headbands</a></div>
+      				{% for product in collections.hu-wholesale.products %}
+                            {% assign producturl = product.url | within: collections.hu-wholesale %}
+                            {% include 'product-list-repeatable-item_a' with product %}
+      				{% endfor %}
+      			{% endif %}
+                {% if collection.title contains 'WOMEN' %}
+                    <div class="cl_titm secms"><a href="{{ collections.shawls.url }}">HAND DYED shawls</a></div>
+                        {% for product in collections.shawls.products %}
+                            {% assign producturl = product.url | within: collections.shawls %}
+                            {% include 'product-list-repeatable-item_a' with product %}
+                        {% endfor %}
+      			{% elsif collection.handle == 'wholesale-headbands-and-scarves' %}
+      				<div class="cl_titm"><a href="{{ collections.wholesale-scarves-and-shawls.url }}">HAND DYED shawls</a></div>
+      				{% for product in collections.wholesale-scarves-and-shawls.products %}
+                        {% assign producturl = product.url | within: collections.wholesale-scarves-and-shawls %}
+                        {% include 'product-list-repeatable-item_a' with product %}
+      				{% endfor %}
+                {% endif %}
+            	{% if collection.title == 'WOMEN' %}
+      				<div class="cl_titm secms"><a href="{{ collections.hairties.url }}">LILA hairties</a></div>
+                    {% for product in collections.hairties.products %}
+                        {% assign producturl = product.url | within: collections.hairties %}
+                        {% include 'product-list-repeatable-item_a' with product %}
+      				{% endfor %}
+      			{% elsif collection.title == 'MEN' %}
+      				<div class="cl_titm secms"><a href="{{ collections.lila-hairties-men-s-only.url }}">LILA hairties</a></div>
+      				{% for product in collections.lila-hairties-men-s-only.products %}
+                        {% assign producturl = product.url | within: collections.lila-hairties-men-s-only %}
+                        {% include 'product-list-repeatable-item_a' with product %}
+      				{% endfor %}
+      			{% elsif collection.handle == 'wholesale-headbands-and-scarves' %}
+      				<div class="cl_titm"><a href="{{ collections.lila-wholesale.url }}">LILA hairties</a></div>
+      				{% for product in collections.lila-wholesale.products %}
+                        {% assign producturl = product.url | within: collections.lila-wholesale %}
+                        {% include 'product-list-repeatable-item_a' with product %}
+      				{% endfor %}
+      			{% endif %}
+
+    </div><!-- .productlist -->
+
+{% comment %}
+{% if settings.use_inf_scroll == true %}
+<script>
+$('.productlist').infinitescroll({
+    navSelector  : "div.paging",
+    nextSelector : "div.paging .next",
+    itemSelector : "#maincontent .productlist .product",
+    loading: {
+        img         : '{{ settings.loading_graphic | asset_url }}',
+        msgText     : 'Loading more products...',
+        finishedMsg : 'There are no more products in this collection.'
+    }
+}, function(items){
+    $(items).find('img:not(.altimg)').each(function(){
+        $(this).trigger('initprodimg');
+    });
+});
+</script>
+{% endif %}
+{% endcomment %}
+{% endpaginate %}

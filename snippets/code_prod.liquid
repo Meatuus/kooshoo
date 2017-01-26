@@ -1,0 +1,219 @@
+
+    {% if product.title contains 'AUREA OMBRE' %}
+        {% for product in collection.products %}
+ 			{% if product.title contains 'AUREA OMBRE' %}
+                <div class="pr_pr{% unless product.available %} solded{% endunless %}" >
+                    <div class="prd_title">{{ product.title }}</div>
+                    <div class="pr_price">{{ product.variants.first.price | money }}</div>
+                    <div class="pr_url">{{shop.url }}{{collection.url}}{{ product.url }}</div>
+                    <div class="pr_discru">{{ product.description }}</div>
+                    <div class="pr_id">{{ product.variants.first.id }}</div>
+                        <div class="pr_icons">
+                        {% for image in product.images %}
+                            <div class="pr_thumb">
+                                <div class="pr_title">{{ image.alt }}</div>
+                                <div class="pr_src">{{ image | product_img_url: 'small' }}</div>
+                                <div class="pr_data-large">{{ image | product_img_url: 'large' }}</div>
+                                <div class="pr_data-zoom">{{ image | product_img_url: 'original' }}</div>
+                                <div class="pr_alt">{{ image.alt }}</div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+			{% endif %}
+        {% endfor %}
+	{% elsif product.title contains 'AUREA' %}
+		{% for product in collection.products %}
+			{% if product.title contains 'AUREA OMBRE' %}
+ 			{% elsif product.title contains 'AUREA' %}
+                <div class="pr_pr" >
+                    <div class="prd_title">{{ product.title }}</div>
+                    <div class="pr_price">{{ product.variants.first.price | money }}</div>
+                    <div class="pr_url">{{shop.url }}{{collection.url}}{{ product.url }}</div>
+                    <div class="pr_discru">{{ product.description }}</div>
+                    <div class="pr_id">{{ product.variants.first.id }}</div>
+                        <div class="pr_icons">
+                        {% for image in product.images %}
+                            <div class="pr_thumb">
+                                <div class="pr_title">{{ image.alt }}</div>
+                                <div class="pr_src">{{ image | product_img_url: 'small' }}</div>
+                                <div class="pr_data-large">{{ image | product_img_url: 'large' }}</div>
+                                <div class="pr_data-zoom">{{ image | product_img_url: 'original' }}</div>
+                                <div class="pr_alt">{{ image.alt }}</div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+			{% endif %}
+        {% endfor %}
+	{% endif %}
+	{% if product.title contains 'ENSO BATIK' %}
+        {% for product in collection.products %}
+ 			{% if product.title contains 'ENSO BATIK' %}
+                <div class="pr_pr">
+                    <div class="prd_title">{{ product.title }}</div>
+                    <div class="pr_price">{{ product.variants.first.price | money }}</div>
+                    <div class="pr_url">{{shop.url }}{{collection.url}}{{ product.url }}</div>
+                    <div class="pr_discru">{{ product.description }}</div>
+                    <div class="pr_id">{{ product.variants.first.id }}</div>
+                        <div class="pr_icons">
+                        {% for image in product.images %}
+                            <div class="pr_thumb">
+                                <div class="pr_title">{{ image.alt }}</div>
+                                <div class="pr_src">{{ image | product_img_url: 'small' }}</div>
+                                <div class="pr_data-large">{{ image | product_img_url: 'large' }}</div>
+                                <div class="pr_data-zoom">{{ image | product_img_url: 'original' }}</div>
+                                <div class="pr_alt">{{ image.alt }}</div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+			{% endif %}
+        {% endfor %}
+	{% elsif product.title contains 'ENSO' %}
+		{% for product in collection.products %}
+			{% if product.title contains 'ENSO BATIK' %}
+ 			{% elsif product.title contains 'ENSO' %}
+                <div class="pr_pr">
+                    <div class="prd_title">{{ product.title }}</div>
+                    <div class="pr_price">{{ product.variants.first.price | money }}</div>
+                    <div class="pr_url">{{shop.url }}{{collection.url}}{{ product.url }}</div>
+                    <div class="pr_discru">{{ product.description }}</div>
+                    <div class="pr_id">{{ product.variants.first.id }}</div>
+                    <div class="pr_icons">
+                        {% for image in product.images %}
+                            <div class="pr_thumb">
+                                <div class="pr_title">{{ image.alt }}</div>
+                                <div class="pr_src">{{ image | product_img_url: 'small' }}</div>
+                                <div class="pr_data-large">{{ image | product_img_url: 'large' }}</div>
+                                <div class="pr_data-zoom">{{ image | product_img_url: 'original' }}</div>
+                                <div class="pr_alt">{{ image.alt }}</div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+			{% endif %}
+        {% endfor %}
+	{% endif %}
+
+	{% if product.title contains 'LILA' %}
+        {% for product in collection.products %}
+ 			{% if product.title contains 'LILA' %}
+                <div class="pr_pr{% unless product.available %} solded{% endunless %}" >
+                    <div class="prd_title">{{ product.title }}</div>
+                    <div class="pr_price">{{ product.variants.first.price | money }}</div>
+                    <div class="pr_url">{{shop.url }}{{collection.url}}{{ product.url }}</div>
+                    <div class="pr_discru">{{ product.description }}</div>
+                    <div class="pr_id">{{ product.variants.first.id }}</div>
+                        <div class="pr_icons">
+                        {% for image in product.images %}
+                            <div class="pr_thumb">
+                                <div class="pr_title">{{ image.alt }}</div>
+                                <div class="pr_src">{{ image | product_img_url: 'small' }}</div>
+                                <div class="pr_data-large">{{ image | product_img_url: 'large' }}</div>
+                                <div class="pr_data-zoom">{{ image | product_img_url: 'original' }}</div>
+                                <div class="pr_alt">{{ image.alt }}</div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+			{% endif %}
+        {% endfor %}
+	{% endif %}
+
+	{% if product.title contains 'HU' %}
+        {% for product in collection.products %}
+ 			{% if product.title contains 'HU' %}
+                <div class="pr_pr" {% unless product.available %} class="solded"{% endunless %}>
+                    <div class="prd_title">{{ product.title }}</div>
+                    <div class="pr_price">{{ product.variants.first.price | money }}</div>
+                    <div class="pr_url">{{shop.url }}{{collection.url}}{{ product.url }}</div>
+                    <div class="pr_discru">{{ product.description }}</div>
+                    <div class="pr_id">{{ product.variants.first.id }}</div>
+                        <div class="pr_icons">
+                        {% for image in product.images %}
+                            <div class="pr_thumb">
+                                <div class="pr_title">{{ image.alt }}</div>
+                                <div class="pr_src">{{ image | product_img_url: 'small' }}</div>
+                                <div class="pr_data-large">{{ image | product_img_url: 'large' }}</div>
+                                <div class="pr_data-zoom">{{ image | product_img_url: 'original' }}</div>
+                                <div class="pr_alt">{{ image.alt }}</div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+			{% endif %}
+        {% endfor %}
+	{% endif %}
+	{% if product.title contains 'SHAWL' %}
+        {% for product in collection.products %}
+ 			{% if product.title contains 'SHAWL' %}
+                <div class="pr_pr">
+                    <div class="prd_title">{{ product.title }}</div>
+                    <div class="pr_price">{{ product.variants.first.price | money }}</div>
+                    <div class="pr_url">{{shop.url }}{{collection.url}}{{ product.url }}</div>
+                    <div class="pr_discru">{{ product.description }}</div>
+                    <div class="pr_id">{{ product.variants.first.id }}</div>
+                        <div class="pr_icons">
+                        {% for image in product.images %}
+                            <div class="pr_thumb">
+                                <div class="pr_title">{{ image.alt }}</div>
+                                <div class="pr_src">{{ image | product_img_url: 'small' }}</div>
+                                <div class="pr_data-large">{{ image | product_img_url: 'large' }}</div>
+                                <div class="pr_data-zoom">{{ image | product_img_url: 'original' }}</div>
+                                <div class="pr_alt">{{ image.alt }}</div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+			{% endif %}
+        {% endfor %}
+
+	{% elsif product.handle contains 'journey' %}
+		{% for product in collection.products %}
+			{% if product.handle contains 'journey' %}
+                <div class="pr_pr">
+                    <div class="prd_title">{{ product.title }}</div>
+                    <div class="pr_price">{{ product.variants.first.price | money }}</div>
+                    <div class="pr_url">{{shop.url }}{{collection.url}}{{ product.url }}</div>
+                    <div class="pr_discru">{{ product.description }}</div>
+                    <div class="pr_id">{{ product.variants.first.id }}</div>
+                    <div class="pr_icons">
+                        {% for image in product.images %}
+                            <div class="pr_thumb">
+                                <div class="pr_title">{{ image.alt }}</div>
+                                <div class="pr_src">{{ image | product_img_url: 'small' }}</div>
+                                <div class="pr_data-large">{{ image | product_img_url: 'large' }}</div>
+                                <div class="pr_data-zoom">{{ image | product_img_url: 'original' }}</div>
+                                <div class="pr_alt">{{ image.alt }}</div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+			{% endif %}
+        {% endfor %}
+
+	{% elsif product.title contains 'shawl' %}
+        {% for product in collection.products %}
+ 			{% if product.title contains 'shawl' %}
+                <div class="pr_pr">
+                    <div class="prd_title">{{ product.title }}</div>
+                    <div class="pr_price">{{ product.variants.first.price | money }}</div>
+                    <div class="pr_url">{{shop.url }}{{collection.url}}{{ product.url }}</div>
+                    <div class="pr_discru">{{ product.description }}</div>
+                    <div class="pr_id">{{ product.variants.first.id }}</div>
+                        <div class="pr_icons">
+                        {% for image in product.images %}
+                            <div class="pr_thumb">
+                                <div class="pr_title">{{ image.alt }}</div>
+                                <div class="pr_src">{{ image | product_img_url: 'small' }}</div>
+                                <div class="pr_data-large">{{ image | product_img_url: 'large' }}</div>
+                                <div class="pr_data-zoom">{{ image | product_img_url: 'original' }}</div>
+                                <div class="pr_alt">{{ image.alt }}</div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+			{% endif %}
+        {% endfor %}
+	{% endif %}
