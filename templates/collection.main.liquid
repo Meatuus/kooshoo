@@ -81,11 +81,13 @@
 
 
     {% unless collection.handle == 'all' %}
-    <!--<h1>{{ collection.title }}</h1>-->
+    <h1>{{ collection.title }}</h1>
+    <!-- <h1>%%%%</h1> -->
     {% if collection.description != '' %}
-        <!--<div class="content-block row">
+        <div class="content-block row">
             {{ collection.description }}
-        </div>--><!-- .pagecontent -->
+        </div>
+        <!-- .pagecontent -->
     {% endif %}
     {% endunless %}
   {% comment %}
