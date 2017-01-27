@@ -667,15 +667,15 @@ Shopify.linkOptionSelectors = function(product) {
             var divs = $('.clr_cont');
             var wdt = $('.art_clr').length;
             var wd_main = 48 * wdt;
-
+console.log(wdt);
             if (wd_main <= 240) {
                 $(divs).width(wd_main);
             }
             else if (wd_main <= 480) {
-                $(divs).width(240);
+                $(divs).width(150);
                 $(divs).height(100);
                 var l_marg = (480 - wd_main) / 2 + 4;
-                $('.art_clr').eq(5).css('marginLeft', l_marg);
+                // $('.art_clr').eq(5).css('marginRight', l_marg);
             }
             else if (wd_main <= 720) {
                 $(divs).width(240);
@@ -973,7 +973,7 @@ Shopify.linkOptionSelectors = function(product) {
           {% endcomment %}
 </script>
 
-<div class="rel_block">
+<!-- <div class="rel_block">
   <div class="rel_title">
     <p>
     - you may also be interested in -
@@ -1127,7 +1127,7 @@ Shopify.linkOptionSelectors = function(product) {
         {% endfor %}
     {% endif %}
   </div>
-</div>
+</div> -->
 <div class="yotpo yotpo-main-widget"
     data-product-id="{{ product.id }}"
     data-name="{{ product.title | escape }}"
