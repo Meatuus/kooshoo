@@ -231,12 +231,13 @@
                         {% include 'product-list-repeatable-item_a' with product %}
       				{% endfor %}
       			{% elsif collection.handle == 'wholesale-headbands-and-scarves' %}
-      				<div class="cl_titm"><a href="{{ collections.lila-wholesale.url }}">LILA hairties</a></div>
-      				{% for product in collections.lila-wholesale.products %}
-                        {% assign producturl = product.url | within: collections.lila-wholesale %}
+      				<div class="cl_titm"><a href="{{ collections.wholesale-organic-hair-ties.url }}">LILA hairties</a></div>
+      				{% for product in collections.wholesale-organic-hair-ties.products %}
+                        {% assign producturl = product.url | within: collections.wholesale-organic-hair-ties %}
                         {% include 'product-list-repeatable-item_a' with product %}
       				{% endfor %}
       			{% endif %}
+
 
     </div><!-- .productlist -->
 
