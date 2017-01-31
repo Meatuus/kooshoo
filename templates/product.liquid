@@ -537,6 +537,10 @@ Shopify.linkOptionSelectors = function(product) {
            if (wd_main <= 240){
                 $(divs).width(wd_main);
            }
+           else if (wd_main <= 288) {
+             $(divs).width(150);
+             $(divs).height(100);
+           }
            else if (wd_main <= 480){
               $(divs).width(240);
               $(divs).height(100);
