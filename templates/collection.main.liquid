@@ -218,6 +218,15 @@
                         {% include 'product-list-repeatable-item_a' with product %}
       				{% endfor %}
                 {% endif %}
+
+              {% if collection.handle == 'wholesale-headbands-and-scarves' %}
+        				<div class="cl_titm"><a href="{{ collections.wholesale-kids-and-baby-pants.url }}">KIDS PANTS</a></div>
+        				{% for product in collections.wholesale-kids-and-baby-pants.products %}
+                          {% assign producturl = product.url | within: collections.wholesale-kids-and-baby-pants %}
+                          {% include 'product-list-repeatable-item_a' with product %}
+        				{% endfor %}
+        			{% endif %}
+
             	{% if collection.title == 'WOMEN' %}
       				<div class="cl_titm secms"><a href="{{ collections.hairties.url }}">LILA hairties</a></div>
                     {% for product in collections.hairties.products %}
