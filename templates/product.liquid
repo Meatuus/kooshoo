@@ -503,7 +503,8 @@ Shopify.linkOptionSelectors = function(product) {
 </script>
 {% endif %}
 
-<script type="text/javascript">
+{% comment %}
+<!-- <script type="text/javascript">
 	$(document).ready(function() {
 
     /*    pollInstagram('https://api.instagram.com/v1/tags/organiccotton/media/recent?access_token=326441785.1fb234f.97639944366c44f6a3d95df0a8c884d5&count=100');
@@ -515,16 +516,17 @@ Shopify.linkOptionSelectors = function(product) {
 	});
 
 
-</script>
-<div class="inst_main">
+</script> -->
+<!-- <div class="inst_main">
   <div class="inst_txt">
     Tag your photos using #<span class="ht_tit"></span> on Instagram and they will appear automatically below.
   </div>
-<div id="inst_log">
-  <div class="inst_cont"></div>
-</div>
+  <div id="inst_log">
+    <div class="inst_cont"></div>
+  </div>
   <div class="inst_nav"><span class="inst_left">&#60;</span> <span class="inst_cur">1</span>/<span class="inst_tot">6</span> <span class="inst_right">&#62;</span></div>
-</div>
+</div> -->
+{% endcomment %}
 <script type="text/javascript">
    $(document).ready(function() {
       function width_clr() {
