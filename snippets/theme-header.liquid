@@ -27,8 +27,8 @@
     {% endif %}
     <div class="top_header">
     <div class="container">
-       
-        
+
+
         <div class="cartsocialcont sixteen columns">
            {% if settings.sm_rss or settings.sm_facebook or settings.sm_twitter or settings.sm_tumblr or settings.sm_pinterest %}
         		<div class="socialicons">
@@ -57,18 +57,18 @@
                 {% endif %}
             <span class="tagline">{{ settings.head_tagline }}&nbsp;</span>
     		<div class="actions">
-                
-               
-                
+
+
+
                 {% if shop.customer_accounts_enabled and customer %}
                     <a href="#" class="account logindrop">{{ settings.text_youraccount }}</a>
                 {% elsif shop.customer_accounts_enabled %}
     			    <a href="#" class="account logindrop">{{ settings.text_login }}</a>
                 {% endif %}
-                
+
     			<a href="/{% if template != 'cart' %}cart{% else %}checkout{% endif %}" id="cartsummary"><!--{{ settings.text_cart }}-->Shopping Bag <span id="headercartvals">({{ cart.item_count }}) items<!--{{ cart.total_price | money_with_currency }}--></span></a>
-                
-                
+
+
             </div>
         <div id="search_top">
         <div class="top_btn_s">
@@ -77,7 +77,7 @@
             <div id="searchcont" class="formfields dohover smarttextinput" style="width: 0px;">
                 <div class="searchformwrap">
                         <form class="inputrow" action="/search" method="get">
-                         
+
                             <input class="search defaulttextjs" name="q" id="searchinput" type="text" placeholder="Search"/>
                             <input type="submit" value="→" />
                         </form>
@@ -87,7 +87,7 @@
 		</div>
 
 	</div>
-           
+
     </div>
     <div id="logo" class="sixteen columns">
             {% if settings.use_logo_image %}
@@ -104,7 +104,7 @@
     		<ul>
         	  	{% for link in linklists.main-menu.links %}
         			<li{{ firstliclass }} class="list_nav">
-                        
+
                         {% comment %} If catalog nav, show collections underneath {% endcomment %}
                         {% if link.title == 'Catalog' %}
                             <a class="hasdropdown" href="{{ link.url }}">{{ settings.text_catalog }}</a>
@@ -118,7 +118,7 @@
                                 {% endif %}
                             {% endfor %}
                             </ul>
-                            
+
                             {% comment %}Show Vendor list right after collections{% endcomment %}
                             {% if shop.vendors.size > 0 and settings.vendor_list_enabled == true %}
                                 </li>
@@ -132,7 +132,7 @@
                                         {% endfor %}
                                     </ul>
                             {% endif %}
-                            
+
                             {% comment %}Show Types list right after vendors{% endcomment %}
                             {% if shop.types.size > 0 and settings.type_list_enabled == true %}
                                 </li>
@@ -151,9 +151,9 @@
                 			{% capture child_list_handle %}{{ link.title | handle }}{% endcapture %}
             				{% if linklists[child_list_handle] and linklists[child_list_handle].links.size > 0 %}
                                 <a class="hasdropdown" href="{{ link.url }}">{{ link.title }}</a>
-                              
+
                                 {% capture dropdownMarkup %}{{ dropdownMarkup }}<option value="{{ link.url }}">{{ link.title }}</option>{% endcapture %}
-                               
+
                                   <div class="dd_body">
                                     <div class="dd_left">
                                         {% if link.title == 'Headbands' %}
@@ -232,5 +232,3 @@ $(document).ready(function() {
     });
     </script>
 <div class="bodywrap">
-    
-    
