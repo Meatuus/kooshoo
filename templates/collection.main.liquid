@@ -206,13 +206,13 @@
       				{% endfor %}
       			{% endif %}
                 {% if collection.title contains 'WOMEN' %}
-                    <div class="cl_titm secms"><a href="{{ collections.shawls.url }}">HAND DYED shawls</a></div>
+                    <div class="cl_titm secms"><a href="{{ collections.shawls.url }}">JOURNEY shawls</a></div>
                         {% for product in collections.shawls.products %}
                             {% assign producturl = product.url | within: collections.shawls %}
                             {% include 'product-list-repeatable-item_a' with product %}
                         {% endfor %}
       			{% elsif collection.handle == 'wholesale-headbands-and-scarves' %}
-      				<div class="cl_titm"><a href="{{ collections.wholesale-scarves-and-shawls.url }}">HAND DYED shawls</a></div>
+      				<div class="cl_titm"><a href="{{ collections.wholesale-scarves-and-shawls.url }}">JOURNEY shawls</a></div>
       				{% for product in collections.wholesale-scarves-and-shawls.products %}
                         {% assign producturl = product.url | within: collections.wholesale-scarves-and-shawls %}
                         {% include 'product-list-repeatable-item_a' with product %}
