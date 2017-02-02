@@ -82,7 +82,6 @@
 
     {% unless collection.handle == 'all' %}
     <h1>{{ collection.title }}</h1>
-    <!-- <h1>%%%%</h1> -->
     {% if collection.description != '' %}
         <div class="content-block row">
             {{ collection.description }}
@@ -147,13 +146,13 @@
 </div>
 
     <div class="productlist">
-            	{% if collection.title == 'WOMEN' %}
+            	{% if collection.handle == 'ethical-accessories-for-women' %}
       				<div class="cl_titm"><a href="{{ collections.aurea-headbands.url }}">AUREA headbands</a></div>
                     {% for product in collections.aurea-headbands.products %}
                         {% assign producturl = product.url | within: collections.aurea-headbands %}
                         {% include 'product-list-repeatable-item_a' with product %}
       				{% endfor %}
-      			{% elsif collection.title == 'MEN' %}
+      			{% elsif collection.handle == 'men-headbands' %}
       				<div class="cl_titm"><a href="{{ collections.aurea-headbands-mensonly.url }}">AUREA headbands</a></div>
       				{% for product in collections.aurea-headbands-mensonly.products %}
                         {% assign producturl = product.url | within: collections.aurea-headbands-mensonly %}
@@ -167,13 +166,13 @@
       				{% endfor %}
       			{% endif %}
 
-      			{% if collection.title == 'WOMEN' %}
+      			{% if collection.handle == 'ethical-accessories-for-women' %}
         			<div class="cl_titm secms"><a href="{{ collections.enso-headbands.url }}">ENSO headbands</a></div>
                     {% for product in collections.enso-headbands-and-head-wraps.products %}
                         {% assign producturl = product.url | within: collections.enso-headbands-and-head-wraps %}
                         {% include 'product-list-repeatable-item_a' with product %}
       				{% endfor %}
-      			{% elsif collection.title == 'MEN' %}
+      			{% elsif collection.handle == 'men-headbands' %}
       				<div class="cl_titm secms"><a href="{{ collections.enso-headbands-mens-only.url }}">ENSO headbands</a></div>
       				{% for product in collections.enso-headbands-mens-only.products %}
                         {% assign producturl = product.url | within: collections.enso-headbands-mens-only %}
@@ -186,13 +185,13 @@
                             {% include 'product-list-repeatable-item_a' with product %}
       				{% endfor %}
       			{% endif %}
-      			{% if collection.title == 'WOMEN' %}
+      			{% if collection.handle == 'ethical-accessories-for-women' %}
       				<div class="cl_titm secms"><a href="{{ collections.hu-headbands.url }}">HU headbands</a></div>
                     {% for product in collections.hu-sweatbands.products %}
                         {% assign producturl = product.url | within: collections.hu-sweatbands %}
                         {% include 'product-list-repeatable-item_a' with product %}
       				{% endfor %}
-      			{% elsif collection.title == 'MEN' %}
+      			{% elsif collection.handle == 'men-headbands' %}
       				<div class="cl_titm secms"><a href="{{ collections.hu-headbands-mens-only.url }}">HU headbands</a></div>
       				{% for product in collections.hu-headbands-mens-only.products %}
                         {% assign producturl = product.url | within: collections.hu-headbands-mens-only %}
@@ -205,7 +204,7 @@
                             {% include 'product-list-repeatable-item_a' with product %}
       				{% endfor %}
       			{% endif %}
-                {% if collection.title contains 'WOMEN' %}
+                {% if collection.handle == 'ethical-accessories-for-women' %}
                     <div class="cl_titm secms"><a href="{{ collections.shawls.url }}">JOURNEY shawls</a></div>
                         {% for product in collections.shawls.products %}
                             {% assign producturl = product.url | within: collections.shawls %}
@@ -227,13 +226,13 @@
         				{% endfor %}
         			{% endif %}
 
-            	{% if collection.title == 'WOMEN' %}
+            	{% if collection.handle == 'ethical-accessories-for-women' %}
       				<div class="cl_titm secms"><a href="{{ collections.hairties.url }}">LILA hairties</a></div>
                     {% for product in collections.hairties.products %}
                         {% assign producturl = product.url | within: collections.hairties %}
                         {% include 'product-list-repeatable-item_a' with product %}
       				{% endfor %}
-      			{% elsif collection.title == 'MEN' %}
+      			{% elsif collection.handle == 'men-headbands' %}
       				<div class="cl_titm secms"><a href="{{ collections.lila-hairties-men-s-only.url }}">LILA hairties</a></div>
       				{% for product in collections.lila-hairties-men-s-only.products %}
                         {% assign producturl = product.url | within: collections.lila-hairties-men-s-only %}
