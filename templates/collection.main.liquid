@@ -16,7 +16,7 @@
     </div>-->
     {% endif %}
 
-{% if collection.title contains 'WOMEN' %}
+{% if collection.handle == 'ethical-accessories-for-women' %}
     {% if settings.slide_women_1 != false or settings.slide_women_2 != false or settings.slide_women_3 != false or settings.slide_women_4 != false %}
         <section id="mainslider" class="sixteen columns flexslider slideshow row">
             <ul class="slides">
@@ -36,7 +36,7 @@
             </ul>
         </section>
     {% endif %}
-{% elsif collection.title contains 'MEN' %}
+{% elsif collection.handle == 'men-headbands' %}
     {% if settings.slide_men_1 != false or settings.slide_men_2 != false or settings.slide_men_3 != false or settings.slide_men_4 != false %}
         <section id="mainslider" class="sixteen columns flexslider slideshow row">
             <ul class="slides">
