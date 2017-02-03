@@ -336,10 +336,17 @@
                 	{% include 'product-list-repeatable-item' with product %}
       			{% endif %}
             {% endfor %}
-      	{% elsif collection.handle contains 'lila' %}
+      	{% elsif collection.handle contains 'lila' or collection.handle == 'wholesale-organic-hair-ties' %}
             <div class="cl_titm">LILA hairties</div>
             {% for product in collection.products %}
       			{% if product.title contains 'LILA' %}
+                	{% include 'product-list-repeatable-item' with product %}
+      			{% endif %}
+            {% endfor %}
+        {% elsif collection.handle contains 'baby' %}
+            <div class="cl_titm">KIDS PANTS</div>
+            {% for product in collection.products %}
+      			{% if product.title contains 'KIDS' %}
                 	{% include 'product-list-repeatable-item' with product %}
       			{% endif %}
             {% endfor %}
