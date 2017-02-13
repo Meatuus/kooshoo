@@ -17,10 +17,10 @@
 
 ;(function($, undefined) {
 'use strict';
-    
+
     // blank image data-uri bypasses webkit log warning (thx doug jones)
     var BLANK = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==';
-    
+
     $.fn.imagesLoaded = function( callback ) {
         var $this = this,
         deferred = $.isFunction($.Deferred) ? $.Deferred() : 0,
@@ -29,11 +29,11 @@
         loaded = [],
         proper = [],
         broken = [];
-        
+
         function doneLoading() {
             var $proper = $(proper),
                 $broken = $(broken);
-            
+
             if ( deferred ) {
                 if ( broken.length ) {
                 deferred.reject( $images, $proper, $broken );
@@ -41,43 +41,43 @@
                 deferred.resolve( $images );
                 }
             }
-            
+
             if ( $.isFunction( callback ) ) {
                 callback.call( $this, $images, $proper, $broken );
             }
         }
-        
+
         function imgLoaded( img, isBroken ) {
             // don't proceed if BLANK image, or image is already loaded
             if ( img.src === BLANK || $.inArray( img, loaded ) !== -1 ) {
                 return;
             }
-            
+
             // store element in loaded images array
             loaded.push( img );
-            
+
             // keep track of broken and properly loaded images
             if ( isBroken ) {
                 broken.push( img );
             } else {
                 proper.push( img );
             }
-            
+
             // cache image and its state for future calls
             $.data( img, 'imagesLoaded', { isBroken: isBroken, src: img.src } );
-            
+
             // trigger deferred progress method if present
             if ( hasNotify ) {
                 deferred.notifyWith( $(img), [ isBroken, $images, $(proper), $(broken) ] );
             }
-            
+
             // call doneLoading and clean listeners if all images are loaded
             if ( $images.length === loaded.length ){
                 setTimeout( doneLoading );
                 $images.unbind( '.imagesLoaded' );
             }
         }
-        
+
         // if no images or unreasonable IE version, trigger immediately
         if ( !$images.length || underIE9 ) {
             doneLoading();
@@ -87,7 +87,7 @@
             imgLoaded( event.target, event.type === 'error' );
             }).each( function( i, el ) {
             var src = el.src;
-            
+
             // find out if this image has been already checked for status
             // if it was, and src has not changed, call imgLoaded on it
             var cached = $.data( el, 'imagesLoaded' );
@@ -95,14 +95,14 @@
             imgLoaded( el, cached.isBroken );
             return;
             }
-            
+
             // if complete is true and browser supports natural sizes, try
             // to check for image status manually
             if ( el.complete && el.naturalWidth !== undefined ) {
             imgLoaded( el, el.naturalWidth === 0 || el.naturalHeight === 0 );
             return;
             }
-            
+
             // cached images don't fire load sometimes, so we reset src, but only when
             // dealing with IE, or image is complete (loaded) and failed manual check
             // webkit hack from http://groups.google.com/group/jquery-dev/browse_thread/thread/eee6ab7b2da50e1f
@@ -112,7 +112,7 @@
             }
             });
         }
-        
+
         return deferred ? deferred.promise( $this ) : $this;
     };
 })(jQuery);
@@ -175,12 +175,12 @@
 
   while (prop = props.pop()) {
     (function (natural, prop) {
-      $.fn[natural] = (natural in new Image()) ? 
+      $.fn[natural] = (natural in new Image()) ?
       function () {
         return this[0][natural];
-      } : 
+      } :
       function () {
-        var 
+        var
         node = this[0],
         img,
         value;
@@ -232,7 +232,7 @@ $(function(){
         });
         return $(this);
     };
-    
+
     //Adjust image size so it crops itself into a box nicely.
     $.fn.cropCentral = function(options){
         var settings = {alignTop:false};
@@ -258,7 +258,7 @@ $(function(){
         });
         return $(this);
     };
-    
+
     //From a select dropdown get selected OR FIRST item text
     $.fn.selectedOrFirstText = function(){
         var $opts = $(this).find('option');
@@ -268,7 +268,7 @@ $(function(){
             return $($opts[0]).text();
         }
     };
-    
+
     //Restyle all select dropdowns
     $.selectReplace = function(){
         $('select:not(.replaced, .noreplace)').each(function(){
@@ -289,10 +289,10 @@ $(function(){
             });
         }
     };
-    
+
     //Do it, do it now!
     $.selectReplace();
-    
+
     //Login dropdown
     $('#util-bar .actions .logindrop').click(function(){
         if($(this).toggleClass('open').hasClass('open')) {
@@ -302,7 +302,7 @@ $(function(){
         }
         return false;
     });
-    
+
     //Default text
     $('input.defaulttextjs').each(function(){
         $(this).data('deftext', $(this).val());
@@ -315,13 +315,13 @@ $(function(){
             $(this).val($(this).data('deftext'));
         }
     });
-    
+
     //Form hover labels
     $('.formfields').addClass('dohover').find('.hoverlabel').each(function(){
         //On click, focus to input
         var $label = $(this);
         var $input = $(this).siblings('input[id="'+$(this).attr('for')+'"]');
-        
+
         $label.css('opacity', 0.5).click(function(){
             $input.focus();
         });
@@ -335,7 +335,7 @@ $(function(){
             }
         }).focusout();
     });
-    
+
     //Sliders
     $('.flexslider').each(function(){
         var isMainSlider = $(this).attr('id') == 'mainslider';
@@ -396,11 +396,11 @@ $(function(){
             });
         }
     });
-    
+
     //Do certain things differently if touch events are enabled
     if( ! !!('ontouchstart' in window) ? 1 : 0 ) {
         //IF NOT TOUCH
-        
+console.log('not touch')
         //Scroll-to-top button for long pages
         $(window).scroll(function(){
             if(window.scrollY > 500) {
@@ -413,16 +413,19 @@ $(function(){
             $('html:not(:animated),body:not(:animated)').animate({ scrollTop: 0}, 500 );
             return false;
         });
-    
+
+
         //Normal hover nav
         $('#pageheader nav > ul > li').hover(function () {
             $(this).find('.dd_body').stop(true, true).fadeIn(100);
+            console.log('hi')
             $(this).find('ul, .notch').stop(true, true).fadeIn(100);
         }, function () {
             $(this).find('.dd_body').stop(true, true).fadeOut(200);
+            console.log('bye')
              $(this).find('ul, .notch').stop(true, true).fadeOut(200);
         });
-        
+
         //Preload all slider images (mobile hides slider, so don't do for that) - prevents browsers from not downloading hidden images
         $('#mainslider li').each(function(){
             var src = $(this).css('background-image').replace(/"/g,"").replace(/url\(|\)$/ig, "");
@@ -433,25 +436,42 @@ $(function(){
         });
     } else {
         //IF TOUCH
-        
+console.log('touch device');
         //Clicky nav for tablets
-        $('#pageheader nav > ul > li > a').click(function () {
-            var $thisSubNav = $(this).siblings('ul');
+        $('#pageheader nav > ul > li > a').click(function(e) {
+            var $thisSubNav = $(this).siblings();
+            var $thisSubNav2 = $(this).siblings().children('ul');
+
+            console.log($thisSubNav);
+            console.log('tab-click');
+            console.log(this);
+
             if($thisSubNav.length > 0) {
+              console.log('big length');
                 var wasVisible = $thisSubNav.is(':visible');
+                console.log(wasVisible);
                 $(this).closest('ul').children('li').removeClass('open').children('ul').fadeOut(200);
+                $(this).closest('ul').children('li').children('ul').addClass('testing');
+                console.log($(this).closest('ul').children('li').children('ul'));
+                <!-- $($thisSubNav).fadeOut(200); -->
+                <!-- $(this).closest('ul').children().removeClass('open').children('ul').fadeOut(200); -->
                 if(!wasVisible) {
+                  console.log("fading in");
+                  console.log($(this).siblings().children('ul'));
                     $thisSubNav.fadeIn(100);
+                    $thisSubNav2.fadeIn(100);
                     $(this).parent().addClass('open');
+                } else {
+
                 }
                 return false;
             }
         });
-        
+
         //Remove scroll-to-top
         $('#scrolltotop').remove();
     }
-    
+
     //Twitter
     $(".tweetwidget").bind('loaded', function(e){
         //Add the paging now that it has loaded
@@ -476,15 +496,15 @@ $(function(){
             template: "{text}{time}"
         });
     });
-    
-    
+
+
     //Dropdown nav
     $('#pageheader nav #dropdownNav').change(function(){
         if($(this).val().length > 0) {
             window.location = $(this).val();
         }
     });
-    
+
     //Tabs in content blocks
     var tabiter = 0;
     $('.content-block').each(function(){
@@ -510,13 +530,13 @@ $(function(){
             $($alltabs[0]).before($tabbtnholder);
         }
     });
-    
+
     //Clicks in zoom
     $(document).on('click', '.productlist .product a.delayedzoom', function(){
         window.location = $(this).closest('.product').find('.title a').attr('href');
         return false;
     });
-    
+
     //Process product images after load
     $(document).on('initprodimg', '.productlist .product .imgcont img:not(.altimg)', function(){
         $(this).data('doload', true);
@@ -547,7 +567,7 @@ $(function(){
     $('.productlist .product .imgcont img:not(.altimg)').each(function(){
         $(this).trigger('initprodimg');
     });
-    
+
     //Image hover switchout
     $(document).on("mouseenter", ".productlist .product .imgcont:has(.imgswitch)", function(){
         $(this).find('img:first').stop(true,true).animate({opacity:0}, 200);
@@ -556,7 +576,7 @@ $(function(){
         $(this).find('img:first').stop(true,true).animate({opacity:1}, 200);
         $(this).find('img.altimg').stop(true,true).animate({opacity:0}, 200);
     });
-    
+
     //Hide sale flag on mouseover
     $(document).on('mouseenter', '.productlist .product .imgcont', function(){
         $(this).find('.salecontainer').stop(true,true).fadeOut(0);
@@ -564,7 +584,7 @@ $(function(){
     $(document).on('mouseleave', '.productlist .product .imgcont', function(){
         $(this).find('.salecontainer').stop(true,true).fadeIn(300);
     });
-    
+
     //Show/hide search box
     $('.searchbtn').click(function(){
         if($(this).toggleClass('expanded').hasClass('expanded')) {
@@ -575,7 +595,7 @@ $(function(){
         }
         return false;
     });
-    
+
     //Register button
     $('#pagefooter .showregister').click(function(){
         $(this).fadeOut(200, function(){
@@ -583,7 +603,7 @@ $(function(){
         });
         return false;
     }).siblings('.registerform').fadeOut(0);
-    
+
     {% if settings.enable_recent_products %}
     //Recently viewed products
     if(window.location.pathname.indexOf('/products/') > -1) {
@@ -610,7 +630,7 @@ $(function(){
             prodhdl + '|' + window.location + '|'
             + $('#productinfo #detail h1').text() + '|'
             + $('#productinfo').data('featimgurl'));
-        
+
         $.cookie('recent_prod', recent.join('~'), { expires: 7, path: '/' });
     }
     //Show recently viewed products
@@ -633,7 +653,7 @@ $(function(){
         });
     }
     {% endif %}
-    
+
     //Fade in large widget images, and productpile
     $('.widget.fullwidthimg img, .widget.productpilewidget img').each(function(){
         $(this).css('visibility', 'hidden').imagesLoaded(function($this){
@@ -642,7 +662,7 @@ $(function(){
             $(window).trigger('resize');
         });
     });
-    
+
     //Popup text for products
     $(document).on('mouseenter', '.showpopuptext', function(){
         //Create if it doesn't exist
@@ -673,11 +693,11 @@ $(function(){
                 }
             });
         }
-        
+
         //Set position & dimensions of popup title
         $popupspan = $popup.find('span');
         $popupspan.html($(this).data('popuptext'));
-        
+
         //Set this to have a large width so the child span can find its natural width
         $popup.css('visibility', 'hidden').show().css('width', 600);
         $popup.width($popupspan.width() + 16);
@@ -685,7 +705,7 @@ $(function(){
         //Now we have width, offset x
         var w = $popup.width();
         var contw = $(this).width(); //The item to show popup above
-        $popup.css({ 
+        $popup.css({
             top: $(this).offset().top - 30,
             left: $(this).offset().left + contw/2 - w/2 - 10
         });
@@ -694,7 +714,7 @@ $(function(){
     $(document).on('mouseleave', '.showpopuptext', function(){
         $('#simplepopuptext').hide();
     });
-    
+
     //Validate any form fields
     $('form').submit(function(event){
         var $frm = $(this);
@@ -719,10 +739,10 @@ function modifyQuantity(sel, amt, varID) {
     if(curr == NaN) {
         curr == 0;
     }
-    
+
     var newVal = Math.max(1, curr+amt);
     $(sel).val(newVal);
-    
+
     if(typeof(varID) != 'undefined') {
         function updateCart(jqXHR, data) {
             if(jqXHR.statusText != 'OK') {
@@ -731,7 +751,7 @@ function modifyQuantity(sel, amt, varID) {
             if(typeof(data) == 'undefined') {
                 data = eval('(' + jqXHR.responseText + ')');
             }
-            
+
             var totalString = Shopify.formatMoney(data.total_price);
             $('#headercartvals').html('('+data.item_count+') ' + totalString);
             $('#basket .foot .total').html(totalString);
