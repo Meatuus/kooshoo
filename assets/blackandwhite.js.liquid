@@ -417,11 +417,9 @@ $(function(){
         //Normal hover nav
         $('#pageheader nav > ul > li').hover(function () {
             $(this).find('.dd_body').stop(true, true).fadeIn(100);
-            console.log('hi')
             $(this).find('ul, .notch').stop(true, true).fadeIn(100);
         }, function () {
             $(this).find('.dd_body').stop(true, true).fadeOut(200);
-            console.log('bye')
              $(this).find('ul, .notch').stop(true, true).fadeOut(200);
         });
 
@@ -440,8 +438,8 @@ $(function(){
             var $thisSubNav = $(this).siblings();
             var $thisSubNav2 = $(this).siblings().children('ul');
             $(".dd_body").fadeOut(200); // fade out any other drop downs when another is clicked
-            $(".dd_left").css("display", "none");
-            $(".dd_body").css("min-width", "230px");
+            $(".dd_left").css("display", "none"); // don't display dropdown menu images
+            $(".dd_body").css("min-width", "230px"); // change width of dropdown body that doesn't contain image
             if($thisSubNav.length > 0) {
                 var wasVisible = $thisSubNav.is(':visible');
                 $(this).closest('ul').children('li').removeClass('open').children('ul').fadeOut(200);
