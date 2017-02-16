@@ -444,7 +444,6 @@ $(function(){
                 var wasVisible = $thisSubNav.is(':visible');
                 $(this).closest('ul').children('li').removeClass('open').children('ul').fadeOut(200);
                 <!-- $($thisSubNav).fadeOut(200); -->
-                <!-- $(this).closest('ul').children().removeClass('open').children('ul').fadeOut(200); -->
                 if(!wasVisible) { // if dropdown not visible show dropdown
                   $thisSubNav.fadeIn(100);
                   $thisSubNav2.fadeIn(100);
