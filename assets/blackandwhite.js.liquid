@@ -442,7 +442,6 @@ console.log('touch device');
             var $thisSubNav = $(this).siblings();
             var $thisSubNav2 = $(this).siblings().children('ul');
             $(".dd_body").fadeOut(200); <!-- fade out any other drop downs when another is clicked -->
-            <!-- $($thisSubNav2).fadeOut(200); -->
             console.log($thisSubNav);
             console.log('tab-click');
             console.log(this);
@@ -454,7 +453,7 @@ console.log('touch device');
                 $(this).closest('ul').children('li').removeClass('open').children('ul').fadeOut(200);
                 $(this).closest('ul').children('li').children('ul').addClass('testing');
                 console.log($(this).closest('ul').children('li').children('ul'));
-
+                <!-- $($thisSubNav).fadeOut(200); -->
                 <!-- $(this).closest('ul').children().removeClass('open').children('ul').fadeOut(200); -->
                 if(!wasVisible) {
                   console.log("fading in");
@@ -463,7 +462,7 @@ console.log('touch device');
                     $thisSubNav2.fadeIn(100);
                     $(this).parent().addClass('open');
                 } else {
-
+                  document.location.href = $(this).attr('href'); <!-- else if list_nav is clicked twice go to list_nav href link -->
                 }
                 return false;
             }
