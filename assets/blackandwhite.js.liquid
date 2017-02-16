@@ -400,7 +400,6 @@ $(function(){
     //Do certain things differently if touch events are enabled
     if( ! !!('ontouchstart' in window) ? 1 : 0 ) {
         //IF NOT TOUCH
-console.log('not touch')
         //Scroll-to-top button for long pages
         $(window).scroll(function(){
             if(window.scrollY > 500) {
@@ -436,7 +435,6 @@ console.log('not touch')
         });
     } else {
         //IF TOUCH
-console.log('touch device');
         //Clicky nav for tablets
         $('#pageheader nav > ul > li > a').click(function(e) {
             var $thisSubNav = $(this).siblings();
