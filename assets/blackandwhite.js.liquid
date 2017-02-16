@@ -440,9 +440,9 @@ $(function(){
             var $thisSubNav = $(this).siblings();
             var $thisSubNav2 = $(this).siblings().children('ul');
             $(".dd_body").fadeOut(200); // fade out any other drop downs when another is clicked
-
+            $(".dd_left").css("display", "none");
+            $(".dd_body").css("min-width", "230px");
             if($thisSubNav.length > 0) {
-              console.log('big length');
                 var wasVisible = $thisSubNav.is(':visible');
                 $(this).closest('ul').children('li').removeClass('open').children('ul').fadeOut(200);
                 <!-- $($thisSubNav).fadeOut(200); -->
