@@ -3129,6 +3129,11 @@
         "type": "image",
         "id": "fifth_nav_g.jpg",
         "label": "Load 7 Image"
+      },
+      {
+        "type": "image",
+        "id": "fifth_nav_h.jpg",
+        "label": "Load 8 Image"
       }
     ]
   },
