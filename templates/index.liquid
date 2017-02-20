@@ -6,171 +6,177 @@
 
 <section class="widgets row">
   <div class="IC_top">
-    <p>
-      The KOOSHOO Way of Business
-    </p>
-    </div>
-    <a href="/pages/meet-the-family#business">
-      <div class="ind_cent">
-          <div class="IC_left">
-              <div class="ICL">
-                <div class="ICL_text1">ORGANIC <br>&amp; NATURAL</div>
-                <div class="ICL_text2">MADE IN <br> CALIFORNIA</div>
-                <div class="ICL_text3">ETHICALLY <br> OPERATED</div>
-              </div>
-          </div>
-          <div class="IC_right">
-              <div class="ICR">
-                <div class="ICR_text1">SOLAR <br> POWERED</div>
-                <div class="ICR_text2">DYED BY <br> HAND</div>
-                <div class="ICR_text3">GIVING TO <br> CHARITY</div>
-              </div>
-          </div>
-      </div>
-    </a>
-    <div class="ICC_left ICC_cont">
-        <h2>
-        meet the family
-        </h2>
-        <p>
-       {{ settings.hpt_1 }}
-        </p>
-        <a href="{{ settings.hpl_1 }}#maincontent">
-         LEARN MORE &gt;
-        </a>
-    </div>
-    <div class="ICC_right ICC_cont">
-        <h2>
-        kooshoo eh?
-        </h2>
-        <p>
-            {{ settings.hpt_2 }}
-        </p>
-        <a href="{{ settings.hpl_2 }}#kooshoo_eh">
-        LEARN MORE &gt;
-        </a>
-    </div>
+	<p>
+	  The KOOSHOO Way of Business
+	</p>
+	</div>
+	<a href="/pages/meet-the-family#business">
+	  <div class="ind_cent">
+		  <div class="ind_text1">ORGANIC <br>&amp; NATURAL</div>
+		  <div class="ind_text2">MADE IN <br> CALIFORNIA</div>
+		  <div class="ind_text3">ETHICALLY <br> OPERATED</div>
+		  <div class="ind_text4">SOLAR <br> POWERED</div>
+		  <div class="ind_text5">DYED BY <br> HAND</div>
+		  <div class="ind_text6">GIVING TO <br> CHARITY</div>
+		  <div class="IC_left">
+			  <div class="ICL">
+				<!-- <div class="ICL_text1">ORGANIC <br>&amp; NATURAL</div>
+				<div class="ICL_text2">MADE IN <br> CALIFORNIA</div>
+				<div class="ICL_text3">ETHICALLY <br> OPERATED</div> -->
+			  </div>
+		  </div>
+		  <div class="IC_right">
+			  <div class="ICR">
+				<!-- <div class="ICR_text1">SOLAR <br> POWERED</div>
+				<div class="ICR_text2">DYED BY <br> HAND</div>
+				<div class="ICR_text3">GIVING TO <br> CHARITY</div> -->
+			  </div>
+		  </div>
+	  </div>
+	</a>
+	<div class="ICC_left ICC_cont">
+		<h2>
+		meet the family
+		</h2>
+		<p>
+	   {{ settings.hpt_1 }}
+		</p>
+		<a href="{{ settings.hpl_1 }}#maincontent">
+		 LEARN MORE &gt;
+		</a>
+	</div>
+	<div class="ICC_right ICC_cont">
+		<h2>
+		kooshoo eh?
+		</h2>
+		<p>
+			{{ settings.hpt_2 }}
+		</p>
+		<a href="{{ settings.hpl_2 }}#kooshoo_eh">
+		LEARN MORE &gt;
+		</a>
+	</div>
 
 </section>
 <section class="widgets row hp_line">
-    <div class="widget productlist">
-        {% assign collection = collections[settings.productrow_1_collection] %}
-        {% assign row_limit = settings.products_per_row_home | plus: 0 %}
-        {% assign row_limit_plusone = settings.products_per_row_home | plus: 1 %}
-        {% paginate collection.products by row_limit_plusone %}
-        {% unless settings.prodrow_hide_titles %}
-            <!--{% if collection.products.size > row_limit %}
-            <a href="{{ collection.url }}"><h6 class="sixteen columns">{{ collection.title }}</h6></a>
-            {% else %}
-            <h6 class="sixteen columns">{{ collection.title }}</h6>
-            {% endif %}-->
-             <p>– featuring –</p>
-        {% endunless %}
-        <!--{% for product in collection.products limit: row_limit %}
+	<div class="widget productlist">
+		{% assign collection = collections[settings.productrow_1_collection] %}
+		{% assign row_limit = settings.products_per_row_home | plus: 0 %}
+		{% assign row_limit_plusone = settings.products_per_row_home | plus: 1 %}
+		{% paginate collection.products by row_limit_plusone %}
+		{% unless settings.prodrow_hide_titles %}
+			<!--{% if collection.products.size > row_limit %}
+			<a href="{{ collection.url }}"><h6 class="sixteen columns">{{ collection.title }}</h6></a>
+			{% else %}
+			<h6 class="sixteen columns">{{ collection.title }}</h6>
+			{% endif %}-->
+			 <p>– featuring –</p>
+		{% endunless %}
+		<!--{% for product in collection.products limit: row_limit %}
 
-            {% include 'product-list-repeatable-item' with product %}
+			{% include 'product-list-repeatable-item' with product %}
 
-        {% endfor %}-->
+		{% endfor %}-->
 
 {% for product in collection.products limit: row_limit %}
-       {% assign productnm = product.id %}
-      		{% for product in collections.aurea-headbands.products %}
-      			{% if productnm == product.id %}
-      					{% assign producturl = product.url | within: collections.aurea-headbands %}
-                        {% include 'product-list-repeatable-item_a' with product %}
-      			{% endif %}
-      		{% endfor %}
-      		{% for product in collections.aurea-headbands-mensonly.products %}
-      			{% if productnm == product.id %}
-      					{% assign producturl = product.url | within: collections.aurea-headbands-mensonly %}
-                        {% include 'product-list-repeatable-item_a' with product %}
-      			{% endif %}
-      		{% endfor %}
-      		{% for product in collections.aurea-wholesale.products %}
-      			{% if productnm == product.id %}
-      					{% assign producturl = product.url | within: collections.aurea-wholesale %}
-                        {% include 'product-list-repeatable-item_a' with product %}
-      			{% endif %}
-      		{% endfor %}
-      		{% for product in collections.enso-headbands.products %}
-      			{% if productnm == product.id %}
-      					{% assign producturl = product.url | within: collections.enso-headbands %}
-                        {% include 'product-list-repeatable-item_a' with product %}
-      			{% endif %}
-      		{% endfor %}
-      		{% for product in collections.enso-headbands-mensonly.products %}
-      			{% if productnm == product.id %}
-      					{% assign producturl = product.url | within: collections.enso-headbands-mensonly %}
-                        {% include 'product-list-repeatable-item_a' with product %}
-      			{% endif %}
-      		{% endfor %}
-      		{% for product in collections.enso-wholesale.products %}
-      			{% if productnm == product.id %}
-      					{% assign producturl = product.url | within: collections.enso-wholesale %}
-                        {% include 'product-list-repeatable-item_a' with product %}
-      			{% endif %}
-      		{% endfor %}
-            {% for product in collections.hu-headbands.products %}
-      			{% if productnm == product.id %}
-      					{% assign producturl = product.url | within: collections.hu-headbands %}
-                        {% include 'product-list-repeatable-item_a' with product %}
-      			{% endif %}
-      		{% endfor %}
-      		{% for product in collections.hu-headbands-mens-only.products %}
-      			{% if productnm == product.id %}
-      					{% assign producturl = product.url | within: collections.hu-headbands-mens-only %}
-                        {% include 'product-list-repeatable-item_a' with product %}
-      			{% endif %}
-      		{% endfor %}
-      		{% for product in collections.hu-wholesale.products %}
-      			{% if productnm == product.id %}
-      					{% assign producturl = product.url | within: collections.hu-wholesale %}
-                        {% include 'product-list-repeatable-item_a' with product %}
-      			{% endif %}
-      		{% endfor %}
-      		{% for product in collections.shawls.products %}
-      			{% if productnm == product.id %}
-      					{% assign producturl = product.url | within: collections.shawls %}
-                        {% include 'product-list-repeatable-item_a' with product %}
-      			{% endif %}
-      		{% endfor %}
-      		{% for product in collections.wholesale-scarves-and-shawls.products %}
-      			{% if productnm == product.id %}
-      					{% assign producturl = product.url | within: collections.wholesale-scarves-and-shawls %}
-                        {% include 'product-list-repeatable-item_a' with product %}
-      			{% endif %}
-      		{% endfor %}
-            {% for product in collections.lila-hairties.products %}
-      			{% if productnm == product.id %}
-      					{% assign producturl = product.url | within: collections.lila-hairties %}
-                        {% include 'product-list-repeatable-item_a' with product %}
-      			{% endif %}
-      		{% endfor %}
-      {% comment %}
-      		{% for product in collections.lila-hairties-men-s-only.products %}
-      			{% if productnm == product.id %}
-      					{% assign producturl = product.url | within: collections.lila-hairties-men-s-only %}
-                        {% include 'product-list-repeatable-item_a' with product %}
-      			{% endif %}
-      		{% endfor %}
-      {% endcomment %}
-      		{% for product in collections.lila-wholesale.products %}
-      			{% if productnm == product.id %}
-      					{% assign producturl = product.url | within: collections.lila-wholesale %}
-                        {% include 'product-list-repeatable-item_a' with product %}
-      			{% endif %}
-      		{% endfor %}
-      		{% for product in collections.enso-headbands-and-head-wraps.products %}
-      			{% if productnm == product.id %}
-      					{% assign producturl = product.url | within: collections.enso-headbands-and-head-wraps %}
-                        {% include 'product-list-repeatable-item_a' with product %}
-      			{% endif %}
-      		{% endfor %}
+	   {% assign productnm = product.id %}
+			  {% for product in collections.aurea-headbands.products %}
+				  {% if productnm == product.id %}
+						  {% assign producturl = product.url | within: collections.aurea-headbands %}
+						{% include 'product-list-repeatable-item_a' with product %}
+				  {% endif %}
+			  {% endfor %}
+			  {% for product in collections.aurea-headbands-mensonly.products %}
+				  {% if productnm == product.id %}
+						  {% assign producturl = product.url | within: collections.aurea-headbands-mensonly %}
+						{% include 'product-list-repeatable-item_a' with product %}
+				  {% endif %}
+			  {% endfor %}
+			  {% for product in collections.aurea-wholesale.products %}
+				  {% if productnm == product.id %}
+						  {% assign producturl = product.url | within: collections.aurea-wholesale %}
+						{% include 'product-list-repeatable-item_a' with product %}
+				  {% endif %}
+			  {% endfor %}
+			  {% for product in collections.enso-headbands.products %}
+				  {% if productnm == product.id %}
+						  {% assign producturl = product.url | within: collections.enso-headbands %}
+						{% include 'product-list-repeatable-item_a' with product %}
+				  {% endif %}
+			  {% endfor %}
+			  {% for product in collections.enso-headbands-mensonly.products %}
+				  {% if productnm == product.id %}
+						  {% assign producturl = product.url | within: collections.enso-headbands-mensonly %}
+						{% include 'product-list-repeatable-item_a' with product %}
+				  {% endif %}
+			  {% endfor %}
+			  {% for product in collections.enso-wholesale.products %}
+				  {% if productnm == product.id %}
+						  {% assign producturl = product.url | within: collections.enso-wholesale %}
+						{% include 'product-list-repeatable-item_a' with product %}
+				  {% endif %}
+			  {% endfor %}
+			{% for product in collections.hu-headbands.products %}
+				  {% if productnm == product.id %}
+						  {% assign producturl = product.url | within: collections.hu-headbands %}
+						{% include 'product-list-repeatable-item_a' with product %}
+				  {% endif %}
+			  {% endfor %}
+			  {% for product in collections.hu-headbands-mens-only.products %}
+				  {% if productnm == product.id %}
+						  {% assign producturl = product.url | within: collections.hu-headbands-mens-only %}
+						{% include 'product-list-repeatable-item_a' with product %}
+				  {% endif %}
+			  {% endfor %}
+			  {% for product in collections.hu-wholesale.products %}
+				  {% if productnm == product.id %}
+						  {% assign producturl = product.url | within: collections.hu-wholesale %}
+						{% include 'product-list-repeatable-item_a' with product %}
+				  {% endif %}
+			  {% endfor %}
+			  {% for product in collections.shawls.products %}
+				  {% if productnm == product.id %}
+						  {% assign producturl = product.url | within: collections.shawls %}
+						{% include 'product-list-repeatable-item_a' with product %}
+				  {% endif %}
+			  {% endfor %}
+			  {% for product in collections.wholesale-scarves-and-shawls.products %}
+				  {% if productnm == product.id %}
+						  {% assign producturl = product.url | within: collections.wholesale-scarves-and-shawls %}
+						{% include 'product-list-repeatable-item_a' with product %}
+				  {% endif %}
+			  {% endfor %}
+			{% for product in collections.lila-hairties.products %}
+				  {% if productnm == product.id %}
+						  {% assign producturl = product.url | within: collections.lila-hairties %}
+						{% include 'product-list-repeatable-item_a' with product %}
+				  {% endif %}
+			  {% endfor %}
+	  {% comment %}
+			  {% for product in collections.lila-hairties-men-s-only.products %}
+				  {% if productnm == product.id %}
+						  {% assign producturl = product.url | within: collections.lila-hairties-men-s-only %}
+						{% include 'product-list-repeatable-item_a' with product %}
+				  {% endif %}
+			  {% endfor %}
+	  {% endcomment %}
+			  {% for product in collections.lila-wholesale.products %}
+				  {% if productnm == product.id %}
+						  {% assign producturl = product.url | within: collections.lila-wholesale %}
+						{% include 'product-list-repeatable-item_a' with product %}
+				  {% endif %}
+			  {% endfor %}
+			  {% for product in collections.enso-headbands-and-head-wraps.products %}
+				  {% if productnm == product.id %}
+						  {% assign producturl = product.url | within: collections.enso-headbands-and-head-wraps %}
+						{% include 'product-list-repeatable-item_a' with product %}
+				  {% endif %}
+			  {% endfor %}
 
-    {% endfor %}
+	{% endfor %}
 
-        {% endpaginate %}
-    </div>
+		{% endpaginate %}
+	</div>
 </section>
 {% endcapture %}
 {% endif %}
@@ -178,24 +184,24 @@
 {% if collections[settings.productrow_2_collection].products.size > 0 %}
 {% capture row2_html %}
 <section class="widgets row">
-    <div class="widget productlist">
-        {% assign collection = collections[settings.productrow_2_collection] %}
-        {% assign row_limit = settings.products_per_row_home | plus: 0 %}
-        {% assign row_limit_plusone = settings.products_per_row_home | plus: 1 %}
-        {% paginate collection.products by row_limit_plusone %}
-        {% unless settings.prodrow_hide_titles %}
-            {% if collection.products.size > row_limit %}
-            <a href="{{ collection.url }}"><h6 class="sixteen columns">{{ collection.title }}</h6></a>
-            {% else %}
-            <h6 class="sixteen columns">{{ collection.title }}</h6>
-            {% endif %}
+	<div class="widget productlist">
+		{% assign collection = collections[settings.productrow_2_collection] %}
+		{% assign row_limit = settings.products_per_row_home | plus: 0 %}
+		{% assign row_limit_plusone = settings.products_per_row_home | plus: 1 %}
+		{% paginate collection.products by row_limit_plusone %}
+		{% unless settings.prodrow_hide_titles %}
+			{% if collection.products.size > row_limit %}
+			<a href="{{ collection.url }}"><h6 class="sixteen columns">{{ collection.title }}</h6></a>
+			{% else %}
+			<h6 class="sixteen columns">{{ collection.title }}</h6>
+			{% endif %}
 
-        {% endunless %}
-        {% for product in collection.products limit: row_limit %}
-            {% include 'product-list-repeatable-item' with product %}
-        {% endfor %}
-        {% endpaginate %}
-    </div>
+		{% endunless %}
+		{% for product in collection.products limit: row_limit %}
+			{% include 'product-list-repeatable-item' with product %}
+		{% endfor %}
+		{% endpaginate %}
+	</div>
 </section>
 {% endcapture %}
 {% endif %}
@@ -203,22 +209,22 @@
 {% if settings.collrow_list != '' %}
 {% capture collrow_html %}
 <section class="widgets row collection-row">
-    {% for link in linklists[settings.collrow_list].links %}
-        {% if settings.collrow_numperrow == '2' %}
-            <div class="widget fullwidthimg eight columns">
-        {% elsif settings.collrow_numperrow == '3' %}
-            <div class="widget fullwidthimg one-third column">
-        {% elsif settings.collrow_numperrow == '5' %}
-            <div class="widget fullwidthimg one-fifth column">
-        {% else %}
-            <div class="widget fullwidthimg four columns">
-        {% endif %}
-            {% unless settings.collrow_hide_titles %}
-            <a href="{{ link.url }}"><h6>{{ link.title }}</h6></a>
-            {% endunless %}
-            <a class="highlight align" href="{{ link.url }}">{{ link.object.image.src | collection_img_url: 'large' | img_tag: link.object.image.alt }}</a>
-        </div>
-    {% endfor %}
+	{% for link in linklists[settings.collrow_list].links %}
+		{% if settings.collrow_numperrow == '2' %}
+			<div class="widget fullwidthimg eight columns">
+		{% elsif settings.collrow_numperrow == '3' %}
+			<div class="widget fullwidthimg one-third column">
+		{% elsif settings.collrow_numperrow == '5' %}
+			<div class="widget fullwidthimg one-fifth column">
+		{% else %}
+			<div class="widget fullwidthimg four columns">
+		{% endif %}
+			{% unless settings.collrow_hide_titles %}
+			<a href="{{ link.url }}"><h6>{{ link.title }}</h6></a>
+			{% endunless %}
+			<a class="highlight align" href="{{ link.url }}">{{ link.object.image.src | collection_img_url: 'large' | img_tag: link.object.image.alt }}</a>
+		</div>
+	{% endfor %}
 </section>
 {% endcapture %}
 {% endif %}
@@ -236,16 +242,16 @@
 
 {% if settings.widget_1_3_on %}
 <section class="widgets row">
-    {% assign data = settings.widget_1_handle %}
-    {% include settings.widget_1_type %}
+	{% assign data = settings.widget_1_handle %}
+	{% include settings.widget_1_type %}
 
-    {% if settings.widget_1_type != 'widget-page-full-threecol' %}
-        {% assign data = settings.widget_2_handle %}
-        {% include settings.widget_2_type %}
+	{% if settings.widget_1_type != 'widget-page-full-threecol' %}
+		{% assign data = settings.widget_2_handle %}
+		{% include settings.widget_2_type %}
 
-    	{% assign data = settings.widget_3_handle %}
-        {% include settings.widget_3_type %}
-    {% endif %}
+		{% assign data = settings.widget_3_handle %}
+		{% include settings.widget_3_type %}
+	{% endif %}
 </section>
 {% endif %}
 
@@ -256,13 +262,13 @@
 {% if settings.widget_4_6_on %}
 <section class="widgets row">
 	{% assign data = settings.widget_4_handle %}
-    {% include settings.widget_4_type %}
+	{% include settings.widget_4_type %}
 
-    {% assign data = settings.widget_5_handle %}
-    {% include settings.widget_5_type %}
+	{% assign data = settings.widget_5_handle %}
+	{% include settings.widget_5_type %}
 
-    {% assign data = settings.widget_6_handle %}
-    {% include settings.widget_6_type %}
+	{% assign data = settings.widget_6_handle %}
+	{% include settings.widget_6_type %}
 </section>
 {% endif %}
 
