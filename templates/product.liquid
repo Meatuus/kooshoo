@@ -1,53 +1,53 @@
 <div id="crumbs" class="sixteen columns">
-    <a href="/" title="Home">Home</a>
-    &raquo;
-    {% if collection %}
-    {{ collection.title | link_to: collection.url }} &raquo;
-    {% endif %}
+	<a href="/" title="Home">Home</a>
+	&raquo;
+	{% if collection %}
+	{{ collection.title | link_to: collection.url }} &raquo;
+	{% endif %}
 	<a href="{{ product.url }}">{{ product.title }}</a>
 </div>
 
 <div id="productinfo" class="cf" data-featimgurl="{{ product.featured_image | product_img_url: 'small' }}" itemscope itemtype="http://schema.org/Product">
-    {% if product.images.size > 1 and settings.prod_det_gall_method != 'hide' %}
-    <div id="rg-gallery" class="rg-gallery eight columns">
+	{% if product.images.size > 1 and settings.prod_det_gall_method != 'hide' %}
+	<div id="rg-gallery" class="rg-gallery eight columns">
 		<div class="rg-thumbs">
 			<!-- Elastislide Carousel Thumbnail Viewer -->
 			<div class="es-carousel-wrapper">
 				<div class="es-carousel">
 					<ul>
-                    {% for image in product.images %}<li><a href="#"><img class="ch_image_m" title="{{ image.alt }}" src="{{ image | product_img_url: 'small' }}" data-large="{{ image | product_img_url: 'large' }}" data-zoom="{{ image | product_img_url: 'original' }}" alt="{{ image.alt }}" data-description="" /></a></li>{% endfor %}
+					{% for image in product.images %}<li><a href="#"><img class="ch_image_m" title="{{ image.alt }}" src="{{ image | product_img_url: 'small' }}" data-large="{{ image | product_img_url: 'large' }}" data-zoom="{{ image | product_img_url: 'original' }}" alt="{{ image.alt }}" data-description="" /></a></li>{% endfor %}
 					</ul>
 				</div>
 			</div>
 			<!-- End Elastislide Carousel Thumbnail Viewer -->
 		</div><!-- rg-thumbs -->
 
-        <noscript>
-            <div class="rg-image-wrapper">
-    			<div class="rg-image"><img class="img_main_one" src="{{ product.featured_image | product_img_url: 'large' }}" /></div>
-    			<div class="rg-loading"></div>
-    			<div class="rg-caption-wrapper">
-    				<div class="rg-caption" style="display:none;">
-    					<p></p>
-    				</div>
-    			</div>
-    		</div>
-        </noscript>
+		<noscript>
+			<div class="rg-image-wrapper">
+				<div class="rg-image"><img class="img_main_one" src="{{ product.featured_image | product_img_url: 'large' }}" /></div>
+				<div class="rg-loading"></div>
+				<div class="rg-caption-wrapper">
+					<div class="rg-caption" style="display:none;">
+						<p></p>
+					</div>
+				</div>
+			</div>
+		</noscript>
 
-         <script type="text/javascript">
-           $('.description').html(function(i, h) {
-                return h.replace(/\[\[start tab\]\]/g, '');
-            });
-           $('.description').html(function(i, h) {
-                return h.replace(/\[\[end tab\]\]/g, '');
-            });
+		 <script type="text/javascript">
+		   $('.description').html(function(i, h) {
+				return h.replace(/\[\[start tab\]\]/g, '');
+			});
+		   $('.description').html(function(i, h) {
+				return h.replace(/\[\[end tab\]\]/g, '');
+			});
 
-           $('.description br').remove();
-        </script>
+		   $('.description br').remove();
+		</script>
 	</div><!-- rg-gallery -->
 
-    <script id="img-wrapper-tmpl" type="text/x-jquery-tmpl">
-        <div class="rg-image-wrapper">
+	<script id="img-wrapper-tmpl" type="text/x-jquery-tmpl">
+		<div class="rg-image-wrapper">
 			{{if itemsCount > 1}}
 				<div class="rg-image-nav">
 					<a href="#" class="rg-image-nav-prev">Previous Image</a>
@@ -63,59 +63,59 @@
 			</div>
 		</div>
 	</script>
-    {% elsif product.images.size == 1 or settings.prod_det_gall_method == 'hide' %}
-    <div class="singleimage eight columns">
-        {% if settings.prod_det_gall_method == 'zoom' %}
-    	<a href="{{ product.featured_image | product_img_url: 'original' }}" target="_blank"><img src="{{ product.featured_image | product_img_url: 'large' }}" alt="{{ product.featured_image.alt }}" /></a>
-        {% elsif settings.prod_det_gall_method == 'lightbox' %}
-        <a href="{{ product.featured_image | product_img_url: 'original' }}" target="_blank"><img src="{{ product.featured_image | product_img_url: 'large' }}" alt="{{ product.featured_image.alt }}" /></a>
-        {% else %}
-        <a href="{{ product.featured_image | product_img_url: 'original' }}" target="_blank"><img src="{{ product.featured_image | product_img_url: 'large' }}" alt="{{ product.featured_image.alt }}" /></a>
-        {% endif %}
+	{% elsif product.images.size == 1 or settings.prod_det_gall_method == 'hide' %}
+	<div class="singleimage eight columns">
+		{% if settings.prod_det_gall_method == 'zoom' %}
+		<a href="{{ product.featured_image | product_img_url: 'original' }}" target="_blank"><img src="{{ product.featured_image | product_img_url: 'large' }}" alt="{{ product.featured_image.alt }}" /></a>
+		{% elsif settings.prod_det_gall_method == 'lightbox' %}
+		<a href="{{ product.featured_image | product_img_url: 'original' }}" target="_blank"><img src="{{ product.featured_image | product_img_url: 'large' }}" alt="{{ product.featured_image.alt }}" /></a>
+		{% else %}
+		<a href="{{ product.featured_image | product_img_url: 'original' }}" target="_blank"><img src="{{ product.featured_image | product_img_url: 'large' }}" alt="{{ product.featured_image.alt }}" /></a>
+		{% endif %}
 
-        {% if settings.prod_det_gall_method == 'zoom' %}
-        <script>
-            //Not when touch
-            if( !!!('ontouchstart' in window) ? 1 : 0 ) {
-                $(function(){
-                    var opts = {};
-                    $.extend(opts, thumbZoomOptions);
-                    opts.blockClicks = true;
-                    $('#productinfo .singleimage a').jqzoom(opts);
-                    $('#productinfo .singleimage a').slimbox();
-                });
-            }
-        </script>
-        {% elsif settings.prod_det_gall_method == 'lightbox' %}
-        <script>
-            $(function(){
-                $('#productinfo .singleimage a').slimbox();
-            });
-        </script>
-        {% endif %}
-    </div>
-    {% endif %}
+		{% if settings.prod_det_gall_method == 'zoom' %}
+		<script>
+			//Not when touch
+			if( !!!('ontouchstart' in window) ? 1 : 0 ) {
+				$(function(){
+					var opts = {};
+					$.extend(opts, thumbZoomOptions);
+					opts.blockClicks = true;
+					$('#productinfo .singleimage a').jqzoom(opts);
+					$('#productinfo .singleimage a').slimbox();
+				});
+			}
+		</script>
+		{% elsif settings.prod_det_gall_method == 'lightbox' %}
+		<script>
+			$(function(){
+				$('#productinfo .singleimage a').slimbox();
+			});
+		</script>
+		{% endif %}
+	</div>
+	{% endif %}
 
 
-    <div id="detail" class="seven columns offset-by-one">
-        <h1 itemprop="name" class="am_titl">{{ product.title }}</h1>
-        {% if settings.prod_show_vendor %}
-            <p>By <span itemprop="brand">{{ product.vendor | link_to_vendor }}</span></p>
-        {% endif %}
-        <div id="price-field" class="price" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-            <span class="art_price" itemprop="price">{{ product.variants.first.price | money }}</span>
-            {% if product.variants.first.compare_at_price > product.variants.first.price %}
-                <div class="was-price">was {{ product.variants.first.compare_at_price | money }}</div>
-            {% endif %}
-        </div>
-        <div class="art_colour jr_ac">
-            Color:
-            <span class="art_col">  </span>
-            <div class="clr_cont">
+	<div id="detail" class="seven columns offset-by-one">
+		<h1 itemprop="name" class="am_titl">{{ product.title }}</h1>
+		{% if settings.prod_show_vendor %}
+			<p>By <span itemprop="brand">{{ product.vendor | link_to_vendor }}</span></p>
+		{% endif %}
+		<div id="price-field" class="price" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+			<span class="art_price" itemprop="price">{{ product.variants.first.price | money }}</span>
+			{% if product.variants.first.compare_at_price > product.variants.first.price %}
+				<div class="was-price">was {{ product.variants.first.compare_at_price | money }}</div>
+			{% endif %}
+		</div>
+		<div class="art_colour jr_ac">
+			Color:
+			<span class="art_col">  </span>
+			<div class="clr_cont">
 
 {% include 'code_prox' %}
 
-            </div>
+			</div>
 <script type="text/javascript">
 $(document).ready(function() {
 
@@ -128,285 +128,285 @@ $(document).ready(function() {
 {% include 'code_prod' %}
 
 
-    </div>
+	</div>
 
-        </div>
-        <div class="art_size jr_ac">
-            select size:
-            <div class="AS_block">
-                one size fits all
-            </div>
-        </div>
-        {% if product.available %}
-        <form action="/cart/add" method="post">
-            <div class="options">
-                <label class="jr_ac" for="quantity">QUANTITY:</label> <br>
-                <a href="javascript:modifyQuantity('#quantity', -1)" class="minibutton">-</a>
-                <input class="short" type="text" id="quantity" name="quantity" value="1" onfocus="this.select();" />
-                <a href="javascript:modifyQuantity('#quantity', 1)" class="minibutton art_right">+</a>
-            {% if product.variants.size == 1 %}
-                <input class="true_id" type="hidden" name="id" value="{{ product.variants.first.id }}" />
-            {% else %}
-                <div class="selectors">
-                    <label for="product-select">{{ product.options.first }}:</label>
-                    <select id="product-select" name="id" class="noreplace">
-            			{% for variant in product.variants %}
-        				    <option value="{{ variant.id }}">{{ variant.title }} - {{ variant.price | money }}</option>
-        				{% endfor %}
-    				</select>
-                </div>
-                <script type="text/javascript">
-                    var selectCallback = function(variant, selector) {
-                        if (variant && variant.available == true) {
-                            // selected a valid variant
-                            $('#productinfo #detail #purchase').removeClass('disabled').removeAttr('disabled'); // remove unavailable class from add-to-cart button, and re-enable button
-                            var newHtml = Shopify.formatMoney(variant.price, "{{shop.money}}");
-                            if(variant.compare_at_price > variant.price) {
-                                newHtml += '<div class="was-price">was ' + Shopify.formatMoney(variant.compare_at_price, "{{shop.money}}") + '</div>';
-                            }
-                            $('#price-field').html(newHtml);  // update price field
-                        } else {
-                            // variant doesn't exist
-                            $('#productinfo #detail #purchase').addClass('disabled').attr('disabled', 'disabled'); // set add-to-cart button to unavailable class and disable button
-                            var message = variant ? "Sold Out" : "Unavailable";
-                            $('#price-field').text(message); // update price-field message
-                        }
-                    };
+		</div>
+		<div class="art_size jr_ac">
+			select size:
+			<div class="AS_block">
+				one size fits all
+			</div>
+		</div>
+		{% if product.available %}
+		<form action="/cart/add" method="post">
+			<div class="options">
+				<label class="jr_ac" for="quantity">QUANTITY:</label> <br>
+				<a href="javascript:modifyQuantity('#quantity', -1)" class="minibutton">-</a>
+				<input class="short" type="text" id="quantity" name="quantity" value="1" onfocus="this.select();" />
+				<a href="javascript:modifyQuantity('#quantity', 1)" class="minibutton art_right">+</a>
+			{% if product.variants.size == 1 %}
+				<input class="true_id" type="hidden" name="id" value="{{ product.variants.first.id }}" />
+			{% else %}
+				<div class="selectors">
+					<label for="product-select">{{ product.options.first }}:</label>
+					<select id="product-select" name="id" class="noreplace">
+						{% for variant in product.variants %}
+							<option value="{{ variant.id }}">{{ variant.title }} - {{ variant.price | money }}</option>
+						{% endfor %}
+					</select>
+				</div>
+				<script type="text/javascript">
+					var selectCallback = function(variant, selector) {
+						if (variant && variant.available == true) {
+							// selected a valid variant
+							$('#productinfo #detail #purchase').removeClass('disabled').removeAttr('disabled'); // remove unavailable class from add-to-cart button, and re-enable button
+							var newHtml = Shopify.formatMoney(variant.price, "{{shop.money}}");
+							if(variant.compare_at_price > variant.price) {
+								newHtml += '<div class="was-price">was ' + Shopify.formatMoney(variant.compare_at_price, "{{shop.money}}") + '</div>';
+							}
+							$('#price-field').html(newHtml);  // update price field
+						} else {
+							// variant doesn't exist
+							$('#productinfo #detail #purchase').addClass('disabled').attr('disabled', 'disabled'); // set add-to-cart button to unavailable class and disable button
+							var message = variant ? "Sold Out" : "Unavailable";
+							$('#price-field').text(message); // update price-field message
+						}
+					};
 
-                    //Set up product inputs
-                    $(function() {
-                        new Shopify.OptionSelectors("product-select", { product: {{ product | json }}, onVariantSelected: selectCallback });
-                        {% if settings.prod_enable_linked_options and product.options.size > 1 %}
-                        Shopify.linkOptionSelectors({{ product | json }});
-                        {% endif %}
-                        {% assign found_one_in_stock = false %}
-                        {% for variant in product.variants %}
-                            {% if variant.available and found_one_in_stock == false %}
-                                {% assign found_one_in_stock = true %}
-                                {% for option in product.options %}
-                                    jQuery('.single-option-selector:eq(' + {{ forloop.index0 }} + ')').val({{ variant.options[forloop.index0] | json }}).trigger('change');
-                                {% endfor %}
-                            {% endif %}
-                        {% endfor %}
+					//Set up product inputs
+					$(function() {
+						new Shopify.OptionSelectors("product-select", { product: {{ product | json }}, onVariantSelected: selectCallback });
+						{% if settings.prod_enable_linked_options and product.options.size > 1 %}
+						Shopify.linkOptionSelectors({{ product | json }});
+						{% endif %}
+						{% assign found_one_in_stock = false %}
+						{% for variant in product.variants %}
+							{% if variant.available and found_one_in_stock == false %}
+								{% assign found_one_in_stock = true %}
+								{% for option in product.options %}
+									jQuery('.single-option-selector:eq(' + {{ forloop.index0 }} + ')').val({{ variant.options[forloop.index0] | json }}).trigger('change');
+								{% endfor %}
+							{% endif %}
+						{% endfor %}
 
-                        //Hide original option label if we now have multiple options
-                        if($('.selector-wrapper .single-option-selector').length != 1) {
-                            $('#product-select').siblings('label[for="product-select"]').hide();
-                        }
+						//Hide original option label if we now have multiple options
+						if($('.selector-wrapper .single-option-selector').length != 1) {
+							$('#product-select').siblings('label[for="product-select"]').hide();
+						}
 
-                        //Style any added select dropdowns
-                        $.selectReplace();
-                    });
-                </script>
-            {% endif %}
+						//Style any added select dropdowns
+						$.selectReplace();
+					});
+				</script>
+			{% endif %}
 
-            {% comment %} If you are using Shopify's custom options, add them here! {% endcomment %}
-            {% if settings.prod_customizr_compat %}
-                {% include 'extra-product-options' %}
-            {% endif %}
-            </div>
+			{% comment %} If you are using Shopify's custom options, add them here! {% endcomment %}
+			{% if settings.prod_customizr_compat %}
+				{% include 'extra-product-options' %}
+			{% endif %}
+			</div>
 
-            <div class="addbuttoncont">
-                <input type="submit" name ="add" id="purchase" class="button large plus" value="{{ settings.text_addtocart }}" />
-                <div class="art_buttext">
-                    FREE Shipping over $50 in North America
-                </div>
+			<div class="addbuttoncont">
+				<input type="submit" name ="add" id="purchase" class="button large plus" value="{{ settings.text_addtocart }}" />
+				<div class="art_buttext">
+					FREE Shipping over $50 in North America
+				</div>
 
-            </div>
-            <div class="art_pr_soc">
-                <span class="socialitem facebookcont">
-                  <div id="socs_a"><fb:like send="false" layout="button_count" width="100" height="25" show_faces="true"></fb:like></div>
-                    <div id="fb-root"></div>
-                    <script>(function(d, s, id) {
-                      var js, fjs = d.getElementsByTagName(s)[0];
-                      if (d.getElementById(id)) return;
-                      js = d.createElement(s); js.id = id;
-                      js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
-                      fjs.parentNode.insertBefore(js, fjs);
-                    }(document, 'script', 'facebook-jssdk'));</script>
-                </span>
-                <span class="socialitem twittercont">
-                  <div id="socs_b"><a href="https://twitter.com/share" class="twitter-share-button" data-count="none">Tweet</a></div>
-                    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-                </span>
-            </div>
-            <script>
-                Shopify.money_format = '{{shop.money_format | replace: "'", '"'}}';
+			</div>
+			<div class="art_pr_soc">
+				<span class="socialitem facebookcont">
+				  <div id="socs_a"><fb:like send="false" layout="button_count" width="100" height="25" show_faces="true"></fb:like></div>
+					<div id="fb-root"></div>
+					<script>(function(d, s, id) {
+					  var js, fjs = d.getElementsByTagName(s)[0];
+					  if (d.getElementById(id)) return;
+					  js = d.createElement(s); js.id = id;
+					  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+					  fjs.parentNode.insertBefore(js, fjs);
+					}(document, 'script', 'facebook-jssdk'));</script>
+				</span>
+				<span class="socialitem twittercont">
+				  <div id="socs_b"><a href="https://twitter.com/share" class="twitter-share-button" data-count="none">Tweet</a></div>
+					<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+				</span>
+			</div>
+			<script>
+				Shopify.money_format = '{{shop.money_format | replace: "'", '"'}}';
 
-                {% unless settings.prod_disable_ajax %}
-                //Override for default Shopify function
-                Shopify.onItemAdded = function(line_item) {
-                    //Make buttons usable again
-                    $('form input[type="submit"]').attr('disabled', false).removeClass('disabled');
-                    //Adding to cart successful, update cart
-                    Shopify.getCart();
-                    //Show 'item added'
-                    $('#purchase').siblings('.added').remove();
-                    $('<div>').addClass('added').html('<span class="yay">{{ settings.text_ty }}</span><a class="basket" href="/cart">{{ settings.text_cart }} &rarr;</a>')
-                        .insertBefore($('#purchase')).fadeIn(200).delay(5000).fadeOut(500, function(){
-                            $(this).remove();
-                        });
-                    return false;
-                }
+				{% unless settings.prod_disable_ajax %}
+				//Override for default Shopify function
+				Shopify.onItemAdded = function(line_item) {
+					//Make buttons usable again
+					$('form input[type="submit"]').attr('disabled', false).removeClass('disabled');
+					//Adding to cart successful, update cart
+					Shopify.getCart();
+					//Show 'item added'
+					$('#purchase').siblings('.added').remove();
+					$('<div>').addClass('added').html('<span class="yay">{{ settings.text_ty }}</span><a class="basket" href="/cart">{{ settings.text_cart }} &rarr;</a>')
+						.insertBefore($('#purchase')).fadeIn(200).delay(5000).fadeOut(500, function(){
+							$(this).remove();
+						});
+					return false;
+				}
 
-                //Override for default Shopify function
-                Shopify.onError = function(XMLHttpRequest, textStatus) {
-                    //Make buttons usable again
-                    $('form input[type="submit"]').attr('disabled', false).removeClass('disabled');
-                    //Display error message
-                    var errmsg;
-                    var data = eval('(' + XMLHttpRequest.responseText + ')');
-                    if (!!data.message) {
-                        errmsg = data.message + '<br />' + data.description;
-                    } else {
-                        errmsg = Shopify.fullMessagesFromErrors(data).join('; ');
-                    }
-                    $('#purchase').siblings('.added').remove();
-                    $('<div>').addClass('added').addClass('error').html('<span>'+errmsg+'</span>')
-                        .insertBefore($('#purchase')).fadeIn(200).delay(5000).fadeOut(500, function(){
-                            $(this).remove();
-                        });
-                };
+				//Override for default Shopify function
+				Shopify.onError = function(XMLHttpRequest, textStatus) {
+					//Make buttons usable again
+					$('form input[type="submit"]').attr('disabled', false).removeClass('disabled');
+					//Display error message
+					var errmsg;
+					var data = eval('(' + XMLHttpRequest.responseText + ')');
+					if (!!data.message) {
+						errmsg = data.message + '<br />' + data.description;
+					} else {
+						errmsg = Shopify.fullMessagesFromErrors(data).join('; ');
+					}
+					$('#purchase').siblings('.added').remove();
+					$('<div>').addClass('added').addClass('error').html('<span>'+errmsg+'</span>')
+						.insertBefore($('#purchase')).fadeIn(200).delay(5000).fadeOut(500, function(){
+							$(this).remove();
+						});
+				};
 
-                //Override for default Shopify function
-                Shopify.onCartUpdate = function(cart) {
-                    //Update elements on screen that show cart info
-                    $('#headercartvals').html('(' + cart.item_count + ') ' + addCommas(Shopify.formatMoney(cart.total_price)));
-                }
+				//Override for default Shopify function
+				Shopify.onCartUpdate = function(cart) {
+					//Update elements on screen that show cart info
+					$('#headercartvals').html('(' + cart.item_count + ') ' + addCommas(Shopify.formatMoney(cart.total_price)));
+				}
 
-                //Define the function that adds to the cart
-                function addToCart(e) {
-                    if (typeof e !== 'undefined') e.preventDefault();
-                    //Find variant id & quantity
-                    var $form = $(this).closest('form');
-                    var $inputs = $form.find('input[name="id"], select[name="id"]');
-                    if($inputs.length == 1) {
-                        Shopify.addItem($inputs.val(), $form.find('input[name="quantity"]').val());
-                    } else if($inputs.length > 1) {
-                        //Radios
-                        Shopify.addItem($inputs.is(':checked').val(), $form.find('input[name="quantity"]').val());
-                    }
-                }
+				//Define the function that adds to the cart
+				function addToCart(e) {
+					if (typeof e !== 'undefined') e.preventDefault();
+					//Find variant id & quantity
+					var $form = $(this).closest('form');
+					var $inputs = $form.find('input[name="id"], select[name="id"]');
+					if($inputs.length == 1) {
+						Shopify.addItem($inputs.val(), $form.find('input[name="quantity"]').val());
+					} else if($inputs.length > 1) {
+						//Radios
+						Shopify.addItem($inputs.is(':checked').val(), $form.find('input[name="quantity"]').val());
+					}
+				}
 
-                $(function(){
-                    //Action for clicking 'buy'
-                    $('#purchase').bind('click', addToCart);
-                });
-                {% endunless %}
-            </script>
-        </form>
-        {% else %}
-        <h3>{{ settings.text_soldout }}</h3>
-        {% endif %}
+				$(function(){
+					//Action for clicking 'buy'
+					$('#purchase').bind('click', addToCart);
+				});
+				{% endunless %}
+			</script>
+		</form>
+		{% else %}
+		<h3>{{ settings.text_soldout }}</h3>
+		{% endif %}
 
-       <!-- <div class="description contentsection" itemprop="description">{% include 'process-html' with product.description %}</div>-->
+	   <!-- <div class="description contentsection" itemprop="description">{% include 'process-html' with product.description %}</div>-->
 
-      <!--  {% if settings.prod_show_type %}<div class="contentsection">See more: {{ product.type | link_to_type }}</div>{% endif %}-->
+	  <!--  {% if settings.prod_show_type %}<div class="contentsection">See more: {{ product.type | link_to_type }}</div>{% endif %}-->
 
-        <!--{% if settings.show_social_product %}
-        <div class="social contentsection">
-            <span class="label">{{ settings.text_sharethis }}</span>
-            {% include 'social-sharing' %}
-        </div>
-        {% endif %}
+		<!--{% if settings.show_social_product %}
+		<div class="social contentsection">
+			<span class="label">{{ settings.text_sharethis }}</span>
+			{% include 'social-sharing' %}
+		</div>
+		{% endif %}
 
-        {% comment %} List out product tags - don't show special 'related' tags {% endcomment %}
-        {% assign tagsHTML = '' %}
-        {% assign mostRecentTagHTML = '' %}
-        {% for tag in product.tags %}
-            {% assign firstbit = tag | split: '-' | first %}
-            {% unless firstbit == 'related' %}
-                {% capture mostRecentTagHTML %}<a href="/collections/all/{{ tag | handleize }}">{{ tag }},</a> {% endcapture %}
-                {% capture tagsHTML %}{{ tagsHTML }}{{ mostRecentTagHTML }}{% endcapture %}
-            {% endunless %}
-        {% endfor %}
+		{% comment %} List out product tags - don't show special 'related' tags {% endcomment %}
+		{% assign tagsHTML = '' %}
+		{% assign mostRecentTagHTML = '' %}
+		{% for tag in product.tags %}
+			{% assign firstbit = tag | split: '-' | first %}
+			{% unless firstbit == 'related' %}
+				{% capture mostRecentTagHTML %}<a href="/collections/all/{{ tag | handleize }}">{{ tag }},</a> {% endcapture %}
+				{% capture tagsHTML %}{{ tagsHTML }}{{ mostRecentTagHTML }}{% endcapture %}
+			{% endunless %}
+		{% endfor %}
 
-        {% if tagsHTML contains 'a' %}
-        {% assign mostRecentTagWithoutCommaHTML = mostRecentTagHTML | replace: ',','' %}
-        <div class="tags contentsection">
-            Tags: {{ tagsHTML | replace: mostRecentTagHTML, mostRecentTagWithoutCommaHTML }}
-        </div>
-        {% endif %}
+		{% if tagsHTML contains 'a' %}
+		{% assign mostRecentTagWithoutCommaHTML = mostRecentTagHTML | replace: ',','' %}
+		<div class="tags contentsection">
+			Tags: {{ tagsHTML | replace: mostRecentTagHTML, mostRecentTagWithoutCommaHTML }}
+		</div>
+		{% endif %}
 
-        {% if collection %}
-            <div class="paging simpletext">
-            {% if collection.previous_product %}
-                <span class="prevwrap"><a class="prev" href="{{ collection.previous_product }}">&#8249;</a> <a class="text" href="{{ collection.previous_product }}">Previous</a></span>
-            {% endif %}
-            {% if collection.next_product %}
-                <span class="nextwrap"><a class="text" href="{{ collection.next_product }}">Next</a> <a class="next" href="{{ collection.next_product }}">&#8250;</a></span>
-            {% endif %}
-            </div>
-        {% endif %}-->
-    </div><!-- #detail -->
-    <script type="text/javascript">
-     $(document).ready(function() {
-     	function resize_fn() {
-          /*  var widthElm = $("#util-bar").width();
-          if (widthElm > 768) {*/
-             if($(window).width() >= 960 ){
-              var f_het = $(".rg-image-wrapper").height();
-              if ( f_het > 100){
-              var s_het = $(".rg-thumbs").height();
-              var t_het = $("#detail").height();
-              var margin_b = (f_het + s_het) - t_het + 60;
-              $('#detail').css('marginBottom', margin_b);
-              }
-          }
-          else {
-              $('#detail').css('marginBottom', '15');
-          }
+		{% if collection %}
+			<div class="paging simpletext">
+			{% if collection.previous_product %}
+				<span class="prevwrap"><a class="prev" href="{{ collection.previous_product }}">&#8249;</a> <a class="text" href="{{ collection.previous_product }}">Previous</a></span>
+			{% endif %}
+			{% if collection.next_product %}
+				<span class="nextwrap"><a class="text" href="{{ collection.next_product }}">Next</a> <a class="next" href="{{ collection.next_product }}">&#8250;</a></span>
+			{% endif %}
+			</div>
+		{% endif %}-->
+	</div><!-- #detail -->
+	<script type="text/javascript">
+	 $(document).ready(function() {
+		 function resize_fn() {
+		  /*  var widthElm = $("#util-bar").width();
+		  if (widthElm > 768) {*/
+			 if($(window).width() >= 960 ){
+			  var f_het = $(".rg-image-wrapper").height();
+			  if ( f_het > 100){
+			  var s_het = $(".rg-thumbs").height();
+			  var t_het = $("#detail").height();
+			  var margin_b = (f_het + s_het) - t_het + 60;
+			  $('#detail').css('marginBottom', margin_b);
+			  }
+		  }
+		  else {
+			  $('#detail').css('marginBottom', '15');
+		  }
 }
 $(window).resize(function () {
-    resize_fn();
+	resize_fn();
 })
 })
-     </script>
+	 </script>
 
 
 <div class="PI_cont">
-    <div class="PI_top">
-    key features
-    </div>
-    <div class="PI_sec uno">
-    ORGANIC <br>&amp; NATURAL
-    </div>
-    <div class="PI_sec duo">
-     made in<br>CALIFORNIA
-    </div>
-    {% if collection.title contains 'HU' or collection.title contains 'LILA' or collection.title contains 'AUREA' or collection.title contains 'ENSO' %}
-    {% else %}
-        <div class="PI_sec tres">
-       solar powered
-        </div>
-    {% endif %}
-    {% if collection.title contains 'ENSO' %}
-       {% if product.title contains 'ENSO BATIK' %}
-       <div class="PI_sec tres">
-       solar powered
-        </div>
-       {% endif %}
-    {% endif %}
-    <div class="PI_sec quat">
-       ETHICALLY OPERATED
-    </div>
-    {% if collection.title contains 'HU' or collection.title contains 'LILA' or collection.title contains 'AUREA' or collection.title contains 'ENSO' %}
-    {% else %}
-        <div class="PI_sec cinc">
-         dyed by hand
-        </div>
-    {% endif %}
-    {% if collection.title contains 'AUREA' or collection.title contains 'ENSO' %}
-        {% if product.title contains 'AUREA OMBRE' or product.title contains 'ENSO BATIK'%}
-                <div class="PI_sec cinc">
-                 dyed by hand
-                </div>
-         {% endif %}
-    {% endif %}
-    <div class="PI_sec seis">
-     giving to charity
-    </div>
-    </div>
+	<div class="PI_top">
+	key features
+	</div>
+	<div class="PI_sec uno">
+	ORGANIC <br>&amp; NATURAL
+	</div>
+	<div class="PI_sec duo">
+	 made in<br>CALIFORNIA
+	</div>
+	{% if collection.title contains 'HU' or collection.title contains 'LILA' or collection.title contains 'AUREA' or collection.title contains 'ENSO' %}
+	{% else %}
+		<div class="PI_sec tres">
+	   solar powered
+		</div>
+	{% endif %}
+	{% if collection.title contains 'ENSO' %}
+	   {% if product.title contains 'ENSO BATIK' %}
+	   <div class="PI_sec tres">
+	   solar powered
+		</div>
+	   {% endif %}
+	{% endif %}
+	<div class="PI_sec quat">
+	   ETHICALLY OPERATED
+	</div>
+	{% if collection.title contains 'HU' or collection.title contains 'LILA' or collection.title contains 'AUREA' or collection.title contains 'ENSO' %}
+	{% else %}
+		<div class="PI_sec cinc">
+		 dyed by hand
+		</div>
+	{% endif %}
+	{% if collection.title contains 'AUREA' or collection.title contains 'ENSO' %}
+		{% if product.title contains 'AUREA OMBRE' or product.title contains 'ENSO BATIK'%}
+				<div class="PI_sec cinc">
+				 dyed by hand
+				</div>
+		 {% endif %}
+	{% endif %}
+	<div class="PI_sec seis">
+	 giving to charity
+	</div>
+	</div>
   <div class="description contentsection" itemprop="description">{{ product.description }}</div>
 </div>
 
@@ -428,60 +428,60 @@ Shopify.optionsMap = {};
 Shopify.updateOptionsInSelector = function(selectorIndex) {
 
   switch (selectorIndex) {
-    case 0:
-      var key = 'root';
-      var selector = jQuery('.single-option-selector:eq(0)');
-      break;
-    case 1:
-      var key = jQuery('.single-option-selector:eq(0)').val();
-      var selector = jQuery('.single-option-selector:eq(1)');
-      break;
-    case 2:
-      var key = jQuery('.single-option-selector:eq(0)').val();
-      key += ' / ' + jQuery('.single-option-selector:eq(1)').val();
-      var selector = jQuery('.single-option-selector:eq(2)');
+	case 0:
+	  var key = 'root';
+	  var selector = jQuery('.single-option-selector:eq(0)');
+	  break;
+	case 1:
+	  var key = jQuery('.single-option-selector:eq(0)').val();
+	  var selector = jQuery('.single-option-selector:eq(1)');
+	  break;
+	case 2:
+	  var key = jQuery('.single-option-selector:eq(0)').val();
+	  key += ' / ' + jQuery('.single-option-selector:eq(1)').val();
+	  var selector = jQuery('.single-option-selector:eq(2)');
   }
 
   var initialValue = selector.val();
   selector.empty();
   var availableOptions = Shopify.optionsMap[key];
   if(typeof(availableOptions) != 'undefined') {
-    for (var i=0; i<availableOptions.length; i++) {
-    var option = availableOptions[i];
-    var newOption = jQuery('<option></option>').val(option).html(option);
-    selector.append(newOption);
-    }
-    if (jQuery.inArray(initialValue, availableOptions) !== -1) {
-    selector.val(initialValue);
-    }
-    selector.trigger('change');
+	for (var i=0; i<availableOptions.length; i++) {
+	var option = availableOptions[i];
+	var newOption = jQuery('<option></option>').val(option).html(option);
+	selector.append(newOption);
+	}
+	if (jQuery.inArray(initialValue, availableOptions) !== -1) {
+	selector.val(initialValue);
+	}
+	selector.trigger('change');
   }
 };
 
 Shopify.linkOptionSelectors = function(product) {
   // Building our mapping object.
   for (var i=0; i<product.variants.length; i++) {
-    var variant = product.variants[i];
-    if (variant.available) {
-      // Gathering values for the 1st drop-down.
-      Shopify.optionsMap['root'] = Shopify.optionsMap['root'] || [];
-      Shopify.optionsMap['root'].push(variant.option1);
-      Shopify.optionsMap['root'] = Shopify.uniq(Shopify.optionsMap['root']);
-      // Gathering values for the 2nd drop-down.
-      if (product.options.length > 1) {
-        var key = variant.option1;
-        Shopify.optionsMap[key] = Shopify.optionsMap[key] || [];
-        Shopify.optionsMap[key].push(variant.option2);
-        Shopify.optionsMap[key] = Shopify.uniq(Shopify.optionsMap[key]);
-      }
-      // Gathering values for the 3rd drop-down.
-      if (product.options.length === 3) {
-        var key = variant.option1 + ' / ' + variant.option2;
-        Shopify.optionsMap[key] = Shopify.optionsMap[key] || [];
-        Shopify.optionsMap[key].push(variant.option3);
-        Shopify.optionsMap[key] = Shopify.uniq(Shopify.optionsMap[key]);
-      }
-    }
+	var variant = product.variants[i];
+	if (variant.available) {
+	  // Gathering values for the 1st drop-down.
+	  Shopify.optionsMap['root'] = Shopify.optionsMap['root'] || [];
+	  Shopify.optionsMap['root'].push(variant.option1);
+	  Shopify.optionsMap['root'] = Shopify.uniq(Shopify.optionsMap['root']);
+	  // Gathering values for the 2nd drop-down.
+	  if (product.options.length > 1) {
+		var key = variant.option1;
+		Shopify.optionsMap[key] = Shopify.optionsMap[key] || [];
+		Shopify.optionsMap[key].push(variant.option2);
+		Shopify.optionsMap[key] = Shopify.uniq(Shopify.optionsMap[key]);
+	  }
+	  // Gathering values for the 3rd drop-down.
+	  if (product.options.length === 3) {
+		var key = variant.option1 + ' / ' + variant.option2;
+		Shopify.optionsMap[key] = Shopify.optionsMap[key] || [];
+		Shopify.optionsMap[key].push(variant.option3);
+		Shopify.optionsMap[key] = Shopify.uniq(Shopify.optionsMap[key]);
+	  }
+	}
   }
   // Update options right away.
   Shopify.updateOptionsInSelector(0);
@@ -489,14 +489,14 @@ Shopify.linkOptionSelectors = function(product) {
   if (product.options.length === 3) Shopify.updateOptionsInSelector(2);
   // When there is an update in the first dropdown.
   jQuery(".single-option-selector:eq(0)").change(function() {
-    Shopify.updateOptionsInSelector(1);
-    if (product.options.length === 3) Shopify.updateOptionsInSelector(2);
-    return true;
+	Shopify.updateOptionsInSelector(1);
+	if (product.options.length === 3) Shopify.updateOptionsInSelector(2);
+	return true;
   });
   // When there is an update in the second dropdown.
   jQuery(".single-option-selector:eq(1)").change(function() {
-    if (product.options.length === 3) Shopify.updateOptionsInSelector(2);
-    return true;
+	if (product.options.length === 3) Shopify.updateOptionsInSelector(2);
+	return true;
   });
 
 };
@@ -507,11 +507,11 @@ Shopify.linkOptionSelectors = function(product) {
 <!-- <script type="text/javascript">
 	$(document).ready(function() {
 
-    /*    pollInstagram('https://api.instagram.com/v1/tags/organiccotton/media/recent?access_token=326441785.1fb234f.97639944366c44f6a3d95df0a8c884d5&count=100');
+	/*    pollInstagram('https://api.instagram.com/v1/tags/organiccotton/media/recent?access_token=326441785.1fb234f.97639944366c44f6a3d95df0a8c884d5&count=100');
 		*/
-    /*  var h_tag = 'HerDawnShawl';
+	/*  var h_tag = 'HerDawnShawl';
 
-        pollInstagram('https://api.instagram.com/v1/tags/'+h_tag+'/media/recent?access_token=326441785.f59def8.6652427e08db43cea9a270893f14aa4b&count=100');
+		pollInstagram('https://api.instagram.com/v1/tags/'+h_tag+'/media/recent?access_token=326441785.f59def8.6652427e08db43cea9a270893f14aa4b&count=100');
 */
 	});
 
@@ -519,1366 +519,1374 @@ Shopify.linkOptionSelectors = function(product) {
 </script> -->
 <!-- <div class="inst_main">
   <div class="inst_txt">
-    Tag your photos using #<span class="ht_tit"></span> on Instagram and they will appear automatically below.
+	Tag your photos using #<span class="ht_tit"></span> on Instagram and they will appear automatically below.
   </div>
   <div id="inst_log">
-    <div class="inst_cont"></div>
+	<div class="inst_cont"></div>
   </div>
   <div class="inst_nav"><span class="inst_left">&#60;</span> <span class="inst_cur">1</span>/<span class="inst_tot">6</span> <span class="inst_right">&#62;</span></div>
 </div> -->
 {% endcomment %}
 <script type="text/javascript">
    $(document).ready(function() {
-      function width_clr() {
-       var divs = $('.clr_cont');
-       var wdt = $('.art_clr').length;
-       var wd_main = 48*wdt;
+	  function width_clr() {
+	   var divs = $('.clr_cont');
+	   var wdt = $('.art_clr').length;
+	   var wd_main = 48*wdt;
 
-           if (wd_main <= 240){
-                $(divs).width(wd_main);
-           }
-           else if (wd_main <= 288) {
-             $(divs).width(150);
-             $(divs).height(100);
-           }
-           else if (wd_main <= 480){
-              $(divs).width(240);
-              $(divs).height(100);
-              var l_marg = (480-wd_main)/2+4;
-              $('.art_clr').eq(5).css('marginLeft', l_marg);
-           }
-           else if (wd_main <= 720){
-              $(divs).width(240);
-              $(divs).height(150);
-              var l_marg = (720-wd_main)/2+4;
-              $('.art_clr').eq(10).css('marginLeft', l_marg);
-           }
-           else if (wd_main <= 960){
-              $(divs).width(240);
-              $(divs).height(200);
-              var l_marg = (960-wd_main)/2+4;
-              $('.art_clr').eq(15).css('marginLeft', l_marg);
-           }
-           else if (wd_main <= 1200){
-              $(divs).width(240);
-              $(divs).height(200);
-              var l_marg = (1200-wd_main)/2+4;
-              $('.art_clr').eq(20).css('marginLeft', l_marg);
-           }
+		   if (wd_main <= 240){
+				$(divs).width(wd_main);
+		   }
+		   else if (wd_main <= 288) {
+			 $(divs).width(150);
+			 $(divs).height(100);
+		   }
+		   else if (wd_main <= 480){
+			  $(divs).width(240);
+			  $(divs).height(100);
+			  var l_marg = (480-wd_main)/2+4;
+			  $('.art_clr').eq(5).css('marginLeft', l_marg);
+		   }
+		   else if (wd_main <= 720){
+			  $(divs).width(240);
+			  $(divs).height(150);
+			  var l_marg = (720-wd_main)/2+4;
+			  $('.art_clr').eq(10).css('marginLeft', l_marg);
+		   }
+		   else if (wd_main <= 960){
+			  $(divs).width(240);
+			  $(divs).height(200);
+			  var l_marg = (960-wd_main)/2+4;
+			  $('.art_clr').eq(15).css('marginLeft', l_marg);
+		   }
+		   else if (wd_main <= 1200){
+			  $(divs).width(240);
+			  $(divs).height(200);
+			  var l_marg = (1200-wd_main)/2+4;
+			  $('.art_clr').eq(20).css('marginLeft', l_marg);
+		   }
 
    }
   width_clr();
   function clr_clr() {
-        var divs = $('.pr_pr');
-        for (var i = 0; i < divs.length; i++) {
-            var asd_rew = $(divs[i]);
-           if (($(asd_rew).find(".prd_title:contains('BATIK black')").length > 0) || ($(asd_rew).find(".prd_title:contains('BATIK Black')").length > 0)) {
-                $('.art_clr').eq([i]).addClass('batic_black');
-                $('.art_clr.batic_black').append('<img style="display:none;" src="{{ "clr_h_batic_black.png" | asset_url }}">');
-            }
-            else if (($(asd_rew).find(".prd_title:contains('black/grey')").length > 0)) {
-                $('.art_clr').eq([i]).addClass('black_grey');
-                $('.art_clr.black_grey').append('<img style="display:none;" src="{{ "clr_h_black_grey.png" | asset_url }}">');
-            }
-            else if (($(asd_rew).find(".prd_title:contains('shawl black')").length > 0)) {
-                $('.art_clr').eq([i]).addClass('sh_black');
-                $('.art_clr.sh_black').append('<img style="display:none;" src="{{ "clr_h_sh_black.png" | asset_url }}">');
-            }
-            else if (($(asd_rew).find(".prd_title:contains('shawl blue')").length > 0)) {
-                $('.art_clr').eq([i]).addClass('sh_blue');
-                $('.art_clr.sh_blue').append('<img style="display:none;" src="{{ "clr_h_sh_blue.png" | asset_url }}">');
-            }
-            else if (($(asd_rew).find(".prd_title:contains('shawl warm taupe')").length > 0)) {
-                $('.art_clr').eq([i]).addClass('sh_taupe');
-                $('.art_clr.sh_taupe').append('<img style="display:none;" src="{{ "clr_h_sh_taupe.png" | asset_url }}">');
-            }
-            else if (($(asd_rew).find(".prd_title:contains('shawl jet black')").length > 0)) {
-                $('.art_clr').eq([i]).addClass('sh_jetblack');
-                $('.art_clr.sh_jetblack').append('<img style="display:none;" src="{{ "clr_h_sh_jetblack.png" | asset_url }}">');
-            }
-            else if (($(asd_rew).find(".prd_title:contains('shawl radiant white')").length > 0)) {
-                $('.art_clr').eq([i]).addClass('sh_radiantwhite');
-                $('.art_clr.sh_radiantwhite').append('<img style="display:none;" src="{{ "clr_h_sh_radiantwhite.png" | asset_url }}">');
-            }
-            else if (($(asd_rew).find(".prd_title:contains('shawl grey')").length > 0)) {
-                $('.art_clr').eq([i]).addClass('sh_grey');
-                $('.art_clr.sh_grey').append('<img style="display:none;" src="{{ "clr_h_sh_grey.png" | asset_url }}">');
-            }
-            else if (($(asd_rew).find(".prd_title:contains('shawl purple')").length > 0)) {
-                $('.art_clr').eq([i]).addClass('sh_purple');
-                $('.art_clr.sh_purple').append('<img style="display:none;" src="{{ "clr_h_sh_purple.png" | asset_url }}">');
-            }
-            else if (($(asd_rew).find(".prd_title:contains('shawl white')").length > 0)) {
-                $('.art_clr').eq([i]).addClass('sh_white');
-                $('.art_clr.sh_white').append('<img style="display:none;" src="{{ "clr_h_sh_white.png" | asset_url }}">');
-            }else if (($(asd_rew).find(".prd_title:contains('Black/Brown')").length > 0)) {
-                $('.art_clr').eq([i]).addClass('black_brown');
-                $('.art_clr.black_brown').append('<img style="display:none;" src="{{ "clr_h_black_brown.png" | asset_url }}">');
-            }
-             else if (($(asd_rew).find(".prd_title:contains('black')").length > 0) || ($(asd_rew).find(".prd_title:contains('Black')").length > 0)) {
-                $('.art_clr').eq([i]).addClass('black');
-                $('.art_clr.black').append('<img style="display:none;" src="{{ "clr_h_black.png" | asset_url }}">');
-            }
-            else if (($(asd_rew).find(".prd_title:contains('white')").length > 0)) {
-                $('.art_clr').eq([i]).addClass('white');
-                $('.art_clr.white').append('<img style="display:none;" src="{{ "clr_h_white.png" | asset_url }}">');
-            }
-            else if (($(asd_rew).find(".prd_title:contains('royal blue')").length > 0)) {
-                $('.art_clr').eq([i]).addClass('royal_blue');
-                $('.art_clr.royal_blue').append('<img style="display:none;" src="{{ "clr_h_royal_blue.png" | asset_url }}">');
-            }
-            else if (($(asd_rew).find(".prd_title:contains('deep purple')").length > 0)) {
-                $('.art_clr').eq([i]).addClass('deep_purple');
-                $('.art_clr.deep_purple').append('<img style="display:none;" src="{{ "clr_h_deep_light_purple.png" | asset_url }}">');
-            }
-            else if (($(asd_rew).find(".prd_title:contains('dusk blue')").length > 0) || ($(asd_rew).find(".prd_title:contains('blue/green')").length > 0)) {
-                $('.art_clr').eq([i]).addClass('dusk_blue');
-                $('.art_clr.dusk_blue').append('<img style="display:none;" src="{{ "clr_h_dusk_blue_tender_shoots.png" | asset_url }}">');
-            }
-            else if (($(asd_rew).find(".prd_title:contains('pink flambe')").length > 0)) {
-                $('.art_clr').eq([i]).addClass('pink_flambe');
-                $('.art_clr.pink_flambe').append('<img style="display:none;" src="{{ "clr_h_pink_flambe_peach.png" | asset_url }}">');
-            }
-            else if (($(asd_rew).find(".prd_title:contains('opal')").length > 0)) {
-                $('.art_clr').eq([i]).addClass('opal');
-                $('.art_clr.opal').append('<img style="display:none;" src="{{ "clr_h_opal.png" | asset_url }}">');
-            }
-            else if (($(asd_rew).find(".prd_title:contains('peach whip pink')").length > 0)) {
-                $('.art_clr').eq([i]).addClass('peach_whip_pink');
-                $('.art_clr.peach_whip_pink').append('<img style="display:none;" src="{{ "clr_h_peach_whip_pink.png" | asset_url }}">');
-            }
-            else if (($(asd_rew).find(".prd_title:contains('light grey')").length > 0)) {
-                $('.art_clr').eq([i]).addClass('light_grey');
-                $('.art_clr.light_grey').append('<img style="display:none;" src="{{ "clr_h_light_grey.png" | asset_url }}">');
-            }
-            else if (($(asd_rew).find(".prd_title:contains('majolica blue')").length > 0)) {
-                $('.art_clr').eq([i]).addClass('majolica_blue');
-                $('.art_clr.majolica_blue').append('<img style="display:none;" src="{{ "clr_h_majolica_blue.png" | asset_url }}">');
-            }
-            else if (($(asd_rew).find(".prd_title:contains('silver cloud grey')").length > 0)) {
-                $('.art_clr').eq([i]).addClass('silver_cloud_grey');
-                $('.art_clr.silver_cloud_grey').append('<img style="display:none;" src="{{ "clr_h_silver_cloud_grey.png" | asset_url }}">');
-            }
-            else if (($(asd_rew).find(".prd_title:contains('tangerine')").length > 0)) {
-                $('.art_clr').eq([i]).addClass('tangerine');
-                $('.art_clr.tangerine').append('<img style="display:none;" src="{{ "clr_h_tangerine.png" | asset_url }}">');
-            }
-            else if (($(asd_rew).find(".prd_title:contains('viola purple')").length > 0)) {
-                $('.art_clr').eq([i]).addClass('viola_purple');
-                $('.art_clr.viola_purple').append('<img style="display:none;" src="{{ "clr_h_viola_purple.png" | asset_url }}">');
-            }
-            else if (($(asd_rew).find(".prd_title:contains('neutrals')").length > 0)) {
-                $('.art_clr').eq([i]).addClass('neutrals');
-                $('.art_clr.neutrals').append('<img style="display:none;" src="{{ "clr_h_neutrals.png" | asset_url }}">');
-            }
-            else if (($(asd_rew).find(".prd_title:contains('playful')").length > 0)) {
-                $('.art_clr').eq([i]).addClass('playful');
-                $('.art_clr.playful').append('<img style="display:none;" src="{{ "clr_h_playful.png" | asset_url }}">');
-            }
-            else if (($(asd_rew).find(".prd_title:contains('Colorful')").length > 0)) {
-                $('.art_clr').eq([i]).addClass('colorful');
-                $('.art_clr.colorful').append('<img style="display:none;" src="{{ "clr_h_colorful.png" | asset_url }}">');
-            }
-            else if (($(asd_rew).find(".prd_title:contains('dawn')").length > 0)) {
-                $('.art_clr').eq([i]).addClass('dawn');
-                $('.art_clr.dawn').append('<img style="display:none;" src="{{ "clr_h_dawn.png" | asset_url }}">');
-            }
-            else if (($(asd_rew).find(".prd_title:contains('amrit vela')").length > 0)) {
-                $('.art_clr').eq([i]).addClass('amrit_vela');
-                $('.art_clr.amrit_vela').append('<img style="display:none;" src="{{ "clr_h_amrit_vela.png" | asset_url }}">');
-            }
-            else if (($(asd_rew).find(".prd_title:contains('steel grey')").length > 0)) {
-                $('.art_clr').eq([i]).addClass('steel_grey');
-                $('.art_clr.steel_grey').append('<img style="display:none;" src="{{ "clr_h_steel_grey.png" | asset_url }}">');
-            }
-            else if (($(asd_rew).find(".prd_title:contains('deep lavender')").length > 0)) {
-                $('.art_clr').eq([i]).addClass('deep_lavender');
-                $('.art_clr.deep_lavender').append('<img style="display:none;" src="{{ "clr_h_deep_lavender.png" | asset_url }}">');
-            }
-            else if (($(asd_rew).find(".prd_title:contains('limestone grey')").length > 0)) {
-                $('.art_clr').eq([i]).addClass('limestone_grey');
-                $('.art_clr.limestone_grey').append('<img style="display:none;" src="{{ "clr_h_limestone_grey.png" | asset_url }}">');
-            }
-            else if (($(asd_rew).find(".prd_title:contains('marsala red')").length > 0)) {
-                $('.art_clr').eq([i]).addClass('marsala_red');
-                $('.art_clr.marsala_red').append('<img style="display:none;" src="{{ "clr_h_marsala_red.png" | asset_url }}">');
-            }
+		var divs = $('.pr_pr');
+		for (var i = 0; i < divs.length; i++) {
+			var asd_rew = $(divs[i]);
+		   if (($(asd_rew).find(".prd_title:contains('BATIK black')").length > 0) || ($(asd_rew).find(".prd_title:contains('BATIK Black')").length > 0)) {
+				$('.art_clr').eq([i]).addClass('batic_black');
+				$('.art_clr.batic_black').append('<img style="display:none;" src="{{ "clr_h_batic_black.png" | asset_url }}">');
+			}
+			else if (($(asd_rew).find(".prd_title:contains('black/grey')").length > 0)) {
+				$('.art_clr').eq([i]).addClass('black_grey');
+				$('.art_clr.black_grey').append('<img style="display:none;" src="{{ "clr_h_black_grey.png" | asset_url }}">');
+			}
+			else if (($(asd_rew).find(".prd_title:contains('shawl black')").length > 0)) {
+				$('.art_clr').eq([i]).addClass('sh_black');
+				$('.art_clr.sh_black').append('<img style="display:none;" src="{{ "clr_h_sh_black.png" | asset_url }}">');
+			}
+			else if (($(asd_rew).find(".prd_title:contains('shawl blue')").length > 0)) {
+				$('.art_clr').eq([i]).addClass('sh_blue');
+				$('.art_clr.sh_blue').append('<img style="display:none;" src="{{ "clr_h_sh_blue.png" | asset_url }}">');
+			}
+			else if (($(asd_rew).find(".prd_title:contains('shawl warm taupe')").length > 0)) {
+				$('.art_clr').eq([i]).addClass('sh_taupe');
+				$('.art_clr.sh_taupe').append('<img style="display:none;" src="{{ "clr_h_sh_taupe.png" | asset_url }}">');
+			}
+			else if (($(asd_rew).find(".prd_title:contains('shawl jet black')").length > 0)) {
+				$('.art_clr').eq([i]).addClass('sh_jetblack');
+				$('.art_clr.sh_jetblack').append('<img style="display:none;" src="{{ "clr_h_sh_jetblack.png" | asset_url }}">');
+			}
+			else if (($(asd_rew).find(".prd_title:contains('shawl radiant white')").length > 0)) {
+				$('.art_clr').eq([i]).addClass('sh_radiantwhite');
+				$('.art_clr.sh_radiantwhite').append('<img style="display:none;" src="{{ "clr_h_sh_radiantwhite.png" | asset_url }}">');
+			}
+			else if (($(asd_rew).find(".prd_title:contains('shawl grey')").length > 0)) {
+				$('.art_clr').eq([i]).addClass('sh_grey');
+				$('.art_clr.sh_grey').append('<img style="display:none;" src="{{ "clr_h_sh_grey.png" | asset_url }}">');
+			}
+			else if (($(asd_rew).find(".prd_title:contains('shawl purple')").length > 0)) {
+				$('.art_clr').eq([i]).addClass('sh_purple');
+				$('.art_clr.sh_purple').append('<img style="display:none;" src="{{ "clr_h_sh_purple.png" | asset_url }}">');
+			}
+			else if (($(asd_rew).find(".prd_title:contains('shawl white')").length > 0)) {
+				$('.art_clr').eq([i]).addClass('sh_white');
+				$('.art_clr.sh_white').append('<img style="display:none;" src="{{ "clr_h_sh_white.png" | asset_url }}">');
+			}else if (($(asd_rew).find(".prd_title:contains('Black/Brown')").length > 0)) {
+				$('.art_clr').eq([i]).addClass('black_brown');
+				$('.art_clr.black_brown').append('<img style="display:none;" src="{{ "clr_h_black_brown.png" | asset_url }}">');
+			}
+			 else if (($(asd_rew).find(".prd_title:contains('black')").length > 0) || ($(asd_rew).find(".prd_title:contains('Black')").length > 0)) {
+				$('.art_clr').eq([i]).addClass('black');
+				$('.art_clr.black').append('<img style="display:none;" src="{{ "clr_h_black.png" | asset_url }}">');
+			}
+			else if (($(asd_rew).find(".prd_title:contains('white')").length > 0)) {
+				$('.art_clr').eq([i]).addClass('white');
+				$('.art_clr.white').append('<img style="display:none;" src="{{ "clr_h_white.png" | asset_url }}">');
+			}
+			else if (($(asd_rew).find(".prd_title:contains('royal blue')").length > 0)) {
+				$('.art_clr').eq([i]).addClass('royal_blue');
+				$('.art_clr.royal_blue').append('<img style="display:none;" src="{{ "clr_h_royal_blue.png" | asset_url }}">');
+			}
+			else if (($(asd_rew).find(".prd_title:contains('deep purple')").length > 0)) {
+				$('.art_clr').eq([i]).addClass('deep_purple');
+				$('.art_clr.deep_purple').append('<img style="display:none;" src="{{ "clr_h_deep_light_purple.png" | asset_url }}">');
+			}
+			else if (($(asd_rew).find(".prd_title:contains('dusk blue')").length > 0) || ($(asd_rew).find(".prd_title:contains('blue/green')").length > 0)) {
+				$('.art_clr').eq([i]).addClass('dusk_blue');
+				$('.art_clr.dusk_blue').append('<img style="display:none;" src="{{ "clr_h_dusk_blue_tender_shoots.png" | asset_url }}">');
+			}
+			else if (($(asd_rew).find(".prd_title:contains('pink flambe')").length > 0)) {
+				$('.art_clr').eq([i]).addClass('pink_flambe');
+				$('.art_clr.pink_flambe').append('<img style="display:none;" src="{{ "clr_h_pink_flambe_peach.png" | asset_url }}">');
+			}
+			else if (($(asd_rew).find(".prd_title:contains('opal')").length > 0)) {
+				$('.art_clr').eq([i]).addClass('opal');
+				$('.art_clr.opal').append('<img style="display:none;" src="{{ "clr_h_opal.png" | asset_url }}">');
+			}
+			else if (($(asd_rew).find(".prd_title:contains('peach whip pink')").length > 0)) {
+				$('.art_clr').eq([i]).addClass('peach_whip_pink');
+				$('.art_clr.peach_whip_pink').append('<img style="display:none;" src="{{ "clr_h_peach_whip_pink.png" | asset_url }}">');
+			}
+			else if (($(asd_rew).find(".prd_title:contains('light grey')").length > 0)) {
+				$('.art_clr').eq([i]).addClass('light_grey');
+				$('.art_clr.light_grey').append('<img style="display:none;" src="{{ "clr_h_light_grey.png" | asset_url }}">');
+			}
+			else if (($(asd_rew).find(".prd_title:contains('majolica blue')").length > 0)) {
+				$('.art_clr').eq([i]).addClass('majolica_blue');
+				$('.art_clr.majolica_blue').append('<img style="display:none;" src="{{ "clr_h_majolica_blue.png" | asset_url }}">');
+			}
+			else if (($(asd_rew).find(".prd_title:contains('silver cloud grey')").length > 0)) {
+				$('.art_clr').eq([i]).addClass('silver_cloud_grey');
+				$('.art_clr.silver_cloud_grey').append('<img style="display:none;" src="{{ "clr_h_silver_cloud_grey.png" | asset_url }}">');
+			}
+			else if (($(asd_rew).find(".prd_title:contains('tangerine')").length > 0)) {
+				$('.art_clr').eq([i]).addClass('tangerine');
+				$('.art_clr.tangerine').append('<img style="display:none;" src="{{ "clr_h_tangerine.png" | asset_url }}">');
+			}
+			else if (($(asd_rew).find(".prd_title:contains('viola purple')").length > 0)) {
+				$('.art_clr').eq([i]).addClass('viola_purple');
+				$('.art_clr.viola_purple').append('<img style="display:none;" src="{{ "clr_h_viola_purple.png" | asset_url }}">');
+			}
+			else if (($(asd_rew).find(".prd_title:contains('neutrals')").length > 0)) {
+				$('.art_clr').eq([i]).addClass('neutrals');
+				$('.art_clr.neutrals').append('<img style="display:none;" src="{{ "clr_h_neutrals.png" | asset_url }}">');
+			}
+			else if (($(asd_rew).find(".prd_title:contains('playful')").length > 0)) {
+				$('.art_clr').eq([i]).addClass('playful');
+				$('.art_clr.playful').append('<img style="display:none;" src="{{ "clr_h_playful.png" | asset_url }}">');
+			}
+			else if (($(asd_rew).find(".prd_title:contains('Colorful')").length > 0)) {
+				$('.art_clr').eq([i]).addClass('colorful');
+				$('.art_clr.colorful').append('<img style="display:none;" src="{{ "clr_h_colorful.png" | asset_url }}">');
+			}
+			else if (($(asd_rew).find(".prd_title:contains('dawn')").length > 0)) {
+				$('.art_clr').eq([i]).addClass('dawn');
+				$('.art_clr.dawn').append('<img style="display:none;" src="{{ "clr_h_dawn.png" | asset_url }}">');
+			}
+			else if (($(asd_rew).find(".prd_title:contains('amrit vela')").length > 0)) {
+				$('.art_clr').eq([i]).addClass('amrit_vela');
+				$('.art_clr.amrit_vela').append('<img style="display:none;" src="{{ "clr_h_amrit_vela.png" | asset_url }}">');
+			}
+			else if (($(asd_rew).find(".prd_title:contains('steel grey')").length > 0)) {
+				$('.art_clr').eq([i]).addClass('steel_grey');
+				$('.art_clr.steel_grey').append('<img style="display:none;" src="{{ "clr_h_steel_grey.png" | asset_url }}">');
+			}
+			else if (($(asd_rew).find(".prd_title:contains('deep lavender')").length > 0)) {
+				$('.art_clr').eq([i]).addClass('deep_lavender');
+				$('.art_clr.deep_lavender').append('<img style="display:none;" src="{{ "clr_h_deep_lavender.png" | asset_url }}">');
+			}
+			else if (($(asd_rew).find(".prd_title:contains('limestone grey')").length > 0)) {
+				$('.art_clr').eq([i]).addClass('limestone_grey');
+				$('.art_clr.limestone_grey').append('<img style="display:none;" src="{{ "clr_h_limestone_grey.png" | asset_url }}">');
+			}
+			else if (($(asd_rew).find(".prd_title:contains('marsala red')").length > 0)) {
+				$('.art_clr').eq([i]).addClass('marsala_red');
+				$('.art_clr.marsala_red').append('<img style="display:none;" src="{{ "clr_h_marsala_red.png" | asset_url }}">');
+			}
 
-            else if (($(asd_rew).find(".prd_title:contains('safari green')").length > 0)) {
-                $('.art_clr').eq([i]).addClass('safari_green');
-                $('.art_clr.safari_green').append('<img style="display:none;" src="{{ "clr_h_safari_green.png" | asset_url }}">');
-            }
-            else if (($(asd_rew).find(".prd_title:contains('walnut')").length > 0)) {
-                $('.art_clr').eq([i]).addClass('walnut');
-                $('.art_clr.walnut').append('<img style="display:none;" src="{{ "clr_h_walnut.png" | asset_url }}">');
-            }
+			else if (($(asd_rew).find(".prd_title:contains('safari green')").length > 0)) {
+				$('.art_clr').eq([i]).addClass('safari_green');
+				$('.art_clr.safari_green').append('<img style="display:none;" src="{{ "clr_h_safari_green.png" | asset_url }}">');
+			}
+			else if (($(asd_rew).find(".prd_title:contains('walnut')").length > 0)) {
+				$('.art_clr').eq([i]).addClass('walnut');
+				$('.art_clr.walnut').append('<img style="display:none;" src="{{ "clr_h_walnut.png" | asset_url }}">');
+			}
 
-            else if (($(asd_rew).find(".prd_title:contains('crown blue')").length > 0)) {
-              {% if product.handle contains 'batik' %}
-                $('.art_clr').eq([i]).addClass('crown_en_blue');
-                $('.art_clr.crown_blue').append('<img style="display:none;" src="{{ "clr_h_en_crown_blue.png" | asset_url }}">');
-              {% else %}
-                $('.art_clr').eq([i]).addClass('crown_blue');
-                $('.art_clr.crown_blue').append('<img style="display:none;" src="{{ "clr_h_crown_blue.png" | asset_url }}">');
+			else if (($(asd_rew).find(".prd_title:contains('crown blue')").length > 0)) {
+			  {% if product.handle contains 'batik' %}
+				$('.art_clr').eq([i]).addClass('crown_en_blue');
+				$('.art_clr.crown_blue').append('<img style="display:none;" src="{{ "clr_h_en_crown_blue.png" | asset_url }}">');
+			  {% else %}
+				$('.art_clr').eq([i]).addClass('crown_blue');
+				$('.art_clr.crown_blue').append('<img style="display:none;" src="{{ "clr_h_crown_blue.png" | asset_url }}">');
 			  {% endif %}
-            }
-            else if (($(asd_rew).find(".prd_title:contains('ether blue')").length > 0)) {
-              {% if product.handle contains 'batik' %}
-                $('.art_clr').eq([i]).addClass('ether_en_blue');
-                $('.art_clr.ether_blue').append('<img style="display:none;" src="{{ "clr_h_en_ether_blue.png" | asset_url }}">');
-              {% else %}
-                $('.art_clr').eq([i]).addClass('ether_blue');
-                $('.art_clr.ether_blue').append('<img style="display:none;" src="{{ "clr_h_ether_blue.png" | asset_url }}">');
+			}
+			else if (($(asd_rew).find(".prd_title:contains('ether blue')").length > 0)) {
+			  {% if product.handle contains 'batik' %}
+				$('.art_clr').eq([i]).addClass('ether_en_blue');
+				$('.art_clr.ether_blue').append('<img style="display:none;" src="{{ "clr_h_en_ether_blue.png" | asset_url }}">');
+			  {% else %}
+				$('.art_clr').eq([i]).addClass('ether_blue');
+				$('.art_clr.ether_blue').append('<img style="display:none;" src="{{ "clr_h_ether_blue.png" | asset_url }}">');
 			  {% endif %}
-            }
+			}
 
-            else if (($(asd_rew).find(".prd_title:contains('magenta pink')").length > 0)) {
-                $('.art_clr').eq([i]).addClass('magenta_pink');
-                $('.art_clr.magenta_pink').append('<img style="display:none;" src="{{ "clr_h_magenta_pink.png" | asset_url }}">');
-            } else if (($(asd_rew).find(".prd_title:contains('mint green')").length > 0)) {
-                $('.art_clr').eq([i]).addClass('parakeet_green');
-                $('.art_clr.parakeet_green').append('<img style="display:none;" src="{{ "clr_h_p_green.png" | asset_url }}">');
-            } else if (($(asd_rew).find(".prd_title:contains('blazing yellow')").length > 0)) {
-                $('.art_clr').eq([i]).addClass('blazing_yellow');
-                $('.art_clr.blazing_yellow').append('<img style="display:none;" src="{{ "clr_h_b_yellow.png" | asset_url }}">');
-            } else if (($(asd_rew).find(".prd_title:contains('coral')").length > 0)) {
-                $('.art_clr').eq([i]).addClass('coral');
-                $('.art_clr.coral').append('<img style="display:none;" src="{{ "clr_h_b_coral.png" | asset_url }}">');
-            } else if (($(asd_rew).find(".prd_title:contains('radiant orchid')").length > 0)) {
-                $('.art_clr').eq([i]).addClass('radiant_orchid');
-                $('.art_clr.radiant_orchid').append('<img style="display:none;" src="{{ "clr_h_radiant_orchid.png" | asset_url }}">');
-            } else if (($(asd_rew).find(".prd_title:contains('Blazing Yellow')").length > 0)) {
-                $('.art_clr').eq([i]).addClass('yellow');
-                $('.art_clr.yellow').append('<img style="display:none;" src="{{ "clr_h_blazing_yellow.png" | asset_url }}">');
-            }
+			else if (($(asd_rew).find(".prd_title:contains('magenta pink')").length > 0)) {
+				$('.art_clr').eq([i]).addClass('magenta_pink');
+				$('.art_clr.magenta_pink').append('<img style="display:none;" src="{{ "clr_h_magenta_pink.png" | asset_url }}">');
+			} else if (($(asd_rew).find(".prd_title:contains('mint green')").length > 0)) {
+				$('.art_clr').eq([i]).addClass('parakeet_green');
+				$('.art_clr.parakeet_green').append('<img style="display:none;" src="{{ "clr_h_p_green.png" | asset_url }}">');
+			} else if (($(asd_rew).find(".prd_title:contains('blazing yellow')").length > 0)) {
+				$('.art_clr').eq([i]).addClass('blazing_yellow');
+				$('.art_clr.blazing_yellow').append('<img style="display:none;" src="{{ "clr_h_b_yellow.png" | asset_url }}">');
+			} else if (($(asd_rew).find(".prd_title:contains('coral')").length > 0)) {
+				$('.art_clr').eq([i]).addClass('coral');
+				$('.art_clr.coral').append('<img style="display:none;" src="{{ "clr_h_b_coral.png" | asset_url }}">');
+			} else if (($(asd_rew).find(".prd_title:contains('radiant orchid')").length > 0)) {
+				$('.art_clr').eq([i]).addClass('radiant_orchid');
+				$('.art_clr.radiant_orchid').append('<img style="display:none;" src="{{ "clr_h_radiant_orchid.png" | asset_url }}">');
+			} else if (($(asd_rew).find(".prd_title:contains('Blazing Yellow')").length > 0)) {
+				$('.art_clr').eq([i]).addClass('yellow');
+				$('.art_clr.yellow').append('<img style="display:none;" src="{{ "clr_h_blazing_yellow.png" | asset_url }}">');
+			}
 
-            if( $(asd_rew).hasClass('solded')){
-              	var link_a = $('.pr_url').eq([i]).html();
-                $('.art_clr').eq([i]).wrap('<a href='+link_a+'></div>');
-            }
-            {% unless product.available %}
-            	var link_a = $('.pr_url').eq([i]).html();
-      			$('.art_clr').eq([i]).wrap('<a href='+link_a+'></div>');
-      		{% endunless %}
-        }
-
-
-    }
-    clr_clr();
+			if( $(asd_rew).hasClass('solded')){
+				  var link_a = $('.pr_url').eq([i]).html();
+				$('.art_clr').eq([i]).wrap('<a href='+link_a+'></div>');
+			}
+			{% unless product.available %}
+				var link_a = $('.pr_url').eq([i]).html();
+				  $('.art_clr').eq([i]).wrap('<a href='+link_a+'></div>');
+			  {% endunless %}
+		}
 
 
-    function change_clr() {
-
-        var divs = $('.art_clr');
-        $.each(divs, function(i) {
-            $(this).click(function() {
-                var ch_main = $('.art_cost').find('.pr_pr').eq([i]);
-             	var numb_ar = [i];
-                var ch_tit = $(ch_main).find('.prd_title').html();
-                change_tit(ch_main, numb_ar);
-                var ch_prise = $(ch_main).find('.pr_price').html();
-                var ch_id = $(ch_main).find('.pr_id').html();
-                var ch_url = $(ch_main).find('.pr_url').html();
-                $('#crumbs').find('a:last').html(ch_tit);
-                $('#crumbs').find('a:last').attr('href', ch_url);
-                $('.art_price').html(ch_prise);
-                $('.true_id').attr('value', ch_id);
-                history.pushState('', '', ch_url);
+	}
+	clr_clr();
 
 
-                var ch_main_imgs = $(ch_main).find('.pr_thumb').eq(0);
-                var img_main_one = $(ch_main_imgs).find('.pr_data-large').html();
-                var img_main_big = $(ch_main_imgs).find('.pr_data-zoom').html();
-                $('.zoomPad').children('img').attr('src', img_main_one );
-                $('.zoomouter').attr('href', img_main_big);
-                $('.zoomWrapperImage').find('img').attr('src', img_main_big);
-                $('#rg-gallery').find('noscript').find('.img_main_one').attr('src', img_main_big);
+	function change_clr() {
 
-                var ch_imgs = $(ch_main).find('.pr_thumb');
-               	var ul_height = $('.es-carousel').find('ul').height();
-              	$('.es-carousel').find('ul').height(ul_height);
+		var divs = $('.art_clr');
+		$.each(divs, function(i) {
+			$(this).click(function() {
+				var ch_main = $('.art_cost').find('.pr_pr').eq([i]);
+				 var numb_ar = [i];
+				var ch_tit = $(ch_main).find('.prd_title').html();
+				console.log("FINDER");
+				console.log(ch_tit);
+				change_tit(ch_main, numb_ar);
+				var ch_prise = $(ch_main).find('.pr_price').html();
+				var ch_id = $(ch_main).find('.pr_id').html();
+				var ch_url = $(ch_main).find('.pr_url').html();
+				$('#crumbs').find('a:last').html(ch_tit);
+				$('#crumbs').find('a:last').attr('href', ch_url);
+				$('.art_price').html(ch_prise);
+				$('.true_id').attr('value', ch_id);
+				history.pushState('', '', ch_url);
 
-                $('.es-carousel').find('li').remove();
-                $.each(ch_imgs, function(i) {
-                    var img_new = $(this);
-                    var img_scr = $(img_new).find('.pr_src').html();
-                    var img_dl = $(img_new).find('.pr_data-large').html();
-                    var img_dz = $(img_new).find('.pr_data-zoom').html();
-                  $('.es-carousel ul').append('<li style="margin-right: 10px; width: 84px;"><a href="#" style="border-width: 2px;"><img class="ch_image_m" data-description="" alt="'+ch_tit+'" data-zoom="'+img_dz+'" data-large="'+img_dl+'" src="'+img_scr+'" title="'+ch_tit+'"></a></li>');
-                });
-              $('.es-carousel').find('li').eq(0).click();
-            });
-        });
-    }
-    change_clr();
 
-    var ch_maisa = $('.am_titl').text();
-   	var ch_maisan = $('.art_cost').find('.pr_pr').find(".prd_title:contains('"+ch_maisa+"')").parent();
-    var nmbdf = $(ch_maisan).index();
+				var ch_main_imgs = $(ch_main).find('.pr_thumb').eq(0);
+				var img_main_one = $(ch_main_imgs).find('.pr_data-large').html();
+				var img_main_big = $(ch_main_imgs).find('.pr_data-zoom').html();
+				$('.zoomPad').children('img').attr('src', img_main_one );
+				$('.zoomouter').attr('href', img_main_big);
+				$('.zoomWrapperImage').find('img').attr('src', img_main_big);
+				$('#rg-gallery').find('noscript').find('.img_main_one').attr('src', img_main_big);
+
+				var ch_imgs = $(ch_main).find('.pr_thumb');
+				   var ul_height = $('.es-carousel').find('ul').height();
+				  $('.es-carousel').find('ul').height(ul_height);
+
+				$('.es-carousel').find('li').remove();
+				$.each(ch_imgs, function(i) {
+					var img_new = $(this);
+					var img_scr = $(img_new).find('.pr_src').html();
+					var img_dl = $(img_new).find('.pr_data-large').html();
+					var img_dz = $(img_new).find('.pr_data-zoom').html();
+				  $('.es-carousel ul').append('<li style="margin-right: 10px; width: 84px;"><a href="#" style="border-width: 2px;"><img class="ch_image_m" data-description="" alt="'+ch_tit+'" data-zoom="'+img_dz+'" data-large="'+img_dl+'" src="'+img_scr+'" title="'+ch_tit+'"></a></li>');
+				});
+			  $('.es-carousel').find('li').eq(0).click();
+			});
+		});
+	}
+	change_clr();
+
+	var ch_maisa = $('.am_titl').text();
+	   var ch_maisan = $('.art_cost').find('.pr_pr').find(".prd_title:contains('"+ch_maisa+"')").parent();
+	var nmbdf = $(ch_maisan).index();
   change_tit(ch_maisan, nmbdf);
   function change_tit(asd_rew, i){
-  		   var ch_tit = $(asd_rew).find(".prd_title").text();
-    if  ($('.was-price').hasClass('arts')){
-      $('.was-price').hide();
-    } else {
- 		  $('.was-price').addClass('arts');
-    }
+			 var ch_tit = $(asd_rew).find(".prd_title").text();
+	if  ($('.was-price').hasClass('arts')){
+	  $('.was-price').hide();
+	} else {
+		   $('.was-price').addClass('arts');
+	}
 
-  			var jse = $('.art_clr');
-            $(jse).find('img').hide();
-  			$(jse[i]).find('img').show();
+			  var jse = $('.art_clr');
+			$(jse).find('img').hide();
+			  $(jse[i]).find('img').show();
 
-    		var rach = $('.pr_discru');
-            var raches =  $(rach[i]).html();
-  			$('.description.contentsection').html(raches);
+			var rach = $('.pr_discru');
+			var raches =  $(rach[i]).html();
+			  $('.description.contentsection').html(raches);
 
-            if (($(asd_rew).find(".prd_title:contains('black/grey')").length > 0)) {
-              /*  var art_f = ch_tit.replace("black/grey","")
-                $('.am_titl').html(art_f);*/
-                $('.am_titl').html('AUREA ombre');
-                $('.art_col').html('black/grey');
-                	{% if collection.title == "AUREA headbands" or collection.handle == "aurea-wholesale" %}
-                	    var art = 'HerBlackGreyAureaOmbre';
-                        $('.ht_tit').html(art);
-                        $('.inst_cont').find('a').remove();
-                        newInstagram(art);
-                     {% elsif collection.title == "AUREA headbands men's only" %}
-                		var art = 'HisBlackGreyAureaOmbre';
-                        $('.ht_tit').html(art);
-                        $('.inst_cont').find('a').remove();
-                        newInstagram(art);
-    		 		{% endif %}
-            }
-             else if (($(asd_rew).find(".prd_title:contains('Black/Brown')").length > 0)) {
+			if (($(asd_rew).find(".prd_title:contains('black/grey')").length > 0)) {
+			  /*  var art_f = ch_tit.replace("black/grey","")
+				$('.am_titl').html(art_f);*/
+				$('.am_titl').html('AUREA ombre');
+				$('.art_col').html('black/grey');
+					{% if collection.title == "AUREA headbands" or collection.handle == "aurea-wholesale" %}
+						var art = 'HerBlackGreyAureaOmbre';
+						$('.ht_tit').html(art);
+						$('.inst_cont').find('a').remove();
+						newInstagram(art);
+					 {% elsif collection.title == "AUREA headbands men's only" %}
+						var art = 'HisBlackGreyAureaOmbre';
+						$('.ht_tit').html(art);
+						$('.inst_cont').find('a').remove();
+						newInstagram(art);
+					 {% endif %}
+			}
+			 else if (($(asd_rew).find(".prd_title:contains('Black/Brown')").length > 0)) {
 
-                $('.art_col').html('black/brown');
-                	{% if collection.title == 'LILA hairties' or collection.title == 'Hairties' or collection.handle == "lila-wholesale" %}
-                    	$('.am_titl').html('LILA');
-                	    var art = 'HerBlackBrownLila';
-                        $('.ht_tit').html(art);
-                        $('.inst_cont').find('a').remove();
-                        newInstagram(art);
-                     {% elsif collection.handle == "lila-hairties-men-s-only" %}
-                     	$('.am_titl').html('LILA for men');
-                		var art = 'HisBlackBrownLila';
-                        $('.ht_tit').html(art);
-                        $('.inst_cont').find('a').remove();
-                        newInstagram(art);
-    		 		{% endif %}
-            }
-            else if (($(asd_rew).find(".prd_title:contains('shawl black')").length > 0)) {
-               var art_f = ch_tit.replace("black","")
-               $('.am_titl').html(art_f);
-               $('.art_col').html('black');
-                {% if collection.title == 'Shawls' or collection.title == "Shawls Wholesale" or collection.title == "Wholesale" or collection.handle == "wholesale-scarves-and-shawls" %}
-                       var art = 'journeyshawl';
-                       $('.ht_tit').html(art);
-                       $('.inst_cont').find('a').remove();
-                       newInstagram(art);
-    		 	{% endif %}
-            }
+				$('.art_col').html('black/brown');
+					{% if collection.title == 'LILA hairties' or collection.title == 'Hairties' or collection.handle == "lila-wholesale" %}
+						$('.am_titl').html('LILA');
+						var art = 'HerBlackBrownLila';
+						$('.ht_tit').html(art);
+						$('.inst_cont').find('a').remove();
+						newInstagram(art);
+					 {% elsif collection.handle == "lila-hairties-men-s-only" %}
+						 $('.am_titl').html('LILA for men');
+						var art = 'HisBlackBrownLila';
+						$('.ht_tit').html(art);
+						$('.inst_cont').find('a').remove();
+						newInstagram(art);
+					 {% endif %}
+			}
+			else if (($(asd_rew).find(".prd_title:contains('shawl black')").length > 0)) {
+			   var art_f = ch_tit.replace("black","")
+			   $('.am_titl').html(art_f);
+			   $('.art_col').html('black');
+				{% if collection.title == 'Shawls' or collection.title == "Shawls Wholesale" or collection.title == "Wholesale" or collection.handle == "wholesale-scarves-and-shawls" %}
+					   var art = 'journeyshawl';
+					   $('.ht_tit').html(art);
+					   $('.inst_cont').find('a').remove();
+					   newInstagram(art);
+				 {% endif %}
+			}
 
-            else if (($(asd_rew).find(".prd_title:contains('shawl blue')").length > 0)) {
-               var art_f = ch_tit.replace("blue","")
-               $('.am_titl').html(art_f);
-               $('.art_col').html('blue');
-                {% if collection.title == 'Shawls' or collection.title == "Shawls Wholesale" or collection.title == "Wholesale" or collection.handle == "wholesale-scarves-and-shawls" %}
-                       var art = 'journeyshawl';
-                       $('.ht_tit').html(art);
-                       $('.inst_cont').find('a').remove();
-                       newInstagram(art);
-    		 	{% endif %}
-            }
+			else if (($(asd_rew).find(".prd_title:contains('shawl blue')").length > 0)) {
+			   var art_f = ch_tit.replace("blue","")
+			   $('.am_titl').html(art_f);
+			   $('.art_col').html('blue');
+				{% if collection.title == 'Shawls' or collection.title == "Shawls Wholesale" or collection.title == "Wholesale" or collection.handle == "wholesale-scarves-and-shawls" %}
+					   var art = 'journeyshawl';
+					   $('.ht_tit').html(art);
+					   $('.inst_cont').find('a').remove();
+					   newInstagram(art);
+				 {% endif %}
+			}
 
-     		else if (($(asd_rew).find(".prd_title:contains('shawl warm taupe')").length > 0)) {
-               var art_f = ch_tit.replace("warm taupe","")
-               $('.am_titl').html(art_f);
-               $('.art_col').html('warm taupe');
-                {% if collection.title == 'Shawls' or collection.title == "Shawls Wholesale" or collection.title == "Wholesale" or collection.handle == "wholesale-scarves-and-shawls" %}
-                       var art = 'journeyshawl';
-                       $('.ht_tit').html(art);
-                       $('.inst_cont').find('a').remove();
-                       newInstagram(art);
-    		 	{% endif %}
-            }
+			 else if (($(asd_rew).find(".prd_title:contains('shawl warm taupe')").length > 0)) {
+			   var art_f = ch_tit.replace("warm taupe","")
+			   $('.am_titl').html(art_f);
+			   $('.art_col').html('warm taupe');
+				{% if collection.title == 'Shawls' or collection.title == "Shawls Wholesale" or collection.title == "Wholesale" or collection.handle == "wholesale-scarves-and-shawls" %}
+					   var art = 'journeyshawl';
+					   $('.ht_tit').html(art);
+					   $('.inst_cont').find('a').remove();
+					   newInstagram(art);
+				 {% endif %}
+			}
 
-    		else if (($(asd_rew).find(".prd_title:contains('shawl jet black')").length > 0)) {
-               var art_f = ch_tit.replace("jet black","")
-               $('.am_titl').html(art_f);
-               $('.art_col').html('jet black');
-                {% if collection.title == 'Shawls' or collection.title == "Shawls Wholesale" or collection.title == "Wholesale" or collection.handle == "wholesale-scarves-and-shawls" %}
-                       var art = 'journeyshawl';
-                       $('.ht_tit').html(art);
-                       $('.inst_cont').find('a').remove();
-                       newInstagram(art);
-    		 	{% endif %}
-            }
+			else if (($(asd_rew).find(".prd_title:contains('shawl jet black')").length > 0)) {
+			   var art_f = ch_tit.replace("jet black","")
+			   $('.am_titl').html(art_f);
+			   $('.art_col').html('jet black');
+				{% if collection.title == 'Shawls' or collection.title == "Shawls Wholesale" or collection.title == "Wholesale" or collection.handle == "wholesale-scarves-and-shawls" %}
+					   var art = 'journeyshawl';
+					   $('.ht_tit').html(art);
+					   $('.inst_cont').find('a').remove();
+					   newInstagram(art);
+				 {% endif %}
+			}
 
-    		else if (($(asd_rew).find(".prd_title:contains('shawl radiant white')").length > 0)) {
-               var art_f = ch_tit.replace("radiant white","")
-               $('.am_titl').html(art_f);
-               $('.art_col').html('radiant white');
-                {% if collection.title == 'Shawls' or collection.title == "Shawls Wholesale" or collection.title == "Wholesale" or collection.handle == "wholesale-scarves-and-shawls" %}
-                       var art = 'journeyshawl';
-                       $('.ht_tit').html(art);
-                       $('.inst_cont').find('a').remove();
-                       newInstagram(art);
-    		 	{% endif %}
-            }
+			else if (($(asd_rew).find(".prd_title:contains('shawl radiant white')").length > 0)) {
+			   var art_f = ch_tit.replace("radiant white","")
+			   $('.am_titl').html(art_f);
+			   $('.art_col').html('radiant white');
+				{% if collection.title == 'Shawls' or collection.title == "Shawls Wholesale" or collection.title == "Wholesale" or collection.handle == "wholesale-scarves-and-shawls" %}
+					   var art = 'journeyshawl';
+					   $('.ht_tit').html(art);
+					   $('.inst_cont').find('a').remove();
+					   newInstagram(art);
+				 {% endif %}
+			}
 
-            else if (($(asd_rew).find(".prd_title:contains('shawl purple')").length > 0)) {
-               var art_f = ch_tit.replace("purple","")
-               $('.am_titl').html(art_f);
-               $('.art_col').html('purple');
-                {% if collection.title == 'Shawls' or collection.title == "Shawls Wholesale" or collection.title == "Wholesale" or collection.handle == "wholesale-scarves-and-shawls" %}
-                       var art = 'journeyshawl';
-                       $('.ht_tit').html(art);
-                       $('.inst_cont').find('a').remove();
-                       newInstagram(art);
-    		 	{% endif %}
-            }
-            else if (($(asd_rew).find(".prd_title:contains('shawl grey')").length > 0)) {
-               var art_f = ch_tit.replace("grey","")
-               $('.am_titl').html(art_f);
-               $('.art_col').html('grey');
-                {% if collection.title == 'Shawls' or collection.title == "Shawls Wholesale" or collection.title == "Wholesale" or collection.handle == "wholesale-scarves-and-shawls" %}
-                       var art = 'journeyshawl';
-                       $('.ht_tit').html(art);
-                       $('.inst_cont').find('a').remove();
-                       newInstagram(art);
-    		 	{% endif %}
-            }
-            else if (($(asd_rew).find(".prd_title:contains('shawl white')").length > 0)) {
-               var art_f = ch_tit.replace("white","")
-               $('.am_titl').html(art_f);
-               $('.art_col').html('white');
-                {% if collection.title == 'Shawls' or collection.title == "Shawls Wholesale" or collection.title == "Wholesale" or collection.handle == "wholesale-scarves-and-shawls" %}
-                       var art = 'journeyshawl';
-                       $('.ht_tit').html(art);
-                       $('.inst_cont').find('a').remove();
-                       newInstagram(art);
-    		 	{% endif %}
-            }
-             else if (($(asd_rew).find(".prd_title:contains('black')").length > 0)) {
+			else if (($(asd_rew).find(".prd_title:contains('shawl purple')").length > 0)) {
+			   var art_f = ch_tit.replace("purple","")
+			   $('.am_titl').html(art_f);
+			   $('.art_col').html('purple');
+				{% if collection.title == 'Shawls' or collection.title == "Shawls Wholesale" or collection.title == "Wholesale" or collection.handle == "wholesale-scarves-and-shawls" %}
+					   var art = 'journeyshawl';
+					   $('.ht_tit').html(art);
+					   $('.inst_cont').find('a').remove();
+					   newInstagram(art);
+				 {% endif %}
+			}
+			else if (($(asd_rew).find(".prd_title:contains('shawl grey')").length > 0)) {
+			   var art_f = ch_tit.replace("grey","")
+			   $('.am_titl').html(art_f);
+			   $('.art_col').html('grey');
+				{% if collection.title == 'Shawls' or collection.title == "Shawls Wholesale" or collection.title == "Wholesale" or collection.handle == "wholesale-scarves-and-shawls" %}
+					   var art = 'journeyshawl';
+					   $('.ht_tit').html(art);
+					   $('.inst_cont').find('a').remove();
+					   newInstagram(art);
+				 {% endif %}
+			}
+			else if (($(asd_rew).find(".prd_title:contains('shawl white')").length > 0)) {
+			   var art_f = ch_tit.replace("white","")
+			   $('.am_titl').html(art_f);
+			   $('.art_col').html('white');
+				{% if collection.title == 'Shawls' or collection.title == "Shawls Wholesale" or collection.title == "Wholesale" or collection.handle == "wholesale-scarves-and-shawls" %}
+					   var art = 'journeyshawl';
+					   $('.ht_tit').html(art);
+					   $('.inst_cont').find('a').remove();
+					   newInstagram(art);
+				 {% endif %}
+			}
+			 else if (($(asd_rew).find(".prd_title:contains('black')").length > 0)) {
 
-               $('.art_col').html('black');
-
-
-               		{% if collection.title == "ENSO headbands" or collection.handle == "enso-headbands-and-head-wraps" or collection.handle == "enso-wholesale" or collection.handle == "enso-headbands-and-head-wraps" %}
-                        if ( ch_tit == 'ENSO BATIK black'){
-                            $('.am_titl').html('ENSO batik');
-                            var art = 'HerBlackEnsoBatik';
-                            $('.ht_tit').html(art);
-                            $('.inst_cont').find('a').remove();
-                            newInstagram(art);
-                        }else if (ch_tit == 'ENSO black'){
-                            $('.am_titl').html('ENSO classic');
-                            var art = 'HerBlackEnso';
-                            $('.ht_tit').html(art);
-                            $('.inst_cont').find('a').remove();
-                            newInstagram(art);
-                        }
-                    {% elsif collection.title == "ENSO headbands men's only" %}
-                    	if ( ch_tit == 'ENSO BATIK black'){
-                            $('.am_titl').html('ENSO batik');
-                            var art = 'HisBlackEnsoBatik';
-                            $('.ht_tit').html(art);
-                            $('.inst_cont').find('a').remove();
-                            newInstagram(art);
-                        }else if (ch_tit == 'ENSO black'){
-                            $('.am_titl').html('ENSO classic');
-                            var art = 'HisBlackEnso';
-                            $('.ht_tit').html(art);
-                            $('.inst_cont').find('a').remove();
-                            newInstagram(art);
-                        }
-
-                    {% elsif collection.title == "HU headbands men's only" %}
-                        var art_f = ch_tit.replace("black","")
-                        $('.am_titl').html(art_f);
-                		var art = 'HisBlackHu';
-                        $('.ht_tit').html(art);
-                        $('.inst_cont').find('a').remove();
-                        newInstagram(art);
-    		 		{% elsif collection.title == "AUREA headbands" or collection.handle == "aurea-wholesale" %}
-                        $('.am_titl').html('AUREA classic');
-                	    var art = 'HerBlackAurea';
-                        $('.ht_tit').html(art);
-                        $('.inst_cont').find('a').remove();
-                        newInstagram(art);
-                     {% elsif collection.title == "AUREA headbands men's only" %}
-                        $('.am_titl').html('AUREA classic');
-                		var art = 'HisBlackAurea';
-                        $('.ht_tit').html(art);
-                        $('.inst_cont').find('a').remove();
-                        newInstagram(art);
-                     {% elsif collection.title == "HU headbands" or collection.title == settings.productrow_1_collection or collection.handle == "hu-wholesale" collection.handle == 'hu-sweatbands' %}
-                        var art_f = ch_tit.replace("black","")
-                        $('.am_titl').html(art_f);
-                		var art = 'HerBlackHu';
-                        $('.ht_tit').html(art);
-                        $('.inst_cont').find('a').remove();
-                        newInstagram(art);
-    		 		{% elsif collection.title == 'LILA hairties' or collection.title == 'Hairties' or collection.handle == "lila-wholesale" %}
-                        var art = 'HerBlackLila';
-                        $('.ht_tit').html(art);
-                        $('.inst_cont').find('a').remove();
-                        newInstagram(art);
-                	{% elsif collection.title == "LILA Hairties men's only" %}
-                		var art = 'HisBlackLila';
-                        $('.ht_tit').html(art);
-                        $('.inst_cont').find('a').remove();
-                        newInstagram(art);
-                    {% endif %}
-                    /**/
-
-            }
-            else if (($(asd_rew).find(".prd_title:contains('white')").length > 0)) {
-               var art_f = ch_tit.replace("white","")
-               $('.am_titl').html(art_f);
-               $('.art_col').html('white');
-              		{% if collection.title == "ENSO headbands" or collection.handle == "enso-headbands-and-head-wraps" or collection.handle == "enso-wholesale" %}
-                        $('.am_titl').html('ENSO classic');
-                		var art = 'HerWhiteEnso';
-                        $('.ht_tit').html(art);
-                        $('.inst_cont').find('a').remove();
-                        newInstagram(art);
-                    {% elsif collection.title == "ENSO headbands men's only" %}
-                        $('.am_titl').html('ENSO classic');
-                		var art = 'HisWhiteEnso';
-                        $('.ht_tit').html(art);
-                        $('.inst_cont').find('a').remove();
-                        newInstagram(art);
-                    {% elsif collection.title == "HU headbands" or collection.handle == "hu-wholesale" collection.handle == 'hu-sweatbands' %}
-                		var art = 'HerWhiteHu';
-                        $('.ht_tit').html(art);
-                        $('.inst_cont').find('a').remove();
-                        newInstagram(art);
-                    {% elsif collection.title == "HU headbands men's only" %}
-                		var art = 'HisWhiteHu';
-                        $('.ht_tit').html(art);
-                        $('.inst_cont').find('a').remove();
-                        newInstagram(art);
-    		 		{% endif %}
-            }
-            else if (($(asd_rew).find(".prd_title:contains('royal blue')").length > 0)) {
-               $('.art_col').html('royal blue');
-              		{% if collection.title == "ENSO headbands" or collection.handle == "enso-headbands-and-head-wraps" or collection.handle == "enso-wholesale" %}
-                        $('.am_titl').html('ENSO classic');
-                		var art = 'HerroyalBlueEnso';
-                        $('.ht_tit').html(art);
-                        $('.inst_cont').find('a').remove();
-                        newInstagram(art);
-                    {% elsif collection.title == "ENSO headbands men's only" %}
-                        $('.am_titl').html('ENSO classic');
-                		var art = 'HisroyalBlueEnso';
-                        $('.ht_tit').html(art);
-                        $('.inst_cont').find('a').remove();
-                        newInstagram(art);
-                    {% elsif collection.title == "HU headbands" or collection.handle == "hu-wholesale" collection.handle == 'hu-sweatbands' %}
-                        var art_f = ch_tit.replace("royal blue","")
-                        $('.am_titl').html(art_f);
-                		var art = 'HerroyalBlueHu';
-                        $('.ht_tit').html(art);
-                        $('.inst_cont').find('a').remove();
-                        newInstagram(art);
-                    {% elsif collection.title == "HU headbands men's only" %}
-                        var art_f = ch_tit.replace("royal blue","")
-                        $('.am_titl').html(art_f);
-                		var art = 'HisroyalBlueHu';
-                        $('.ht_tit').html(art);
-                        $('.inst_cont').find('a').remove();
-                        newInstagram(art);
-    		 		{% elsif collection.title == "AUREA headbands" or collection.handle == "aurea-wholesale" %}
-                        $('.am_titl').html('AUREA classic');
-                	    var art = 'HerroyalBlueAurea';
-                        $('.ht_tit').html(art);
-                        $('.inst_cont').find('a').remove();
-                        newInstagram(art);
-                     {% elsif collection.title == "AUREA headbands men's only" %}
-                        $('.am_titl').html('AUREA classic');
-                		var art = 'HisroyalBlueAurea';
-                        $('.ht_tit').html(art);
-                        $('.inst_cont').find('a').remove();
-                        newInstagram(art);
-    		 		{% endif %}
-            }
-            else if (($(asd_rew).find(".prd_title:contains('deep purple')").length > 0)) {
-              /* var art_f = ch_tit.replace("deep purple & light Purple","")
-               $('.am_titl').html(art_f);*/
-               $('.am_titl').html('AUREA ombre');
-               $('.art_col').html('deep purple/light Purple');
-              		{% if collection.title == "AUREA headbands" or collection.handle == "aurea-wholesale" %}
-                	    var art = 'HerPurpleAureaOmbre';
-                        $('.ht_tit').html(art);
-                        $('.inst_cont').find('a').remove();
-                        newInstagram(art);
-    		 		{% endif %}
-            }
-            else if (($(asd_rew).find(".prd_title:contains('dusk blue')").length > 0)) {
-              /* var art_f = ch_tit.replace("dusk blue & tender shoots","")
-               $('.am_titl').html(art_f);*/
-               $('.am_titl').html('AUREA ombre');
-               $('.art_col').html('dusk blue/tender shoots');
-              		{% if collection.title == "AUREA headbands" or collection.handle == "aurea-wholesale" %}
-                	    var art = 'HerBlueGreenAureaOmbre';
-                        $('.ht_tit').html(art);
-                        $('.inst_cont').find('a').remove();
-                        newInstagram(art);
-    		 		{% endif %}
-            }
-            else if (($(asd_rew).find(".prd_title:contains('blue/green')").length > 0)) {
-              /* var art_f = ch_tit.replace("dusk blue & tender shoots","")
-               $('.am_titl').html(art_f);*/
-               $('.am_titl').html('AUREA ombre');
-               $('.art_col').html('blue/green');
-              		{% if collection.title == "AUREA headbands men's only" %}
-                		var art = 'HisBlueGreenAureaOmbre';
-                        $('.ht_tit').html(art);
-                        $('.inst_cont').find('a').remove();
-                        newInstagram(art);
-    		 		{% endif %}
-            }
-            else if (($(asd_rew).find(".prd_title:contains('pink flambe')").length > 0)) {
-              /*  var art_f = ch_tit.replace("pink flambe/peach nectar","")
-               $('.am_titl').html(art_f);*/
-               $('.am_titl').html('AUREA ombre');
-               $('.art_col').html('pink flambe/peach nectar');
-              		{% if collection.title == "AUREA headbands" or collection.handle == "aurea-wholesale" %}
-                	    var art = 'HerPinkPeachAureaOmbre';
-                        $('.ht_tit').html(art);
-                        $('.inst_cont').find('a').remove();
-                        newInstagram(art);
-    		 		{% endif %}
-            }
-            else if (($(asd_rew).find(".prd_title:contains('opal')").length > 0)) {
-               $('.art_col').html('opal');
-                    {% if collection.title == "ENSO headbands" or collection.handle == "enso-headbands-and-head-wraps" or collection.handle == "enso-wholesale" %}
-                        $('.am_titl').html('ENSO classic');
-                		var art = 'HerOpalEnso';
-                        $('.ht_tit').html(art);
-                        $('.inst_cont').find('a').remove();
-                        newInstagram(art);
-                    {% elsif collection.title == "ENSO headbands men's only" %}
-                        $('.am_titl').html('ENSO classic');
-                		var art = 'HisOpalEnso';
-                        $('.ht_tit').html(art);
-                        $('.inst_cont').find('a').remove();
-                        newInstagram(art);
-                    {% elsif collection.title == "HU headbands" or collection.handle == "hu-wholesale" collection.handle == 'hu-sweatbands' %}
-                        var art_f = ch_tit.replace("opal","")
-                        $('.am_titl').html(art_f);
-                		var art = 'HerOpalHu';
-                        $('.ht_tit').html(art);
-                        $('.inst_cont').find('a').remove();
-                        newInstagram(art);
-                    {% elsif collection.title == "HU headbands men's only" %}
-                        var art_f = ch_tit.replace("opal","")
-                        $('.am_titl').html(art_f);
-                		var art = 'HisOpalHu';
-                        $('.ht_tit').html(art);
-                        $('.inst_cont').find('a').remove();
-                        newInstagram(art);
-    		 		{% elsif collection.title == "AUREA headbands" or collection.handle == "aurea-wholesale" %}
-                        $('.am_titl').html('AUREA classic');
-                	    var art = 'HerOpalAurea';
-                        $('.ht_tit').html(art);
-                        $('.inst_cont').find('a').remove();
-                        newInstagram(art);
-                     {% elsif collection.title == "AUREA headbands men's only" %}
-                        $('.am_titl').html('AUREA classic');
-                		var art = 'HisOpalAurea';
-                        $('.ht_tit').html(art);
-                        $('.inst_cont').find('a').remove();
-                        newInstagram(art);
-    		 		{% endif %}
-            }
-            else if (($(asd_rew).find(".prd_title:contains('peach whip pink')").length > 0)) {
-                 var art_f = ch_tit.replace("peach whip pink","")
-               $('.am_titl').html(art_f);
-               $('.art_col').html('peach whip pink');
-              		{% if collection.title == "ENSO headbands" or collection.handle == "enso-headbands-and-head-wraps" or collection.handle == "enso-wholesale" %}
-                        $('.am_titl').html('ENSO classic');
-                		var art = 'HerPeachWhipPinkEnso';
-                        $('.ht_tit').html(art);
-                        $('.inst_cont').find('a').remove();
-                        newInstagram(art);
-              		{% elsif collection.title == "AUREA headbands" or collection.handle == "aurea-wholesale" %}
-                        $('.am_titl').html('AUREA classic');
-                	    var art = 'HerPeachWhipPinkAurea';
-                        $('.ht_tit').html(art);
-                        $('.inst_cont').find('a').remove();
-                        newInstagram(art);
-                     {% elsif collection.title == "HU headbands" or collection.handle == "hu-wholesale" collection.handle == 'hu-sweatbands' %}
-                		var art = 'HerPeachWhipPinkHu';
-                        $('.ht_tit').html(art);
-                        $('.inst_cont').find('a').remove();
-                        newInstagram(art);
-    		 		{% endif %}
-            }
-            else if (($(asd_rew).find(".prd_title:contains('ether blue')").length > 0)) {
-              /*   var art_f = ch_tit.replace("ether blue","")
-               $('.am_titl').html(art_f);*/
-               $('.am_titl').html('ENSO batik');
-               $('.art_col').html('ether blue');
-              		{% if collection.title == "ENSO headbands" or collection.handle == "enso-headbands-and-head-wraps" or collection.handle == "enso-wholesale"%}
-                		var art = 'HerEtherBlueEnsoBatik';
-                        $('.ht_tit').html(art);
-                        $('.inst_cont').find('a').remove();
-                        newInstagram(art);
-                    {% elsif collection.title == "ENSO headbands men's only" %}
-                		var art = 'HisEtherBlueEnsoBatik';
-                        $('.ht_tit').html(art);
-                        $('.inst_cont').find('a').remove();
-                        newInstagram(art);
-    		 		{% endif %}
-            }
-            else if (($(asd_rew).find(".prd_title:contains('light grey')").length > 0)) {
-              /*  var art_f = ch_tit.replace("light grey","")
-               $('.am_titl').html(art_f);*/
-               $('.am_titl').html('ENSO batik');
-               $('.art_col').html('light grey');
-              		{% if collection.title == "ENSO headbands" or collection.handle == "enso-headbands-and-head-wraps" or collection.handle == "enso-wholesale" %}
-                		var art = 'HerLightGreyEnsoBatik';
-                        $('.ht_tit').html(art);
-                        $('.inst_cont').find('a').remove();
-                        newInstagram(art);
-                    {% elsif collection.title == "ENSO headbands men's only" %}
-                		var art = 'HisLightGreyEnsoBatik';
-                        $('.ht_tit').html(art);
-                        $('.inst_cont').find('a').remove();
-                        newInstagram(art);
-    		 		{% endif %}
-            }
-            else if (($(asd_rew).find(".prd_title:contains('majolica blue')").length > 0)) {
-              /*   var art_f = ch_tit.replace("majolica blue","")
-               $('.am_titl').html(art_f);*/
-               $('.am_titl').html('ENSO batik');
-               $('.art_col').html('majolica blue');
-              		{% if collection.title == "ENSO headbands" or collection.handle == "enso-headbands-and-head-wraps" or collection.title == settings.productrow_1_collection or collection.handle == "enso-wholesale" %}
-                		var art = 'HerMajolicaBlueEnsoBatik';
-                        $('.ht_tit').html(art);
-                        $('.inst_cont').find('a').remove();
-                        newInstagram(art);
-                    {% elsif collection.title == "ENSO headbands men's only" %}
-                		var art = 'HisMajolicaBlueEnsoBatik';
-                        $('.ht_tit').html(art);
-                        $('.inst_cont').find('a').remove();
-                        newInstagram(art);
-    		 		{% endif %}
-            }
-            else if (($(asd_rew).find(".prd_title:contains('silver cloud grey')").length > 0)) {
-                 var art_f = ch_tit.replace("silver cloud grey","")
-               $('.am_titl').html(art_f);
-               $('.art_col').html('silver cloud grey');
-               console.log(art_f);
-                    {% if collection.title == "ENSO headbands" or collection.handle == "enso-headbands-and-head-wraps" or collection.handle == "enso-wholesale" %}
-
-                        $('.am_titl').html('ENSO classic');
-                		var art = 'HerSilverCloudGreyEnso';
-                        $('.ht_tit').html(art);
-                        $('.inst_cont').find('a').remove();
-                        newInstagram(art);
-                    {% elsif collection.title == "ENSO headbands men's only" %}
-                        $('.am_titl').html('ENSO classic');
-                		var art = 'HisSilverCloudGreyEnso';
-                        $('.ht_tit').html(art);
-                        $('.inst_cont').find('a').remove();
-                        newInstagram(art);
-                    {% elsif collection.title == "HU headbands" or collection.handle == "hu-wholesale" collection.handle == 'hu-sweatbands' %}
-
-                		var art = 'HerSilverCloudGreyHu';
-
-                        $('.ht_tit').html(art);
-                        $('.inst_cont').find('a').remove();
-                        newInstagram(art);
-                    {% elsif collection.title == "HU headbands men's only" %}
-                		var art = 'HisSilverCloudGreyHu';
-                        $('.ht_tit').html(art);
-                        $('.inst_cont').find('a').remove();
-                        newInstagram(art);
-    		 		{% endif %}
-            } else if (($(asd_rew).find(".prd_title:contains('walnut')").length > 0)) {
-                 var art_f = ch_tit.replace("walnut","")
-               $('.am_titl').html(art_f);
-               $('.art_col').html('walnut');
-               console.log(art_f);
-                    {% if collection.title == "ENSO headbands" or collection.handle == "enso-headbands-and-head-wraps" or collection.handle == "enso-wholesale" %}
-                        $('.am_titl').html('ENSO classic');
-                		var art = 'HerWalnutEnso';
-                        $('.ht_tit').html(art);
-                        $('.inst_cont').find('a').remove();
-                        newInstagram(art);
-                    {% elsif collection.title == "ENSO headbands men's only" %}
-                        $('.am_titl').html('ENSO classic');
-                		var art = 'HisWalnutEnso';
-                        $('.ht_tit').html(art);
-                        $('.inst_cont').find('a').remove();
-                        newInstagram(art);
-                    {% elsif collection.title == "HU headbands" or collection.handle == "hu-wholesale" collection.handle == 'hu-sweatbands' %}
-                		var art = 'HerWalnutHu';
-                        $('.ht_tit').html(art);
-                        $('.inst_cont').find('a').remove();
-                        newInstagram(art);
-                    {% elsif collection.title == "HU headbands men's only" %}
-                		var art = 'HisWalnutHu';
-                        $('.ht_tit').html(art);
-                        $('.inst_cont').find('a').remove();
-                        newInstagram(art);
-    		 		{% endif %}
-            } else if (($(asd_rew).find(".prd_title:contains('safari green')").length > 0)) {
-               var art_f = ch_tit.replace("safari green","")
-               $('.am_titl').html(art_f);
-               $('.art_col').html('safari green');
-               console.log(art_f);
-                    {% if collection.title == "ENSO headbands" or collection.handle == "enso-headbands-and-head-wraps" or collection.handle == "enso-wholesale" %}
-                        $('.am_titl').html('ENSO classic');
-                		var art = 'HerSafariGreenEnso';
-                        $('.ht_tit').html(art);
-                        $('.inst_cont').find('a').remove();
-                        newInstagram(art);
-                    {% elsif collection.title == "ENSO headbands men's only" %}
-                        $('.am_titl').html('ENSO classic');
-                		var art = 'HisSafariGreenEnso';
-                        $('.ht_tit').html(art);
-                        $('.inst_cont').find('a').remove();
-                        newInstagram(art);
-                    {% elsif collection.title == "HU headbands" or collection.handle == "hu-wholesale" collection.handle == 'hu-sweatbands' %}
-                		var art = 'HerSafariGreenHu';
-                        $('.ht_tit').html(art);
-                        $('.inst_cont').find('a').remove();
-                        newInstagram(art);
-                    {% elsif collection.title == "HU headbands men's only" %}
-                		var art = 'HisSafariGreenHu';
-                        $('.ht_tit').html(art);
-                        $('.inst_cont').find('a').remove();
-                        newInstagram(art);
-    		 		{% endif %}
-            } else if (($(asd_rew).find(".prd_title:contains('steel grey')").length > 0)) {
-               var art_f = ch_tit.replace("steel grey","");
-               $('.am_titl').html('ENSO batik');
-               $('.art_col').html('steel grey');
-              		{% if collection.title == "ENSO headbands" or collection.handle == "enso-headbands-and-head-wraps" or collection.handle == "enso-wholesale"%}
-                		var art = 'HerSteelGreyEnso';
-                        $('.ht_tit').html(art);
-                        $('.inst_cont').find('a').remove();
-                        newInstagram(art);
-                    {% elsif collection.title == "ENSO headbands men's only" %}
-                		var art = 'HisSteelGreyEnso';
-                        $('.ht_tit').html(art);
-                        $('.inst_cont').find('a').remove();
-                        newInstagram(art);
-    		 		{% endif %}
-            }
-    		else if (($(asd_rew).find(".prd_title:contains('deep lavender')").length > 0)) {
-               var art_f = ch_tit.replace("deep lavender","");
-               $('.am_titl').html('ENSO batik');
-               $('.art_col').html('deep lavender');
-              		{% if collection.title == "ENSO headbands" or collection.handle == "enso-headbands-and-head-wraps" or collection.handle == "enso-wholesale"%}
-                		var art = 'HerDeepLavenderEnso';
-                        $('.ht_tit').html(art);
-                        $('.inst_cont').find('a').remove();
-                        newInstagram(art);
-                    {% elsif collection.title == "ENSO headbands men's only" %}
-                		var art = 'HisDeepLavenderEnso';
-                        $('.ht_tit').html(art);
-                        $('.inst_cont').find('a').remove();
-                        newInstagram(art);
-    		 		{% endif %}
-            }
-            else if (($(asd_rew).find(".prd_title:contains('tangerine')").length > 0)) {
-              /*  var art_f = ch_tit.replace("tangerine","")
-               $('.am_titl').html(art_f);*/
-               $('.art_col').html('tangerine');
-              		{% if collection.title == "ENSO headbands" or collection.handle == "enso-headbands-and-head-wraps" or collection.handle == "enso-wholesale" %}
-                        $('.am_titl').html('ENSO classic');
-                		var art = 'HerTangerineEnso';
-                        $('.ht_tit').html(art);
-                        $('.inst_cont').find('a').remove();
-                        newInstagram(art);
-                    {% elsif collection.title == "ENSO headbands men's only" %}
-                        $('.am_titl').html('ENSO classic');
-                		var art = 'HisTangerineEnso';
-                        $('.ht_tit').html(art);
-                        $('.inst_cont').find('a').remove();
-                        newInstagram(art);
-                    {% elsif collection.title == "HU headbands" or collection.handle == "hu-wholesale" collection.handle == 'hu-sweatbands' %}
-                        $('.am_titl').html('HU');
-                		var art = 'HerTangerineHu';
-                        $('.ht_tit').html(art);
-                        $('.inst_cont').find('a').remove();
-                        newInstagram(art);
-                    {% elsif collection.title == "HU headbands men's only" %}
-                        $('.am_titl').html('HU');
-                		var art = 'HisTangerineHu';
-                        $('.ht_tit').html(art);
-                        $('.inst_cont').find('a').remove();
-                        newInstagram(art);
-    		 		{% endif %}
-            }
-    		else if (($(asd_rew).find(".prd_title:contains('limestone grey')").length > 0)) {
-               $('.art_col').html('limestone grey');
-              		{% if collection.title == "ENSO headbands" or collection.handle == "enso-headbands-and-head-wraps" or collection.handle == "enso-wholesale" %}
-                        $('.am_titl').html('ENSO classic');
-                		var art = 'HerLimestoneGreyEnso';
-                        $('.ht_tit').html(art);
-                        $('.inst_cont').find('a').remove();
-                        newInstagram(art);
-                    {% elsif collection.title == "ENSO headbands men's only" %}
-                        $('.am_titl').html('ENSO classic');
-                		var art = 'HisLimestoneGreyEnso';
-                        $('.ht_tit').html(art);
-                        $('.inst_cont').find('a').remove();
-                        newInstagram(art);
-                    {% elsif collection.title == "HU headbands" or collection.handle == "hu-wholesale" collection.handle == 'hu-sweatbands' %}
-                        $('.am_titl').html('HU');
-                		var art = 'HerLimestoneGreyHu';
-                        $('.ht_tit').html(art);
-                        $('.inst_cont').find('a').remove();
-                        newInstagram(art);
-                    {% elsif collection.title == "HU headbands men's only" %}
-                        $('.am_titl').html('HU');
-                		var art = 'HisLimestoneGreyHu';
-                        $('.ht_tit').html(art);
-                        $('.inst_cont').find('a').remove();
-                        newInstagram(art);
-    		 		{% endif %}
-            }
-    		else if (($(asd_rew).find(".prd_title:contains('marsala red')").length > 0)) {
-               $('.art_col').html('marsala red');
-              		{% if collection.title == "ENSO headbands" or collection.handle == "enso-headbands-and-head-wraps" or collection.handle == "enso-wholesale" %}
-                        $('.am_titl').html('ENSO classic');
-                		var art = 'HerMarsalaRedEnso';
-                        $('.ht_tit').html(art);
-                        $('.inst_cont').find('a').remove();
-                        newInstagram(art);
-                    {% elsif collection.title == "ENSO headbands men's only" %}
-                        $('.am_titl').html('ENSO classic');
-                		var art = 'HisMarsalaRedEnso';
-                        $('.ht_tit').html(art);
-                        $('.inst_cont').find('a').remove();
-                        newInstagram(art);
-                    {% elsif collection.title == "HU headbands" or collection.handle == "hu-wholesale" collection.handle == 'hu-sweatbands' %}
-                        $('.am_titl').html('HU');
-                		var art = 'HerMarsalaRedHu';
-                        $('.ht_tit').html(art);
-                        $('.inst_cont').find('a').remove();
-                        newInstagram(art);
-                    {% elsif collection.title == "HU headbands men's only" %}
-                        $('.am_titl').html('HU');
-                		var art = 'HisMarsalaRedHu';
-                        $('.ht_tit').html(art);
-                        $('.inst_cont').find('a').remove();
-                        newInstagram(art);
-    		 		{% endif %}
-            }
-    		else if (($(asd_rew).find(".prd_title:contains('crown blue')").length > 0)) {
-               $('.art_col').html('crown blue');
-              		{% if collection.title == "ENSO headbands" or collection.handle == "enso-headbands-and-head-wraps" or collection.handle == "enso-wholesale" %}
-                        $('.am_titl').html('ENSO batik');
-                		var art = 'HerCrownBlueEnso';
-                        $('.ht_tit').html(art);
-                        $('.inst_cont').find('a').remove();
-                        newInstagram(art);
-                    {% elsif collection.title == "ENSO headbands men's only" %}
-                        $('.am_titl').html('ENSO batik');
-                		var art = 'HisCrownBlueEnso';
-                        $('.ht_tit').html(art);
-                        $('.inst_cont').find('a').remove();
-                        newInstagram(art);
-                    {% elsif collection.title == "HU headbands" or collection.handle == "hu-wholesale" or collection.handle == 'hu-sweatbands' %}
-                        $('.am_titl').html('HU');
-                		var art = 'HerCrownBlueHu';
-                        $('.ht_tit').html(art);
-                        $('.inst_cont').find('a').remove();
-                        newInstagram(art);
-                    {% elsif collection.title == "HU headbands men's only" %}
-                        $('.am_titl').html('HU');
-                		var art = 'HisCrownBlueHu';
-                        $('.ht_tit').html(art);
-                        $('.inst_cont').find('a').remove();
-                        newInstagram(art);
-    		 		{% endif %}
-            }
-            else if (($(asd_rew).find(".prd_title:contains('viola purple')").length > 0)) {
-                var art_f = ch_tit.replace("viola purple","")
-               $('.am_titl').html(art_f);
-               $('.art_col').html('viola purple');
-               		{% if collection.title == 'HU headbands' or collection.handle == "hu-wholesale"%}
-                        var art = 'HerViolaHu';
-                        $('.ht_tit').html(art);
-                        $('.inst_cont').find('a').remove();
-                        newInstagram(art);
-                	{% elsif collection.title == "ENSO headbands" or collection.handle == "enso-headbands-and-head-wraps" or collection.handle == "enso-wholesale" %}
-                        $('.am_titl').html('ENSO classic');
-                		var art = 'HerViolaEnso';
-                        $('.ht_tit').html(art);
-                        $('.inst_cont').find('a').remove();
-                        newInstagram(art);
-    		 		{% endif %}
-            }
-            else if (($(asd_rew).find(".prd_title:contains('neutrals')").length > 0)) {
-                var art_f = ch_tit.replace("neutrals","")
-               $('.am_titl').html(art_f);
-               $('.art_col').html('neutrals');
-                   	{% if collection.title == 'LILA hairties' or collection.title == 'Hairties' or collection.handle == "lila-wholesale" %}
-                        var art = 'HerNeutralLila';
-                        $('.ht_tit').html(art);
-                        $('.inst_cont').find('a').remove();
-                        newInstagram(art);
-                	{% elsif collection.title == "LILA Hairties men's only" %}
-                		var art = 'HisNeutralLila';
-                        $('.ht_tit').html(art);
-                        $('.inst_cont').find('a').remove();
-                        newInstagram(art);
-                    {% endif %}
-            }
-            else if (($(asd_rew).find(".prd_title:contains('playful')").length > 0)) {
-               var art_f = ch_tit.replace("playful","")
-               $('.am_titl').html(art_f);
-               $('.art_col').html('playful');
-                	{% if collection.title == 'LILA hairties' or collection.title == 'Hairties' or collection.handle == "lila-wholesale" %}
-                        var art = 'HerPlayfulLila';
-                        $('.ht_tit').html(art);
-                        $('.inst_cont').find('a').remove();
-                        newInstagram(art);
-                	{% elsif collection.title == "LILA Hairties men's only" %}
-                		var art = 'HisPlayfulLila';
-                        $('.ht_tit').html(art);
-                        $('.inst_cont').find('a').remove();
-                        newInstagram(art);
-                    {% endif %}
-            }
-            else if (($(asd_rew).find(".prd_title:contains('Colorful')").length > 0)) {
-               var art_f = ch_tit.replace("colorful","")
-               $('.am_titl').html(art_f);
-               $('.art_col').html('colorful');
-                	{% if collection.title == 'LILA hairties' or collection.title == 'Hairties' or collection.handle == "lila-wholesale" %}
-                        var art = 'HerColorfulLila';
-                        $('.ht_tit').html(art);
-                        $('.inst_cont').find('a').remove();
-                        newInstagram(art);
-                	{% elsif collection.title == "LILA Hairties men's only" %}
-                		var art = 'HisColorfulLila';
-                        $('.ht_tit').html(art);
-                        $('.inst_cont').find('a').remove();
-                        newInstagram(art);
-                    {% endif %}
-            }
-
-            else if (($(asd_rew).find(".prd_title:contains('dawn')").length > 0)) {
-               var art_f = ch_tit.replace("dawn","")
-               $('.am_titl').html(art_f);
-               $('.art_col').html('dawn');
-                {% if collection.title == 'Shawls' or collection.title == "Shawls Wholesale" or collection.title == "Wholesale" or collection.handle == "wholesale-scarves-and-shawls" %}
-                       var art = 'HerDawnShawl';
-                       $('.ht_tit').html(art);
-                       $('.inst_cont').find('a').remove();
-                       newInstagram(art);
-    		 	{% endif %}
-            }
-            else if (($(asd_rew).find(".prd_title:contains('amrit vela')").length > 0)) {
-               var art_f = ch_tit.replace("amrit vela","")
-               $('.am_titl').html(art_f);
-               $('.art_col').html('amrit vela');
-               {% if collection.title == 'Shawls' or collection.title == settings.productrow_1_collection or collection.title == "Shawls Wholesale" or collection.title == "Wholesale"  or collection.handle == "wholesale-scarves-and-shawls" %}
-                       var art = 'HerAmritVelaShawl';
-                       $('.ht_tit').html(art);
-                       $('.inst_cont').find('a').remove();
-                       newInstagram(art);
-    			{% endif %}
-            }
-            else if (($(asd_rew).find(".prd_title:contains('magenta pink')").length > 0)) {
-                var art_f = ch_tit.replace("magenta pink","")
-               $('.am_titl').html(art_f);
-               $('.art_col').html('magenta pink');
-                {% if collection.title == 'ENSO headbands'  or collection.handle == "enso-wholesale" %}
-                       $('.am_titl').html('ENSO batik');
-                       var art = 'HermagentapinkEnsoBatik';
-                       $('.ht_tit').html(art);
-                       $('.inst_cont').find('a').remove();
-                       newInstagram(art);
-    		 	{% endif %}
-            } else if (($(asd_rew).find(".prd_title:contains('mint green')").length > 0)) {
-                var art_f = ch_tit.replace("mint green","")
-               $('.am_titl').html(art_f);
-               $('.art_col').html('mint green');
-                {% if collection.title == "ENSO headbands" or collection.handle == "enso-headbands-and-head-wraps" or collection.handle == "enso-wholesale" %}
-                        $('.am_titl').html('ENSO batik');
-                		var art = 'HerMintGreenEnsoBatik';
-                        $('.ht_tit').html(art);
-                        $('.inst_cont').find('a').remove();
-                        newInstagram(art);
-                    {% elsif collection.title == "ENSO headbands men's only" %}
-                        $('.am_titl').html('ENSO batik');
-                		var art = 'HisMintGreenEnsoBatik';
-                        $('.ht_tit').html(art);
-                        $('.inst_cont').find('a').remove();
-                        newInstagram(art);
-    		 	{% endif %}
-            } else if (($(asd_rew).find(".prd_title:contains('radiant orchid')").length > 0)) {
-                var art_f = ch_tit.replace("radiant orchid","")
-               $('.am_titl').html(art_f);
-               $('.art_col').html('radiant orchid');
-               {% if collection.title == "ENSO headbands" or collection.handle == "enso-headbands-and-head-wraps" or collection.handle == "enso-wholesale" %}
-                        $('.am_titl').html('ENSO classic');
-                		var art = 'HerRadiantOrchidEnso';
-                        $('.ht_tit').html(art);
-                        $('.inst_cont').find('a').remove();
-                        newInstagram(art);
-                    {% elsif collection.title == "ENSO headbands men's only" %}
-                        $('.am_titl').html('ENSO batik');
-                		var art = 'HisRadiantOrchidEnso';
-                        $('.ht_tit').html(art);
-                        $('.inst_cont').find('a').remove();
-                        newInstagram(art);
-    		 	{% endif %}
+			   $('.art_col').html('black');
 
 
-            } else if (($(asd_rew).find(".prd_title:contains('coral')").length > 0)) {
-                var art_f = ch_tit.replace("coral","")
-               $('.am_titl').html(art_f);
-               $('.art_col').html('coral');
-                        $('.am_titl').html('ENSO batik');
-                		var art = 'HerCoralEnso';
-                        $('.ht_tit').html(art);
-                        $('.inst_cont').find('a').remove();
-                        newInstagram(art);
-            } else if (($(asd_rew).find(".prd_title:contains('blazing yellow')").length > 0)) {
-                var art_f = ch_tit.replace("blazing yellow","")
-               $('.am_titl').html(art_f);
-               $('.art_col').html('blazing yellow');
-                {% if collection.title == "ENSO headbands" or collection.handle == "enso-headbands-and-head-wraps" or collection.handle == "enso-wholesale" %}
-                        $('.am_titl').html('ENSO batik');
-                		var art = 'HerBlazingYellowEnsoBatik';
-                        $('.ht_tit').html(art);
-                        $('.inst_cont').find('a').remove();
-                        newInstagram(art);
-                    {% elsif collection.title == "ENSO headbands men's only" %}
-                        $('.am_titl').html('ENSO batik');
-                		var art = 'HisBlazingYellowEnsoBatik';
-                        $('.ht_tit').html(art);
-                        $('.inst_cont').find('a').remove();
-                        newInstagram(art);
-    		 	{% endif %}
-            } else if (($(asd_rew).find(".prd_title:contains('Blazing Yellow')").length > 0)) {
-                var art_f = ch_tit.replace("Blazing Yellow","")
-               $('.am_titl').html(art_f);
-               $('.art_col').html('Blazing Yellow');
-                        $('.am_titl').html('ENSO classic');
-                		var art = 'HerBlazingYellowEnso';
-                        $('.ht_tit').html(art);
-                        $('.inst_cont').find('a').remove();
-                        newInstagram(art);
-            }
+					   {% if collection.title == "ENSO headbands" or collection.handle == "enso-headbands-and-head-wraps" or collection.handle == "enso-wholesale" or collection.handle == "enso-headbands-and-head-wraps" %}
+						if ( ch_tit == 'ENSO BATIK black'){
+							$('.am_titl').html('ENSO batik');
+							var art = 'HerBlackEnsoBatik';
+							$('.ht_tit').html(art);
+							$('.inst_cont').find('a').remove();
+							newInstagram(art);
+						}else if (ch_tit == 'ENSO black'){
+							$('.am_titl').html('ENSO classic');
+							var art = 'HerBlackEnso';
+							$('.ht_tit').html(art);
+							$('.inst_cont').find('a').remove();
+							newInstagram(art);
+						}
+					{% elsif collection.title == "ENSO headbands men's only" %}
+						if ( ch_tit == 'ENSO BATIK black'){
+							$('.am_titl').html('ENSO batik');
+							var art = 'HisBlackEnsoBatik';
+							$('.ht_tit').html(art);
+							$('.inst_cont').find('a').remove();
+							newInstagram(art);
+						}else if (ch_tit == 'ENSO black'){
+							$('.am_titl').html('ENSO classic');
+							var art = 'HisBlackEnso';
+							$('.ht_tit').html(art);
+							$('.inst_cont').find('a').remove();
+							newInstagram(art);
+						}
+
+					{% elsif collection.title == "HU headbands men's only" %}
+						var art_f = ch_tit.replace("black","")
+						$('.am_titl').html(art_f);
+						var art = 'HisBlackHu';
+						$('.ht_tit').html(art);
+						$('.inst_cont').find('a').remove();
+						newInstagram(art);
+					 {% elsif collection.title == "AUREA headbands" or collection.handle == "aurea-wholesale" %}
+						$('.am_titl').html('AUREA classic');
+						var art = 'HerBlackAurea';
+						$('.ht_tit').html(art);
+						$('.inst_cont').find('a').remove();
+						newInstagram(art);
+					 {% elsif collection.title == "AUREA headbands men's only" %}
+						$('.am_titl').html('AUREA classic');
+						var art = 'HisBlackAurea';
+						$('.ht_tit').html(art);
+						$('.inst_cont').find('a').remove();
+						newInstagram(art);
+					 {% elsif collection.title == "HU headbands" or collection.title == settings.productrow_1_collection or collection.handle == "hu-wholesale" collection.handle == 'hu-sweatbands' %}
+						var art_f = ch_tit.replace("black","")
+						$('.am_titl').html(art_f);
+						var art = 'HerBlackHu';
+						$('.ht_tit').html(art);
+						$('.inst_cont').find('a').remove();
+						newInstagram(art);
+					 {% elsif collection.title == 'LILA hairties' or collection.title == 'Hairties' or collection.handle == "lila-wholesale" %}
+						var art = 'HerBlackLila';
+						$('.ht_tit').html(art);
+						$('.inst_cont').find('a').remove();
+						newInstagram(art);
+					{% elsif collection.title == "LILA Hairties men's only" %}
+						var art = 'HisBlackLila';
+						$('.ht_tit').html(art);
+						$('.inst_cont').find('a').remove();
+						newInstagram(art);
+					{% endif %}
+					/**/
+
+			}
+			else if (($(asd_rew).find(".prd_title:contains('white')").length > 0)) {
+			   var art_f = ch_tit.replace("white","")
+			   $('.am_titl').html(art_f);
+			   $('.art_col').html('white');
+					  {% if collection.title == "ENSO headbands" or collection.handle == "enso-headbands-and-head-wraps" or collection.handle == "enso-wholesale" %}
+						$('.am_titl').html('ENSO classic');
+						var art = 'HerWhiteEnso';
+						$('.ht_tit').html(art);
+						$('.inst_cont').find('a').remove();
+						newInstagram(art);
+					{% elsif collection.title == "ENSO headbands men's only" %}
+						$('.am_titl').html('ENSO classic');
+						var art = 'HisWhiteEnso';
+						$('.ht_tit').html(art);
+						$('.inst_cont').find('a').remove();
+						newInstagram(art);
+					{% elsif collection.title == "HU headbands" or collection.handle == "hu-wholesale" collection.handle == 'hu-sweatbands' %}
+						var art = 'HerWhiteHu';
+						$('.ht_tit').html(art);
+						$('.inst_cont').find('a').remove();
+						newInstagram(art);
+					{% elsif collection.title == "HU headbands men's only" %}
+						var art = 'HisWhiteHu';
+						$('.ht_tit').html(art);
+						$('.inst_cont').find('a').remove();
+						newInstagram(art);
+					 {% endif %}
+			}
+			else if (($(asd_rew).find(".prd_title:contains('royal blue')").length > 0)) {
+			   $('.art_col').html('royal blue');
+					  {% if collection.title == "ENSO headbands" or collection.handle == "enso-headbands-and-head-wraps" or collection.handle == "enso-wholesale" %}
+						$('.am_titl').html('ENSO classic');
+						var art = 'HerroyalBlueEnso';
+						$('.ht_tit').html(art);
+						$('.inst_cont').find('a').remove();
+						newInstagram(art);
+					{% elsif collection.title == "ENSO headbands men's only" %}
+						$('.am_titl').html('ENSO classic');
+						var art = 'HisroyalBlueEnso';
+						$('.ht_tit').html(art);
+						$('.inst_cont').find('a').remove();
+						newInstagram(art);
+					{% elsif collection.title == "HU headbands" or collection.handle == "hu-wholesale" collection.handle == 'hu-sweatbands' %}
+						var art_f = ch_tit.replace("royal blue","")
+						$('.am_titl').html(art_f);
+						var art = 'HerroyalBlueHu';
+						$('.ht_tit').html(art);
+						$('.inst_cont').find('a').remove();
+						newInstagram(art);
+					{% elsif collection.title == "HU headbands men's only" %}
+						var art_f = ch_tit.replace("royal blue","")
+						$('.am_titl').html(art_f);
+						var art = 'HisroyalBlueHu';
+						$('.ht_tit').html(art);
+						$('.inst_cont').find('a').remove();
+						newInstagram(art);
+					 {% elsif collection.title == "AUREA headbands" or collection.handle == "aurea-wholesale" %}
+						$('.am_titl').html('AUREA classic');
+						var art = 'HerroyalBlueAurea';
+						$('.ht_tit').html(art);
+						$('.inst_cont').find('a').remove();
+						newInstagram(art);
+					 {% elsif collection.title == "AUREA headbands men's only" %}
+						$('.am_titl').html('AUREA classic');
+						var art = 'HisroyalBlueAurea';
+						$('.ht_tit').html(art);
+						$('.inst_cont').find('a').remove();
+						newInstagram(art);
+					 {% endif %}
+			}
+			else if (($(asd_rew).find(".prd_title:contains('deep purple')").length > 0)) {
+			  /* var art_f = ch_tit.replace("deep purple & light Purple","")
+			   $('.am_titl').html(art_f);*/
+			   $('.am_titl').html('AUREA ombre');
+			   $('.art_col').html('deep purple/light Purple');
+					  {% if collection.title == "AUREA headbands" or collection.handle == "aurea-wholesale" %}
+						var art = 'HerPurpleAureaOmbre';
+						$('.ht_tit').html(art);
+						$('.inst_cont').find('a').remove();
+						newInstagram(art);
+					 {% endif %}
+			}
+			else if (($(asd_rew).find(".prd_title:contains('dusk blue')").length > 0)) {
+			  /* var art_f = ch_tit.replace("dusk blue & tender shoots","")
+			   $('.am_titl').html(art_f);*/
+			   $('.am_titl').html('AUREA ombre');
+			   $('.art_col').html('dusk blue/tender shoots');
+					  {% if collection.title == "AUREA headbands" or collection.handle == "aurea-wholesale" %}
+						var art = 'HerBlueGreenAureaOmbre';
+						$('.ht_tit').html(art);
+						$('.inst_cont').find('a').remove();
+						newInstagram(art);
+					 {% endif %}
+			}
+			else if (($(asd_rew).find(".prd_title:contains('blue/green')").length > 0)) {
+			  /* var art_f = ch_tit.replace("dusk blue & tender shoots","")
+			   $('.am_titl').html(art_f);*/
+			   $('.am_titl').html('AUREA ombre');
+			   $('.art_col').html('blue/green');
+					  {% if collection.title == "AUREA headbands men's only" %}
+						var art = 'HisBlueGreenAureaOmbre';
+						$('.ht_tit').html(art);
+						$('.inst_cont').find('a').remove();
+						newInstagram(art);
+					 {% endif %}
+			}
+			else if (($(asd_rew).find(".prd_title:contains('pink flambe')").length > 0)) {
+			  /*  var art_f = ch_tit.replace("pink flambe/peach nectar","")
+			   $('.am_titl').html(art_f);*/
+			   $('.am_titl').html('AUREA ombre');
+			   $('.art_col').html('pink flambe/peach nectar');
+					  {% if collection.title == "AUREA headbands" or collection.handle == "aurea-wholesale" %}
+						var art = 'HerPinkPeachAureaOmbre';
+						$('.ht_tit').html(art);
+						$('.inst_cont').find('a').remove();
+						newInstagram(art);
+					 {% endif %}
+			}
+			else if (($(asd_rew).find(".prd_title:contains('opal')").length > 0)) {
+			   $('.art_col').html('opal');
+					{% if collection.title == "ENSO headbands" or collection.handle == "enso-headbands-and-head-wraps" or collection.handle == "enso-wholesale" %}
+						$('.am_titl').html('ENSO classic');
+						var art = 'HerOpalEnso';
+						$('.ht_tit').html(art);
+						$('.inst_cont').find('a').remove();
+						newInstagram(art);
+					{% elsif collection.title == "ENSO headbands men's only" %}
+						$('.am_titl').html('ENSO classic');
+						var art = 'HisOpalEnso';
+						$('.ht_tit').html(art);
+						$('.inst_cont').find('a').remove();
+						newInstagram(art);
+					{% elsif collection.title == "HU headbands" or collection.handle == "hu-wholesale" collection.handle == 'hu-sweatbands' %}
+						var art_f = ch_tit.replace("opal","")
+						$('.am_titl').html(art_f);
+						var art = 'HerOpalHu';
+						$('.ht_tit').html(art);
+						$('.inst_cont').find('a').remove();
+						newInstagram(art);
+					{% elsif collection.title == "HU headbands men's only" %}
+						var art_f = ch_tit.replace("opal","")
+						$('.am_titl').html(art_f);
+						var art = 'HisOpalHu';
+						$('.ht_tit').html(art);
+						$('.inst_cont').find('a').remove();
+						newInstagram(art);
+					 {% elsif collection.title == "AUREA headbands" or collection.handle == "aurea-wholesale" %}
+						$('.am_titl').html('AUREA classic');
+						var art = 'HerOpalAurea';
+						$('.ht_tit').html(art);
+						$('.inst_cont').find('a').remove();
+						newInstagram(art);
+					 {% elsif collection.title == "AUREA headbands men's only" %}
+						$('.am_titl').html('AUREA classic');
+						var art = 'HisOpalAurea';
+						$('.ht_tit').html(art);
+						$('.inst_cont').find('a').remove();
+						newInstagram(art);
+					 {% endif %}
+			}
+			else if (($(asd_rew).find(".prd_title:contains('peach whip pink')").length > 0)) {
+				 var art_f = ch_tit.replace("peach whip pink","")
+			   $('.am_titl').html(art_f);
+			   $('.art_col').html('peach whip pink');
+					  {% if collection.title == "ENSO headbands" or collection.handle == "enso-headbands-and-head-wraps" or collection.handle == "enso-wholesale" %}
+						$('.am_titl').html('ENSO classic');
+						var art = 'HerPeachWhipPinkEnso';
+						$('.ht_tit').html(art);
+						$('.inst_cont').find('a').remove();
+						newInstagram(art);
+					  {% elsif collection.title == "AUREA headbands" or collection.handle == "aurea-wholesale" %}
+						$('.am_titl').html('AUREA classic');
+						var art = 'HerPeachWhipPinkAurea';
+						$('.ht_tit').html(art);
+						$('.inst_cont').find('a').remove();
+						newInstagram(art);
+					 {% elsif collection.title == "HU headbands" or collection.handle == "hu-wholesale" collection.handle == 'hu-sweatbands' %}
+						var art = 'HerPeachWhipPinkHu';
+						$('.ht_tit').html(art);
+						$('.inst_cont').find('a').remove();
+						newInstagram(art);
+					 {% endif %}
+			}
+			else if (($(asd_rew).find(".prd_title:contains('ether blue')").length > 0)) {
+			  /*   var art_f = ch_tit.replace("ether blue","")
+			   $('.am_titl').html(art_f);*/
+			   $('.am_titl').html('ENSO batik');
+			   $('.art_col').html('ether blue');
+					  {% if collection.title == "ENSO headbands" or collection.handle == "enso-headbands-and-head-wraps" or collection.handle == "enso-wholesale"%}
+						var art = 'HerEtherBlueEnsoBatik';
+						$('.ht_tit').html(art);
+						$('.inst_cont').find('a').remove();
+						newInstagram(art);
+					{% elsif collection.title == "ENSO headbands men's only" %}
+						var art = 'HisEtherBlueEnsoBatik';
+						$('.ht_tit').html(art);
+						$('.inst_cont').find('a').remove();
+						newInstagram(art);
+					 {% endif %}
+			}
+			else if (($(asd_rew).find(".prd_title:contains('light grey')").length > 0)) {
+			  /*  var art_f = ch_tit.replace("light grey","")
+			   $('.am_titl').html(art_f);*/
+			   $('.am_titl').html('ENSO batik');
+			   $('.art_col').html('light grey');
+					  {% if collection.title == "ENSO headbands" or collection.handle == "enso-headbands-and-head-wraps" or collection.handle == "enso-wholesale" %}
+						var art = 'HerLightGreyEnsoBatik';
+						$('.ht_tit').html(art);
+						$('.inst_cont').find('a').remove();
+						newInstagram(art);
+					{% elsif collection.title == "ENSO headbands men's only" %}
+						var art = 'HisLightGreyEnsoBatik';
+						$('.ht_tit').html(art);
+						$('.inst_cont').find('a').remove();
+						newInstagram(art);
+					 {% endif %}
+			}
+			else if (($(asd_rew).find(".prd_title:contains('majolica blue')").length > 0)) {
+			  /*   var art_f = ch_tit.replace("majolica blue","")
+			   $('.am_titl').html(art_f);*/
+			   $('.am_titl').html('ENSO batik');
+			   $('.art_col').html('majolica blue');
+					  {% if collection.title == "ENSO headbands" or collection.handle == "enso-headbands-and-head-wraps" or collection.title == settings.productrow_1_collection or collection.handle == "enso-wholesale" %}
+						var art = 'HerMajolicaBlueEnsoBatik';
+						$('.ht_tit').html(art);
+						$('.inst_cont').find('a').remove();
+						newInstagram(art);
+					{% elsif collection.title == "ENSO headbands men's only" %}
+						var art = 'HisMajolicaBlueEnsoBatik';
+						$('.ht_tit').html(art);
+						$('.inst_cont').find('a').remove();
+						newInstagram(art);
+					 {% endif %}
+			}
+			else if (($(asd_rew).find(".prd_title:contains('silver cloud grey')").length > 0)) {
+				 var art_f = ch_tit.replace("silver cloud grey","")
+			   $('.am_titl').html(art_f);
+			   $('.art_col').html('silver cloud grey');
+			   console.log(art_f);
+					{% if collection.title == "ENSO headbands" or collection.handle == "enso-headbands-and-head-wraps" or collection.handle == "enso-wholesale" %}
+
+						$('.am_titl').html('ENSO classic');
+						var art = 'HerSilverCloudGreyEnso';
+						$('.ht_tit').html(art);
+						$('.inst_cont').find('a').remove();
+						newInstagram(art);
+					{% elsif collection.title == "ENSO headbands men's only" %}
+						$('.am_titl').html('ENSO classic');
+						var art = 'HisSilverCloudGreyEnso';
+						$('.ht_tit').html(art);
+						$('.inst_cont').find('a').remove();
+						newInstagram(art);
+					{% elsif collection.title == "HU headbands" or collection.handle == "hu-wholesale" collection.handle == 'hu-sweatbands' %}
+
+						var art = 'HerSilverCloudGreyHu';
+
+						$('.ht_tit').html(art);
+						$('.inst_cont').find('a').remove();
+						newInstagram(art);
+					{% elsif collection.title == "HU headbands men's only" %}
+						var art = 'HisSilverCloudGreyHu';
+						$('.ht_tit').html(art);
+						$('.inst_cont').find('a').remove();
+						newInstagram(art);
+					 {% endif %}
+			} else if (($(asd_rew).find(".prd_title:contains('walnut')").length > 0)) {
+				 var art_f = ch_tit.replace("walnut","")
+			   $('.am_titl').html(art_f);
+			   $('.art_col').html('walnut');
+			   console.log(art_f);
+					{% if collection.title == "ENSO headbands" or collection.handle == "enso-headbands-and-head-wraps" or collection.handle == "enso-wholesale" %}
+						$('.am_titl').html('ENSO classic');
+						var art = 'HerWalnutEnso';
+						$('.ht_tit').html(art);
+						$('.inst_cont').find('a').remove();
+						newInstagram(art);
+					{% elsif collection.title == "ENSO headbands men's only" %}
+						$('.am_titl').html('ENSO classic');
+						var art = 'HisWalnutEnso';
+						$('.ht_tit').html(art);
+						$('.inst_cont').find('a').remove();
+						newInstagram(art);
+					{% elsif collection.title == "HU headbands" or collection.handle == "hu-wholesale" collection.handle == 'hu-sweatbands' %}
+						var art = 'HerWalnutHu';
+						$('.ht_tit').html(art);
+						$('.inst_cont').find('a').remove();
+						newInstagram(art);
+					{% elsif collection.title == "HU headbands men's only" %}
+						var art = 'HisWalnutHu';
+						$('.ht_tit').html(art);
+						$('.inst_cont').find('a').remove();
+						newInstagram(art);
+					 {% endif %}
+			} else if (($(asd_rew).find(".prd_title:contains('safari green')").length > 0)) {
+			   var art_f = ch_tit.replace("safari green","")
+			   $('.am_titl').html(art_f);
+			   $('.art_col').html('safari green');
+			   console.log(art_f);
+					{% if collection.title == "ENSO headbands" or collection.handle == "enso-headbands-and-head-wraps" or collection.handle == "enso-wholesale" %}
+						$('.am_titl').html('ENSO classic');
+						var art = 'HerSafariGreenEnso';
+						$('.ht_tit').html(art);
+						$('.inst_cont').find('a').remove();
+						newInstagram(art);
+					{% elsif collection.title == "ENSO headbands men's only" %}
+						$('.am_titl').html('ENSO classic');
+						var art = 'HisSafariGreenEnso';
+						$('.ht_tit').html(art);
+						$('.inst_cont').find('a').remove();
+						newInstagram(art);
+					{% elsif collection.title == "HU headbands" or collection.handle == "hu-wholesale" collection.handle == 'hu-sweatbands' %}
+						var art = 'HerSafariGreenHu';
+						$('.ht_tit').html(art);
+						$('.inst_cont').find('a').remove();
+						newInstagram(art);
+					{% elsif collection.title == "HU headbands men's only" %}
+						var art = 'HisSafariGreenHu';
+						$('.ht_tit').html(art);
+						$('.inst_cont').find('a').remove();
+						newInstagram(art);
+					 {% endif %}
+			} else if (($(asd_rew).find(".prd_title:contains('steel grey')").length > 0)) {
+			   var art_f = ch_tit.replace("steel grey","");
+			   $('.am_titl').html('ENSO batik');
+			   $('.art_col').html('steel grey');
+					  {% if collection.title == "ENSO headbands" or collection.handle == "enso-headbands-and-head-wraps" or collection.handle == "enso-wholesale"%}
+						var art = 'HerSteelGreyEnso';
+						$('.ht_tit').html(art);
+						$('.inst_cont').find('a').remove();
+						newInstagram(art);
+					{% elsif collection.title == "ENSO headbands men's only" %}
+						var art = 'HisSteelGreyEnso';
+						$('.ht_tit').html(art);
+						$('.inst_cont').find('a').remove();
+						newInstagram(art);
+					 {% endif %}
+			}
+			else if (($(asd_rew).find(".prd_title:contains('deep lavender')").length > 0)) {
+			   var art_f = ch_tit.replace("deep lavender","");
+			   $('.am_titl').html('ENSO batik');
+			   $('.art_col').html('deep lavender');
+					  {% if collection.title == "ENSO headbands" or collection.handle == "enso-headbands-and-head-wraps" or collection.handle == "enso-wholesale"%}
+						var art = 'HerDeepLavenderEnso';
+						$('.ht_tit').html(art);
+						$('.inst_cont').find('a').remove();
+						newInstagram(art);
+					{% elsif collection.title == "ENSO headbands men's only" %}
+						var art = 'HisDeepLavenderEnso';
+						$('.ht_tit').html(art);
+						$('.inst_cont').find('a').remove();
+						newInstagram(art);
+					 {% endif %}
+			}
+			else if (($(asd_rew).find(".prd_title:contains('tangerine')").length > 0)) {
+			  /*  var art_f = ch_tit.replace("tangerine","")
+			   $('.am_titl').html(art_f);*/
+			   $('.art_col').html('tangerine');
+					  {% if collection.title == "ENSO headbands" or collection.handle == "enso-headbands-and-head-wraps" or collection.handle == "enso-wholesale" %}
+						$('.am_titl').html('ENSO classic');
+						var art = 'HerTangerineEnso';
+						$('.ht_tit').html(art);
+						$('.inst_cont').find('a').remove();
+						newInstagram(art);
+					{% elsif collection.title == "ENSO headbands men's only" %}
+						$('.am_titl').html('ENSO classic');
+						var art = 'HisTangerineEnso';
+						$('.ht_tit').html(art);
+						$('.inst_cont').find('a').remove();
+						newInstagram(art);
+					{% elsif collection.title == "HU headbands" or collection.handle == "hu-wholesale" collection.handle == 'hu-sweatbands' %}
+						$('.am_titl').html('HU');
+						var art = 'HerTangerineHu';
+						$('.ht_tit').html(art);
+						$('.inst_cont').find('a').remove();
+						newInstagram(art);
+					{% elsif collection.title == "HU headbands men's only" %}
+						$('.am_titl').html('HU');
+						var art = 'HisTangerineHu';
+						$('.ht_tit').html(art);
+						$('.inst_cont').find('a').remove();
+						newInstagram(art);
+					 {% endif %}
+			}
+			else if (($(asd_rew).find(".prd_title:contains('limestone grey')").length > 0)) {
+			   $('.art_col').html('limestone grey');
+					  {% if collection.title == "ENSO headbands" or collection.handle == "enso-headbands-and-head-wraps" or collection.handle == "enso-wholesale" %}
+						$('.am_titl').html('ENSO classic');
+						var art = 'HerLimestoneGreyEnso';
+						$('.ht_tit').html(art);
+						$('.inst_cont').find('a').remove();
+						newInstagram(art);
+					{% elsif collection.title == "ENSO headbands men's only" %}
+						$('.am_titl').html('ENSO classic');
+						var art = 'HisLimestoneGreyEnso';
+						$('.ht_tit').html(art);
+						$('.inst_cont').find('a').remove();
+						newInstagram(art);
+					{% elsif collection.title == "HU headbands" or collection.handle == "hu-wholesale" collection.handle == 'hu-sweatbands' %}
+						$('.am_titl').html('HU');
+						var art = 'HerLimestoneGreyHu';
+						$('.ht_tit').html(art);
+						$('.inst_cont').find('a').remove();
+						newInstagram(art);
+					{% elsif collection.title == "HU headbands men's only" %}
+						$('.am_titl').html('HU');
+						var art = 'HisLimestoneGreyHu';
+						$('.ht_tit').html(art);
+						$('.inst_cont').find('a').remove();
+						newInstagram(art);
+					 {% endif %}
+			}
+			else if (($(asd_rew).find(".prd_title:contains('marsala red')").length > 0)) {
+			   $('.art_col').html('marsala red');
+					  {% if collection.title == "ENSO headbands" or collection.handle == "enso-headbands-and-head-wraps" or collection.handle == "enso-wholesale" %}
+						$('.am_titl').html('ENSO classic');
+						var art = 'HerMarsalaRedEnso';
+						$('.ht_tit').html(art);
+						$('.inst_cont').find('a').remove();
+						newInstagram(art);
+					{% elsif collection.title == "ENSO headbands men's only" %}
+						$('.am_titl').html('ENSO classic');
+						var art = 'HisMarsalaRedEnso';
+						$('.ht_tit').html(art);
+						$('.inst_cont').find('a').remove();
+						newInstagram(art);
+					{% elsif collection.title == "HU headbands" or collection.handle == "hu-wholesale" collection.handle == 'hu-sweatbands' %}
+						$('.am_titl').html('HU');
+						var art = 'HerMarsalaRedHu';
+						$('.ht_tit').html(art);
+						$('.inst_cont').find('a').remove();
+						newInstagram(art);
+					{% elsif collection.title == "HU headbands men's only" %}
+						$('.am_titl').html('HU');
+						var art = 'HisMarsalaRedHu';
+						$('.ht_tit').html(art);
+						$('.inst_cont').find('a').remove();
+						newInstagram(art);
+					 {% endif %}
+			}
+			else if (($(asd_rew).find(".prd_title:contains('crown blue')").length > 0)) {
+			   $('.art_col').html('crown blue');
+					  {% if product.title contains "BATIK" %}
+						$('.am_titl').html('ENSO batik');
+						var art = 'HerCrownBlueEnso';
+						$('.ht_tit').html(art);
+						$('.inst_cont').find('a').remove();
+						// newInstagram(art);
+					{% elsif collection.title == "ENSO headbands" or collection.handle == "enso-headbands-and-head-wraps" or collection.handle == "enso-wholesale" %}
+					  $('.am_titl').html('ENSO classic');
+					  var art = 'HerCrownBlueEnso';
+					  $('.ht_tit').html(art);
+					  $('.inst_cont').find('a').remove();
+					  // newInstagram(art);
+					{% elsif collection.title == "ENSO headbands men's only" %}
+						$('.am_titl').html('ENSO classic');
+						var art = 'HisCrownBlueEnso';
+						$('.ht_tit').html(art);
+						$('.inst_cont').find('a').remove();
+						// newInstagram(art);
+					{% elsif collection.title == "HU headbands" or collection.handle == "hu-wholesale" or collection.handle == 'hu-sweatbands' %}
+						$('.am_titl').html('HU');
+						var art = 'HerCrownBlueHu';
+						$('.ht_tit').html(art);
+						$('.inst_cont').find('a').remove();
+						newInstagram(art);
+					{% elsif collection.title == "HU headbands men's only" %}
+						$('.am_titl').html('HU');
+						var art = 'HisCrownBlueHu';
+						$('.ht_tit').html(art);
+						$('.inst_cont').find('a').remove();
+						newInstagram(art);
+					 {% endif %}
+			}
+			else if (($(asd_rew).find(".prd_title:contains('viola purple')").length > 0)) {
+				var art_f = ch_tit.replace("viola purple","")
+			   $('.am_titl').html(art_f);
+			   $('.art_col').html('viola purple');
+					   {% if collection.title == 'HU headbands' or collection.handle == "hu-wholesale"%}
+						var art = 'HerViolaHu';
+						$('.ht_tit').html(art);
+						$('.inst_cont').find('a').remove();
+						newInstagram(art);
+					{% elsif collection.title == "ENSO headbands" or collection.handle == "enso-headbands-and-head-wraps" or collection.handle == "enso-wholesale" %}
+						$('.am_titl').html('ENSO classic');
+						var art = 'HerViolaEnso';
+						$('.ht_tit').html(art);
+						$('.inst_cont').find('a').remove();
+						newInstagram(art);
+					 {% endif %}
+			}
+			else if (($(asd_rew).find(".prd_title:contains('neutrals')").length > 0)) {
+				var art_f = ch_tit.replace("neutrals","")
+			   $('.am_titl').html(art_f);
+			   $('.art_col').html('neutrals');
+					   {% if collection.title == 'LILA hairties' or collection.title == 'Hairties' or collection.handle == "lila-wholesale" %}
+						var art = 'HerNeutralLila';
+						$('.ht_tit').html(art);
+						$('.inst_cont').find('a').remove();
+						newInstagram(art);
+					{% elsif collection.title == "LILA Hairties men's only" %}
+						var art = 'HisNeutralLila';
+						$('.ht_tit').html(art);
+						$('.inst_cont').find('a').remove();
+						newInstagram(art);
+					{% endif %}
+			}
+			else if (($(asd_rew).find(".prd_title:contains('playful')").length > 0)) {
+			   var art_f = ch_tit.replace("playful","")
+			   $('.am_titl').html(art_f);
+			   $('.art_col').html('playful');
+					{% if collection.title == 'LILA hairties' or collection.title == 'Hairties' or collection.handle == "lila-wholesale" %}
+						var art = 'HerPlayfulLila';
+						$('.ht_tit').html(art);
+						$('.inst_cont').find('a').remove();
+						newInstagram(art);
+					{% elsif collection.title == "LILA Hairties men's only" %}
+						var art = 'HisPlayfulLila';
+						$('.ht_tit').html(art);
+						$('.inst_cont').find('a').remove();
+						newInstagram(art);
+					{% endif %}
+			}
+			else if (($(asd_rew).find(".prd_title:contains('Colorful')").length > 0)) {
+			   var art_f = ch_tit.replace("colorful","")
+			   $('.am_titl').html(art_f);
+			   $('.art_col').html('colorful');
+					{% if collection.title == 'LILA hairties' or collection.title == 'Hairties' or collection.handle == "lila-wholesale" %}
+						var art = 'HerColorfulLila';
+						$('.ht_tit').html(art);
+						$('.inst_cont').find('a').remove();
+						newInstagram(art);
+					{% elsif collection.title == "LILA Hairties men's only" %}
+						var art = 'HisColorfulLila';
+						$('.ht_tit').html(art);
+						$('.inst_cont').find('a').remove();
+						newInstagram(art);
+					{% endif %}
+			}
+
+			else if (($(asd_rew).find(".prd_title:contains('dawn')").length > 0)) {
+			   var art_f = ch_tit.replace("dawn","")
+			   $('.am_titl').html(art_f);
+			   $('.art_col').html('dawn');
+				{% if collection.title == 'Shawls' or collection.title == "Shawls Wholesale" or collection.title == "Wholesale" or collection.handle == "wholesale-scarves-and-shawls" %}
+					   var art = 'HerDawnShawl';
+					   $('.ht_tit').html(art);
+					   $('.inst_cont').find('a').remove();
+					   newInstagram(art);
+				 {% endif %}
+			}
+			else if (($(asd_rew).find(".prd_title:contains('amrit vela')").length > 0)) {
+			   var art_f = ch_tit.replace("amrit vela","")
+			   $('.am_titl').html(art_f);
+			   $('.art_col').html('amrit vela');
+			   {% if collection.title == 'Shawls' or collection.title == settings.productrow_1_collection or collection.title == "Shawls Wholesale" or collection.title == "Wholesale"  or collection.handle == "wholesale-scarves-and-shawls" %}
+					   var art = 'HerAmritVelaShawl';
+					   $('.ht_tit').html(art);
+					   $('.inst_cont').find('a').remove();
+					   newInstagram(art);
+				{% endif %}
+			}
+			else if (($(asd_rew).find(".prd_title:contains('magenta pink')").length > 0)) {
+				var art_f = ch_tit.replace("magenta pink","")
+			   $('.am_titl').html(art_f);
+			   $('.art_col').html('magenta pink');
+				{% if collection.title == 'ENSO headbands and head wraps'  or collection.handle == "enso-wholesale" %}
+					   $('.am_titl').html('ENSO batik');
+					   var art = 'HermagentapinkEnsoBatik';
+					   $('.ht_tit').html(art);
+					   $('.inst_cont').find('a').remove();
+					   newInstagram(art);
+				 {% endif %}
+			} else if (($(asd_rew).find(".prd_title:contains('mint green')").length > 0)) {
+				var art_f = ch_tit.replace("mint green","")
+			   $('.am_titl').html(art_f);
+			   $('.art_col').html('mint green');
+				{% if collection.title == "ENSO headbands" or collection.handle == "enso-headbands-and-head-wraps" or collection.handle == "enso-wholesale" %}
+						$('.am_titl').html('ENSO batik');
+						var art = 'HerMintGreenEnsoBatik';
+						$('.ht_tit').html(art);
+						$('.inst_cont').find('a').remove();
+						newInstagram(art);
+					{% elsif collection.title == "ENSO headbands men's only" %}
+						$('.am_titl').html('ENSO batik');
+						var art = 'HisMintGreenEnsoBatik';
+						$('.ht_tit').html(art);
+						$('.inst_cont').find('a').remove();
+						newInstagram(art);
+				 {% endif %}
+			} else if (($(asd_rew).find(".prd_title:contains('radiant orchid')").length > 0)) {
+				var art_f = ch_tit.replace("radiant orchid","")
+			   $('.am_titl').html(art_f);
+			   $('.art_col').html('radiant orchid');
+			   {% if collection.title == "ENSO headbands" or collection.handle == "enso-headbands-and-head-wraps" or collection.handle == "enso-wholesale" %}
+						$('.am_titl').html('ENSO classic');
+						var art = 'HerRadiantOrchidEnso';
+						$('.ht_tit').html(art);
+						$('.inst_cont').find('a').remove();
+						newInstagram(art);
+					{% elsif collection.title == "ENSO headbands men's only" %}
+						$('.am_titl').html('ENSO batik');
+						var art = 'HisRadiantOrchidEnso';
+						$('.ht_tit').html(art);
+						$('.inst_cont').find('a').remove();
+						newInstagram(art);
+				 {% endif %}
+
+
+			} else if (($(asd_rew).find(".prd_title:contains('coral')").length > 0)) {
+				var art_f = ch_tit.replace("coral","")
+			   $('.am_titl').html(art_f);
+			   $('.art_col').html('coral');
+						$('.am_titl').html('ENSO batik');
+						var art = 'HerCoralEnso';
+						$('.ht_tit').html(art);
+						$('.inst_cont').find('a').remove();
+						newInstagram(art);
+			} else if (($(asd_rew).find(".prd_title:contains('blazing yellow')").length > 0)) {
+				var art_f = ch_tit.replace("blazing yellow","")
+			   $('.am_titl').html(art_f);
+			   $('.art_col').html('blazing yellow');
+				{% if collection.title == "ENSO headbands" or collection.handle == "enso-headbands-and-head-wraps" or collection.handle == "enso-wholesale" %}
+						$('.am_titl').html('ENSO batik');
+						var art = 'HerBlazingYellowEnsoBatik';
+						$('.ht_tit').html(art);
+						$('.inst_cont').find('a').remove();
+						newInstagram(art);
+					{% elsif collection.title == "ENSO headbands men's only" %}
+						$('.am_titl').html('ENSO batik');
+						var art = 'HisBlazingYellowEnsoBatik';
+						$('.ht_tit').html(art);
+						$('.inst_cont').find('a').remove();
+						newInstagram(art);
+				 {% endif %}
+			} else if (($(asd_rew).find(".prd_title:contains('Blazing Yellow')").length > 0)) {
+				var art_f = ch_tit.replace("Blazing Yellow","")
+			   $('.am_titl').html(art_f);
+			   $('.art_col').html('Blazing Yellow');
+						$('.am_titl').html('ENSO classic');
+						var art = 'HerBlazingYellowEnso';
+						$('.ht_tit').html(art);
+						$('.inst_cont').find('a').remove();
+						newInstagram(art);
+			}
 
 
    };
-            });
+			});
 function newInstagram(h_tag) {
-    /*   var h_tag = 'HerDawnShawl';*/
+	/*   var h_tag = 'HerDawnShawl';*/
 
-    pollInstagram('https://api.instagram.com/v1/tags/' + h_tag + '/media/recent?access_token=1466375483.1fb234f.e590ec804d3946fcac7181e4dfb2c0e0&count=100');
+	pollInstagram('https://api.instagram.com/v1/tags/' + h_tag + '/media/recent?access_token=1466375483.1fb234f.e590ec804d3946fcac7181e4dfb2c0e0&count=100');
 }
 
 function pollInstagram(next_url, count) {
-   	console.log('01');
-    console.log(next_url, count);
-    $.ajax({
-        method: "GET",
-        url: next_url,
-        dataType: "jsonp",
-        jsonp: "callback",
-        jsonpCallback: "jsonpcallback",
-        success: function(data) {
-            $.each(data.data, function(i, item) {
-             /*   console.log(item, i);*/
-                /*     if( item.caption.from.username = "feelingkooshoo"){
-                 console.log(item.caption.from.username, 'item.caption.from.username');
-                 $('.inst_cont').prepend('<a class="'+item.id+'" href="'+item.images.standard_resolution.url+'" title="'+item.caption.text+'" rel="prettyPhoto[pp_gal]"><img  class="inst_img" src="'+item.images.thumbnail.url+'" /><div class="instotop">'+item.caption.text+'</div></a>');
-                 }else{*/
+	   console.log('01');
+	console.log(next_url, count);
+	$.ajax({
+		method: "GET",
+		url: next_url,
+		dataType: "jsonp",
+		jsonp: "callback",
+		jsonpCallback: "jsonpcallback",
+		success: function(data) {
+			$.each(data.data, function(i, item) {
+			 /*   console.log(item, i);*/
+				/*     if( item.caption.from.username = "feelingkooshoo"){
+				 console.log(item.caption.from.username, 'item.caption.from.username');
+				 $('.inst_cont').prepend('<a class="'+item.id+'" href="'+item.images.standard_resolution.url+'" title="'+item.caption.text+'" rel="prettyPhoto[pp_gal]"><img  class="inst_img" src="'+item.images.thumbnail.url+'" /><div class="instotop">'+item.caption.text+'</div></a>');
+				 }else{*/
 
-                $('.inst_cont').append('<a href="' + item.images.standard_resolution.url + '" title="' + item.caption.text + '" rel="prettyPhoto[pp_gal]"><img  class="inst_img" src="' + item.images.thumbnail.url + '" /><div class="instotop">' + item.caption.text + '</div></a>');
+				$('.inst_cont').append('<a href="' + item.images.standard_resolution.url + '" title="' + item.caption.text + '" rel="prettyPhoto[pp_gal]"><img  class="inst_img" src="' + item.images.thumbnail.url + '" /><div class="instotop">' + item.caption.text + '</div></a>');
 
 
-            });
-            console.log(data.pagination.next_url, 'next');
-            /*	if (data.pagination.next_url.length) {
-             if ($('.inst_img').length < 100){
-             pollInstagram(data.pagination.next_url);
-             console.log('wtf');
-             console.log(data.pagination.next_url);
-             }
-             }*/
-            console.log(data);
-        }
+			});
+			console.log(data.pagination.next_url, 'next');
+			/*	if (data.pagination.next_url.length) {
+			 if ($('.inst_img').length < 100){
+			 pollInstagram(data.pagination.next_url);
+			 console.log('wtf');
+			 console.log(data.pagination.next_url);
+			 }
+			 }*/
+			console.log(data);
+		}
 
-    });
-    console.log('done');
+	});
+	console.log('done');
 }
 </script>
 
 <!-- <div class="rel_block">
   <div class="rel_title">
-    <p>
-    - you may also be interested in -
-  	</p>
+	<p>
+	- you may also be interested in -
+	  </p>
   </div>
   <div class="rel_bxre">
-    {% assign cur_col = collection.handle %}
+	{% assign cur_col = collection.handle %}
 	{% if collection.handle == 'aurea-headbands-mensonly' or collection.handle == 'enso-headbands-mens-only' or collection.handle == 'lila-hairties-men-s-only' or collection.handle == 'hu-headbands-mens-only' or collection.title == 'MEN' %}
 		{% for collection in collections %}
-  			{% if collection.products.size > 0 %}
+			  {% if collection.products.size > 0 %}
 				{% if collection.handle == 'aurea-headbands-mensonly' %}
-  				<div class="rel_itbox">
-                    <a href="{{ collection.url }}">
-                        {% for product in collection.products limit:1 %}
-                            <img src="{{ product.featured_image | product_img_url: 'compact' }}"  />
-                        {% endfor %}
-                        <h6>AUREA</h6>
-                    </a>
-  				</div>
-  				{% elsif collection.handle == 'enso-headbands-mens-only' %}
-    			<div class="rel_itbox">
-                    <a href="{{ collection.url }}">
-                        {% for product in collection.products  limit:1 %}
-                            <img src="{{ product.featured_image | product_img_url: 'compact' }}"  />
-                        {% endfor %}
-                        <h6>ENSO</h6>
-                    </a>
-  				</div>
-  				{% elsif collection.handle == 'hu-headbands-mens-only' %}
-    			<div class="rel_itbox">
-                    <a href="{{ collection.url }}">
-                        {% for product in collection.products  limit:1 %}
-                            <img src="{{ product.featured_image | product_img_url: 'compact' }}"  />
-                        {% endfor %}
-                        <h6>HU</h6>
-                    </a>
-  				</div>
-  				{% elsif collection.handle == 'lila-hairties-men-s-only' %}
-    			<div class="rel_itbox">
-                    <a href="{{ collection.url }}">
-                        {% for product in collection.products limit:1 %}
-                            <img src="{{ product.featured_image | product_img_url: 'compact' }}"  />
-                        {% endfor %}
-                        <h6>HAIRTIES</h6>
-                    </a>
-  				</div>
-                {% endif %}
-  			{% endif %}
-        {% endfor %}
-    {% elsif collection.title contains 'kids' %}
+				  <div class="rel_itbox">
+					<a href="{{ collection.url }}">
+						{% for product in collection.products limit:1 %}
+							<img src="{{ product.featured_image | product_img_url: 'compact' }}"  />
+						{% endfor %}
+						<h6>AUREA</h6>
+					</a>
+				  </div>
+				  {% elsif collection.handle == 'enso-headbands-mens-only' %}
+				<div class="rel_itbox">
+					<a href="{{ collection.url }}">
+						{% for product in collection.products  limit:1 %}
+							<img src="{{ product.featured_image | product_img_url: 'compact' }}"  />
+						{% endfor %}
+						<h6>ENSO</h6>
+					</a>
+				  </div>
+				  {% elsif collection.handle == 'hu-headbands-mens-only' %}
+				<div class="rel_itbox">
+					<a href="{{ collection.url }}">
+						{% for product in collection.products  limit:1 %}
+							<img src="{{ product.featured_image | product_img_url: 'compact' }}"  />
+						{% endfor %}
+						<h6>HU</h6>
+					</a>
+				  </div>
+				  {% elsif collection.handle == 'lila-hairties-men-s-only' %}
+				<div class="rel_itbox">
+					<a href="{{ collection.url }}">
+						{% for product in collection.products limit:1 %}
+							<img src="{{ product.featured_image | product_img_url: 'compact' }}"  />
+						{% endfor %}
+						<h6>HAIRTIES</h6>
+					</a>
+				  </div>
+				{% endif %}
+			  {% endif %}
+		{% endfor %}
+	{% elsif collection.title contains 'kids' %}
 
-    {% elsif collection.handle == 'aurea-wholesale' or collection.handle == 'enso-wholesale' or collection.handle == 'hu-wholesale' or collection.handle == 'wholesale-scarves-and-shawls' or collection.handle == 'lila-wholesale'%}
+	{% elsif collection.handle == 'aurea-wholesale' or collection.handle == 'enso-wholesale' or collection.handle == 'hu-wholesale' or collection.handle == 'wholesale-scarves-and-shawls' or collection.handle == 'lila-wholesale'%}
 		{% for collection in collections %}
-  			{% if collection.products.size > 0 %}
+			  {% if collection.products.size > 0 %}
 				{% if collection.handle == 'aurea-wholesale' %}
-  				<div class="rel_itbox">
-                    <a href="{{ collection.url }}">
-                        {% for product in collection.products limit:1 %}
-                            <img src="{{ product.featured_image | product_img_url: 'compact' }}"  />
-                        {% endfor %}
-                        <h6>AUREA</h6>
-                    </a>
-  				</div>
-    			{% elsif collection.handle == 'enso-wholesale' %}
-  				<div class="rel_itbox">
-                    <a href="{{ collection.url }}">
-                        {% for product in collection.products limit:1 %}
-                            <img src="{{ product.featured_image | product_img_url: 'compact' }}"  />
-                        {% endfor %}
-                        <h6>ENSO</h6>
-                    </a>
-  				</div>
-    			{% elsif collection.handle == 'hu-wholesale' %}
-  				<div class="rel_itbox">
-                    <a href="{{ collection.url }}">
-                        {% for product in collection.products limit:1 %}
-                            <img src="{{ product.featured_image | product_img_url: 'compact' }}"  />
-                        {% endfor %}
-                        <h6>HU</h6>
-                    </a>
-  				</div>
-  				{% elsif collection.handle == 'lila-wholesale' %}
-    			<div class="rel_itbox">
-                    <a href="{{ collection.url }}">
-                        {% for product in collection.products  limit:1 %}
-                            <img src="{{ product.featured_image | product_img_url: 'compact' }}"  />
-                        {% endfor %}
-                        <h6>LILA</h6>
-                    </a>
-  				</div>
-  				{% elsif collection.handle == 'wholesale-scarves-and-shawls' %}
-    			<div class="rel_itbox">
-                    <a href="{{ collection.url }}">
-                        {% for product in collection.products  limit:1 %}
-                            <img src="{{ product.featured_image | product_img_url: 'compact' }}"  />
-                        {% endfor %}
-                        <h6>SHAWLS</h6>
-                    </a>
-  				</div>
-                {% endif %}
-  			{% endif %}
-        {% endfor %}
-    {% elsif collection.handle == 'aurea-headbands' or collection.handle == 'enso-headbands-and-head-wraps' or collection.handle == 'hu-sweatbands' or collection.handle == 'hairties' or collection.handle == 'shawls' or collection.title == 'WOMEN' or collection.title == settings.productrow_1_collection %}
-  		{% for collection in collections %}
-  			{% if collection.products.size > 0 %}
+				  <div class="rel_itbox">
+					<a href="{{ collection.url }}">
+						{% for product in collection.products limit:1 %}
+							<img src="{{ product.featured_image | product_img_url: 'compact' }}"  />
+						{% endfor %}
+						<h6>AUREA</h6>
+					</a>
+				  </div>
+				{% elsif collection.handle == 'enso-wholesale' %}
+				  <div class="rel_itbox">
+					<a href="{{ collection.url }}">
+						{% for product in collection.products limit:1 %}
+							<img src="{{ product.featured_image | product_img_url: 'compact' }}"  />
+						{% endfor %}
+						<h6>ENSO</h6>
+					</a>
+				  </div>
+				{% elsif collection.handle == 'hu-wholesale' %}
+				  <div class="rel_itbox">
+					<a href="{{ collection.url }}">
+						{% for product in collection.products limit:1 %}
+							<img src="{{ product.featured_image | product_img_url: 'compact' }}"  />
+						{% endfor %}
+						<h6>HU</h6>
+					</a>
+				  </div>
+				  {% elsif collection.handle == 'lila-wholesale' %}
+				<div class="rel_itbox">
+					<a href="{{ collection.url }}">
+						{% for product in collection.products  limit:1 %}
+							<img src="{{ product.featured_image | product_img_url: 'compact' }}"  />
+						{% endfor %}
+						<h6>LILA</h6>
+					</a>
+				  </div>
+				  {% elsif collection.handle == 'wholesale-scarves-and-shawls' %}
+				<div class="rel_itbox">
+					<a href="{{ collection.url }}">
+						{% for product in collection.products  limit:1 %}
+							<img src="{{ product.featured_image | product_img_url: 'compact' }}"  />
+						{% endfor %}
+						<h6>SHAWLS</h6>
+					</a>
+				  </div>
+				{% endif %}
+			  {% endif %}
+		{% endfor %}
+	{% elsif collection.handle == 'aurea-headbands' or collection.handle == 'enso-headbands-and-head-wraps' or collection.handle == 'hu-sweatbands' or collection.handle == 'hairties' or collection.handle == 'shawls' or collection.title == 'WOMEN' or collection.title == settings.productrow_1_collection %}
+		  {% for collection in collections %}
+			  {% if collection.products.size > 0 %}
 				{% if collection.handle == 'aurea-headbands' %}
-  				<div class="rel_itbox">
-                    <a href="{{ collection.url }}">
-                        {% for product in collection.products limit:1 %}
-                            <img src="{{ product.featured_image | product_img_url: 'compact' }}"  />
-                        {% endfor %}
-                        <h6>AUREA</h6>
-                    </a>
-  				</div>
-  				{% elsif collection.handle == 'enso-headbands-and-head-wraps' %}
-    			<div class="rel_itbox">
-                    <a href="{{ collection.url }}">
-                        {% for product in collection.products  limit:1 %}
-                            <img src="{{ product.featured_image | product_img_url: 'compact' }}"  />
-                        {% endfor %}
-                        <h6>ENSO</h6>
-                    </a>
-  				</div>
-  				{% elsif collection.handle == 'hu-sweatbands' %}
-    			<div class="rel_itbox">
-                    <a href="{{ collection.url }}">
-                        {% for product in collection.products  limit:1 offset:5 %}
-                            <img src="{{ product.featured_image | product_img_url: 'compact' }}"  />
-                        {% endfor %}
-                        <h6>HU</h6>
-                    </a>
-  				</div>
-  				{% elsif collection.handle == 'hairties' %}
-    			<div class="rel_itbox">
-                    <a href="{{ collection.url }}">
-                        {% for product in collection.products limit:1 %}
-                            <img src="{{ product.featured_image | product_img_url: 'compact' }}"  />
-                        {% endfor %}
-                        <h6>HAIRTIES</h6>
-                    </a>
-  				</div>
-  				{% elsif collection.handle == 'shawls' %}
-    			<div class="rel_itbox">
-                    <a href="{{ collection.url }}">
-                        {% for product in collection.products limit:1 offset:1 %}
-                            <img src="{{ product.featured_image | product_img_url: 'compact' }}"  />
-                        {% endfor %}
-                        <h6>SHAWLS</h6>
-                    </a>
-  				</div>
-                {% endif %}
-  			{% endif %}
-        {% endfor %}
-    {% endif %}
+				  <div class="rel_itbox">
+					<a href="{{ collection.url }}">
+						{% for product in collection.products limit:1 %}
+							<img src="{{ product.featured_image | product_img_url: 'compact' }}"  />
+						{% endfor %}
+						<h6>AUREA</h6>
+					</a>
+				  </div>
+				  {% elsif collection.handle == 'enso-headbands-and-head-wraps' %}
+				<div class="rel_itbox">
+					<a href="{{ collection.url }}">
+						{% for product in collection.products  limit:1 %}
+							<img src="{{ product.featured_image | product_img_url: 'compact' }}"  />
+						{% endfor %}
+						<h6>ENSO</h6>
+					</a>
+				  </div>
+				  {% elsif collection.handle == 'hu-sweatbands' %}
+				<div class="rel_itbox">
+					<a href="{{ collection.url }}">
+						{% for product in collection.products  limit:1 offset:5 %}
+							<img src="{{ product.featured_image | product_img_url: 'compact' }}"  />
+						{% endfor %}
+						<h6>HU</h6>
+					</a>
+				  </div>
+				  {% elsif collection.handle == 'hairties' %}
+				<div class="rel_itbox">
+					<a href="{{ collection.url }}">
+						{% for product in collection.products limit:1 %}
+							<img src="{{ product.featured_image | product_img_url: 'compact' }}"  />
+						{% endfor %}
+						<h6>HAIRTIES</h6>
+					</a>
+				  </div>
+				  {% elsif collection.handle == 'shawls' %}
+				<div class="rel_itbox">
+					<a href="{{ collection.url }}">
+						{% for product in collection.products limit:1 offset:1 %}
+							<img src="{{ product.featured_image | product_img_url: 'compact' }}"  />
+						{% endfor %}
+						<h6>SHAWLS</h6>
+					</a>
+				  </div>
+				{% endif %}
+			  {% endif %}
+		{% endfor %}
+	{% endif %}
   </div>
 </div> -->
 <div class="yotpo yotpo-main-widget"
-    data-product-id="{{ product.id }}"
-    data-name="{{ product.title | escape }}"
-    data-url="{{ shop.url }}{{ product.url }}"
-    data-image-url="{{ product.featured_image | product_img_url: "large" |replace: '?', '%3F' | replace: '&','%26'}}"
-    data-description="{{ product.description | escape }}">
+	data-product-id="{{ product.id }}"
+	data-name="{{ product.title | escape }}"
+	data-url="{{ shop.url }}{{ product.url }}"
+	data-image-url="{{ product.featured_image | product_img_url: "large" |replace: '?', '%3F' | replace: '&','%26'}}"
+	data-description="{{ product.description | escape }}">
 </div>
