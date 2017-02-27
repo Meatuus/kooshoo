@@ -1656,28 +1656,36 @@ Shopify.linkOptionSelectors = function(product) {
 				var art_f = ch_tit.replace("blazing yellow","")
 			   $('.am_titl').html(art_f);
 			   $('.art_col').html('blazing yellow');
-				{% if collection.title == "ENSO headbands" or collection.handle == "enso-headbands-and-head-wraps" or collection.handle == "enso-wholesale" %}
-						$('.am_titl').html('ENSO batik');
-						var art = 'HerBlazingYellowEnsoBatik';
-						$('.ht_tit').html(art);
-						$('.inst_cont').find('a').remove();
-						newInstagram(art);
-					{% elsif collection.title == "ENSO headbands men's only" %}
-						$('.am_titl').html('ENSO batik');
-						var art = 'HisBlazingYellowEnsoBatik';
-						$('.ht_tit').html(art);
-						$('.inst_cont').find('a').remove();
-						newInstagram(art);
-				 {% endif %}
+			   {% if product.title contains "ENSO BATIK" %}
+				   $('.am_titl').html('ENSO batik');
+				   var art = 'HerBlazingYellowEnsoBatik';
+				   $('.ht_tit').html(art);
+				   $('.inst_cont').find('a').remove();
+				//    newInstagram(art);
+				{% elsif collection.title == "ENSO headbands" or collection.handle == "enso-headbands-and-head-wraps" or collection.handle == "enso-wholesale" %}
+					$('.am_titl').html('ENSO classic');
+					var art = 'HerBlazingYellowEnsoBatik';
+					$('.ht_tit').html(art);
+					$('.inst_cont').find('a').remove();
+					// newInstagram(art);
+				{% elsif collection.title == "ENSO headbands men's only" %}
+					$('.am_titl').html('ENSO batik');
+					var art = 'HisBlazingYellowEnsoBatik';
+					$('.ht_tit').html(art);
+					$('.inst_cont').find('a').remove();
+					// newInstagram(art);
+				{% endif %}
 			} else if (($(asd_rew).find(".prd_title:contains('Blazing Yellow')").length > 0)) {
 				var art_f = ch_tit.replace("Blazing Yellow","")
 			   $('.am_titl').html(art_f);
 			   $('.art_col').html('Blazing Yellow');
-						$('.am_titl').html('ENSO classic');
+			   {% if product.title contains "HU Blazing Yellow" %}
+						$('.am_titl').html('HU');
 						var art = 'HerBlazingYellowEnso';
 						$('.ht_tit').html(art);
 						$('.inst_cont').find('a').remove();
 						newInstagram(art);
+			   {% endif %}
 			}
 
 
