@@ -458,10 +458,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 			 $(document).ready(function() {
 				if($(window).width() >= 725 ){
 				var str = $.cookie('suject');
-
+				console.log(str);
+				console.log('hi');
 				  /*  $('#body_bacground').show();*/
+
+				  window.onbeforeunload(function() {
+					console.log("Handler for .unload() called.");
+					$('#body_bacground').show();
+					
+
+				  });
+
 				if (str === '1') {
-					$('#body_bacground').delay(30000).fadeIn('slow');
+					$('#body_bacground').delay(15000).fadeIn('slow');
 					}
 					$("#body_exit").click(function() {
 						 $("#body_bacground").hide();
