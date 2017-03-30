@@ -2,379 +2,378 @@
 {% assign total_prods_to_show = row_limit | times: settings.product_rows_on_coll_page %}
 {% paginate collection.products by 120 %}
 <div class="sixteen columns">
-    <!--<div id="crumbs">
-        <a href="/" title="Home">Home</a>
-        &raquo;
-        <a href="{{ collection.url }}">{{ collection.title }}</a>
-    </div>-->
+	<!--<div id="crumbs">
+		<a href="/" title="Home">Home</a>
+		&raquo;
+		<a href="{{ collection.url }}">{{ collection.title }}</a>
+	</div>-->
   <!-- #crumbs -->
 
-    {% if settings.show_social_coll %}
-    <!--<div class="social floating">
-        <span class="label">{{ settings.text_sharethis }}</span>
-        {% include 'social-sharing' %}
-    </div>-->
-    {% endif %}
+	{% if settings.show_social_coll %}
+	<!--<div class="social floating">
+		<span class="label">{{ settings.text_sharethis }}</span>
+		{% include 'social-sharing' %}
+	</div>-->
+	{% endif %}
 
 {% if collection.handle == 'aurea-headbands' %}
-    {% if settings.slide_aurea_1 != false or settings.slide_aurea_2 != false or settings.slide_aurea_3 != false or settings.slide_aurea_4 != false %}
-        <section id="mainslider" class="sixteen columns flexslider slideshow row">
-            <ul class="slides">
-                {% for i in (1..5) %}
-                    {% capture show_slide %}slide_aurea_{{ i }}{% endcapture %}
-                    {% capture image %}slideshow_aurea_{{ i }}.jpg{% endcapture %}
-                    {% capture link %}slide_aurea_{{ i }}_link{% endcapture %}
-                    {% capture alt %}slide_aurea_{{ i }}_alt{% endcapture %}
-                    {% if settings[show_slide] %}
-                    <li>
-                        <a href="{{ settings[link] }}">
-                            <img src="{{ image | asset_url }}" alt="{{ settings[alt] | escape }}" />
-                        </a>
-                    </li>
-                    {% endif %}
-                {% endfor %}
-            </ul>
-        </section>
-    {% endif %}
+	{% if settings.slide_aurea_1 != false or settings.slide_aurea_2 != false or settings.slide_aurea_3 != false or settings.slide_aurea_4 != false %}
+		<section id="mainslider" class="sixteen columns flexslider slideshow row">
+			<ul class="slides">
+				{% for i in (1..5) %}
+					{% capture show_slide %}slide_aurea_{{ i }}{% endcapture %}
+					{% capture image %}slideshow_aurea_{{ i }}.jpg{% endcapture %}
+					{% capture link %}slide_aurea_{{ i }}_link{% endcapture %}
+					{% capture alt %}slide_aurea_{{ i }}_alt{% endcapture %}
+					{% if settings[show_slide] %}
+					<li>
+						<a href="{{ settings[link] }}">
+							<img src="{{ image | asset_url }}" alt="{{ settings[alt] | escape }}" />
+						</a>
+					</li>
+					{% endif %}
+				{% endfor %}
+			</ul>
+		</section>
+	{% endif %}
 {% elsif collection.handle == 'enso-headbands-and-head-wraps' %}
-    {% if settings.slide_enso_1 != false or settings.slide_enso_2 != false or settings.slide_enso_3 != false or settings.slide_enso_4 != false %}
-        <section id="mainslider" class="sixteen columns flexslider slideshow row">
-            <ul class="slides">
-                {% for i in (1..5) %}
-                    {% capture show_slide %}slide_enso_{{ i }}{% endcapture %}
-                    {% capture image %}slideshow_enso_{{ i }}.jpg{% endcapture %}
-                    {% capture link %}slide_enso_{{ i }}_link{% endcapture %}
-                    {% capture alt %}slide_enso_{{ i }}_alt{% endcapture %}
-                    {% if settings[show_slide] %}
-                    <li>
-                        <a href="{{ settings[link] }}">
-                            <img src="{{ image | asset_url }}" alt="{{ settings[alt] | escape }}" />
-                        </a>
-                    </li>
-                    {% endif %}
-                {% endfor %}
-            </ul>
-        </section>
-    {% endif %}
+	{% if settings.slide_enso_1 != false or settings.slide_enso_2 != false or settings.slide_enso_3 != false or settings.slide_enso_4 != false %}
+		<section id="mainslider" class="sixteen columns flexslider slideshow row">
+			<ul class="slides">
+				{% for i in (1..5) %}
+					{% capture show_slide %}slide_enso_{{ i }}{% endcapture %}
+					{% capture image %}slideshow_enso_{{ i }}.jpg{% endcapture %}
+					{% capture link %}slide_enso_{{ i }}_link{% endcapture %}
+					{% capture alt %}slide_enso_{{ i }}_alt{% endcapture %}
+					{% if settings[show_slide] %}
+					<li>
+						<a href="{{ settings[link] }}">
+							<img src="{{ image | asset_url }}" alt="{{ settings[alt] | escape }}" />
+						</a>
+					</li>
+					{% endif %}
+				{% endfor %}
+			</ul>
+		</section>
+	{% endif %}
 {% elsif collection.handle == 'hu-sweatbands' %}
-    {% if settings.slide_hu_1 != false or settings.slide_hu_2 != false or settings.slide_hu_3 != false or settings.slide_hu_4 != false %}
-        <section id="mainslider" class="sixteen columns flexslider slideshow row">
-            <ul class="slides">
-                {% for i in (1..5) %}
-                    {% capture show_slide %}slide_hu_{{ i }}{% endcapture %}
-                    {% capture image %}slideshow_hu_{{ i }}.jpg{% endcapture %}
-                    {% capture link %}slide_hu_{{ i }}_link{% endcapture %}
-                    {% capture alt %}slide_hu_{{ i }}_alt{% endcapture %}
-                    {% if settings[show_slide] %}
-                    <li>
-                        <a href="{{ settings[link] }}">
-                            <img src="{{ image | asset_url }}" alt="{{ settings[alt] | escape }}" />
-                        </a>
-                    </li>
-                    {% endif %}
-                {% endfor %}
-            </ul>
-        </section>
-    {% endif %}
-{% elsif collection.handle == 'hairties' or collection.handle == 'lila-hairties' %}
-    {% if settings.slide_lila_1 != false or settings.slide_lila_2 != false or settings.slide_lila_3 != false or settings.slide_lila_4 != false %}
-        <section id="mainslider" class="sixteen columns flexslider slideshow row">
-            <ul class="slides">
-                {% for i in (1..5) %}
-                    {% capture show_slide %}slide_lila_{{ i }}{% endcapture %}
-                    {% capture image %}slideshow_lila_{{ i }}.jpg{% endcapture %}
-                    {% capture link %}slide_lila_{{ i }}_link{% endcapture %}
-                    {% capture alt %}slide_lila_{{ i }}_alt{% endcapture %}
-                    {% if settings[show_slide] %}
-                    <li>
-                        <a href="{{ settings[link] }}">
-                            <img src="{{ image | asset_url }}" alt="{{ settings[alt] | escape }}" />
-                        </a>
-                    </li>
-                    {% endif %}
-                {% endfor %}
-            </ul>
-        </section>
-    {% endif %}
+	{% if settings.slide_hu_1 != false or settings.slide_hu_2 != false or settings.slide_hu_3 != false or settings.slide_hu_4 != false %}
+		<section id="mainslider" class="sixteen columns flexslider slideshow row">
+			<ul class="slides">
+				{% for i in (1..5) %}
+					{% capture show_slide %}slide_hu_{{ i }}{% endcapture %}
+					{% capture image %}slideshow_hu_{{ i }}.jpg{% endcapture %}
+					{% capture link %}slide_hu_{{ i }}_link{% endcapture %}
+					{% capture alt %}slide_hu_{{ i }}_alt{% endcapture %}
+					{% if settings[show_slide] %}
+					<li>
+						<a href="{{ settings[link] }}">
+							<img src="{{ image | asset_url }}" alt="{{ settings[alt] | escape }}" />
+						</a>
+					</li>
+					{% endif %}
+				{% endfor %}
+			</ul>
+		</section>
+	{% endif %}
+{% elsif collection.handle == 'hairties' or collection.handle == 'lila-hairties' or collection.handle == 'organic-hair-ties' or collection.handle == 'hair-ties-for-men' %}
+	{% if settings.slide_lila_1 != false or settings.slide_lila_2 != false or settings.slide_lila_3 != false or settings.slide_lila_4 != false %}
+		<section id="mainslider" class="sixteen columns flexslider slideshow row">
+			<ul class="slides">
+				{% for i in (1..5) %}
+					{% capture show_slide %}slide_lila_{{ i }}{% endcapture %}
+					{% capture image %}slideshow_lila_{{ i }}.jpg{% endcapture %}
+					{% capture link %}slide_lila_{{ i }}_link{% endcapture %}
+					{% capture alt %}slide_lila_{{ i }}_alt{% endcapture %}
+					{% if settings[show_slide] %}
+					<li>
+						<a href="{{ settings[link] }}">
+							<img src="{{ image | asset_url }}" alt="{{ settings[alt] | escape }}" />
+						</a>
+					</li>
+					{% endif %}
+				{% endfor %}
+			</ul>
+		</section>
+	{% endif %}
 {% elsif collection.handle == 'shawls' %}
-    {% if settings.slide_smoke_1 != false or settings.slide_smoke_2 != false or settings.slide_smoke_3 != false or settings.slide_smoke_4 != false or settings.slide_smoke_5 != false or settings.slide_smoke_6 != false or settings.slide_smoke_7 != false or settings.slide_smoke_8 != false %}
-        <section id="mainslider" class="sixteen columns flexslider slideshow row">
-            <ul class="slides">
-                {% for i in (1..8) %}
-                    {% capture show_slide %}slide_smoke_{{ i }}{% endcapture %}
-                    {% capture image %}slideshow_smoke_{{ i }}.jpg{% endcapture %}
-                    {% capture link %}slide_smoke_{{ i }}_link{% endcapture %}
-                    {% capture alt %}slide_smoke_{{ i }}_alt{% endcapture %}
-                    {% if settings[show_slide] %}
-                    <li>
-                        <a href="{{ settings[link] }}">
-                            <img src="{{ image | asset_url }}" alt="{{ settings[alt] | escape }}" />
-                        </a>
-                    </li>
-                    {% endif %}
-                {% endfor %}
-            </ul>
-        </section>
-    {% endif %}
+	{% if settings.slide_smoke_1 != false or settings.slide_smoke_2 != false or settings.slide_smoke_3 != false or settings.slide_smoke_4 != false or settings.slide_smoke_5 != false or settings.slide_smoke_6 != false or settings.slide_smoke_7 != false or settings.slide_smoke_8 != false %}
+		<section id="mainslider" class="sixteen columns flexslider slideshow row">
+			<ul class="slides">
+				{% for i in (1..8) %}
+					{% capture show_slide %}slide_smoke_{{ i }}{% endcapture %}
+					{% capture image %}slideshow_smoke_{{ i }}.jpg{% endcapture %}
+					{% capture link %}slide_smoke_{{ i }}_link{% endcapture %}
+					{% capture alt %}slide_smoke_{{ i }}_alt{% endcapture %}
+					{% if settings[show_slide] %}
+					<li>
+						<a href="{{ settings[link] }}">
+							<img src="{{ image | asset_url }}" alt="{{ settings[alt] | escape }}" />
+						</a>
+					</li>
+					{% endif %}
+				{% endfor %}
+			</ul>
+		</section>
+	{% endif %}
 {% elsif collection.handle == 'aurea-headbands-mensonly' %}
-    {% if settings.slide_aurea_m_1 != false or settings.slide_aurea_m_2 != false or settings.slide_aurea_m_3 != false or settings.slide_aurea_m_4 != false %}
-        <section id="mainslider" class="sixteen columns flexslider slideshow row">
-            <ul class="slides">
-                {% for i in (1..5) %}
-                    {% capture show_slide %}slide_aurea_m_{{ i }}{% endcapture %}
-                    {% capture image %}slideshow_aurea_m_{{ i }}.jpg{% endcapture %}
-                    {% capture link %}slide_aurea_m_{{ i }}_link{% endcapture %}
-                    {% capture alt %}slide_aurea_m_{{ i }}_alt{% endcapture %}
-                    {% if settings[show_slide] %}
-                    <li>
-                        <a href="{{ settings[link] }}">
-                            <img src="{{ image | asset_url }}" alt="{{ settings[alt] | escape }}" />
-                        </a>
-                    </li>
-                    {% endif %}
-                {% endfor %}
-            </ul>
-        </section>
-    {% endif %}
+	{% if settings.slide_aurea_m_1 != false or settings.slide_aurea_m_2 != false or settings.slide_aurea_m_3 != false or settings.slide_aurea_m_4 != false %}
+		<section id="mainslider" class="sixteen columns flexslider slideshow row">
+			<ul class="slides">
+				{% for i in (1..5) %}
+					{% capture show_slide %}slide_aurea_m_{{ i }}{% endcapture %}
+					{% capture image %}slideshow_aurea_m_{{ i }}.jpg{% endcapture %}
+					{% capture link %}slide_aurea_m_{{ i }}_link{% endcapture %}
+					{% capture alt %}slide_aurea_m_{{ i }}_alt{% endcapture %}
+					{% if settings[show_slide] %}
+					<li>
+						<a href="{{ settings[link] }}">
+							<img src="{{ image | asset_url }}" alt="{{ settings[alt] | escape }}" />
+						</a>
+					</li>
+					{% endif %}
+				{% endfor %}
+			</ul>
+		</section>
+	{% endif %}
 {% elsif collection.handle == 'enso-headbands-mens-only' %}
-    {% if settings.slide_enso_m_1 != false or settings.slide_enso_m_2 != false or settings.slide_enso_m_3 != false or settings.slide_enso_m_4 != false %}
-        <section id="mainslider" class="sixteen columns flexslider slideshow row">
-            <ul class="slides">
-                {% for i in (1..5) %}
-                    {% capture show_slide %}slide_enso_m_{{ i }}{% endcapture %}
-                    {% capture image %}slideshow_enso_m_{{ i }}.jpg{% endcapture %}
-                    {% capture link %}slide_enso_m_{{ i }}_link{% endcapture %}
-                    {% capture alt %}slide_enso_m_{{ i }}_alt{% endcapture %}
-                    {% if settings[show_slide] %}
-                    <li>
-                        <a href="{{ settings[link] }}">
-                            <img src="{{ image | asset_url }}" alt="{{ settings[alt] | escape }}" />
-                        </a>
-                    </li>
-                    {% endif %}
-                {% endfor %}
-            </ul>
-        </section>
-    {% endif %}
+	{% if settings.slide_enso_m_1 != false or settings.slide_enso_m_2 != false or settings.slide_enso_m_3 != false or settings.slide_enso_m_4 != false %}
+		<section id="mainslider" class="sixteen columns flexslider slideshow row">
+			<ul class="slides">
+				{% for i in (1..5) %}
+					{% capture show_slide %}slide_enso_m_{{ i }}{% endcapture %}
+					{% capture image %}slideshow_enso_m_{{ i }}.jpg{% endcapture %}
+					{% capture link %}slide_enso_m_{{ i }}_link{% endcapture %}
+					{% capture alt %}slide_enso_m_{{ i }}_alt{% endcapture %}
+					{% if settings[show_slide] %}
+					<li>
+						<a href="{{ settings[link] }}">
+							<img src="{{ image | asset_url }}" alt="{{ settings[alt] | escape }}" />
+						</a>
+					</li>
+					{% endif %}
+				{% endfor %}
+			</ul>
+		</section>
+	{% endif %}
 {% elsif collection.handle == 'hu-headbands-mens-only' %}
-    {% if settings.slide_hu_m_1 != false or settings.slide_hu_m_2 != false or settings.slide_hu_m_3 != false or settings.slide_hu_m_4 != false %}
-        <section id="mainslider" class="sixteen columns flexslider slideshow row">
-            <ul class="slides">
-                {% for i in (1..5) %}
-                    {% capture show_slide %}slide_hu_m_{{ i }}{% endcapture %}
-                    {% capture image %}slideshow_hu_m_{{ i }}.jpg{% endcapture %}
-                    {% capture link %}slide_hu_m_{{ i }}_link{% endcapture %}
-                    {% capture alt %}slide_hu_m_{{ i }}_alt{% endcapture %}
-                    {% if settings[show_slide] %}
-                    <li>
-                        <a href="{{ settings[link] }}">
-                            <img src="{{ image | asset_url }}" alt="{{ settings[alt] | escape }}" />
-                        </a>
-                    </li>
-                    {% endif %}
-                {% endfor %}
-            </ul>
-        </section>
-    {% endif %}
+	{% if settings.slide_hu_m_1 != false or settings.slide_hu_m_2 != false or settings.slide_hu_m_3 != false or settings.slide_hu_m_4 != false %}
+		<section id="mainslider" class="sixteen columns flexslider slideshow row">
+			<ul class="slides">
+				{% for i in (1..5) %}
+					{% capture show_slide %}slide_hu_m_{{ i }}{% endcapture %}
+					{% capture image %}slideshow_hu_m_{{ i }}.jpg{% endcapture %}
+					{% capture link %}slide_hu_m_{{ i }}_link{% endcapture %}
+					{% capture alt %}slide_hu_m_{{ i }}_alt{% endcapture %}
+					{% if settings[show_slide] %}
+					<li>
+						<a href="{{ settings[link] }}">
+							<img src="{{ image | asset_url }}" alt="{{ settings[alt] | escape }}" />
+						</a>
+					</li>
+					{% endif %}
+				{% endfor %}
+			</ul>
+		</section>
+	{% endif %}
 {% elsif collection.handle == 'lila-hairties-men-s-only' %}
-    {% if settings.slide_lila_m_1 != false or settings.slide_lila_m_2 != false or settings.slide_lila_m_3 != false or settings.slide_lila_m_4 != false %}
-        <section id="mainslider" class="sixteen columns flexslider slideshow row">
-            <ul class="slides">
-                {% for i in (1..5) %}
-                    {% capture show_slide %}slide_lila_m_{{ i }}{% endcapture %}
-                    {% capture image %}slideshow_lila_m_{{ i }}.jpg{% endcapture %}
-                    {% capture link %}slide_lila_m_{{ i }}_link{% endcapture %}
-                    {% capture alt %}slide_lila_m_{{ i }}_alt{% endcapture %}
-                    {% if settings[show_slide] %}
-                    <li>
-                        <a href="{{ settings[link] }}">
-                            <img src="{{ image | asset_url }}" alt="{{ settings[alt] | escape }}" />
-                        </a>
-                    </li>
-                    {% endif %}
-                {% endfor %}
-            </ul>
-        </section>
-    {% endif %}
+	{% if settings.slide_lila_m_1 != false or settings.slide_lila_m_2 != false or settings.slide_lila_m_3 != false or settings.slide_lila_m_4 != false %}
+		<section id="mainslider" class="sixteen columns flexslider slideshow row">
+			<ul class="slides">
+				{% for i in (1..5) %}
+					{% capture show_slide %}slide_lila_m_{{ i }}{% endcapture %}
+					{% capture image %}slideshow_lila_m_{{ i }}.jpg{% endcapture %}
+					{% capture link %}slide_lila_m_{{ i }}_link{% endcapture %}
+					{% capture alt %}slide_lila_m_{{ i }}_alt{% endcapture %}
+					{% if settings[show_slide] %}
+					<li>
+						<a href="{{ settings[link] }}">
+							<img src="{{ image | asset_url }}" alt="{{ settings[alt] | escape }}" />
+						</a>
+					</li>
+					{% endif %}
+				{% endfor %}
+			</ul>
+		</section>
+	{% endif %}
 {% elsif collection.handle == 'organic-baby-pants' %}
-    {% if settings.slide_kids_1 != false or settings.slide_kids_2 != false or settings.slide_kids_3 != false or settings.slide_kids_4 != false %}
-        <section id="mainslider" class="sixteen columns flexslider slideshow row">
-            <ul class="slides">
-                {% for i in (1..5) %}
-                    {% capture show_slide %}slide_kids_{{ i }}{% endcapture %}
-                    {% capture image %}slideshow_kids_{{ i }}.jpg{% endcapture %}
-                    {% capture link %}slide_kids_{{ i }}_link{% endcapture %}
-                    {% capture alt %}slide_kids_{{ i }}_alt{% endcapture %}
-                    {% if settings[show_slide] %}
-                    <li>
-                        <a href="{{ settings[link] }}">
-                            <img src="{{ image | asset_url }}" alt="{{ settings[alt] | escape }}" />
-                        </a>
-                    </li>
-                    {% endif %}
-                {% endfor %}
-            </ul>
-        </section>
-    {% endif %}
+	{% if settings.slide_kids_1 != false or settings.slide_kids_2 != false or settings.slide_kids_3 != false or settings.slide_kids_4 != false %}
+		<section id="mainslider" class="sixteen columns flexslider slideshow row">
+			<ul class="slides">
+				{% for i in (1..5) %}
+					{% capture show_slide %}slide_kids_{{ i }}{% endcapture %}
+					{% capture image %}slideshow_kids_{{ i }}.jpg{% endcapture %}
+					{% capture link %}slide_kids_{{ i }}_link{% endcapture %}
+					{% capture alt %}slide_kids_{{ i }}_alt{% endcapture %}
+					{% if settings[show_slide] %}
+					<li>
+						<a href="{{ settings[link] }}">
+							<img src="{{ image | asset_url }}" alt="{{ settings[alt] | escape }}" />
+						</a>
+					</li>
+					{% endif %}
+				{% endfor %}
+			</ul>
+		</section>
+	{% endif %}
 {% endif %}
 
 
 
-    {% unless collection.handle == 'all' %}
-    <h1>{{ collection.title }}</h1>
-    <!-- <h1>%%%%</h1> -->
-    {% if collection.description != '' %}
-        <div class="content-block row">
-            {{ collection.description }}
-        </div>
-        <!-- .pagecontent -->
-    {% endif %}
-    {% endunless %}
+	{% unless collection.handle == 'all' %}
+	<h1>{{ collection.title }}</h1>
+	{% if collection.description != '' %}
+		<div class="content-block row">
+			{{ collection.description }}
+		</div>
+		<!-- .pagecontent -->
+	{% endif %}
+	{% endunless %}
 
-    {% if paginate.pages > 1 or collection.tags.size > 0 %}
-        <div class="ten columns alpha">
-            <div class="paging">
-            {% if paginate.pages > 1 %}
-                {% if paginate.previous %}
-                    <a class="prev" href="{{ paginate.previous.url }}">&#8249;</a>
-                {% endif %}
-                {% for part in paginate.parts %}
-                    {% if part.is_link %}
-                        <span class="page">{{ part.title | link_to: part.url }}</span>
-                    {% else %}
-                        <span class="page current">{{ part.title }}</span>
-                    {% endif %}
-                {% endfor %}
-                {% if paginate.next %}
-                    <a class="next" href="{{ paginate.next.url }}">&#8250;</a>
-                {% endif %}
-            {% endif %}
-            </div>&nbsp;
-        </div>
+	{% if paginate.pages > 1 or collection.tags.size > 0 %}
+		<div class="ten columns alpha">
+			<div class="paging">
+			{% if paginate.pages > 1 %}
+				{% if paginate.previous %}
+					<a class="prev" href="{{ paginate.previous.url }}">&#8249;</a>
+				{% endif %}
+				{% for part in paginate.parts %}
+					{% if part.is_link %}
+						<span class="page">{{ part.title | link_to: part.url }}</span>
+					{% else %}
+						<span class="page current">{{ part.title }}</span>
+					{% endif %}
+				{% endfor %}
+				{% if paginate.next %}
+					<a class="next" href="{{ paginate.next.url }}">&#8250;</a>
+				{% endif %}
+			{% endif %}
+			</div>&nbsp;
+		</div>
 
-        <!--<div class="six columns omega collectionfilter">
-            {% if collection.handle and collection.tags.size > 0 %}
-            <select id="tagfilter">
-                {% if current_tags and current_tags.size > 0 %}
-                    <option value="{{ shop.url }}/collections/{{ collection.handle }}" selected="selected">All Products</option>
-                {% else %}
-                    <option value="{{ shop.url }}/collections/{{ collection.handle }}">All Products</option>
-                {% endif %}
+		<!--<div class="six columns omega collectionfilter">
+			{% if collection.handle and collection.tags.size > 0 %}
+			<select id="tagfilter">
+				{% if current_tags and current_tags.size > 0 %}
+					<option value="{{ shop.url }}/collections/{{ collection.handle }}" selected="selected">All Products</option>
+				{% else %}
+					<option value="{{ shop.url }}/collections/{{ collection.handle }}">All Products</option>
+				{% endif %}
 
-                {% for tag in collection.all_tags %}
-                    {% comment %}Don't show tags used for relating products together{% endcomment %}
-                    {% capture tagstart %}{{ tag | remove_first: 'related-' }}{% endcapture %}
-                    {% if tagstart == tag %}
-                        {% if current_tags contains tag %}
-                            <option value="{{ shop.url }}/collections/{{ collection.handle }}/{{ tag | handleize }}" selected="selected">{{ tag }}</option>
-                        {% else %}
-                            <option value="{{ shop.url }}/collections/{{ collection.handle }}/{{ tag | handleize }}">{{ tag }}</option>
-                        {% endif %}
-                    {% endif %}
-                {% endfor %}
-            </select>
-            <script>
-            $(function(){
-                $('#tagfilter').change(function(){
-                    window.location = $(this).val();
-                });
-            });
-            </script>
-            {% endif %}
-        &nbsp;</div>-->
-    {% endif %}
+				{% for tag in collection.all_tags %}
+					{% comment %}Don't show tags used for relating products together{% endcomment %}
+					{% capture tagstart %}{{ tag | remove_first: 'related-' }}{% endcapture %}
+					{% if tagstart == tag %}
+						{% if current_tags contains tag %}
+							<option value="{{ shop.url }}/collections/{{ collection.handle }}/{{ tag | handleize }}" selected="selected">{{ tag }}</option>
+						{% else %}
+							<option value="{{ shop.url }}/collections/{{ collection.handle }}/{{ tag | handleize }}">{{ tag }}</option>
+						{% endif %}
+					{% endif %}
+				{% endfor %}
+			</select>
+			<script>
+			$(function(){
+				$('#tagfilter').change(function(){
+					window.location = $(this).val();
+				});
+			});
+			</script>
+			{% endif %}
+		&nbsp;</div>-->
+	{% endif %}
 </div>
 {% if collection.products.size == 0 %}
-    <div class="sixteen columns">There are no products here.</div>
+	<div class="sixteen columns">There are no products here.</div>
 {% else %}
-    <div class="productlist">
-        {% if collection.handle contains 'aurea' %}
-            <div class="cl_titm">AUREA classic</div>
-        	{% for product in collection.products %}
-                {% if product.title contains 'AUREA OMBRE' %}
-      			{% else %}
-                    {% include 'product-list-repeatable-item' with product %}
-                {% endif %}
-       		{% endfor %}
-      		<div class="cl_titm secms">AUREA ombre</div>
-        	{% for product in collection.products %}
-                {% if product.title contains 'AUREA OMBRE' %}
-                    {% include 'product-list-repeatable-item' with product %}
-                {% endif %}
-       		{% endfor %}
-        {% elsif collection.handle contains 'enso' %}
-      		<div class="cl_titm">ENSO classic</div>
-        	{% for product in collection.products %}
-                {% if product.title contains 'ENSO BATIK' %}
-      			{% else %}
-                    {% include 'product-list-repeatable-item' with product %}
-                {% endif %}
-       		{% endfor %}
-      		<div class="cl_titm secms">ENSO batik</div>
-      		{% for product in collection.products %}
-                {% if product.title contains 'ENSO BATIK' %}
-                    {% include 'product-list-repeatable-item' with product %}
-                {% endif %}
-       		{% endfor %}
-        {% elsif collection.handle contains 'shawls' %}
-           	<div class="cl_titm">JOURNEY shawls</div>
-        	{% for product in collection.products %}
-        		{% if product.title contains 'shawl' %}
-                    {% include 'product-list-repeatable-item' with product %}
-           	{% endif %}
-       		{% endfor %}
-      		<div class="cl_titm secms">SMOKE shawls</div>
-        	{% for product in collection.products %}
-                {% if product.title contains 'SHAWL' %}
-                    {% include 'product-list-repeatable-item' with product %}
-                {% endif %}
-       		{% endfor %}
-        {% elsif collection.handle contains 'hu' %}
-            <div class="cl_titm">HU headbands</div>
-            {% for product in collection.products %}
-      			{% if product.title contains 'HU' %}
-                	{% include 'product-list-repeatable-item' with product %}
-      			{% endif %}
-            {% endfor %}
-      	{% elsif collection.handle contains 'lila' or collection.handle == 'wholesale-organic-hair-ties' %}
-            <div class="cl_titm">LILA hairties</div>
-            {% for product in collection.products %}
-      			{% if product.title contains 'LILA' %}
-                	{% include 'product-list-repeatable-item' with product %}
-      			{% endif %}
-            {% endfor %}
-        {% elsif collection.handle contains 'baby' %}
-            <div class="cl_titm">KIDS PANTS</div>
-            {% for product in collection.products %}
-      			{% if product.title contains 'KIDS' %}
-                	{% include 'product-list-repeatable-item' with product %}
-      			{% endif %}
-            {% endfor %}
-        {% else %}
-      	<div class="cl_titm">{{ collection.title }}</div>
-            {% for product in collection.products %}
-                {% include 'product-list-repeatable-item' with product %}
-            {% endfor %}
-      	{% endif %}
+	<div class="productlist">
+		{% if collection.handle contains 'aurea' %}
+			<div class="cl_titm">AUREA classic</div>
+			{% for product in collection.products %}
+				{% if product.title contains 'AUREA OMBRE' %}
+				  {% else %}
+					{% include 'product-list-repeatable-item' with product %}
+				{% endif %}
+			   {% endfor %}
+			  <div class="cl_titm secms">AUREA ombre</div>
+			{% for product in collection.products %}
+				{% if product.title contains 'AUREA OMBRE' %}
+					{% include 'product-list-repeatable-item' with product %}
+				{% endif %}
+			   {% endfor %}
+		{% elsif collection.handle contains 'enso' %}
+			  <div class="cl_titm">ENSO classic</div>
+			{% for product in collection.products %}
+				{% if product.title contains 'ENSO BATIK' %}
+				  {% else %}
+					{% include 'product-list-repeatable-item' with product %}
+				{% endif %}
+			   {% endfor %}
+			  <div class="cl_titm secms">ENSO batik</div>
+			  {% for product in collection.products %}
+				{% if product.title contains 'ENSO BATIK' %}
+					{% include 'product-list-repeatable-item' with product %}
+				{% endif %}
+			   {% endfor %}
+		{% elsif collection.handle contains 'shawls' %}
+			   <div class="cl_titm">JOURNEY shawls</div>
+			{% for product in collection.products %}
+				{% if product.title contains 'shawl' %}
+					{% include 'product-list-repeatable-item' with product %}
+			   {% endif %}
+			   {% endfor %}
+			  <div class="cl_titm secms">SMOKE shawls</div>
+			{% for product in collection.products %}
+				{% if product.title contains 'SHAWL' %}
+					{% include 'product-list-repeatable-item' with product %}
+				{% endif %}
+			   {% endfor %}
+		{% elsif collection.handle contains 'hu' %}
+			<div class="cl_titm">HU headbands</div>
+			{% for product in collection.products %}
+				  {% if product.title contains 'HU' %}
+					{% include 'product-list-repeatable-item' with product %}
+				  {% endif %}
+			{% endfor %}
+		  {% elsif collection.handle contains 'lila' or collection.handle == 'wholesale-organic-hair-ties' %}
+			<div class="cl_titm">LILA hairties</div>
+			{% for product in collection.products %}
+				  {% if product.title contains 'LILA' %}
+					{% include 'product-list-repeatable-item' with product %}
+				  {% endif %}
+			{% endfor %}
+		{% elsif collection.handle contains 'baby' %}
+			<div class="cl_titm">KIDS PANTS</div>
+			{% for product in collection.products %}
+				  {% if product.title contains 'KIDS' %}
+					{% include 'product-list-repeatable-item' with product %}
+				  {% endif %}
+			{% endfor %}
+		{% else %}
+		  <div class="cl_titm">{{ collection.title }}</div>
+			{% for product in collection.products %}
+				{% include 'product-list-repeatable-item' with product %}
+			{% endfor %}
+		  {% endif %}
 
-    </div><!-- .productlist -->
+	</div><!-- .productlist -->
 {% endif %}
 
 {% if settings.use_inf_scroll == true %}
 <script>
 $('.productlist').infinitescroll({
-    navSelector  : "div.paging",
-    nextSelector : "div.paging .next",
-    itemSelector : "#maincontent .productlist .product",
-    loading: {
-        img         : '{{ settings.loading_graphic | asset_url }}',
-        msgText     : 'Loading more products...',
-        finishedMsg : 'There are no more products in this collection.'
-    }
+	navSelector  : "div.paging",
+	nextSelector : "div.paging .next",
+	itemSelector : "#maincontent .productlist .product",
+	loading: {
+		img         : '{{ settings.loading_graphic | asset_url }}',
+		msgText     : 'Loading more products...',
+		finishedMsg : 'There are no more products in this collection.'
+	}
 }, function(items){
-    $(items).find('img:not(.altimg)').each(function(){
-        $(this).trigger('initprodimg');
-    });
+	$(items).find('img:not(.altimg)').each(function(){
+		$(this).trigger('initprodimg');
+	});
 });
 </script>
 {% endif %}
