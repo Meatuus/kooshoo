@@ -16,7 +16,7 @@
 	</div>-->
 	{% endif %}
 
-{% if collection.handle == 'aurea-headbands' %}
+{% if collection.handle == 'organic-elastic-hairbands' %}
 	{% if settings.slide_aurea_1 != false or settings.slide_aurea_2 != false or settings.slide_aurea_3 != false or settings.slide_aurea_4 != false %}
 		<section id="mainslider" class="sixteen columns flexslider slideshow row">
 			<ul class="slides">
@@ -56,7 +56,7 @@
 			</ul>
 		</section>
 	{% endif %}
-{% elsif collection.handle == 'hu-sweatbands' %}
+{% elsif collection.handle == 'yoga-headbands' %}
 	{% if settings.slide_hu_1 != false or settings.slide_hu_2 != false or settings.slide_hu_3 != false or settings.slide_hu_4 != false %}
 		<section id="mainslider" class="sixteen columns flexslider slideshow row">
 			<ul class="slides">
@@ -96,7 +96,7 @@
 			</ul>
 		</section>
 	{% endif %}
-{% elsif collection.handle == 'shawls' %}
+{% elsif collection.handle == 'travel-shawls' %}
 	{% if settings.slide_smoke_1 != false or settings.slide_smoke_2 != false or settings.slide_smoke_3 != false or settings.slide_smoke_4 != false or settings.slide_smoke_5 != false or settings.slide_smoke_6 != false or settings.slide_smoke_7 != false or settings.slide_smoke_8 != false %}
 		<section id="mainslider" class="sixteen columns flexslider slideshow row">
 			<ul class="slides">
@@ -116,7 +116,7 @@
 			</ul>
 		</section>
 	{% endif %}
-{% elsif collection.handle == 'aurea-headbands-mensonly' %}
+{% elsif collection.handle == 'soccer-headbands-for-men' %}
 	{% if settings.slide_aurea_m_1 != false or settings.slide_aurea_m_2 != false or settings.slide_aurea_m_3 != false or settings.slide_aurea_m_4 != false %}
 		<section id="mainslider" class="sixteen columns flexslider slideshow row">
 			<ul class="slides">
@@ -156,7 +156,7 @@
 			</ul>
 		</section>
 	{% endif %}
-{% elsif collection.handle == 'hu-headbands-mens-only' %}
+{% elsif collection.handle == 'organic-bandanas' %}
 	{% if settings.slide_hu_m_1 != false or settings.slide_hu_m_2 != false or settings.slide_hu_m_3 != false or settings.slide_hu_m_4 != false %}
 		<section id="mainslider" class="sixteen columns flexslider slideshow row">
 			<ul class="slides">
@@ -205,6 +205,27 @@
 					{% capture image %}slideshow_kids_{{ i }}.jpg{% endcapture %}
 					{% capture link %}slide_kids_{{ i }}_link{% endcapture %}
 					{% capture alt %}slide_kids_{{ i }}_alt{% endcapture %}
+					{% if settings[show_slide] %}
+					<li>
+						<a href="{{ settings[link] }}">
+							<img src="{{ image | asset_url }}" alt="{{ settings[alt] | escape }}" />
+						</a>
+					</li>
+					{% endif %}
+				{% endfor %}
+			</ul>
+		</section>
+	{% endif %}
+
+{% elsif collection.handle == 'spring-radiance-sale' %}
+	{% if settings.slide_sale_1 != false or settings.slide_sale_2 != false or settings.slide_sale_3 != false or settings.slide_sale_4 != false %}
+		<section id="mainslider" class="sixteen columns flexslider slideshow row">
+			<ul class="slides">
+				{% for i in (1..5) %}
+					{% capture show_slide %}slide_sale_{{ i }}{% endcapture %}
+					{% capture image %}slideshow_sale_{{ i }}.jpg{% endcapture %}
+					{% capture link %}slide_sale_{{ i }}_link{% endcapture %}
+					{% capture alt %}slide_sale_{{ i }}_alt{% endcapture %}
 					{% if settings[show_slide] %}
 					<li>
 						<a href="{{ settings[link] }}">

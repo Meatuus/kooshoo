@@ -4616,6 +4616,110 @@
 		"type": "text",
 		"id": "slide_kids_4_alt",
 		"label": "ALT text"
+    },
+    {
+		"type": "header",
+		"content": "Sale Collection"
+	  },
+	  {
+		"type": "paragraph",
+		"content": "Slide #1"
+	  },
+	  {
+		"type": "checkbox",
+		"id": "slide_sale_1",
+		"label": "Show?"
+	  },
+	  {
+		"type": "image",
+		"id": "slideshow_sale_1.jpg",
+		"label": "Image",
+		"max-width": 966
+	  },
+	  {
+		"type": "text",
+		"id": "slide_sale_1_link",
+		"label": "Links to"
+	  },
+	  {
+		"type": "text",
+		"id": "slide_sale_1_alt",
+		"label": "ALT text"
+	  },
+	  {
+		"type": "paragraph",
+		"content": "Slide #2"
+	  },
+	  {
+		"type": "checkbox",
+		"id": "slide_sale_2",
+		"label": "Show?"
+	  },
+	  {
+		"type": "image",
+		"id": "slideshow_sale_2.jpg",
+		"label": "Image",
+		"max-width": 966
+	  },
+	  {
+		"type": "text",
+		"id": "slide_sale_2_link",
+		"label": "Links to"
+	  },
+	  {
+		"type": "text",
+		"id": "slide_sale_2_alt",
+		"label": "ALT text"
+	  },
+	  {
+		"type": "paragraph",
+		"content": "Slide #3"
+	  },
+	  {
+		"type": "checkbox",
+		"id": "slide_sale_3",
+		"label": "Show?"
+	  },
+	  {
+		"type": "image",
+		"id": "slideshow_sale_3.jpg",
+		"label": "Image",
+		"max-width": 966
+	  },
+	  {
+		"type": "text",
+		"id": "slide_sale_3_link",
+		"label": "Links to"
+	  },
+	  {
+		"type": "text",
+		"id": "slide_sale_3_alt",
+		"label": "ALT text"
+	  },
+	  {
+		"type": "paragraph",
+		"content": "Slide #4"
+	  },
+	  {
+		"type": "checkbox",
+		"id": "slide_sale_4",
+		"label": "Show?"
+	  },
+	  {
+		"type": "image",
+		"id": "slideshow_sale_4.jpg",
+		"label": "Image",
+		"max-width": 966
+	  },
+	  {
+		"type": "text",
+		"id": "slide_sale_4_link",
+		"label": "Links to"
+	  },
+	  {
+		"type": "text",
+		"id": "slide_sale_4_alt",
+		"label": "ALT text"
 	  }
 	]
   }
