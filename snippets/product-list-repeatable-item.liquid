@@ -45,8 +45,28 @@
                 <!-- for loop below is how i will select tags and add image to product -->
                 {% for tag in product.tags %}
                   {% if tag == "Black" %}
-                    <div class="overlay-img__wrap">
-                      <img src="{{ 'clr_black.png' | asset_url }}" alt="">
+                    <div class="overlay-img__wrap--sale">
+                      <img src="{{ 'icon_sale.png' | asset_url }}" alt="">
+                    </div>
+                  {% elsif tag == "yellow"%}
+                    <div class="overlay-img__wrap--new">
+                      <img src="{{ 'icon_new.png' | asset_url }}" alt="">
+                    </div>
+                  {% elsif tag == "Grey"%}
+                    <div class="overlay-img__wrap--as-seen">
+                      <img src="{{ 'icon_as_seen_chatelaine.png' | asset_url }}" alt="">
+                    </div>
+                  {% elsif tag == "Blue"%}
+                    <div class="overlay-img__wrap--as-seen">
+                      <img src="{{ 'icon_as_seen_the_marker.png' | asset_url }}" alt="">
+                    </div>
+                  {% elsif tag == "Pink"%}
+                    <div class="overlay-img__wrap--as-seen">
+                      <img src="{{ 'icon_as_seen_tree_hugger.png' | asset_url }}" alt="">
+                    </div>
+                  {% elsif tag == "Green"%}
+                    <div class="overlay-img__wrap--as-seen">
+                      <img src="{{ 'icon_as_seen_womens_health.png' | asset_url }}" alt="">
                     </div>
                   {% endif %}
                 {% endfor %}
