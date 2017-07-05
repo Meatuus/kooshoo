@@ -373,6 +373,8 @@
 
               // change price shown to price of product variation when size changes
               if (($('#crumbs a:nth-child(2)')[0].text === "KIDS")) {
+                  console.log(va_main);
+                  console.log("TES");
                   if ($('.kids_size.selected').data('var-num') === 0) { // first size button
                       if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS batik charcoal grey") {
                           $('.art_price').html(va_main[0]);
@@ -755,6 +757,9 @@ console.log(wdt);
                     var numb_ar = [i];
                     var ch_tit = $(ch_main).find('.prd_title').html();
                     var sizes = document.getElementsByClassName('kids_size')
+                    console.log(ch_main);
+                    console.log(va_main);
+                    console.log("hi");
                     // set each product variation data-id to relevant id
                     if (($('#crumbs a:nth-child(2)')[0].text === "KIDS") && ($(this).hasClass('batik_charcoal_grey'))) {
                         $(sizes[0]).attr('data-id', $(va_main[0]).data('id'))
@@ -787,9 +792,9 @@ console.log(wdt);
                         $(sizes[2]).attr('data-id', $(va_main[22]).data('id'))
                         $(sizes[3]).attr('data-id', $(va_main[23]).data('id'))
                     } else if (($('#crumbs a:nth-child(2)')[0].text === "Wholesale Kids and Baby Pants") && ($(this).hasClass('batik_charcoal_grey'))) {
-                        $(sizes[0]).attr('data-id', 32137499780)
-                        $(sizes[1]).attr('data-id', 32137499844)
-                        $(sizes[2]).attr('data-id', 32137499908)
+                        $(sizes[0]).attr('data-id', 32137499780);
+                        $(sizes[1]).attr('data-id', 32137499844);
+                        $(sizes[2]).attr('data-id', 32137499908);
                         // $(sizes[3]).attr('data-id', 21314263876)
                     } else if (($('#crumbs a:nth-child(2)')[0].text === "Wholesale Kids and Baby Pants") && ($(this).hasClass('jean_blue'))) {
                         $(sizes[0]).attr('data-id', 32226450948)
@@ -819,6 +824,7 @@ console.log(wdt);
                     }
                     change_tit(ch_main, numb_ar);
                     var ch_prise = $(ch_main).find('.pr_price').html();
+
                     var ch_id = $(ch_main).find('.pr_id').html();
                     var ch_url = $(ch_main).find('.pr_url').html();
                     $('#crumbs').find('a:last').html(ch_tit);
