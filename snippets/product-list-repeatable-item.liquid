@@ -42,9 +42,8 @@
                 <div class= "altimgcont">
                     <img class="altimg" src="{{ product-list-repeatable-item.images[1] | product_img_url: 'large' }}" alt="{{ product-list-repeatable-item.images[1].alt }}" />
                 </div>
-                <!-- for loop below is how i will select tags and add image to product -->
                 {% for tag in product.tags %}
-                  {% if tag == "Black" %}
+                  {% if tag == "Sale" %}
                     <div class="overlay-img__wrap--sale">
                       <img src="{{ 'icon_sale.png' | asset_url }}" alt="">
                     </div>
@@ -80,14 +79,6 @@
             <div class="salecontainer"><a class="sale" href="{{ producturl }}">{{ settings.text_sale }}</a></div>
         {% endif %}
     </div>
-
-    <!-- for loop below is how i will select tags and add image to product -->
-    <!-- {% for tag in product.tags %}
-    {% if tag == "Black" %}
-      <h1>black tag</h1>
-      <h1>{{tag}}</h1>
-    {% endif %}
-    {% endfor %} -->
 
     <p class="title"><a href="{{ producturl }}">{{ product-list-repeatable-item.title }}</a></p>
     {% unless settings.prod_thumb_desc_chars == '0' %}
