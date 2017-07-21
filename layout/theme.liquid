@@ -385,8 +385,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </section>
 {% endunless %}
 {% if settings.ind_ban1c or settings.ind_ban2c %}
+<a href="{{ settings.hpl_1 }}">
 <div id="inda_ban">
 </div>
+</a>
 {% endif %}
    {% endif %}
 
@@ -465,7 +467,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 				  window.onbeforeunload(function() {
 					console.log("Handler for .unload() called.");
 					$('#body_bacground').show();
-					
+
 
 				  });
 
