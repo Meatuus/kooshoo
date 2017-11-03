@@ -6,7 +6,6 @@
 	{% endif %}
 	<a href="{{ product.url }}">{{ product.title }}</a>
 </div>
-
 <div id="productinfo" class="cf" data-featimgurl="{{ product.featured_image | product_img_url: 'small' }}" itemscope itemtype="http://schema.org/Product">
 	{% if product.images.size > 1 and settings.prod_det_gall_method != 'hide' %}
 	<div id="rg-gallery" class="rg-gallery eight columns">
@@ -397,7 +396,7 @@ $(window).resize(function () {
 		</div>
 	{% endif %}
 	{% if collection.title contains 'AUREA' or collection.title contains 'ENSO' %}
-		{% if product.title contains 'AUREA OMBRE' or product.title contains 'ENSO BATIK'%}
+		{% if product.title contains 'ombre' or product.title contains 'ENSO BATIK'%}
 				<div class="PI_sec cinc">
 				 dyed by hand
 				</div>
@@ -819,6 +818,7 @@ Shopify.linkOptionSelectors = function(product) {
 	var nmbdf = $(ch_maisan).index();
   change_tit(ch_maisan, nmbdf);
   function change_tit(asd_rew, i){
+	  console.log('ii')
 			 var ch_tit = $(asd_rew).find(".prd_title").text();
 	if  ($('.was-price').hasClass('arts')){
 	  $('.was-price').hide();
@@ -837,9 +837,9 @@ Shopify.linkOptionSelectors = function(product) {
 			if (($(asd_rew).find(".prd_title:contains('black/grey')").length > 0)) {
 			  /*  var art_f = ch_tit.replace("black/grey","")
 				$('.am_titl').html(art_f);*/
-				$('.am_titl').html('AUREA ombre');
+				$('.am_titl').html('SKINNY HEADBAND ombre');
 				$('.art_col').html('black/grey');
-					{% if collection.title == "AUREA headbands" or collection.handle == "aurea-wholesale" %}
+					{% if collection.title == "AUREA - Organic Elastic Hairbands" or collection.handle == "aurea-wholesale" %}
 						var art = 'HerBlackGreyAureaOmbre';
 						$('.ht_tit').html(art);
 						$('.inst_cont').find('a').remove();
@@ -962,11 +962,9 @@ Shopify.linkOptionSelectors = function(product) {
 				 {% endif %}
 			}
 			 else if (($(asd_rew).find(".prd_title:contains('black')").length > 0)) {
-
 			   $('.art_col').html('black');
 
-
-					   {% if collection.title == "ENSO headbands" or collection.handle == "enso-headbands-and-head-wraps" or collection.handle == "enso-wholesale" or collection.handle == "enso-headbands-and-head-wraps" %}
+					{% if collection.title == "ENSO headbands" or collection.handle == "enso-headbands-and-head-wraps" or collection.handle == "enso-wholesale" or collection.handle == "enso-headbands-and-head-wraps" %}
 						if ( ch_tit == 'ENSO BATIK black'){
 							$('.am_titl').html('ENSO batik');
 							var art = 'HerBlackEnsoBatik';
@@ -1002,14 +1000,14 @@ Shopify.linkOptionSelectors = function(product) {
 						$('.ht_tit').html(art);
 						$('.inst_cont').find('a').remove();
 						newInstagram(art);
-					 {% elsif collection.title == "AUREA headbands" or collection.handle == "aurea-wholesale" %}
-						$('.am_titl').html('AUREA classic');
+					 {% elsif collection.title == "AUREA - Organic Elastic Hairbands" or collection.handle == "aurea-wholesale" %}
+						$('.am_titl').html('SKINNY headband');
 						var art = 'HerBlackAurea';
 						$('.ht_tit').html(art);
 						$('.inst_cont').find('a').remove();
 						newInstagram(art);
 					 {% elsif collection.title == "AUREA headbands men's only" %}
-						$('.am_titl').html('AUREA classic');
+						$('.am_titl').html('SKINNY headband');
 						var art = 'HisBlackAurea';
 						$('.ht_tit').html(art);
 						$('.inst_cont').find('a').remove();
@@ -1091,26 +1089,26 @@ Shopify.linkOptionSelectors = function(product) {
 						$('.ht_tit').html(art);
 						$('.inst_cont').find('a').remove();
 						newInstagram(art);
-					 {% elsif collection.title == "AUREA headbands" or collection.handle == "aurea-wholesale" %}
-						$('.am_titl').html('AUREA classic');
+					 {% elsif collection.title == "AUREA - Organic Elastic Hairbands" or collection.handle == "aurea-wholesale" %}
+						$('.am_titl').html('SKINNY headband');
 						var art = 'HerroyalBlueAurea';
 						$('.ht_tit').html(art);
 						$('.inst_cont').find('a').remove();
 						newInstagram(art);
 					 {% elsif collection.title == "AUREA headbands men's only" %}
-						$('.am_titl').html('AUREA classic');
+						$('.am_titl').html('SKINNY headband');
 						var art = 'HisroyalBlueAurea';
 						$('.ht_tit').html(art);
 						$('.inst_cont').find('a').remove();
 						newInstagram(art);
 					 {% endif %}
 			}
-			else if (($(asd_rew).find(".prd_title:contains('deep purple')").length > 0)) {
+			else if (($(asd_rew).find(".prd_title:contains('purple ombre')").length > 0)) {
 			  /* var art_f = ch_tit.replace("deep purple & light Purple","")
 			   $('.am_titl').html(art_f);*/
-			   $('.am_titl').html('AUREA ombre');
+			   $('.am_titl').html('SKINNY HEADBAND ombre');
 			   $('.art_col').html('deep purple/light Purple');
-					  {% if collection.title == "AUREA headbands" or collection.handle == "aurea-wholesale" %}
+					  {% if collection.title == "AUREA - Organic Elastic Hairbands" or collection.handle == "aurea-wholesale" %}
 						var art = 'HerPurpleAureaOmbre';
 						$('.ht_tit').html(art);
 						$('.inst_cont').find('a').remove();
@@ -1120,9 +1118,9 @@ Shopify.linkOptionSelectors = function(product) {
 			else if (($(asd_rew).find(".prd_title:contains('dusk blue')").length > 0)) {
 			  /* var art_f = ch_tit.replace("dusk blue & tender shoots","")
 			   $('.am_titl').html(art_f);*/
-			   $('.am_titl').html('AUREA ombre');
+			   $('.am_titl').html('SKINNY HEADBAND ombre');
 			   $('.art_col').html('dusk blue/tender shoots');
-					  {% if collection.title == "AUREA headbands" or collection.handle == "aurea-wholesale" %}
+					  {% if collection.title == "AUREA - Organic Elastic Hairbands" or collection.handle == "aurea-wholesale" %}
 						var art = 'HerBlueGreenAureaOmbre';
 						$('.ht_tit').html(art);
 						$('.inst_cont').find('a').remove();
@@ -1132,7 +1130,7 @@ Shopify.linkOptionSelectors = function(product) {
 			else if (($(asd_rew).find(".prd_title:contains('blue/green')").length > 0)) {
 			  /* var art_f = ch_tit.replace("dusk blue & tender shoots","")
 			   $('.am_titl').html(art_f);*/
-			   $('.am_titl').html('AUREA ombre');
+			   $('.am_titl').html('SKINNY HEADBAND ombre');
 			   $('.art_col').html('blue/green');
 					  {% if collection.title == "AUREA headbands men's only" %}
 						var art = 'HisBlueGreenAureaOmbre';
@@ -1141,12 +1139,12 @@ Shopify.linkOptionSelectors = function(product) {
 						newInstagram(art);
 					 {% endif %}
 			}
-			else if (($(asd_rew).find(".prd_title:contains('pink flambe')").length > 0)) {
+			else if (($(asd_rew).find(".prd_title:contains('pink/peach ombre')").length > 0)) {
 			  /*  var art_f = ch_tit.replace("pink flambe/peach nectar","")
 			   $('.am_titl').html(art_f);*/
-			   $('.am_titl').html('AUREA ombre');
+			   $('.am_titl').html('SKINNY HEADBAND ombre');
 			   $('.art_col').html('pink flambe/peach nectar');
-					  {% if collection.title == "AUREA headbands" or collection.handle == "aurea-wholesale" %}
+					  {% if collection.title == "AUREA - Organic Elastic Hairbands" or collection.handle == "aurea-wholesale" %}
 						var art = 'HerPinkPeachAureaOmbre';
 						$('.ht_tit').html(art);
 						$('.inst_cont').find('a').remove();
@@ -1181,14 +1179,14 @@ Shopify.linkOptionSelectors = function(product) {
 						$('.ht_tit').html(art);
 						$('.inst_cont').find('a').remove();
 						newInstagram(art);
-					 {% elsif collection.title == "AUREA headbands" or collection.handle == "aurea-wholesale" %}
-						$('.am_titl').html('AUREA classic');
+					 {% elsif collection.title == "AUREA - Organic Elastic Hairbands" or collection.handle == "aurea-wholesale" %}
+						$('.am_titl').html('SKINNY headband');
 						var art = 'HerOpalAurea';
 						$('.ht_tit').html(art);
 						$('.inst_cont').find('a').remove();
 						newInstagram(art);
 					 {% elsif collection.title == "AUREA headbands men's only" %}
-						$('.am_titl').html('AUREA classic');
+						$('.am_titl').html('SKINNY headband');
 						var art = 'HisOpalAurea';
 						$('.ht_tit').html(art);
 						$('.inst_cont').find('a').remove();
@@ -1205,8 +1203,8 @@ Shopify.linkOptionSelectors = function(product) {
 						$('.ht_tit').html(art);
 						$('.inst_cont').find('a').remove();
 						newInstagram(art);
-					  {% elsif collection.title == "AUREA headbands" or collection.handle == "aurea-wholesale" %}
-						$('.am_titl').html('AUREA classic');
+					  {% elsif collection.title == "AUREA - Organic Elastic Hairbands" or collection.handle == "aurea-wholesale" %}
+						$('.am_titl').html('SKINNY headband');
 						var art = 'HerPeachWhipPinkAurea';
 						$('.ht_tit').html(art);
 						$('.inst_cont').find('a').remove();

@@ -1,7 +1,7 @@
 
-    {% if product.title contains 'AUREA OMBRE' %}
+    {% if product.title contains 'SKINNY' && product.title contains 'ombre' %}
         {% for product in collection.products %}
- 			{% if product.title contains 'AUREA OMBRE' %}
+ 			{% if product.title contains 'SKINNY' && product.title contains 'ombre' %}
                 <div class="pr_pr{% unless product.available %} solded{% endunless %}" >
                     <div class="prd_title">{{ product.title }}</div>
                     <div class="pr_price">{{ product.variants.first.price | money }}</div>
@@ -22,10 +22,10 @@
                 </div>
 			{% endif %}
         {% endfor %}
-	{% elsif product.title contains 'AUREA' %}
+	{% elsif product.title contains 'SKINNY' %}
 		{% for product in collection.products %}
-			{% if product.title contains 'AUREA OMBRE' %}
- 			{% elsif product.title contains 'AUREA' %}
+			{% if product.title contains 'SKINNY' && product.title contains 'ombre' %}
+ 			{% elsif product.title contains 'SKINNY' %}
                 <div class="pr_pr" >
                     <div class="prd_title">{{ product.title }}</div>
                     <div class="pr_price">{{ product.variants.first.price | money }}</div>
