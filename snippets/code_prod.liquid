@@ -121,9 +121,9 @@
         {% endfor %}
 	{% endif %}
 
-	{% if product.title contains 'HU' %}
+	{% if product.title contains 'TIE' %}
         {% for product in collection.products %}
- 			{% if product.title contains 'HU' %}
+ 			{% if product.title contains 'TIE' %}
                 <div class="pr_pr" {% unless product.available %} class="solded"{% endunless %}>
                     <div class="prd_title">{{ product.title }}</div>
                     <div class="pr_price">{{ product.variants.first.price | money }}</div>

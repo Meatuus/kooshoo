@@ -616,7 +616,6 @@ Shopify.linkOptionSelectors = function(product) {
 			}
 			 else if (($(asd_rew).find(".prd_title:contains('black')").length > 0) || ($(asd_rew).find(".prd_title:contains('Black')").length > 0)) {
 				$('.art_clr').eq([i]).addClass('black');
-				console.log('inside black');
 				$('.art_clr.black').append('<img style="display:none;" src="{{ "clr_h_black.png" | asset_url }}">');
 			}
 			else if (($(asd_rew).find(".prd_title:contains('white')").length > 0)) {
@@ -663,7 +662,7 @@ Shopify.linkOptionSelectors = function(product) {
 				$('.art_clr').eq([i]).addClass('tangerine');
 				$('.art_clr.tangerine').append('<img style="display:none;" src="{{ "clr_h_tangerine.png" | asset_url }}">');
 			}
-			else if (($(asd_rew).find(".prd_title:contains('viola purple')").length > 0)) {
+			else if (($(asd_rew).find(".prd_title:contains('dusty purple')").length > 0)) {
 				$('.art_clr').eq([i]).addClass('viola_purple');
 				$('.art_clr.viola_purple').append('<img style="display:none;" src="{{ "clr_h_viola_purple.png" | asset_url }}">');
 			}
@@ -747,7 +746,7 @@ Shopify.linkOptionSelectors = function(product) {
 			} else if (($(asd_rew).find(".prd_title:contains('radiant orchid')").length > 0)) {
 				$('.art_clr').eq([i]).addClass('radiant_orchid');
 				$('.art_clr.radiant_orchid').append('<img style="display:none;" src="{{ "clr_h_radiant_orchid.png" | asset_url }}">');
-			} else if (($(asd_rew).find(".prd_title:contains('Blazing Yellow')").length > 0)) {
+			} else if (($(asd_rew).find(".prd_title:contains('Blazing Yellow')").length > 0) || ($(asd_rew).find(".prd_title:contains('yellow')").length > 0)) {
 				$('.art_clr').eq([i]).addClass('yellow');
 				$('.art_clr.yellow').append('<img style="display:none;" src="{{ "clr_h_blazing_yellow.png" | asset_url }}">');
 			}
@@ -1007,13 +1006,13 @@ Shopify.linkOptionSelectors = function(product) {
 						$('.ht_tit').html(art);
 						$('.inst_cont').find('a').remove();
 						newInstagram(art);
-					 {% elsif collection.title == "AUREA headbands men's only" %}
+					 {% elsif collection.title == "AUREA - Skinny Headbands for Men" %}
 						$('.am_titl').html('SKINNY headband');
 						var art = 'HisBlackAurea';
 						$('.ht_tit').html(art);
 						$('.inst_cont').find('a').remove();
 						newInstagram(art);
-					 {% elsif collection.title == "HU headbands" or collection.title == settings.productrow_1_collection or collection.handle == "hu-wholesale" collection.handle == 'hu-sweatbands' %}
+					 {% elsif collection.title == "HU - Bandana Sweatband and Bow Headband" or collection.title == settings.productrow_1_collection or collection.handle == "yoga-headbands' %}
 						var art_f = ch_tit.replace("black","")
 						$('.am_titl').html(art_f);
 						var art = 'HerBlackHu';
@@ -1050,7 +1049,7 @@ Shopify.linkOptionSelectors = function(product) {
 						$('.ht_tit').html(art);
 						$('.inst_cont').find('a').remove();
 						newInstagram(art);
-					{% elsif collection.title == "HU headbands" or collection.handle == "hu-wholesale" collection.handle == 'hu-sweatbands' %}
+					{% elsif collection.title == "HU - Bandana Sweatband and Bow Headband" or collection.handle == "hu-wholesale" collection.handle == 'hu-sweatbands' %}
 						var art = 'HerWhiteHu';
 						$('.ht_tit').html(art);
 						$('.inst_cont').find('a').remove();
@@ -1076,7 +1075,7 @@ Shopify.linkOptionSelectors = function(product) {
 						$('.ht_tit').html(art);
 						$('.inst_cont').find('a').remove();
 						newInstagram(art);
-					{% elsif collection.title == "HU headbands and sweatbands" or collection.handle == "hu-wholesale" collection.handle == 'hu-sweatbands' %}
+					{% elsif collection.title == "HU - Bandana Sweatband and Bow Headband" or collection.handle == "hu-wholesale" collection.handle == 'hu-sweatbands' %}
 						var art_f = ch_tit.replace("royal blue","")
 						$('.am_titl').html(art_f);
 						var art = 'HerroyalBlueHu';
@@ -1166,7 +1165,7 @@ Shopify.linkOptionSelectors = function(product) {
 						$('.ht_tit').html(art);
 						$('.inst_cont').find('a').remove();
 						newInstagram(art);
-					{% elsif collection.title == "HU headbands" or collection.handle == "hu-wholesale" collection.handle == 'hu-sweatbands' %}
+					{% elsif collection.title == "HU - Bandana Sweatband and Bow Headband" or collection.handle == "hu-wholesale" collection.handle == 'hu-sweatbands' %}
 						var art_f = ch_tit.replace("opal","")
 						$('.am_titl').html(art_f);
 						var art = 'HerOpalHu';
@@ -1210,7 +1209,7 @@ Shopify.linkOptionSelectors = function(product) {
 						$('.ht_tit').html(art);
 						$('.inst_cont').find('a').remove();
 						newInstagram(art);
-					 {% elsif collection.title == "HU headbands" or collection.handle == "hu-wholesale" collection.handle == 'hu-sweatbands' %}
+					 {% elsif collection.title == "HU - Bandana Sweatband and Bow Headband" or collection.handle == "hu-wholesale" collection.handle == 'hu-sweatbands' %}
 						var art = 'HerPeachWhipPinkHu';
 						$('.ht_tit').html(art);
 						$('.inst_cont').find('a').remove();
@@ -1272,7 +1271,6 @@ Shopify.linkOptionSelectors = function(product) {
 				 var art_f = ch_tit.replace("silver cloud grey","")
 			   $('.am_titl').html(art_f);
 			   $('.art_col').html('silver cloud grey');
-			   console.log(art_f);
 					{% if collection.title == "ENSO headbands" or collection.handle == "enso-headbands-and-head-wraps" or collection.handle == "enso-wholesale" %}
 
 						$('.am_titl').html('ENSO classic');
@@ -1286,7 +1284,7 @@ Shopify.linkOptionSelectors = function(product) {
 						$('.ht_tit').html(art);
 						$('.inst_cont').find('a').remove();
 						newInstagram(art);
-					{% elsif collection.title == "HU headbands" or collection.handle == "hu-wholesale" collection.handle == 'hu-sweatbands' %}
+					{% elsif collection.title == "HU - Bandana Sweatband and Bow Headband" or collection.handle == "hu-wholesale" collection.handle == 'hu-sweatbands' %}
 
 						var art = 'HerSilverCloudGreyHu';
 
@@ -1316,7 +1314,7 @@ Shopify.linkOptionSelectors = function(product) {
 						$('.ht_tit').html(art);
 						$('.inst_cont').find('a').remove();
 						newInstagram(art);
-					{% elsif collection.title == "HU headbands" or collection.handle == "hu-wholesale" collection.handle == 'hu-sweatbands' %}
+					{% elsif collection.title == "HU - Bandana Sweatband and Bow Headband" or collection.handle == "hu-wholesale" collection.handle == 'hu-sweatbands' %}
 						var art = 'HerWalnutHu';
 						$('.ht_tit').html(art);
 						$('.inst_cont').find('a').remove();
@@ -1344,7 +1342,7 @@ Shopify.linkOptionSelectors = function(product) {
 						$('.ht_tit').html(art);
 						$('.inst_cont').find('a').remove();
 						newInstagram(art);
-					{% elsif collection.title == "HU headbands" or collection.handle == "hu-wholesale" collection.handle == 'hu-sweatbands' %}
+					{% elsif collection.title == "HU - Bandana Sweatband and Bow Headband" or collection.handle == "hu-wholesale" collection.handle == 'hu-sweatbands' %}
 						var art = 'HerSafariGreenHu';
 						$('.ht_tit').html(art);
 						$('.inst_cont').find('a').remove();
@@ -1388,9 +1386,9 @@ Shopify.linkOptionSelectors = function(product) {
 					 {% endif %}
 			}
 			else if (($(asd_rew).find(".prd_title:contains('tangerine')").length > 0)) {
-			  /*  var art_f = ch_tit.replace("tangerine","")
-			   $('.am_titl').html(art_f);*/
-			   $('.art_col').html('tangerine');
+			  	var art_f = ch_tit.replace("tangerine","")
+			  	$('.am_titl').html(art_f);
+			  	$('.art_col').html('tangerine');
 					  {% if collection.title == "ENSO headbands" or collection.handle == "enso-headbands-and-head-wraps" or collection.handle == "enso-wholesale" %}
 						$('.am_titl').html('ENSO classic');
 						var art = 'HerTangerineEnso';
@@ -1403,14 +1401,12 @@ Shopify.linkOptionSelectors = function(product) {
 						$('.ht_tit').html(art);
 						$('.inst_cont').find('a').remove();
 						newInstagram(art);
-					{% elsif collection.title == "HU headbands" or collection.handle == "hu-wholesale" collection.handle == 'hu-sweatbands' %}
-						$('.am_titl').html('HU');
+					{% elsif collection.title == "HU - Bandana Sweatband and Bow Headband" or collection.handle == "hu-wholesale" collection.handle == 'hu-sweatbands' %}
 						var art = 'HerTangerineHu';
 						$('.ht_tit').html(art);
 						$('.inst_cont').find('a').remove();
 						newInstagram(art);
 					{% elsif collection.title == "HU headbands men's only" %}
-						$('.am_titl').html('HU');
 						var art = 'HisTangerineHu';
 						$('.ht_tit').html(art);
 						$('.inst_cont').find('a').remove();
@@ -1418,7 +1414,9 @@ Shopify.linkOptionSelectors = function(product) {
 					 {% endif %}
 			}
 			else if (($(asd_rew).find(".prd_title:contains('limestone grey')").length > 0)) {
-			   $('.art_col').html('limestone grey');
+				var art_f = ch_tit.replace("limestone grey","")
+			    $('.am_titl').html(art_f);
+			   	$('.art_col').html('limestone grey');
 					  {% if collection.title == "ENSO headbands" or collection.handle == "enso-headbands-and-head-wraps" or collection.handle == "enso-wholesale" %}
 						$('.am_titl').html('ENSO classic');
 						var art = 'HerLimestoneGreyEnso';
@@ -1431,14 +1429,12 @@ Shopify.linkOptionSelectors = function(product) {
 						$('.ht_tit').html(art);
 						$('.inst_cont').find('a').remove();
 						newInstagram(art);
-					{% elsif collection.title == "HU headbands" or collection.handle == "hu-wholesale" collection.handle == 'hu-sweatbands' %}
-						$('.am_titl').html('HU');
+					{% elsif collection.title == "HU - Bandana Sweatband and Bow Headband" or collection.handle == "hu-wholesale" collection.handle == 'hu-sweatbands' %}
 						var art = 'HerLimestoneGreyHu';
 						$('.ht_tit').html(art);
 						$('.inst_cont').find('a').remove();
 						newInstagram(art);
 					{% elsif collection.title == "HU headbands men's only" %}
-						$('.am_titl').html('HU');
 						var art = 'HisLimestoneGreyHu';
 						$('.ht_tit').html(art);
 						$('.inst_cont').find('a').remove();
@@ -1446,7 +1442,9 @@ Shopify.linkOptionSelectors = function(product) {
 					 {% endif %}
 			}
 			else if (($(asd_rew).find(".prd_title:contains('marsala red')").length > 0)) {
-			   $('.art_col').html('marsala red');
+				var art_f = ch_tit.replace("marsala red","")
+			    $('.am_titl').html(art_f);
+			    $('.art_col').html('marsala red');
 					  {% if collection.title == "ENSO headbands" or collection.handle == "enso-headbands-and-head-wraps" or collection.handle == "enso-wholesale" %}
 						$('.am_titl').html('ENSO classic');
 						var art = 'HerMarsalaRedEnso';
@@ -1459,14 +1457,12 @@ Shopify.linkOptionSelectors = function(product) {
 						$('.ht_tit').html(art);
 						$('.inst_cont').find('a').remove();
 						newInstagram(art);
-					{% elsif collection.title == "HU headbands" or collection.handle == "hu-wholesale" collection.handle == 'hu-sweatbands' %}
-						$('.am_titl').html('HU');
+					{% elsif collection.title == "HU - Bandana Sweatband and Bow Headband" or collection.handle == "hu-wholesale" collection.handle == 'hu-sweatbands' %}
 						var art = 'HerMarsalaRedHu';
 						$('.ht_tit').html(art);
 						$('.inst_cont').find('a').remove();
 						newInstagram(art);
 					{% elsif collection.title == "HU headbands men's only" %}
-						$('.am_titl').html('HU');
 						var art = 'HisMarsalaRedHu';
 						$('.ht_tit').html(art);
 						$('.inst_cont').find('a').remove();
@@ -1474,7 +1470,9 @@ Shopify.linkOptionSelectors = function(product) {
 					 {% endif %}
 			}
 			else if (($(asd_rew).find(".prd_title:contains('crown blue')").length > 0)) {
-			   $('.art_col').html('crown blue');
+				var art_f = ch_tit.replace("crown blue","")
+			    $('.am_titl').html(art_f);
+			    $('.art_col').html('crown blue');
 					  {% if product.title contains "BATIK" %}
 						$('.am_titl').html('ENSO batik');
 						var art = 'HerCrownBlueEnso';
@@ -1493,25 +1491,23 @@ Shopify.linkOptionSelectors = function(product) {
 						$('.ht_tit').html(art);
 						$('.inst_cont').find('a').remove();
 						// newInstagram(art);
-					{% elsif collection.title == "HU headbands" or collection.handle == "hu-wholesale" or collection.handle == 'hu-sweatbands' %}
-						$('.am_titl').html('HU');
+					{% elsif collection.title == "HU - Bandana Sweatband and Bow Headband" or collection.handle == "hu-wholesale" or collection.handle == 'hu-sweatbands' %}
 						var art = 'HerCrownBlueHu';
 						$('.ht_tit').html(art);
 						$('.inst_cont').find('a').remove();
 						newInstagram(art);
 					{% elsif collection.title == "HU headbands men's only" %}
-						$('.am_titl').html('HU');
 						var art = 'HisCrownBlueHu';
 						$('.ht_tit').html(art);
 						$('.inst_cont').find('a').remove();
 						newInstagram(art);
 					 {% endif %}
 			}
-			else if (($(asd_rew).find(".prd_title:contains('viola purple')").length > 0)) {
-				var art_f = ch_tit.replace("viola purple","")
+			else if (($(asd_rew).find(".prd_title:contains('dusty purple')").length > 0)) {
+				var art_f = ch_tit.replace("dusty purple","")
 			   $('.am_titl').html(art_f);
-			   $('.art_col').html('viola purple');
-					   {% if collection.title == 'HU headbands' or collection.handle == "hu-wholesale"%}
+			   $('.art_col').html('dusty purple');
+					   {% if collection.title == 'HU - Bandana Sweatband and Bow Headband' or collection.handle == "hu-wholesale"%}
 						var art = 'HerViolaHu';
 						$('.ht_tit').html(art);
 						$('.inst_cont').find('a').remove();
