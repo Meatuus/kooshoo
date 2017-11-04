@@ -610,7 +610,7 @@ Shopify.linkOptionSelectors = function(product) {
 			else if (($(asd_rew).find(".prd_title:contains('shawl white')").length > 0)) {
 				$('.art_clr').eq([i]).addClass('sh_white');
 				$('.art_clr.sh_white').append('<img style="display:none;" src="{{ "clr_h_sh_white.png" | asset_url }}">');
-			}else if (($(asd_rew).find(".prd_title:contains('Black/Brown')").length > 0)) {
+			}else if (($(asd_rew).find(".prd_title:contains('brown/black')").length > 0)) {
 				$('.art_clr').eq([i]).addClass('black_brown');
 				$('.art_clr.black_brown').append('<img style="display:none;" src="{{ "clr_h_black_brown.png" | asset_url }}">');
 			}
@@ -674,7 +674,7 @@ Shopify.linkOptionSelectors = function(product) {
 				$('.art_clr').eq([i]).addClass('playful');
 				$('.art_clr.playful').append('<img style="display:none;" src="{{ "clr_h_playful.png" | asset_url }}">');
 			}
-			else if (($(asd_rew).find(".prd_title:contains('Colorful')").length > 0)) {
+			else if (($(asd_rew).find(".prd_title:contains('colorful')").length > 0)) {
 				$('.art_clr').eq([i]).addClass('colorful');
 				$('.art_clr.colorful').append('<img style="display:none;" src="{{ "clr_h_colorful.png" | asset_url }}">');
 			}
@@ -851,17 +851,17 @@ Shopify.linkOptionSelectors = function(product) {
 						newInstagram(art);
 					 {% endif %}
 			}
-			 else if (($(asd_rew).find(".prd_title:contains('Black/Brown')").length > 0)) {
-
+			 else if (($(asd_rew).find(".prd_title:contains('brown/black')").length > 0)) {
+				var art_f = ch_tit.replace("brown/black","")
+				$('.am_titl').html(art_f);
 				$('.art_col').html('black/brown');
-					{% if collection.title == 'LILA hairties' or collection.title == 'Hairties' or collection.handle == "lila-wholesale" %}
-						$('.am_titl').html('LILA');
+					{% if collection.title == 'LILA - Organic Cotton, Plastic-Free Hairties' or collection.title == 'Hairties' or collection.handle == "lila-wholesale" %}
+						// $('.am_titl').html('LILA');
 						var art = 'HerBlackBrownLila';
 						$('.ht_tit').html(art);
 						$('.inst_cont').find('a').remove();
 						newInstagram(art);
-					 {% elsif collection.handle == "lila-hairties-men-s-only" %}
-						 $('.am_titl').html('LILA for men');
+					 {% elsif collection.handle == "hair-ties-for-men" %}
 						var art = 'HisBlackBrownLila';
 						$('.ht_tit').html(art);
 						$('.inst_cont').find('a').remove();
@@ -1019,12 +1019,16 @@ Shopify.linkOptionSelectors = function(product) {
 						$('.ht_tit').html(art);
 						$('.inst_cont').find('a').remove();
 						newInstagram(art);
-					 {% elsif collection.title == 'LILA hairties' or collection.title == 'Hairties' or collection.handle == "lila-wholesale" %}
+					 {% elsif collection.title == 'LILA - Organic Cotton, Plastic-Free Hairties' or collection.title == 'Hairties' or collection.handle == "lila-wholesale" %}
+						var art_f = ch_tit.replace("black","")
+						$('.am_titl').html(art_f);
 						var art = 'HerBlackLila';
 						$('.ht_tit').html(art);
 						$('.inst_cont').find('a').remove();
 						newInstagram(art);
-					{% elsif collection.title == "LILA Hairties men's only" %}
+					{% elsif collection.title == "LILA - Best Selling Hair Ties for Men" %}
+						var art_f = ch_tit.replace("black","")
+						$('.am_titl').html(art_f);
 						var art = 'HisBlackLila';
 						$('.ht_tit').html(art);
 						$('.inst_cont').find('a').remove();
@@ -1552,16 +1556,16 @@ Shopify.linkOptionSelectors = function(product) {
 						newInstagram(art);
 					{% endif %}
 			}
-			else if (($(asd_rew).find(".prd_title:contains('Colorful')").length > 0)) {
+			else if (($(asd_rew).find(".prd_title:contains('colorful')").length > 0)) {
 			   var art_f = ch_tit.replace("colorful","")
 			   $('.am_titl').html(art_f);
 			   $('.art_col').html('colorful');
-					{% if collection.title == 'LILA hairties' or collection.title == 'Hairties' or collection.handle == "lila-wholesale" %}
+					{% if collection.title == 'LILA - Organic Cotton, Plastic-Free Hairties' or collection.title == 'Hairties' or collection.handle == "lila-wholesale" %}
 						var art = 'HerColorfulLila';
 						$('.ht_tit').html(art);
 						$('.inst_cont').find('a').remove();
 						newInstagram(art);
-					{% elsif collection.title == "LILA Hairties men's only" %}
+					{% elsif collection.title == "LILA - Best Selling Hair Ties for Men" %}
 						var art = 'HisColorfulLila';
 						$('.ht_tit').html(art);
 						$('.inst_cont').find('a').remove();

@@ -96,9 +96,9 @@
         {% endfor %}
 	{% endif %}
 
-	{% if product.title contains 'LILA' %}
+	{% if product.title contains 'HAIR TIES' %}
         {% for product in collection.products %}
- 			{% if product.title contains 'LILA' %}
+ 			{% if product.title contains 'HAIR TIES' %}
                 <div class="pr_pr{% unless product.available %} solded{% endunless %}" >
                     <div class="prd_title">{{ product.title }}</div>
                     <div class="pr_price">{{ product.variants.first.price | money }}</div>
@@ -121,9 +121,9 @@
         {% endfor %}
 	{% endif %}
 
-	{% if product.title contains 'TIE' %}
+	{% if product.title contains 'TIE HEADBAND' %}
         {% for product in collection.products %}
- 			{% if product.title contains 'TIE' %}
+ 			{% if product.title contains 'TIE HEADBAND' %}
                 <div class="pr_pr" {% unless product.available %} class="solded"{% endunless %}>
                     <div class="prd_title">{{ product.title }}</div>
                     <div class="pr_price">{{ product.variants.first.price | money }}</div>
