@@ -616,6 +616,7 @@ Shopify.linkOptionSelectors = function(product) {
 			}
 			 else if (($(asd_rew).find(".prd_title:contains('black')").length > 0) || ($(asd_rew).find(".prd_title:contains('Black')").length > 0)) {
 				$('.art_clr').eq([i]).addClass('black');
+				console.log('inside black');
 				$('.art_clr.black').append('<img style="display:none;" src="{{ "clr_h_black.png" | asset_url }}">');
 			}
 			else if (($(asd_rew).find(".prd_title:contains('white')").length > 0)) {
@@ -626,7 +627,7 @@ Shopify.linkOptionSelectors = function(product) {
 				$('.art_clr').eq([i]).addClass('royal_blue');
 				$('.art_clr.royal_blue').append('<img style="display:none;" src="{{ "clr_h_royal_blue.png" | asset_url }}">');
 			}
-			else if (($(asd_rew).find(".prd_title:contains('deep purple')").length > 0)) {
+			else if (($(asd_rew).find(".prd_title:contains('purple ombre')").length > 0)) {
 				$('.art_clr').eq([i]).addClass('deep_purple');
 				$('.art_clr.deep_purple').append('<img style="display:none;" src="{{ "clr_h_deep_light_purple.png" | asset_url }}">');
 			}
@@ -634,7 +635,7 @@ Shopify.linkOptionSelectors = function(product) {
 				$('.art_clr').eq([i]).addClass('dusk_blue');
 				$('.art_clr.dusk_blue').append('<img style="display:none;" src="{{ "clr_h_dusk_blue_tender_shoots.png" | asset_url }}">');
 			}
-			else if (($(asd_rew).find(".prd_title:contains('pink flambe')").length > 0)) {
+			else if (($(asd_rew).find(".prd_title:contains('pink/peach ombre')").length > 0)) {
 				$('.art_clr').eq([i]).addClass('pink_flambe');
 				$('.art_clr.pink_flambe').append('<img style="display:none;" src="{{ "clr_h_pink_flambe_peach.png" | asset_url }}">');
 			}

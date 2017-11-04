@@ -1,15 +1,15 @@
 
-    {% if product.title contains 'AUREA OMBRE' %}
+    {% if product.title contains 'SKINNY' && product.title contains 'ombre' %}
         {% for product in collection.products %}
- 			{% if product.title contains 'AUREA OMBRE' %}
+		{% if product.title contains 'SKINNY' && product.title contains 'ombre' %}
                 <div class="art_clr">
                 </div>
-			{% endif %}
+		{% endif %}
         {% endfor %}
-	{% elsif product.title contains 'AUREA' %}
+	{% elsif product.title contains 'SKINNY' %}
 		{% for product in collection.products %}
-			{% if product.title contains 'AUREA OMBRE' %}
- 			{% elsif product.title contains 'AUREA' %}
+			{% if product.title contains 'ombre' %}
+ 			{% elsif product.title contains 'SKINNY' %}
                 <div class="art_clr">
                 </div>
 			{% endif %}
