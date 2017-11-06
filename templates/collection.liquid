@@ -325,14 +325,14 @@
 		{% elsif collection.handle contains 'enso' %}
 			  <div class="cl_titm">ENSO classic</div>
 			{% for product in collection.products %}
-				{% if product.title contains 'ENSO BATIK' %}
+				{% if product.title contains 'batik' %}
 				  {% else %}
 					{% include 'product-list-repeatable-item' with product %}
 				{% endif %}
 			   {% endfor %}
 			  <div class="cl_titm secms">ENSO batik</div>
 			  {% for product in collection.products %}
-				{% if product.title contains 'ENSO BATIK' %}
+				{% if product.title contains 'batik' %}
 					{% include 'product-list-repeatable-item' with product %}
 				{% endif %}
 			   {% endfor %}
