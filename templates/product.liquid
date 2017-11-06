@@ -571,7 +571,7 @@ Shopify.linkOptionSelectors = function(product) {
 		var divs = $('.pr_pr');
 		for (var i = 0; i < divs.length; i++) {
 			var asd_rew = $(divs[i]);
-		   if (($(asd_rew).find(".prd_title:contains('BATIK black')").length > 0) || ($(asd_rew).find(".prd_title:contains('BATIK Black')").length > 0)) {
+		   if (($(asd_rew).find(".prd_title:contains('black batik')").length > 0) || ($(asd_rew).find(".prd_title:contains('black batik')").length > 0)) {
 				$('.art_clr').eq([i]).addClass('batic_black');
 				$('.art_clr.batic_black').append('<img style="display:none;" src="{{ "clr_h_batic_black.png" | asset_url }}">');
 			}
@@ -776,6 +776,8 @@ Shopify.linkOptionSelectors = function(product) {
 				var ch_tit = $(ch_main).find('.prd_title').html();
 				console.log("FINDER");
 				console.log(ch_tit);
+				console.log(ch_main);
+				console.log("ch_main above");
 				change_tit(ch_main, numb_ar);
 				var ch_prise = $(ch_main).find('.pr_price').html();
 				var ch_id = $(ch_main).find('.pr_id').html();
@@ -814,11 +816,11 @@ Shopify.linkOptionSelectors = function(product) {
 	change_clr();
 
 	var ch_maisa = $('.am_titl').text();
+
 	   var ch_maisan = $('.art_cost').find('.pr_pr').find(".prd_title:contains('"+ch_maisa+"')").parent();
 	var nmbdf = $(ch_maisan).index();
-  change_tit(ch_maisan, nmbdf);
+  change_tit(ch_maisan[0], nmbdf);
   function change_tit(asd_rew, i){
-	  console.log('ii')
 			 var ch_tit = $(asd_rew).find(".prd_title").text();
 	if  ($('.was-price').hasClass('arts')){
 	  $('.was-price').hide();
@@ -963,21 +965,36 @@ Shopify.linkOptionSelectors = function(product) {
 			}
 			 else if (($(asd_rew).find(".prd_title:contains('black')").length > 0)) {
 			   $('.art_col').html('black');
-
-					{% if collection.title == "ENSO headbands" or collection.handle == "enso-headbands-and-head-wraps" or collection.handle == "enso-wholesale" or collection.handle == "enso-headbands-and-head-wraps" %}
-						if ( ch_tit == 'ENSO BATIK black'){
-							$('.am_titl').html('ENSO batik');
-							var art = 'HerBlackEnsoBatik';
+					{% if product.handle == "enso-batik-black" %}
+						var art_f = ch_tit.replace("black","")
+						$('.am_titl').html(art_f);
+						var art = 'HerBlackEnsoBatik';
 							$('.ht_tit').html(art);
 							$('.inst_cont').find('a').remove();
 							newInstagram(art);
-						}else if (ch_tit == 'ENSO black'){
-							$('.am_titl').html('ENSO classic');
-							var art = 'HerBlackEnso';
+					{% elsif product.handle == "black-twist-headband" %}
+						var art_f = ch_tit.replace("black","")
+						$('.am_titl').html(art_f);
+						var art = 'HerBlackEnso';
 							$('.ht_tit').html(art);
 							$('.inst_cont').find('a').remove();
 							newInstagram(art);
-						}
+					// {% elsif collection.title == "ENSO" or collection.handle == "enso-headbands-and-head-wraps" or collection.handle == "enso-wholesale" or collection.handle == "enso-headbands-and-head-wraps" %}
+						// console.log('3rd black if');
+						// if ( ch_tit == 'TWIST HEADBAND black'){
+						// 	$('.am_titl').html('ENSO batik');
+						// 	var art = 'HerBlackEnsoBatik';
+						// 	$('.ht_tit').html(art);
+						// 	$('.inst_cont').find('a').remove();
+						// 	newInstagram(art);
+						// }else if (ch_tit == 'ENSO black'){
+						// 	$('.am_titl').html('ENSO classic');
+						// 	var art = 'HerBlackEnso';
+						// 	$('.ht_tit').html(art);
+						// 	$('.inst_cont').find('a').remove();
+						// 	newInstagram(art);
+						// }
+						
 					{% elsif collection.title == "ENSO headbands men's only" %}
 						if ( ch_tit == 'ENSO BATIK black'){
 							$('.am_titl').html('ENSO batik');
@@ -1599,8 +1616,7 @@ Shopify.linkOptionSelectors = function(product) {
 				var art_f = ch_tit.replace("magenta pink","")
 			   $('.am_titl').html(art_f);
 			   $('.art_col').html('magenta pink');
-				{% if collection.title == 'ENSO headbands and head wraps'  or collection.handle == "enso-wholesale" %}
-					   $('.am_titl').html('ENSO batik');
+				{% if collection.title == 'ENSO - Twist Headbands and Head Wraps'  or collection.handle == "enso-wholesale" %}
 					   var art = 'HermagentapinkEnsoBatik';
 					   $('.ht_tit').html(art);
 					   $('.inst_cont').find('a').remove();
@@ -1610,8 +1626,7 @@ Shopify.linkOptionSelectors = function(product) {
 				var art_f = ch_tit.replace("mint green","")
 			   $('.am_titl').html(art_f);
 			   $('.art_col').html('mint green');
-				{% if collection.title == "ENSO headbands" or collection.handle == "enso-headbands-and-head-wraps" or collection.handle == "enso-wholesale" %}
-						$('.am_titl').html('ENSO batik');
+				{% if collection.title == "ENSO - Twist Headbands and Head Wraps" or collection.handle == "enso-headbands-and-head-wraps" or collection.handle == "enso-wholesale" %}
 						var art = 'HerMintGreenEnsoBatik';
 						$('.ht_tit').html(art);
 						$('.inst_cont').find('a').remove();
