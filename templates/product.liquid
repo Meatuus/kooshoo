@@ -380,7 +380,7 @@ $(window).resize(function () {
 		</div>
 	{% endif %}
 	{% if collection.title contains 'ENSO' %}
-	   {% if product.title contains 'ENSO BATIK' %}
+	   {% if product.title contains 'TWIST' and product.title contains 'batik' %}
 	   <div class="PI_sec tres">
 	   solar powered
 		</div>
@@ -396,7 +396,7 @@ $(window).resize(function () {
 		</div>
 	{% endif %}
 	{% if collection.title contains 'AUREA' or collection.title contains 'ENSO' %}
-		{% if product.title contains 'ombre' or product.title contains 'ENSO BATIK'%}
+		{% if product.title contains 'ombre' or product.title contains 'batik' %}
 				<div class="PI_sec cinc">
 				 dyed by hand
 				</div>
@@ -642,7 +642,7 @@ Shopify.linkOptionSelectors = function(product) {
 				$('.art_clr').eq([i]).addClass('opal');
 				$('.art_clr.opal').append('<img style="display:none;" src="{{ "clr_h_opal.png" | asset_url }}">');
 			}
-			else if (($(asd_rew).find(".prd_title:contains('peach whip pink')").length > 0)) {
+			else if (($(asd_rew).find(".prd_title:contains('dusty pink')").length > 0)) {
 				$('.art_clr').eq([i]).addClass('peach_whip_pink');
 				$('.art_clr.peach_whip_pink').append('<img style="display:none;" src="{{ "clr_h_peach_whip_pink.png" | asset_url }}">');
 			}
@@ -686,11 +686,11 @@ Shopify.linkOptionSelectors = function(product) {
 				$('.art_clr').eq([i]).addClass('amrit_vela');
 				$('.art_clr.amrit_vela').append('<img style="display:none;" src="{{ "clr_h_amrit_vela.png" | asset_url }}">');
 			}
-			else if (($(asd_rew).find(".prd_title:contains('steel grey')").length > 0)) {
+			else if (($(asd_rew).find(".prd_title:contains('grey batik')").length > 0)) {
 				$('.art_clr').eq([i]).addClass('steel_grey');
 				$('.art_clr.steel_grey').append('<img style="display:none;" src="{{ "clr_h_steel_grey.png" | asset_url }}">');
 			}
-			else if (($(asd_rew).find(".prd_title:contains('deep lavender')").length > 0)) {
+			else if (($(asd_rew).find(".prd_title:contains('lavender')").length > 0)) {
 				$('.art_clr').eq([i]).addClass('deep_lavender');
 				$('.art_clr.deep_lavender').append('<img style="display:none;" src="{{ "clr_h_deep_lavender.png" | asset_url }}">');
 			}
@@ -724,29 +724,29 @@ Shopify.linkOptionSelectors = function(product) {
 			else if (($(asd_rew).find(".prd_title:contains('ether blue')").length > 0)) {
 			  {% if product.handle contains 'batik' %}
 				$('.art_clr').eq([i]).addClass('ether_en_blue');
-				$('.art_clr.ether_blue').append('<img style="display:none;" src="{{ "clr_h_en_ether_blue.png" | asset_url }}">');
+				$('.art_clr.ether_en_blue').append('<img style="display:none;" src="{{ "clr_h_en_ether_blue.png" | asset_url }}">');
 			  {% else %}
 				$('.art_clr').eq([i]).addClass('ether_blue');
 				$('.art_clr.ether_blue').append('<img style="display:none;" src="{{ "clr_h_ether_blue.png" | asset_url }}">');
 			  {% endif %}
 			}
 
-			else if (($(asd_rew).find(".prd_title:contains('magenta pink')").length > 0)) {
+			else if (($(asd_rew).find(".prd_title:contains('pink')").length > 0)) {
 				$('.art_clr').eq([i]).addClass('magenta_pink');
 				$('.art_clr.magenta_pink').append('<img style="display:none;" src="{{ "clr_h_magenta_pink.png" | asset_url }}">');
 			} else if (($(asd_rew).find(".prd_title:contains('mint green')").length > 0)) {
 				$('.art_clr').eq([i]).addClass('parakeet_green');
 				$('.art_clr.parakeet_green').append('<img style="display:none;" src="{{ "clr_h_p_green.png" | asset_url }}">');
-			} else if (($(asd_rew).find(".prd_title:contains('blazing yellow')").length > 0)) {
+			} else if (($(asd_rew).find(".prd_title:contains('yellow batk')").length > 0)) {
 				$('.art_clr').eq([i]).addClass('blazing_yellow');
 				$('.art_clr.blazing_yellow').append('<img style="display:none;" src="{{ "clr_h_b_yellow.png" | asset_url }}">');
 			} else if (($(asd_rew).find(".prd_title:contains('coral')").length > 0)) {
 				$('.art_clr').eq([i]).addClass('coral');
 				$('.art_clr.coral').append('<img style="display:none;" src="{{ "clr_h_b_coral.png" | asset_url }}">');
-			} else if (($(asd_rew).find(".prd_title:contains('radiant orchid')").length > 0)) {
+			} else if (($(asd_rew).find(".prd_title:contains('orchid')").length > 0)) {
 				$('.art_clr').eq([i]).addClass('radiant_orchid');
 				$('.art_clr.radiant_orchid').append('<img style="display:none;" src="{{ "clr_h_radiant_orchid.png" | asset_url }}">');
-			} else if (($(asd_rew).find(".prd_title:contains('Blazing Yellow')").length > 0) || ($(asd_rew).find(".prd_title:contains('yellow')").length > 0)) {
+			} else if (($(asd_rew).find(".prd_title:contains('yellow')").length > 0) || ($(asd_rew).find(".prd_title:contains('yellow')").length > 0)) {
 				$('.art_clr').eq([i]).addClass('yellow');
 				$('.art_clr.yellow').append('<img style="display:none;" src="{{ "clr_h_blazing_yellow.png" | asset_url }}">');
 			}
@@ -1059,13 +1059,11 @@ Shopify.linkOptionSelectors = function(product) {
 			   $('.am_titl').html(art_f);
 			   $('.art_col').html('white');
 					  {% if collection.title == "ENSO headbands" or collection.handle == "enso-headbands-and-head-wraps" or collection.handle == "enso-wholesale" %}
-						$('.am_titl').html('ENSO classic');
 						var art = 'HerWhiteEnso';
 						$('.ht_tit').html(art);
 						$('.inst_cont').find('a').remove();
 						newInstagram(art);
 					{% elsif collection.title == "ENSO headbands men's only" %}
-						$('.am_titl').html('ENSO classic');
 						var art = 'HisWhiteEnso';
 						$('.ht_tit').html(art);
 						$('.inst_cont').find('a').remove();
@@ -1084,14 +1082,16 @@ Shopify.linkOptionSelectors = function(product) {
 			}
 			else if (($(asd_rew).find(".prd_title:contains('royal blue')").length > 0)) {
 			   $('.art_col').html('royal blue');
-					  {% if collection.title == "ENSO headbands" or collection.handle == "enso-headbands-and-head-wraps" or collection.handle == "enso-wholesale" %}
-						$('.am_titl').html('ENSO classic');
+					{% if collection.title == "ENSO headbands" or collection.handle == "enso-headbands-and-head-wraps" or collection.handle == "enso-wholesale" %}
+						var art_f = ch_tit.replace("royal blue","")
+						$('.am_titl').html(art_f);
 						var art = 'HerroyalBlueEnso';
 						$('.ht_tit').html(art);
 						$('.inst_cont').find('a').remove();
 						newInstagram(art);
 					{% elsif collection.title == "ENSO headbands men's only" %}
-						$('.am_titl').html('ENSO classic');
+						var art_f = ch_tit.replace("royal blue","")
+						$('.am_titl').html(art_f);
 						var art = 'HisroyalBlueEnso';
 						$('.ht_tit').html(art);
 						$('.inst_cont').find('a').remove();
@@ -1175,13 +1175,15 @@ Shopify.linkOptionSelectors = function(product) {
 			else if (($(asd_rew).find(".prd_title:contains('opal')").length > 0)) {
 			   $('.art_col').html('opal');
 					{% if collection.title == "ENSO headbands" or collection.handle == "enso-headbands-and-head-wraps" or collection.handle == "enso-wholesale" %}
-						$('.am_titl').html('ENSO classic');
+						var art_f = ch_tit.replace("opal","")
+						$('.am_titl').html(art_f);
 						var art = 'HerOpalEnso';
 						$('.ht_tit').html(art);
 						$('.inst_cont').find('a').remove();
 						newInstagram(art);
 					{% elsif collection.title == "ENSO headbands men's only" %}
-						$('.am_titl').html('ENSO classic');
+						var art_f = ch_tit.replace("opal","")
+						$('.am_titl').html(art_f);
 						var art = 'HisOpalEnso';
 						$('.ht_tit').html(art);
 						$('.inst_cont').find('a').remove();
@@ -1214,12 +1216,11 @@ Shopify.linkOptionSelectors = function(product) {
 						newInstagram(art);
 					 {% endif %}
 			}
-			else if (($(asd_rew).find(".prd_title:contains('peach whip pink')").length > 0)) {
-				 var art_f = ch_tit.replace("peach whip pink","")
-			   $('.am_titl').html(art_f);
-			   $('.art_col').html('peach whip pink');
+			else if (($(asd_rew).find(".prd_title:contains('dusty pink')").length > 0)) {
+				var art_f = ch_tit.replace("dusty pink","")
+			    $('.am_titl').html(art_f);
+			    $('.art_col').html('dusty pink');
 					  {% if collection.title == "ENSO headbands" or collection.handle == "enso-headbands-and-head-wraps" or collection.handle == "enso-wholesale" %}
-						$('.am_titl').html('ENSO classic');
 						var art = 'HerPeachWhipPinkEnso';
 						$('.ht_tit').html(art);
 						$('.inst_cont').find('a').remove();
@@ -1238,10 +1239,9 @@ Shopify.linkOptionSelectors = function(product) {
 					 {% endif %}
 			}
 			else if (($(asd_rew).find(".prd_title:contains('ether blue')").length > 0)) {
-			  /*   var art_f = ch_tit.replace("ether blue","")
-			   $('.am_titl').html(art_f);*/
-			   $('.am_titl').html('ENSO batik');
-			   $('.art_col').html('ether blue');
+			  	var art_f = ch_tit.replace("ether blue","")
+			   	$('.am_titl').html(art_f);
+			   	$('.art_col').html('ether blue');
 					  {% if collection.title == "ENSO headbands" or collection.handle == "enso-headbands-and-head-wraps" or collection.handle == "enso-wholesale"%}
 						var art = 'HerEtherBlueEnsoBatik';
 						$('.ht_tit').html(art);
@@ -1255,10 +1255,9 @@ Shopify.linkOptionSelectors = function(product) {
 					 {% endif %}
 			}
 			else if (($(asd_rew).find(".prd_title:contains('light grey')").length > 0)) {
-			  /*  var art_f = ch_tit.replace("light grey","")
-			   $('.am_titl').html(art_f);*/
-			   $('.am_titl').html('ENSO batik');
-			   $('.art_col').html('light grey');
+			    var art_f = ch_tit.replace("light grey","")
+			    $('.am_titl').html(art_f);
+			    $('.art_col').html('light grey');
 					  {% if collection.title == "ENSO headbands" or collection.handle == "enso-headbands-and-head-wraps" or collection.handle == "enso-wholesale" %}
 						var art = 'HerLightGreyEnsoBatik';
 						$('.ht_tit').html(art);
@@ -1272,10 +1271,9 @@ Shopify.linkOptionSelectors = function(product) {
 					 {% endif %}
 			}
 			else if (($(asd_rew).find(".prd_title:contains('majolica blue')").length > 0)) {
-			  /*   var art_f = ch_tit.replace("majolica blue","")
-			   $('.am_titl').html(art_f);*/
-			   $('.am_titl').html('ENSO batik');
-			   $('.art_col').html('majolica blue');
+			  	var art_f = ch_tit.replace("majolica blue","")
+			   	$('.am_titl').html(art_f);
+			   	$('.art_col').html('majolica blue');
 					  {% if collection.title == "ENSO headbands" or collection.handle == "enso-headbands-and-head-wraps" or collection.title == settings.productrow_1_collection or collection.handle == "enso-wholesale" %}
 						var art = 'HerMajolicaBlueEnsoBatik';
 						$('.ht_tit').html(art);
@@ -1290,25 +1288,20 @@ Shopify.linkOptionSelectors = function(product) {
 			}
 			else if (($(asd_rew).find(".prd_title:contains('silver cloud grey')").length > 0)) {
 				 var art_f = ch_tit.replace("silver cloud grey","")
-			   $('.am_titl').html(art_f);
-			   $('.art_col').html('silver cloud grey');
+			  	 $('.am_titl').html(art_f);
+			   	$('.art_col').html('silver cloud grey');
 					{% if collection.title == "ENSO headbands" or collection.handle == "enso-headbands-and-head-wraps" or collection.handle == "enso-wholesale" %}
-
-						$('.am_titl').html('ENSO classic');
 						var art = 'HerSilverCloudGreyEnso';
 						$('.ht_tit').html(art);
 						$('.inst_cont').find('a').remove();
 						newInstagram(art);
 					{% elsif collection.title == "ENSO headbands men's only" %}
-						$('.am_titl').html('ENSO classic');
 						var art = 'HisSilverCloudGreyEnso';
 						$('.ht_tit').html(art);
 						$('.inst_cont').find('a').remove();
 						newInstagram(art);
 					{% elsif collection.title == "HU - Bandana Sweatband and Bow Headband" or collection.handle == "hu-wholesale" collection.handle == 'hu-sweatbands' %}
-
 						var art = 'HerSilverCloudGreyHu';
-
 						$('.ht_tit').html(art);
 						$('.inst_cont').find('a').remove();
 						newInstagram(art);
@@ -1319,18 +1312,15 @@ Shopify.linkOptionSelectors = function(product) {
 						newInstagram(art);
 					 {% endif %}
 			} else if (($(asd_rew).find(".prd_title:contains('walnut')").length > 0)) {
-				 var art_f = ch_tit.replace("walnut","")
-			   $('.am_titl').html(art_f);
-			   $('.art_col').html('walnut');
-			   console.log(art_f);
+				var art_f = ch_tit.replace("walnut","")
+			   	$('.am_titl').html(art_f);
+			   	$('.art_col').html('walnut');
 					{% if collection.title == "ENSO headbands" or collection.handle == "enso-headbands-and-head-wraps" or collection.handle == "enso-wholesale" %}
-						$('.am_titl').html('ENSO classic');
 						var art = 'HerWalnutEnso';
 						$('.ht_tit').html(art);
 						$('.inst_cont').find('a').remove();
 						newInstagram(art);
 					{% elsif collection.title == "ENSO headbands men's only" %}
-						$('.am_titl').html('ENSO classic');
 						var art = 'HisWalnutEnso';
 						$('.ht_tit').html(art);
 						$('.inst_cont').find('a').remove();
@@ -1347,18 +1337,15 @@ Shopify.linkOptionSelectors = function(product) {
 						newInstagram(art);
 					 {% endif %}
 			} else if (($(asd_rew).find(".prd_title:contains('safari green')").length > 0)) {
-			   var art_f = ch_tit.replace("safari green","")
-			   $('.am_titl').html(art_f);
-			   $('.art_col').html('safari green');
-			   console.log(art_f);
+			   	var art_f = ch_tit.replace("safari green","")
+			   	$('.am_titl').html(art_f);
+			   	$('.art_col').html('safari green');
 					{% if collection.title == "ENSO headbands" or collection.handle == "enso-headbands-and-head-wraps" or collection.handle == "enso-wholesale" %}
-						$('.am_titl').html('ENSO classic');
 						var art = 'HerSafariGreenEnso';
 						$('.ht_tit').html(art);
 						$('.inst_cont').find('a').remove();
 						newInstagram(art);
 					{% elsif collection.title == "ENSO headbands men's only" %}
-						$('.am_titl').html('ENSO classic');
 						var art = 'HisSafariGreenEnso';
 						$('.ht_tit').html(art);
 						$('.inst_cont').find('a').remove();
@@ -1374,10 +1361,10 @@ Shopify.linkOptionSelectors = function(product) {
 						$('.inst_cont').find('a').remove();
 						newInstagram(art);
 					 {% endif %}
-			} else if (($(asd_rew).find(".prd_title:contains('steel grey')").length > 0)) {
-			   var art_f = ch_tit.replace("steel grey","");
-			   $('.am_titl').html('ENSO batik');
-			   $('.art_col').html('steel grey');
+			} else if (($(asd_rew).find(".prd_title:contains('grey batik')").length > 0)) {
+			   	var art_f = ch_tit.replace("grey","");
+			   	$('.am_titl').html(art_f);
+			   	$('.art_col').html('grey');
 					  {% if collection.title == "ENSO headbands" or collection.handle == "enso-headbands-and-head-wraps" or collection.handle == "enso-wholesale"%}
 						var art = 'HerSteelGreyEnso';
 						$('.ht_tit').html(art);
@@ -1390,10 +1377,10 @@ Shopify.linkOptionSelectors = function(product) {
 						newInstagram(art);
 					 {% endif %}
 			}
-			else if (($(asd_rew).find(".prd_title:contains('deep lavender')").length > 0)) {
-			   var art_f = ch_tit.replace("deep lavender","");
-			   $('.am_titl').html('ENSO batik');
-			   $('.art_col').html('deep lavender');
+			else if (($(asd_rew).find(".prd_title:contains('lavender')").length > 0)) {
+			   	var art_f = ch_tit.replace("lavender","");
+			   	$('.am_titl').html(art_f);
+			   	$('.art_col').html('lavender');
 					  {% if collection.title == "ENSO headbands" or collection.handle == "enso-headbands-and-head-wraps" or collection.handle == "enso-wholesale"%}
 						var art = 'HerDeepLavenderEnso';
 						$('.ht_tit').html(art);
@@ -1411,13 +1398,11 @@ Shopify.linkOptionSelectors = function(product) {
 			  	$('.am_titl').html(art_f);
 			  	$('.art_col').html('tangerine');
 					  {% if collection.title == "ENSO headbands" or collection.handle == "enso-headbands-and-head-wraps" or collection.handle == "enso-wholesale" %}
-						$('.am_titl').html('ENSO classic');
 						var art = 'HerTangerineEnso';
 						$('.ht_tit').html(art);
 						$('.inst_cont').find('a').remove();
 						newInstagram(art);
 					{% elsif collection.title == "ENSO headbands men's only" %}
-						$('.am_titl').html('ENSO classic');
 						var art = 'HisTangerineEnso';
 						$('.ht_tit').html(art);
 						$('.inst_cont').find('a').remove();
@@ -1439,13 +1424,11 @@ Shopify.linkOptionSelectors = function(product) {
 			    $('.am_titl').html(art_f);
 			   	$('.art_col').html('limestone grey');
 					  {% if collection.title == "ENSO headbands" or collection.handle == "enso-headbands-and-head-wraps" or collection.handle == "enso-wholesale" %}
-						$('.am_titl').html('ENSO classic');
 						var art = 'HerLimestoneGreyEnso';
 						$('.ht_tit').html(art);
 						$('.inst_cont').find('a').remove();
 						newInstagram(art);
 					{% elsif collection.title == "ENSO headbands men's only" %}
-						$('.am_titl').html('ENSO classic');
 						var art = 'HisLimestoneGreyEnso';
 						$('.ht_tit').html(art);
 						$('.inst_cont').find('a').remove();
@@ -1467,13 +1450,11 @@ Shopify.linkOptionSelectors = function(product) {
 			    $('.am_titl').html(art_f);
 			    $('.art_col').html('marsala red');
 					  {% if collection.title == "ENSO headbands" or collection.handle == "enso-headbands-and-head-wraps" or collection.handle == "enso-wholesale" %}
-						$('.am_titl').html('ENSO classic');
 						var art = 'HerMarsalaRedEnso';
 						$('.ht_tit').html(art);
 						$('.inst_cont').find('a').remove();
 						newInstagram(art);
 					{% elsif collection.title == "ENSO headbands men's only" %}
-						$('.am_titl').html('ENSO classic');
 						var art = 'HisMarsalaRedEnso';
 						$('.ht_tit').html(art);
 						$('.inst_cont').find('a').remove();
@@ -1494,20 +1475,17 @@ Shopify.linkOptionSelectors = function(product) {
 				var art_f = ch_tit.replace("crown blue","")
 			    $('.am_titl').html(art_f);
 			    $('.art_col').html('crown blue');
-					  {% if product.title contains "BATIK" %}
-						$('.am_titl').html('ENSO batik');
+					{% if product.title contains "batik" %}
 						var art = 'HerCrownBlueEnso';
 						$('.ht_tit').html(art);
 						$('.inst_cont').find('a').remove();
 						// newInstagram(art);
 					{% elsif collection.title == "ENSO headbands" or collection.handle == "enso-headbands-and-head-wraps" or collection.handle == "enso-wholesale" %}
-					  $('.am_titl').html('ENSO classic');
 					  var art = 'HerCrownBlueEnso';
 					  $('.ht_tit').html(art);
 					  $('.inst_cont').find('a').remove();
 					  // newInstagram(art);
 					{% elsif collection.title == "ENSO headbands men's only" %}
-						$('.am_titl').html('ENSO classic');
 						var art = 'HisCrownBlueEnso';
 						$('.ht_tit').html(art);
 						$('.inst_cont').find('a').remove();
@@ -1534,7 +1512,6 @@ Shopify.linkOptionSelectors = function(product) {
 						$('.inst_cont').find('a').remove();
 						newInstagram(art);
 					{% elsif collection.title == "ENSO headbands" or collection.handle == "enso-headbands-and-head-wraps" or collection.handle == "enso-wholesale" %}
-						$('.am_titl').html('ENSO classic');
 						var art = 'HerViolaEnso';
 						$('.ht_tit').html(art);
 						$('.inst_cont').find('a').remove();
@@ -1612,95 +1589,79 @@ Shopify.linkOptionSelectors = function(product) {
 					   newInstagram(art);
 				{% endif %}
 			}
-			else if (($(asd_rew).find(".prd_title:contains('magenta pink')").length > 0)) {
-				var art_f = ch_tit.replace("magenta pink","")
-			   $('.am_titl').html(art_f);
-			   $('.art_col').html('magenta pink');
+			else if (($(asd_rew).find(".prd_title:contains('pink')").length > 0)) {
+				var art_f = ch_tit.replace("pink","")
+			    $('.am_titl').html(art_f);
+			    $('.art_col').html('pink');
 				{% if collection.title == 'ENSO - Twist Headbands and Head Wraps'  or collection.handle == "enso-wholesale" %}
 					   var art = 'HermagentapinkEnsoBatik';
 					   $('.ht_tit').html(art);
 					   $('.inst_cont').find('a').remove();
-					   newInstagram(art);
+					   // newInstagram(art);
 				 {% endif %}
 			} else if (($(asd_rew).find(".prd_title:contains('mint green')").length > 0)) {
 				var art_f = ch_tit.replace("mint green","")
-			   $('.am_titl').html(art_f);
-			   $('.art_col').html('mint green');
+			    $('.am_titl').html(art_f);
+			    $('.art_col').html('mint green');
 				{% if collection.title == "ENSO - Twist Headbands and Head Wraps" or collection.handle == "enso-headbands-and-head-wraps" or collection.handle == "enso-wholesale" %}
 						var art = 'HerMintGreenEnsoBatik';
 						$('.ht_tit').html(art);
 						$('.inst_cont').find('a').remove();
 						newInstagram(art);
 					{% elsif collection.title == "ENSO headbands men's only" %}
-						$('.am_titl').html('ENSO batik');
 						var art = 'HisMintGreenEnsoBatik';
 						$('.ht_tit').html(art);
 						$('.inst_cont').find('a').remove();
 						newInstagram(art);
 				 {% endif %}
-			} else if (($(asd_rew).find(".prd_title:contains('radiant orchid')").length > 0)) {
-				var art_f = ch_tit.replace("radiant orchid","")
+			} else if (($(asd_rew).find(".prd_title:contains('orchid')").length > 0)) {
+				var art_f = ch_tit.replace("orchid","")
 			   $('.am_titl').html(art_f);
-			   $('.art_col').html('radiant orchid');
+			   $('.art_col').html('orchid');
 			   {% if collection.title == "ENSO headbands" or collection.handle == "enso-headbands-and-head-wraps" or collection.handle == "enso-wholesale" %}
-						$('.am_titl').html('ENSO classic');
 						var art = 'HerRadiantOrchidEnso';
 						$('.ht_tit').html(art);
 						$('.inst_cont').find('a').remove();
 						newInstagram(art);
 					{% elsif collection.title == "ENSO headbands men's only" %}
-						$('.am_titl').html('ENSO batik');
 						var art = 'HisRadiantOrchidEnso';
 						$('.ht_tit').html(art);
 						$('.inst_cont').find('a').remove();
 						newInstagram(art);
 				 {% endif %}
-
-
 			} else if (($(asd_rew).find(".prd_title:contains('coral')").length > 0)) {
 				var art_f = ch_tit.replace("coral","")
 			   $('.am_titl').html(art_f);
 			   $('.art_col').html('coral');
-						$('.am_titl').html('ENSO batik');
 						var art = 'HerCoralEnso';
 						$('.ht_tit').html(art);
 						$('.inst_cont').find('a').remove();
 						newInstagram(art);
-			} else if (($(asd_rew).find(".prd_title:contains('blazing yellow')").length > 0)) {
-				var art_f = ch_tit.replace("blazing yellow","")
+			} else if (($(asd_rew).find(".prd_title:contains('yellow')").length > 0)) {
+				var art_f = ch_tit.replace("yellow","")
 			   $('.am_titl').html(art_f);
-			   $('.art_col').html('blazing yellow');
-			   {% if product.title contains "ENSO BATIK" %}
-				   $('.am_titl').html('ENSO batik');
+			   $('.art_col').html('yellow');
+			   {% if product.title contains "batik" %}
 				   var art = 'HerBlazingYellowEnsoBatik';
 				   $('.ht_tit').html(art);
 				   $('.inst_cont').find('a').remove();
 				//    newInstagram(art);
 				{% elsif collection.title == "ENSO headbands" or collection.handle == "enso-headbands-and-head-wraps" or collection.handle == "enso-wholesale" %}
-					$('.am_titl').html('ENSO classic');
 					var art = 'HerBlazingYellowEnsoBatik';
 					$('.ht_tit').html(art);
 					$('.inst_cont').find('a').remove();
 					// newInstagram(art);
 				{% elsif collection.title == "ENSO headbands men's only" %}
-					$('.am_titl').html('ENSO batik');
 					var art = 'HisBlazingYellowEnsoBatik';
 					$('.ht_tit').html(art);
 					$('.inst_cont').find('a').remove();
 					// newInstagram(art);
-				{% endif %}
-			} else if (($(asd_rew).find(".prd_title:contains('yellow')").length > 0)) {
-				var art_f = ch_tit.replace("yellow","")
-			   $('.am_titl').html(art_f);
-			   $('.art_col').html('Yellow');
-			   {% if product.title contains "TIE HEADBAND yellow" %}
+				{% elsif product.title contains "TIE HEADBAND yellow" %}
 						var art = 'HerBlazingYellowEnso';
 						$('.ht_tit').html(art);
-						$('.inst_cont').find('a').remove();
-			   {% endif %}
-			}
-
-
+						$('.inst_cont').find('a').remove();			   
+				{% endif %}
+			} 
    };
 			});
 function newInstagram(h_tag) {
