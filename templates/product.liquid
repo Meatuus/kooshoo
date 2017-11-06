@@ -571,7 +571,7 @@ Shopify.linkOptionSelectors = function(product) {
 		var divs = $('.pr_pr');
 		for (var i = 0; i < divs.length; i++) {
 			var asd_rew = $(divs[i]);
-		   if (($(asd_rew).find(".prd_title:contains('black batik')").length > 0) || ($(asd_rew).find(".prd_title:contains('black batik')").length > 0)) {
+		     if (($(asd_rew).find(".prd_title:contains('black batik')").length > 0) || ($(asd_rew).find(".prd_title:contains('black batik')").length > 0)) {
 				$('.art_clr').eq([i]).addClass('batic_black');
 				$('.art_clr.batic_black').append('<img style="display:none;" src="{{ "clr_h_batic_black.png" | asset_url }}">');
 			}
@@ -737,7 +737,7 @@ Shopify.linkOptionSelectors = function(product) {
 			} else if (($(asd_rew).find(".prd_title:contains('mint green')").length > 0)) {
 				$('.art_clr').eq([i]).addClass('parakeet_green');
 				$('.art_clr.parakeet_green').append('<img style="display:none;" src="{{ "clr_h_p_green.png" | asset_url }}">');
-			} else if (($(asd_rew).find(".prd_title:contains('yellow batk')").length > 0)) {
+			} else if (($(asd_rew).find(".prd_title:contains('yellow batik')").length > 0)) {
 				$('.art_clr').eq([i]).addClass('blazing_yellow');
 				$('.art_clr.blazing_yellow').append('<img style="display:none;" src="{{ "clr_h_b_yellow.png" | asset_url }}">');
 			} else if (($(asd_rew).find(".prd_title:contains('coral')").length > 0)) {
@@ -995,15 +995,15 @@ Shopify.linkOptionSelectors = function(product) {
 						// 	newInstagram(art);
 						// }
 						
-					{% elsif collection.title == "ENSO headbands men's only" %}
-						if ( ch_tit == 'ENSO BATIK black'){
-							$('.am_titl').html('ENSO batik');
+					{% elsif collection.title == "ENSO - Our Best Selling Men's Headband" %}
+						var art_f = ch_tit.replace("black","")
+						$('.am_titl').html(art_f);
+						if ( ch_tit == 'TWIST HEADBAND black batik'){
 							var art = 'HisBlackEnsoBatik';
 							$('.ht_tit').html(art);
 							$('.inst_cont').find('a').remove();
 							newInstagram(art);
-						}else if (ch_tit == 'ENSO black'){
-							$('.am_titl').html('ENSO classic');
+						}else if (ch_tit == 'TWIST HEADBAND black'){
 							var art = 'HisBlackEnso';
 							$('.ht_tit').html(art);
 							$('.inst_cont').find('a').remove();
@@ -1062,22 +1062,18 @@ Shopify.linkOptionSelectors = function(product) {
 						var art = 'HerWhiteEnso';
 						$('.ht_tit').html(art);
 						$('.inst_cont').find('a').remove();
-						newInstagram(art);
-					{% elsif collection.title == "ENSO headbands men's only" %}
+					{% elsif collection.title == "ENSO - Our Best Selling Men's Headband" %}
 						var art = 'HisWhiteEnso';
 						$('.ht_tit').html(art);
 						$('.inst_cont').find('a').remove();
-						newInstagram(art);
 					{% elsif collection.title == "HU - Bandana Sweatband and Bow Headband" or collection.handle == "hu-wholesale" collection.handle == 'hu-sweatbands' %}
 						var art = 'HerWhiteHu';
 						$('.ht_tit').html(art);
 						$('.inst_cont').find('a').remove();
-						newInstagram(art);
 					{% elsif collection.title == "HU - Organic Bandana Headbands for Men" %}
 						var art = 'HisWhiteHu';
 						$('.ht_tit').html(art);
 						$('.inst_cont').find('a').remove();
-						newInstagram(art);
 					 {% endif %}
 			}
 			else if (($(asd_rew).find(".prd_title:contains('royal blue')").length > 0)) {
@@ -1088,40 +1084,34 @@ Shopify.linkOptionSelectors = function(product) {
 						var art = 'HerroyalBlueEnso';
 						$('.ht_tit').html(art);
 						$('.inst_cont').find('a').remove();
-						newInstagram(art);
-					{% elsif collection.title == "ENSO headbands men's only" %}
+					{% elsif collection.title == "ENSO - Our Best Selling Men's Headband" %}
 						var art_f = ch_tit.replace("royal blue","")
 						$('.am_titl').html(art_f);
 						var art = 'HisroyalBlueEnso';
 						$('.ht_tit').html(art);
 						$('.inst_cont').find('a').remove();
-						newInstagram(art);
 					{% elsif collection.title == "HU - Bandana Sweatband and Bow Headband" or collection.handle == "hu-wholesale" collection.handle == 'hu-sweatbands' %}
 						var art_f = ch_tit.replace("royal blue","")
 						$('.am_titl').html(art_f);
 						var art = 'HerroyalBlueHu';
 						$('.ht_tit').html(art);
 						$('.inst_cont').find('a').remove();
-						newInstagram(art);
 					{% elsif collection.title == "HU - Organic Bandana Headbands for Men" %}
 						var art_f = ch_tit.replace("royal blue","")
 						$('.am_titl').html(art_f);
 						var art = 'HisroyalBlueHu';
 						$('.ht_tit').html(art);
 						$('.inst_cont').find('a').remove();
-						newInstagram(art);
 					 {% elsif collection.title == "AUREA - Organic Elastic Hairbands" or collection.handle == "aurea-wholesale" %}
 						$('.am_titl').html('SKINNY headband');
 						var art = 'HerroyalBlueAurea';
 						$('.ht_tit').html(art);
 						$('.inst_cont').find('a').remove();
-						newInstagram(art);
 					 {% elsif collection.title == "AUREA headbands men's only" %}
 						$('.am_titl').html('SKINNY headband');
 						var art = 'HisroyalBlueAurea';
 						$('.ht_tit').html(art);
 						$('.inst_cont').find('a').remove();
-						newInstagram(art);
 					 {% endif %}
 			}
 			else if (($(asd_rew).find(".prd_title:contains('purple ombre')").length > 0)) {
@@ -1180,40 +1170,34 @@ Shopify.linkOptionSelectors = function(product) {
 						var art = 'HerOpalEnso';
 						$('.ht_tit').html(art);
 						$('.inst_cont').find('a').remove();
-						newInstagram(art);
-					{% elsif collection.title == "ENSO headbands men's only" %}
+					{% elsif collection.title == "ENSO - Our Best Selling Men's Headband" %}
 						var art_f = ch_tit.replace("opal","")
 						$('.am_titl').html(art_f);
 						var art = 'HisOpalEnso';
 						$('.ht_tit').html(art);
 						$('.inst_cont').find('a').remove();
-						newInstagram(art);
 					{% elsif collection.title == "HU - Bandana Sweatband and Bow Headband" or collection.handle == "hu-wholesale" collection.handle == 'hu-sweatbands' %}
 						var art_f = ch_tit.replace("opal","")
 						$('.am_titl').html(art_f);
 						var art = 'HerOpalHu';
 						$('.ht_tit').html(art);
 						$('.inst_cont').find('a').remove();
-						newInstagram(art);
 					{% elsif collection.title == "HU - Organic Bandana Headbands for Men" %}
 						var art_f = ch_tit.replace("opal","")
 						$('.am_titl').html(art_f);
 						var art = 'HisOpalHu';
 						$('.ht_tit').html(art);
-						$('.inst_cont').find('a').remove();
-						newInstagram(art);
+						$('.inst_cont').find('a').remove();						
 					 {% elsif collection.title == "AUREA - Organic Elastic Hairbands" or collection.handle == "aurea-wholesale" %}
 						$('.am_titl').html('SKINNY headband');
 						var art = 'HerOpalAurea';
 						$('.ht_tit').html(art);
-						$('.inst_cont').find('a').remove();
-						newInstagram(art);
+						$('.inst_cont').find('a').remove();						
 					 {% elsif collection.title == "AUREA headbands men's only" %}
 						$('.am_titl').html('SKINNY headband');
 						var art = 'HisOpalAurea';
 						$('.ht_tit').html(art);
-						$('.inst_cont').find('a').remove();
-						newInstagram(art);
+						$('.inst_cont').find('a').remove();						
 					 {% endif %}
 			}
 			else if (($(asd_rew).find(".prd_title:contains('dusty pink')").length > 0)) {
@@ -1245,13 +1229,11 @@ Shopify.linkOptionSelectors = function(product) {
 					  {% if collection.title == "ENSO headbands" or collection.handle == "enso-headbands-and-head-wraps" or collection.handle == "enso-wholesale"%}
 						var art = 'HerEtherBlueEnsoBatik';
 						$('.ht_tit').html(art);
-						$('.inst_cont').find('a').remove();
-						newInstagram(art);
-					{% elsif collection.title == "ENSO headbands men's only" %}
+						$('.inst_cont').find('a').remove();						
+					{% elsif collection.title == "ENSO - Our Best Selling Men's Headband" %}
 						var art = 'HisEtherBlueEnsoBatik';
 						$('.ht_tit').html(art);
-						$('.inst_cont').find('a').remove();
-						newInstagram(art);
+						$('.inst_cont').find('a').remove();						
 					 {% endif %}
 			}
 			else if (($(asd_rew).find(".prd_title:contains('light grey')").length > 0)) {
@@ -1261,13 +1243,11 @@ Shopify.linkOptionSelectors = function(product) {
 					  {% if collection.title == "ENSO headbands" or collection.handle == "enso-headbands-and-head-wraps" or collection.handle == "enso-wholesale" %}
 						var art = 'HerLightGreyEnsoBatik';
 						$('.ht_tit').html(art);
-						$('.inst_cont').find('a').remove();
-						newInstagram(art);
-					{% elsif collection.title == "ENSO headbands men's only" %}
+						$('.inst_cont').find('a').remove();						
+					{% elsif collection.title == "ENSO - Our Best Selling Men's Headband" %}
 						var art = 'HisLightGreyEnsoBatik';
 						$('.ht_tit').html(art);
-						$('.inst_cont').find('a').remove();
-						newInstagram(art);
+						$('.inst_cont').find('a').remove();						
 					 {% endif %}
 			}
 			else if (($(asd_rew).find(".prd_title:contains('majolica blue')").length > 0)) {
@@ -1277,13 +1257,11 @@ Shopify.linkOptionSelectors = function(product) {
 					  {% if collection.title == "ENSO headbands" or collection.handle == "enso-headbands-and-head-wraps" or collection.title == settings.productrow_1_collection or collection.handle == "enso-wholesale" %}
 						var art = 'HerMajolicaBlueEnsoBatik';
 						$('.ht_tit').html(art);
-						$('.inst_cont').find('a').remove();
-						newInstagram(art);
-					{% elsif collection.title == "ENSO headbands men's only" %}
+						$('.inst_cont').find('a').remove();						
+					{% elsif collection.title == "ENSO - Our Best Selling Men's Headband" %}
 						var art = 'HisMajolicaBlueEnsoBatik';
 						$('.ht_tit').html(art);
-						$('.inst_cont').find('a').remove();
-						newInstagram(art);
+						$('.inst_cont').find('a').remove();						
 					 {% endif %}
 			}
 			else if (($(asd_rew).find(".prd_title:contains('silver cloud grey')").length > 0)) {
@@ -1293,23 +1271,19 @@ Shopify.linkOptionSelectors = function(product) {
 					{% if collection.title == "ENSO headbands" or collection.handle == "enso-headbands-and-head-wraps" or collection.handle == "enso-wholesale" %}
 						var art = 'HerSilverCloudGreyEnso';
 						$('.ht_tit').html(art);
-						$('.inst_cont').find('a').remove();
-						newInstagram(art);
-					{% elsif collection.title == "ENSO headbands men's only" %}
+						$('.inst_cont').find('a').remove();						
+					{% elsif collection.title == "ENSO - Our Best Selling Men's Headband" %}
 						var art = 'HisSilverCloudGreyEnso';
 						$('.ht_tit').html(art);
-						$('.inst_cont').find('a').remove();
-						newInstagram(art);
+						$('.inst_cont').find('a').remove();						
 					{% elsif collection.title == "HU - Bandana Sweatband and Bow Headband" or collection.handle == "hu-wholesale" collection.handle == 'hu-sweatbands' %}
 						var art = 'HerSilverCloudGreyHu';
 						$('.ht_tit').html(art);
-						$('.inst_cont').find('a').remove();
-						newInstagram(art);
+						$('.inst_cont').find('a').remove();						
 					{% elsif collection.title == "HU - Organic Bandana Headbands for Men" %}
 						var art = 'HisSilverCloudGreyHu';
 						$('.ht_tit').html(art);
-						$('.inst_cont').find('a').remove();
-						newInstagram(art);
+						$('.inst_cont').find('a').remove();						
 					 {% endif %}
 			} else if (($(asd_rew).find(".prd_title:contains('walnut')").length > 0)) {
 				var art_f = ch_tit.replace("walnut","")
@@ -1318,23 +1292,19 @@ Shopify.linkOptionSelectors = function(product) {
 					{% if collection.title == "ENSO headbands" or collection.handle == "enso-headbands-and-head-wraps" or collection.handle == "enso-wholesale" %}
 						var art = 'HerWalnutEnso';
 						$('.ht_tit').html(art);
-						$('.inst_cont').find('a').remove();
-						newInstagram(art);
-					{% elsif collection.title == "ENSO headbands men's only" %}
+						$('.inst_cont').find('a').remove();						
+					{% elsif collection.title == "ENSO - Our Best Selling Men's Headband" %}
 						var art = 'HisWalnutEnso';
 						$('.ht_tit').html(art);
-						$('.inst_cont').find('a').remove();
-						newInstagram(art);
+						$('.inst_cont').find('a').remove();						
 					{% elsif collection.title == "HU - Bandana Sweatband and Bow Headband" or collection.handle == "hu-wholesale" collection.handle == 'hu-sweatbands' %}
 						var art = 'HerWalnutHu';
 						$('.ht_tit').html(art);
-						$('.inst_cont').find('a').remove();
-						newInstagram(art);
+						$('.inst_cont').find('a').remove();						
 					{% elsif collection.title == "HU - Organic Bandana Headbands for Men" %}
 						var art = 'HisWalnutHu';
 						$('.ht_tit').html(art);
-						$('.inst_cont').find('a').remove();
-						newInstagram(art);
+						$('.inst_cont').find('a').remove();						
 					 {% endif %}
 			} else if (($(asd_rew).find(".prd_title:contains('safari green')").length > 0)) {
 			   	var art_f = ch_tit.replace("safari green","")
@@ -1344,22 +1314,18 @@ Shopify.linkOptionSelectors = function(product) {
 						var art = 'HerSafariGreenEnso';
 						$('.ht_tit').html(art);
 						$('.inst_cont').find('a').remove();
-						newInstagram(art);
-					{% elsif collection.title == "ENSO headbands men's only" %}
+					{% elsif collection.title == "ENSO - Our Best Selling Men's Headband" %}
 						var art = 'HisSafariGreenEnso';
 						$('.ht_tit').html(art);
 						$('.inst_cont').find('a').remove();
-						newInstagram(art);
 					{% elsif collection.title == "HU - Bandana Sweatband and Bow Headband" or collection.handle == "hu-wholesale" collection.handle == 'hu-sweatbands' %}
 						var art = 'HerSafariGreenHu';
 						$('.ht_tit').html(art);
 						$('.inst_cont').find('a').remove();
-						newInstagram(art);
 					{% elsif collection.title == "HU - Organic Bandana Headbands for Men" %}
 						var art = 'HisSafariGreenHu';
 						$('.ht_tit').html(art);
 						$('.inst_cont').find('a').remove();
-						newInstagram(art);
 					 {% endif %}
 			} else if (($(asd_rew).find(".prd_title:contains('grey batik')").length > 0)) {
 			   	var art_f = ch_tit.replace("grey","");
@@ -1368,13 +1334,11 @@ Shopify.linkOptionSelectors = function(product) {
 					  {% if collection.title == "ENSO headbands" or collection.handle == "enso-headbands-and-head-wraps" or collection.handle == "enso-wholesale"%}
 						var art = 'HerSteelGreyEnso';
 						$('.ht_tit').html(art);
-						$('.inst_cont').find('a').remove();
-						newInstagram(art);
-					{% elsif collection.title == "ENSO headbands men's only" %}
+						$('.inst_cont').find('a').remove();						
+					{% elsif collection.title == "ENSO - Our Best Selling Men's Headband" %}
 						var art = 'HisSteelGreyEnso';
 						$('.ht_tit').html(art);
-						$('.inst_cont').find('a').remove();
-						newInstagram(art);
+						$('.inst_cont').find('a').remove();						
 					 {% endif %}
 			}
 			else if (($(asd_rew).find(".prd_title:contains('lavender')").length > 0)) {
@@ -1385,12 +1349,10 @@ Shopify.linkOptionSelectors = function(product) {
 						var art = 'HerDeepLavenderEnso';
 						$('.ht_tit').html(art);
 						$('.inst_cont').find('a').remove();
-						newInstagram(art);
-					{% elsif collection.title == "ENSO headbands men's only" %}
+					{% elsif collection.title == "ENSO - Our Best Selling Men's Headband" %}
 						var art = 'HisDeepLavenderEnso';
 						$('.ht_tit').html(art);
 						$('.inst_cont').find('a').remove();
-						newInstagram(art);
 					 {% endif %}
 			}
 			else if (($(asd_rew).find(".prd_title:contains('tangerine')").length > 0)) {
@@ -1400,23 +1362,19 @@ Shopify.linkOptionSelectors = function(product) {
 					  {% if collection.title == "ENSO headbands" or collection.handle == "enso-headbands-and-head-wraps" or collection.handle == "enso-wholesale" %}
 						var art = 'HerTangerineEnso';
 						$('.ht_tit').html(art);
-						$('.inst_cont').find('a').remove();
-						newInstagram(art);
-					{% elsif collection.title == "ENSO headbands men's only" %}
+						$('.inst_cont').find('a').remove();						
+					{% elsif collection.title == "ENSO - Our Best Selling Men's Headband" %}
 						var art = 'HisTangerineEnso';
 						$('.ht_tit').html(art);
-						$('.inst_cont').find('a').remove();
-						newInstagram(art);
+						$('.inst_cont').find('a').remove();						
 					{% elsif collection.title == "HU - Bandana Sweatband and Bow Headband" or collection.handle == "hu-wholesale" collection.handle == 'hu-sweatbands' %}
 						var art = 'HerTangerineHu';
 						$('.ht_tit').html(art);
-						$('.inst_cont').find('a').remove();
-						newInstagram(art);
+						$('.inst_cont').find('a').remove();						
 					{% elsif collection.title == "HU - Organic Bandana Headbands for Men" %}
 						var art = 'HisTangerineHu';
 						$('.ht_tit').html(art);
-						$('.inst_cont').find('a').remove();
-						newInstagram(art);
+						$('.inst_cont').find('a').remove();						
 					 {% endif %}
 			}
 			else if (($(asd_rew).find(".prd_title:contains('limestone grey')").length > 0)) {
@@ -1426,23 +1384,19 @@ Shopify.linkOptionSelectors = function(product) {
 					  {% if collection.title == "ENSO headbands" or collection.handle == "enso-headbands-and-head-wraps" or collection.handle == "enso-wholesale" %}
 						var art = 'HerLimestoneGreyEnso';
 						$('.ht_tit').html(art);
-						$('.inst_cont').find('a').remove();
-						newInstagram(art);
-					{% elsif collection.title == "ENSO headbands men's only" %}
+						$('.inst_cont').find('a').remove();						
+					{% elsif collection.title == "ENSO - Our Best Selling Men's Headband" %}
 						var art = 'HisLimestoneGreyEnso';
 						$('.ht_tit').html(art);
-						$('.inst_cont').find('a').remove();
-						newInstagram(art);
+						$('.inst_cont').find('a').remove();						
 					{% elsif collection.title == "HU - Bandana Sweatband and Bow Headband" or collection.handle == "hu-wholesale" collection.handle == 'hu-sweatbands' %}
 						var art = 'HerLimestoneGreyHu';
 						$('.ht_tit').html(art);
-						$('.inst_cont').find('a').remove();
-						newInstagram(art);
+						$('.inst_cont').find('a').remove();						
 					{% elsif collection.title == "HU - Organic Bandana Headbands for Men" %}
 						var art = 'HisLimestoneGreyHu';
 						$('.ht_tit').html(art);
-						$('.inst_cont').find('a').remove();
-						newInstagram(art);
+						$('.inst_cont').find('a').remove();						
 					 {% endif %}
 			}
 			else if (($(asd_rew).find(".prd_title:contains('marsala red')").length > 0)) {
@@ -1452,23 +1406,19 @@ Shopify.linkOptionSelectors = function(product) {
 					  {% if collection.title == "ENSO headbands" or collection.handle == "enso-headbands-and-head-wraps" or collection.handle == "enso-wholesale" %}
 						var art = 'HerMarsalaRedEnso';
 						$('.ht_tit').html(art);
-						$('.inst_cont').find('a').remove();
-						newInstagram(art);
-					{% elsif collection.title == "ENSO headbands men's only" %}
+						$('.inst_cont').find('a').remove();						
+					{% elsif collection.title == "ENSO - Our Best Selling Men's Headband" %}
 						var art = 'HisMarsalaRedEnso';
 						$('.ht_tit').html(art);
-						$('.inst_cont').find('a').remove();
-						newInstagram(art);
+						$('.inst_cont').find('a').remove();						
 					{% elsif collection.title == "HU - Bandana Sweatband and Bow Headband" or collection.handle == "hu-wholesale" collection.handle == 'hu-sweatbands' %}
 						var art = 'HerMarsalaRedHu';
 						$('.ht_tit').html(art);
-						$('.inst_cont').find('a').remove();
-						newInstagram(art);
+						$('.inst_cont').find('a').remove();						
 					{% elsif collection.title == "HU - Organic Bandana Headbands for Men" %}
 						var art = 'HisMarsalaRedHu';
 						$('.ht_tit').html(art);
-						$('.inst_cont').find('a').remove();
-						newInstagram(art);
+						$('.inst_cont').find('a').remove();						
 					 {% endif %}
 			}
 			else if (($(asd_rew).find(".prd_title:contains('crown blue')").length > 0)) {
@@ -1485,7 +1435,7 @@ Shopify.linkOptionSelectors = function(product) {
 					  $('.ht_tit').html(art);
 					  $('.inst_cont').find('a').remove();
 					  // newInstagram(art);
-					{% elsif collection.title == "ENSO headbands men's only" %}
+					{% elsif collection.title == "ENSO - Our Best Selling Men's Headband" %}
 						var art = 'HisCrownBlueEnso';
 						$('.ht_tit').html(art);
 						$('.inst_cont').find('a').remove();
@@ -1606,13 +1556,11 @@ Shopify.linkOptionSelectors = function(product) {
 				{% if collection.title == "ENSO - Twist Headbands and Head Wraps" or collection.handle == "enso-headbands-and-head-wraps" or collection.handle == "enso-wholesale" %}
 						var art = 'HerMintGreenEnsoBatik';
 						$('.ht_tit').html(art);
-						$('.inst_cont').find('a').remove();
-						newInstagram(art);
-					{% elsif collection.title == "ENSO headbands men's only" %}
+						$('.inst_cont').find('a').remove();						
+					{% elsif collection.title == "ENSO - Our Best Selling Men's Headband" %}
 						var art = 'HisMintGreenEnsoBatik';
 						$('.ht_tit').html(art);
-						$('.inst_cont').find('a').remove();
-						newInstagram(art);
+						$('.inst_cont').find('a').remove();						
 				 {% endif %}
 			} else if (($(asd_rew).find(".prd_title:contains('orchid')").length > 0)) {
 				var art_f = ch_tit.replace("orchid","")
@@ -1621,13 +1569,11 @@ Shopify.linkOptionSelectors = function(product) {
 			   {% if collection.title == "ENSO headbands" or collection.handle == "enso-headbands-and-head-wraps" or collection.handle == "enso-wholesale" %}
 						var art = 'HerRadiantOrchidEnso';
 						$('.ht_tit').html(art);
-						$('.inst_cont').find('a').remove();
-						newInstagram(art);
-					{% elsif collection.title == "ENSO headbands men's only" %}
+						$('.inst_cont').find('a').remove();						
+					{% elsif collection.title == "ENSO - Our Best Selling Men's Headband" %}
 						var art = 'HisRadiantOrchidEnso';
 						$('.ht_tit').html(art);
-						$('.inst_cont').find('a').remove();
-						newInstagram(art);
+						$('.inst_cont').find('a').remove();						
 				 {% endif %}
 			} else if (($(asd_rew).find(".prd_title:contains('coral')").length > 0)) {
 				var art_f = ch_tit.replace("coral","")
@@ -1651,7 +1597,7 @@ Shopify.linkOptionSelectors = function(product) {
 					$('.ht_tit').html(art);
 					$('.inst_cont').find('a').remove();
 					// newInstagram(art);
-				{% elsif collection.title == "ENSO headbands men's only" %}
+				{% elsif collection.title == "ENSO - Our Best Selling Men's Headband" %}
 					var art = 'HisBlazingYellowEnsoBatik';
 					$('.ht_tit').html(art);
 					$('.inst_cont').find('a').remove();
