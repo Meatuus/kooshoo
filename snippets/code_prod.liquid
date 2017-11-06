@@ -47,9 +47,9 @@
 			{% endif %}
         {% endfor %}
 	{% endif %}
-	{% if product.title contains 'ENSO BATIK' %}
+	{% if product.title contains 'TWIST' && product.title contains 'batik' %}
         {% for product in collection.products %}
- 			{% if product.title contains 'ENSO BATIK' %}
+ 			{% if product.title contains 'TWIST' && product.title contains 'batik' %}
                 <div class="pr_pr">
                     <div class="prd_title">{{ product.title }}</div>
                     <div class="pr_price">{{ product.variants.first.price | money }}</div>
@@ -70,10 +70,10 @@
                 </div>
 			{% endif %}
         {% endfor %}
-	{% elsif product.title contains 'ENSO' %}
+	{% elsif product.title contains 'TWIST' %}
 		{% for product in collection.products %}
-			{% if product.title contains 'ENSO BATIK' %}
- 			{% elsif product.title contains 'ENSO' %}
+			{% if product.title contains 'TWIST' && product.title contains 'batik' %}
+ 			{% elsif product.title contains 'TWIST' %}
                 <div class="pr_pr">
                     <div class="prd_title">{{ product.title }}</div>
                     <div class="pr_price">{{ product.variants.first.price | money }}</div>

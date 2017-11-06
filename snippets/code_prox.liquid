@@ -16,17 +16,17 @@
         {% endfor %}
 	{% endif %}
 
-	{% if product.title contains 'ENSO BATIK' %}
+	{% if product.title contains 'TWIST' && product.title contains 'batik' %}
         {% for product in collection.products %}
- 			{% if product.title contains 'ENSO BATIK' %}
+ 			{% if product.title contains 'TWIST' && product.title contains 'batik' %}
                <div class="art_clr">
                 </div>
 			{% endif %}
         {% endfor %}
-	{% elsif product.title contains 'ENSO' %}
+	{% elsif product.title contains 'TWIST' %}
 		{% for product in collection.products %}
- 			{% if product.title contains 'ENSO BATIK' %}
-			{% elsif product.title contains 'ENSO' %}
+ 			{% if product.title contains 'TWIST' && product.title contains 'batik' %}
+			{% elsif product.title contains 'TWIST' %}
                 <div class="art_clr">
                 </div>
 			{% endif %}
