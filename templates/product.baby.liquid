@@ -350,12 +350,17 @@
             resize_fn();
         });
         var va_main = $('.art_cost').find('.pr_pr').find('.va_price'); //price of product variant
-        var va_id = $('.art_cost').find('.pr_pr').find('.va_price').data('id'); //id of product variant
+        // var va_id = $('.art_cost').find('.pr_pr').find('.va_price').data('id'); //id of product variant
         $('.kids_size').click(function () {
             if(!$(this).hasClass('art_sold_out')){
                 $('.kids_size').removeClass('selected');
                 $(this).addClass('selected');
                 $('.true_id').val($(this).attr('data-id'));
+
+            console.log('size click');
+            console.log($(this).attr('data-id'));
+                console.log($(this).attr('data-id'));
+                console.log(va_main);
               // function pr_update() { //function to loop through variants and assign price accordingly TODO (this) is returning values from original selection, not changing with colour tabs
               //   for (var i = 0; i < va_main.length; i++) {
               //     console.log('inside loop');
@@ -372,123 +377,123 @@
               // pr_update();
 
               // change price shown to price of product variation when size changes
-              if (($('#crumbs a:nth-child(2)')[0].text === "Kids Pants - Expandable, Organic Baby Pants")) {
-                  if ($('.kids_size.selected').data('var-num') === 0) { // first size button
-                      if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS batik charcoal grey") {
-                          $('.art_price').html($(va_main[0]).html());
-                      } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS batik jean blue") {
-                          $('.art_price').html($(va_main[4]).html());
-                      } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS batik magenta pink") {
-                          $('.art_price').html($(va_main[8]).html());
-                      } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS classic black") {
-                          $('.art_price').html($(va_main[12]).html());
-                      } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS classic moonbeam grey") {
-                          $('.art_price').html($(va_main[16]).html());
-                      } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS classic sage green") {
-                          $('.art_price').html($(va_main[20]).html());
-                      }
-                  } else if ($('.kids_size.selected').data('var-num') === 1) { // second size button
-                      if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS batik charcoal grey") {
-                          $('.art_price').html($(va_main[1]).html());
-                      } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS batik jean blue") {
-                          $('.art_price').html($(va_main[5]).html());
-                      } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS batik magenta pink") {
-                          $('.art_price').html($(va_main[9]).html());
-                      } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS classic black") {
-                          $('.art_price').html($(va_main[13]).html());
-                      } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS classic moonbeam grey") {
-                          $('.art_price').html($(va_main[17]).html());
-                      } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS classic sage green") {
-                          $('.art_price').html($(va_main[21]).html());
-                      }
-                  } else if ($('.kids_size.selected').data('var-num') === 2) { // third size button
-                      if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS batik charcoal grey") {
-                          $('.art_price').html($(va_main[2]).html());
-                      } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS batik jean blue") {
-                          $('.art_price').html($(va_main[6]).html());
-                      } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS batik magenta pink") {
-                          $('.art_price').html($(va_main[10]).html());
-                      } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS classic black") {
-                          $('.art_price').html($(va_main[14]).html());
-                      } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS classic moonbeam grey") {
-                          $('.art_price').html($(va_main[18]).html());
-                      } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS classic sage green") {
-                          $('.art_price').html($(va_main[22]).html());
-                      }
-                  } else if ($('.kids_size.selected').data('var-num') === 3) { // forth size button
-                      if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS batik charcoal grey") {
-                          $('.art_price').html($(va_main[3]).html());
-                      } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS batik jean blue") {
-                          $('.art_price').html($(va_main[7]).html());
-                      } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS batik magenta pink") {
-                          $('.art_price').html($(va_main[11]).html());
-                      } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS classic black") {
-                          $('.art_price').html($(va_main[15]).html());
-                      } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS classic moonbeam grey") {
-                          $('.art_price').html($(va_main[19]).html());
-                      } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS classic sage green") {
-                          $('.art_price').html($(va_main[23]).html());
-                      }
-                  }
-              } else if (($('#crumbs a:nth-child(2)')[0].text === "Wholesale Kids and Baby Pants")) {
-                  if ($('.kids_size.selected').data('var-num') === 0) { // first size button
-                      if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS batik charcoal grey - Wholesale") {
-                          $('.art_price').html(va_main[0]);
-                      } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS batik jean blue wholesale") {
-                          $('.art_price').html(va_main[3]);
-                      } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS batik magenta pink - Wholesale") {
-                          $('.art_price').html(va_main[6]);
-                      } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS classic black - Wholesale") {
-                          $('.art_price').html(va_main[9]);
-                      } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS classic moonbeam grey - Wholesale") {
-                          $('.art_price').html(va_main[12]);
-                      } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS classic sage green - Wholesale") {
-                          $('.art_price').html(va_main[15]);
-                      }
-                  } else if ($('.kids_size.selected').data('var-num') === 1) { // second size button
-                      if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS batik charcoal grey - Wholesale") {
-                          $('.art_price').html(va_main[1]);
-                      } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS batik jean blue wholesale") {
-                          $('.art_price').html(va_main[4]);
-                      } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS batik magenta pink - Wholesale") {
-                          $('.art_price').html(va_main[7]);
-                      } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS classic black - Wholesale") {
-                          $('.art_price').html(va_main[10]);
-                      } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS classic moonbeam grey - Wholesale") {
-                          $('.art_price').html(va_main[13]);
-                      } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS classic sage green - Wholesale") {
-                          $('.art_price').html(va_main[16]);
-                      }
-                  } else if ($('.kids_size.selected').data('var-num') === 2) { // third size button
-                      if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS batik charcoal grey - Wholesale") {
-                          $('.art_price').html(va_main[2]);
-                      } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS batik jean blue wholesale") {
-                          $('.art_price').html(va_main[5]);
-                      } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS batik magenta pink - Wholesale") {
-                          $('.art_price').html(va_main[8]);
-                      } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS classic black - Wholesale") {
-                          $('.art_price').html(va_main[11]);
-                      } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS classic moonbeam grey - Wholesale") {
-                          $('.art_price').html(va_main[14]);
-                      } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS classic sage green - Wholesale") {
-                          $('.art_price').html(va_main[17]);
-                      }
-                  } //else if ($('.kids_size.selected').data('var-num') === 3) { // forth size button
-                      // if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS batik charcoal grey - Wholesale") {
-                      //     $('.art_price').html(va_main[3]);
-                      // } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS batik jean blue wholesale") {
-                      //     $('.art_price').html(va_main[7]);
-                      // } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS batik magenta pink - Wholesale") {
-                      //     $('.art_price').html(va_main[11]);
-                      // } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS classic black - Wholesale") {
-                      //     $('.art_price').html(va_main[15]);
-                      // } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS classic moonbeam grey - Wholesale") {
-                      //     $('.art_price').html(va_main[19]);
-                      // } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS classic sage green - Wholesale") {
-                      //     $('.art_price').html(va_main[23]);
-                      // }
-                  // }
-              }
+                if (($('#crumbs a:nth-child(2)')[0].text === "Kids Pants - Expandable, Organic Baby Pants")) {
+                    if ($('.kids_size.selected').data('var-num') === 0) { // first size button                        
+                        if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS charcoal grey batik") {
+                            $('.art_price').html($(va_main[0]).html());                            
+                        } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS jean blue batik") {
+                            $('.art_price').html($(va_main[16]).html());
+                        } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS pink batik") {
+                            $('.art_price').html($(va_main[20]).html());
+                        } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS classic black") {
+                            $('.art_price').html($(va_main[4]).html());
+                        } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS classic moonbeam grey") {
+                            $('.art_price').html($(va_main[8]).html());
+                        } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS classic sage green") {
+                            $('.art_price').html($(va_main[12]).html());
+                        }
+                    } else if ($('.kids_size.selected').data('var-num') === 1) { // second size button                    
+                        if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS charcoal grey batik") {
+                            $('.art_price').html($(va_main[1]).html());                            
+                        } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS jean blue batik") {
+                            $('.art_price').html($(va_main[17]).html());
+                        } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS pink batik") {
+                            $('.art_price').html($(va_main[21]).html());
+                        } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS classic black") {
+                            $('.art_price').html($(va_main[5]).html());
+                        } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS classic moonbeam grey") {
+                            $('.art_price').html($(va_main[9]).html());
+                        } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS classic sage green") {
+                            $('.art_price').html($(va_main[13]).html());
+                        }
+                    } else if ($('.kids_size.selected').data('var-num') === 2) { // third size button                    
+                        if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS charcoal grey batik") {
+                            $('.art_price').html($(va_main[2]).html());                            
+                        } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS jean blue batik") {
+                            $('.art_price').html($(va_main[18]).html());
+                        } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS pink batik") {
+                            $('.art_price').html($(va_main[22]).html());
+                        } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS classic black") {
+                            $('.art_price').html($(va_main[6]).html());
+                        } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS classic moonbeam grey") {
+                            $('.art_price').html($(va_main[10]).html());
+                        } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS classic sage green") {
+                            $('.art_price').html($(va_main[14]).html());
+                        }
+                    } else if ($('.kids_size.selected').data('var-num') === 3) { // forth size button                    
+                        if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS charcoal grey batik") {
+                            $('.art_price').html($(va_main[3]).html());                            
+                        } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS jean blue batik") {
+                            $('.art_price').html($(va_main[19]).html());
+                        } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS pink batik") {
+                            $('.art_price').html($(va_main[23]).html());
+                        } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS classic black") {
+                            $('.art_price').html($(va_main[7]).html());
+                        } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS classic moonbeam grey") {
+                            $('.art_price').html($(va_main[11]).html());
+                        } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS classic sage green") {
+                            $('.art_price').html($(va_main[15]).html());
+                        }
+                    }
+                } else if (($('#crumbs a:nth-child(2)')[0].text === "Wholesale Kids and Baby Pants")) {
+                    if ($('.kids_size.selected').data('var-num') === 0) { // first size button
+                        if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS batik charcoal grey - Wholesale") {
+                            $('.art_price').html(va_main[0]);
+                        } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS batik jean blue wholesale") {
+                            $('.art_price').html(va_main[3]);
+                        } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS batik magenta pink - Wholesale") {
+                            $('.art_price').html(va_main[6]);
+                        } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS classic black - Wholesale") {
+                            $('.art_price').html(va_main[9]);
+                        } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS classic moonbeam grey - Wholesale") {
+                            $('.art_price').html(va_main[12]);
+                        } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS classic sage green - Wholesale") {
+                            $('.art_price').html(va_main[15]);
+                        }
+                    } else if ($('.kids_size.selected').data('var-num') === 1) { // second size button
+                        if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS batik charcoal grey - Wholesale") {
+                            $('.art_price').html(va_main[1]);
+                        } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS batik jean blue wholesale") {
+                            $('.art_price').html(va_main[4]);
+                        } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS batik magenta pink - Wholesale") {
+                            $('.art_price').html(va_main[7]);
+                        } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS classic black - Wholesale") {
+                            $('.art_price').html(va_main[10]);
+                        } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS classic moonbeam grey - Wholesale") {
+                            $('.art_price').html(va_main[13]);
+                        } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS classic sage green - Wholesale") {
+                            $('.art_price').html(va_main[16]);
+                        }
+                    } else if ($('.kids_size.selected').data('var-num') === 2) { // third size button
+                        if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS batik charcoal grey - Wholesale") {
+                            $('.art_price').html(va_main[2]);
+                        } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS batik jean blue wholesale") {
+                            $('.art_price').html(va_main[5]);
+                        } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS batik magenta pink - Wholesale") {
+                            $('.art_price').html(va_main[8]);
+                        } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS classic black - Wholesale") {
+                            $('.art_price').html(va_main[11]);
+                        } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS classic moonbeam grey - Wholesale") {
+                            $('.art_price').html(va_main[14]);
+                        } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS classic sage green - Wholesale") {
+                            $('.art_price').html(va_main[17]);
+                        }
+                    } //else if ($('.kids_size.selected').data('var-num') === 3) { // forth size button
+                        // if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS batik charcoal grey - Wholesale") {
+                        //     $('.art_price').html(va_main[3]);
+                        // } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS batik jean blue wholesale") {
+                        //     $('.art_price').html(va_main[7]);
+                        // } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS batik magenta pink - Wholesale") {
+                        //     $('.art_price').html(va_main[11]);
+                        // } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS classic black - Wholesale") {
+                        //     $('.art_price').html(va_main[15]);
+                        // } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS classic moonbeam grey - Wholesale") {
+                        //     $('.art_price').html(va_main[19]);
+                        // } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS classic sage green - Wholesale") {
+                        //     $('.art_price').html(va_main[23]);
+                        // }
+                    // }
+                }
             }
         });
     });
@@ -703,60 +708,61 @@ console.log(wdt);
         }
         width_clr();
         {% endunless %}
+
         function clr_clr() {
             var divs = $('.pr_pr');
             for (var i = 0; i < divs.length; i++) {
-            var asd_rew = $(divs[i]);
-                    if (($(asd_rew).find(".prd_title:contains('batik black')").length > 0)) {
-            $('.art_clr').eq([i]).addClass('kids_batik_black');
+                var asd_rew = $(divs[i]);
+                if (($(asd_rew).find(".prd_title:contains('batik black')").length > 0)) {
+                    $('.art_clr').eq([i]).addClass('kids_batik_black');
                     $('.art_clr.kids_batik_black').append('<img style="display:none;" src="{{ "clr_h_kids_batik_black.png" | asset_url }}">');
-            } else if ($(asd_rew).find(".prd_title:contains('black')").length > 0) {
-            $('.art_clr').eq([i]).addClass('black');
+                } else if ($(asd_rew).find(".prd_title:contains('black')").length > 0) {
+                    $('.art_clr').eq([i]).addClass('black');
                     $('.art_clr.black').append('<img style="display:none;" src="{{ "clr_h_black.png" | asset_url }}">');
-            } else  if (($(asd_rew).find(".prd_title:contains('batik charcoal grey')").length > 0)) {
-            $('.art_clr').eq([i]).addClass('batik_charcoal_grey');
+                } else if (($(asd_rew).find(".prd_title:contains('charcoal grey batik')").length > 0)) {
+                    $('.art_clr').eq([i]).addClass('batik_charcoal_grey');
                     $('.art_clr.batik_charcoal_grey').append('<img style="display:none;" src="{{ "clr_h_batik_charcoal_grey.png" | asset_url }}">');
-            } else if (($(asd_rew).find(".prd_title:contains('jean blue')").length > 0)) {
-            $('.art_clr').eq([i]).addClass('jean_blue');
+                } else if (($(asd_rew).find(".prd_title:contains('jean blue')").length > 0)) {
+                    $('.art_clr').eq([i]).addClass('jean_blue');
                     $('.art_clr.jean_blue').append('<img style="display:none;" src="{{ "clr_h_jean_blue.png" | asset_url }}">');
-            } else if (($(asd_rew).find(".prd_title:contains('rose pink')").length > 0)) {
-            $('.art_clr').eq([i]).addClass('rose_pink');
-                    $('.art_clr.rose_pink').append('<img style="display:none;" src="{{ "clr_h_rose_pink.png" | asset_url }}">');
-            } else if (($(asd_rew).find(".prd_title:contains('sage green')").length > 0)) {
-            $('.art_clr').eq([i]).addClass('sage_green');
+                //} else if (($(asd_rew).find(".prd_title:contains('rose pink')").length > 0)) {
+                //    $('.art_clr').eq([i]).addClass('rose_pink');
+                //    $('.art_clr.rose_pink').append('<img style="display:none;" src="{{ "clr_h_rose_pink.png" | asset_url }}">');
+                } else if (($(asd_rew).find(".prd_title:contains('sage green')").length > 0)) {
+                    $('.art_clr').eq([i]).addClass('sage_green');
                     $('.art_clr.sage_green').append('<img style="display:none;" src="{{ "clr_h_sage_green.png" | asset_url }}">');
-            } else if (($(asd_rew).find(".prd_title:contains('moonbeam grey')").length > 0)) {
-            $('.art_clr').eq([i]).addClass('moonbeam_grey');
+                } else if (($(asd_rew).find(".prd_title:contains('moonbeam grey')").length > 0)) {
+                    $('.art_clr').eq([i]).addClass('moonbeam_grey');
                     $('.art_clr.moonbeam_grey').append('<img style="display:none;" src="{{ "clr_h_moonbeam_grey.png" | asset_url }}">');
-            } else if (($(asd_rew).find(".prd_title:contains('magenta pink')").length > 0)) {
-            $('.art_clr').eq([i]).addClass('magenta_pink');
+                } else if (($(asd_rew).find(".prd_title:contains('pink batik')").length > 0)) {
+                    $('.art_clr').eq([i]).addClass('magenta_pink');
                     $('.art_clr.magenta_pink').append('<img style="display:none;" src="{{ "clr_h_magenta_pink.png" | asset_url }}">');
-            }
-            if ($(asd_rew).hasClass('solded')){
-            var link_a = $('.pr_url').eq([i]).html();
-                    $('.art_clr').eq([i]).wrap('<a href=' + link_a + '></div>');
-            }
-            {% unless product.available %}
-            var link_a = $('.pr_url').eq([i]).html();
-            $('.art_clr').eq([i]).wrap('<a href=' + link_a + '></div>');
-            {% endunless %}
-        }
+                }
 
+                if ($(asd_rew).hasClass('solded')){
+                    var link_a = $('.pr_url').eq([i]).html();
+                    $('.art_clr').eq([i]).wrap('<a href=' + link_a + '></div>');
+                }
+                {% unless product.available %}
+                    var link_a = $('.pr_url').eq([i]).html();
+                    $('.art_clr').eq([i]).wrap('<a href=' + link_a + '></div>');
+                {% endunless %}
+            }
         }
         clr_clr();
 
         function change_clr() {
-
             var divs = $('.art_clr');
             var va_main = $('.art_cost').find('.pr_pr').find('.va_price'); //price of product variant
+            console.log('colour loaded!');
+
             $.each(divs, function (i) {
                 $(this).click(function () {
                     var ch_main = $('.art_cost').find('.pr_pr').eq([i]);
                     var numb_ar = [i];
                     var ch_tit = $(ch_main).find('.prd_title').html();
-                    var sizes = document.getElementsByClassName('kids_size')
-                    console.log(ch_main);
-                    console.log(va_main);
+                    var sizes = document.getElementsByClassName('kids_size');
+                    console.log('colour change!');
                     // set each product variation data-id to relevant id
                     if (($('#crumbs a:nth-child(2)')[0].text === "Kids Pants - Expandable, Organic Baby Pants") && ($(this).hasClass('batik_charcoal_grey'))) {
                         $(sizes[0]).attr('data-id', $(va_main[0]).data('id'))
@@ -764,80 +770,206 @@ console.log(wdt);
                         $(sizes[2]).attr('data-id', $(va_main[2]).data('id'))
                         $(sizes[3]).attr('data-id', $(va_main[3]).data('id'))
                         if ($('.kids_size.selected').data('varNum') === 0) {
-                          $('.art_price').html($(va_main[0]).html());
+                            $('.art_price').html($(va_main[0]).html());
                         } else if ($('.kids_size.selected').data('varNum') === 1) {
-                          $('.art_price').html($(va_main[1]).html());
+                            $('.art_price').html($(va_main[1]).html());
                         } else if ($('.kids_size.selected').data('varNum') === 2) {
-                          $('.art_price').html($(va_main[2]).html());
+                            $('.art_price').html($(va_main[2]).html());
                         } else {
-                          $('.art_price').html($(va_main[3]).html());
+                            $('.art_price').html($(va_main[3]).html());
                         }
                     } else if (($('#crumbs a:nth-child(2)')[0].text === "Kids Pants - Expandable, Organic Baby Pants") && ($(this).hasClass('jean_blue'))) {
+                        $(sizes[0]).attr('data-id', $(va_main[16]).data('id'));                    
+                        $(sizes[1]).attr('data-id', $(va_main[17]).data('id'));
+                        $(sizes[2]).attr('data-id', $(va_main[18]).data('id'));
+                        $(sizes[3]).attr('data-id', $(va_main[19]).data('id'));
+
+                        // $(sizes[0]).attr('data-price', $(va_main[16]).html());
+                        // $(sizes[1]).attr('data-price', $(va_main[17]).html());
+                        // $(sizes[2]).attr('data-price', $(va_main[18]).html());
+                        // $(sizes[3]).attr('data-price', $(va_main[19]).html());
+
+                        if ($('.kids_size.selected').data('varNum') === 0) {
+                            $('.art_price').html($(va_main[16]).html());
+                        } else if ($('.kids_size.selected').data('varNum') === 1) {
+                            $('.art_price').html($(va_main[17]).html());
+                        } else if ($('.kids_size.selected').data('varNum') === 2) {
+                            $('.art_price').html($(va_main[18]).html());
+                        } else {
+                            $('.art_price').html($(va_main[19]).html());
+                        }
+                    } else if (($('#crumbs a:nth-child(2)')[0].text === "Kids Pants - Expandable, Organic Baby Pants") && ($(this).hasClass('magenta_pink'))) {
+                        $(sizes[0]).attr('data-id', $(va_main[20]).data('id'))
+                        $(sizes[1]).attr('data-id', $(va_main[21]).data('id'))
+                        $(sizes[2]).attr('data-id', $(va_main[22]).data('id'))
+                        $(sizes[3]).attr('data-id', $(va_main[23]).data('id'))
+                        if ($('.kids_size.selected').data('varNum') === 0) {
+                          $('.art_price').html($(va_main[20]).html());
+                        } else if ($('.kids_size.selected').data('varNum') === 1) {
+                          $('.art_price').html($(va_main[21]).html());
+                        } else if ($('.kids_size.selected').data('varNum') === 2) {
+                          $('.art_price').html($(va_main[22]).html());
+                        } else {
+                          $('.art_price').html($(va_main[23]).html());
+                        }
+                    } else if (($('#crumbs a:nth-child(2)')[0].text === "Kids Pants - Expandable, Organic Baby Pants") && ($(this).hasClass('black'))) {
                         $(sizes[0]).attr('data-id', $(va_main[4]).data('id'))
                         $(sizes[1]).attr('data-id', $(va_main[5]).data('id'))
                         $(sizes[2]).attr('data-id', $(va_main[6]).data('id'))
                         $(sizes[3]).attr('data-id', $(va_main[7]).data('id'))
-                    } else if (($('#crumbs a:nth-child(2)')[0].text === "Kids Pants - Expandable, Organic Baby Pants") && ($(this).hasClass('magenta_pink'))) {
+                        if ($('.kids_size.selected').data('varNum') === 0) {
+                            $('.art_price').html($(va_main[4]).html());
+                        } else if ($('.kids_size.selected').data('varNum') === 1) {
+                            $('.art_price').html($(va_main[5]).html());
+                        } else if ($('.kids_size.selected').data('varNum') === 2) {
+                            $('.art_price').html($(va_main[6]).html());
+                        } else {
+                            $('.art_price').html($(va_main[7]).html());
+                        }
+                    } else if (($('#crumbs a:nth-child(2)')[0].text === "Kids Pants - Expandable, Organic Baby Pants") && ($(this).hasClass('moonbeam_grey'))) {
                         $(sizes[0]).attr('data-id', $(va_main[8]).data('id'))
                         $(sizes[1]).attr('data-id', $(va_main[9]).data('id'))
                         $(sizes[2]).attr('data-id', $(va_main[10]).data('id'))
                         $(sizes[3]).attr('data-id', $(va_main[11]).data('id'))
                         if ($('.kids_size.selected').data('varNum') === 0) {
-                          $('.art_price').html($(va_main[0]).html());
+                            $('.art_price').html($(va_main[8]).html());
                         } else if ($('.kids_size.selected').data('varNum') === 1) {
-                          $('.art_price').html($(va_main[1]).html());
+                            $('.art_price').html($(va_main[9]).html());
                         } else if ($('.kids_size.selected').data('varNum') === 2) {
-                          $('.art_price').html($(va_main[2]).html());
+                            $('.art_price').html($(va_main[10]).html());
                         } else {
-                          $('.art_price').html($(va_main[3]).html());
+                            $('.art_price').html($(va_main[11]).html());
                         }
-                    } else if (($('#crumbs a:nth-child(2)')[0].text === "Kids Pants - Expandable, Organic Baby Pants") && ($(this).hasClass('black'))) {
+                    } else if (($('#crumbs a:nth-child(2)')[0].text === "Kids Pants - Expandable, Organic Baby Pants") && ($(this).hasClass('sage_green'))) {
                         $(sizes[0]).attr('data-id', $(va_main[12]).data('id'))
                         $(sizes[1]).attr('data-id', $(va_main[13]).data('id'))
                         $(sizes[2]).attr('data-id', $(va_main[14]).data('id'))
                         $(sizes[3]).attr('data-id', $(va_main[15]).data('id'))
-                    } else if (($('#crumbs a:nth-child(2)')[0].text === "Kids Pants - Expandable, Organic Baby Pants") && ($(this).hasClass('moonbeam_grey'))) {
-                        $(sizes[0]).attr('data-id', $(va_main[16]).data('id'))
-                        $(sizes[1]).attr('data-id', $(va_main[17]).data('id'))
-                        $(sizes[2]).attr('data-id', $(va_main[18]).data('id'))
-                        $(sizes[3]).attr('data-id', $(va_main[19]).data('id'))
-                    } else if (($('#crumbs a:nth-child(2)')[0].text === "Kids Pants - Expandable, Organic Baby Pants") && ($(this).hasClass('sage_green'))) {
-                        $(sizes[0]).attr('data-id', $(va_main[20]).data('id'))
-                        $(sizes[1]).attr('data-id', $(va_main[21]).data('id'))
-                        $(sizes[2]).attr('data-id', $(va_main[22]).data('id'))
-                        $(sizes[3]).attr('data-id', $(va_main[23]).data('id'))
+                        if ($('.kids_size.selected').data('varNum') === 0) {
+                            $('.art_price').html($(va_main[12]).html());
+                        } else if ($('.kids_size.selected').data('varNum') === 1) {
+                            $('.art_price').html($(va_main[13]).html());
+                        } else if ($('.kids_size.selected').data('varNum') === 2) {
+                            $('.art_price').html($(va_main[14]).html());
+                        } else {
+                            $('.art_price').html($(va_main[15]).html());
+                        }
                     } else if (($('#crumbs a:nth-child(2)')[0].text === "Wholesale Kids and Baby Pants") && ($(this).hasClass('batik_charcoal_grey'))) {
-                        $(sizes[0]).attr('data-id', 32137499780);
-                        $(sizes[1]).attr('data-id', 32137499844);
-                        $(sizes[2]).attr('data-id', 32137499908);
+                      console.log($(va_main[0]).html());
+                      console.log('in between 1');
+                      console.log($(va_main[1]).html());
+                      console.log($(va_main[2]).html());
+                      console.log("size");
+                        // $(sizes[0]).attr('data-id', 32137499780);
+                        // $(sizes[1]).attr('data-id', 32137499844);
+                        // $(sizes[2]).attr('data-id', 32137499908);
+                        $(sizes[0]).attr('data-id', $(va_main[0]).data('id'));
+                        $(sizes[1]).attr('data-id', $(va_main[1]).data('id'));
+                        $(sizes[2]).attr('data-id', $(va_main[2]).data('id'));
                         // $(sizes[3]).attr('data-id', 21314263876)
+                        if ($('.kids_size.selected').data('varNum') === 0) {
+                          $('.art_price').html($(va_main[0]).html());
+                        } else if ($('.kids_size.selected').data('varNum') === 1) {
+                          $('.art_price').html($(va_main[1]).html());
+                        } else {
+                          $('.art_price').html($(va_main[2]).html());
+                        }
                     } else if (($('#crumbs a:nth-child(2)')[0].text === "Wholesale Kids and Baby Pants") && ($(this).hasClass('jean_blue'))) {
-                        $(sizes[0]).attr('data-id', 32226450948)
-                        $(sizes[1]).attr('data-id', 32226451012)
-                        $(sizes[2]).attr('data-id', 32226451076)
+                      console.log($(va_main[0]).html());
+                      console.log('in between 1');
+                      console.log($(va_main[1]).html());
+                      console.log($(va_main[2]).html());
+                        $(sizes[0]).attr('data-id', 32226450948);
+                        $(sizes[1]).attr('data-id', 32226451012);
+                        $(sizes[2]).attr('data-id', 32226451076);
                         // $(sizes[3]).attr('data-id', 21314263876)
+                        if ($('.kids_size.selected').data('varNum') === 0) {
+                          $('.art_price').html($(va_main[3]).html());
+                          console.log("price 1 set");
+                          console.log($(va_main[3]).html());
+                          console.log($('.art_price').html());
+                        } else if ($('.kids_size.selected').data('varNum') === 1) {
+                          $('.art_price').html($(va_main[4]).html());
+                          console.log("price 2 set");
+                          console.log($(va_main[4]).html());
+                          console.log($('.art_price').html());
+                        } else {
+                          $('.art_price').html($(va_main[5]).html());
+                          console.log("price 3 set");
+                          console.log($(va_main[5]).html());
+                          console.log($('.art_price').html());
+                        }
                     } else if (($('#crumbs a:nth-child(2)')[0].text === "Wholesale Kids and Baby Pants") && ($(this).hasClass('magenta_pink'))) {
-                        $(sizes[0]).attr('data-id', 32226912388)
-                        $(sizes[1]).attr('data-id', 32226912452)
-                        $(sizes[2]).attr('data-id', 32226912516)
+                      console.log($(va_main[0]).html());
+                      console.log('in between 1');
+                      console.log($(va_main[1]).html());
+                      console.log($(va_main[2]).html());
+                        $(sizes[0]).attr('data-id', 32226912388);
+                        $(sizes[1]).attr('data-id', 32226912452);
+                        $(sizes[2]).attr('data-id', 32226912516);
                         // $(sizes[3]).attr('data-id', 21314539716)
+                        if ($('.kids_size.selected').data('varNum') === 0) {
+                          $('.art_price').html($(va_main[6]).html());
+                        } else if ($('.kids_size.selected').data('varNum') === 1) {
+                          $('.art_price').html($(va_main[7]).html());
+                        } else {
+                          $('.art_price').html($(va_main[8]).html());
+                        }
                     } else if (($('#crumbs a:nth-child(2)')[0].text === "Wholesale Kids and Baby Pants") && ($(this).hasClass('black'))) {
-                        $(sizes[0]).attr('data-id', 32227251908)
-                        $(sizes[1]).attr('data-id', 32227251972)
-                        $(sizes[2]).attr('data-id', 32227252036)
+                      console.log($(va_main[0]).html());
+                      console.log('in between 1');
+                      console.log($(va_main[1]).html());
+                      console.log($(va_main[2]).html());
+                        $(sizes[0]).attr('data-id', 32227251908);
+                        $(sizes[1]).attr('data-id', 32227251972);
+                        $(sizes[2]).attr('data-id', 32227252036);
                         // $(sizes[3]).attr('data-id', 21314495364)
+                        if ($('.kids_size.selected').data('varNum') === 0) {
+                          $('.art_price').html($(va_main[9]).html());
+                        } else if ($('.kids_size.selected').data('varNum') === 1) {
+                          $('.art_price').html($(va_main[10]).html());
+                        } else {
+                          $('.art_price').html($(va_main[11]).html());
+                        }
                     } else if (($('#crumbs a:nth-child(2)')[0].text === "Wholesale Kids and Baby Pants") && ($(this).hasClass('moonbeam_grey'))) {
-                        $(sizes[0]).attr('data-id', 32227539780)
-                        $(sizes[1]).attr('data-id', 32227539844)
-                        $(sizes[2]).attr('data-id', 32227539908)
+                      console.log($(va_main[0]).html());
+                      console.log('in between 1');
+                      console.log($(va_main[1]).html());
+                      console.log($(va_main[2]).html());
+                        $(sizes[0]).attr('data-id', 32227539780);
+                        $(sizes[1]).attr('data-id', 32227539844);
+                        $(sizes[2]).attr('data-id', 32227539908);
                         // $(sizes[3]).attr('data-id', 21314575876)
+                        if ($('.kids_size.selected').data('varNum') === 0) {
+                          $('.art_price').html($(va_main[12]).html());
+                        } else if ($('.kids_size.selected').data('varNum') === 1) {
+                          $('.art_price').html($(va_main[13]).html());
+                        } else {
+                          $('.art_price').html($(va_main[14]).html());
+                        }
                     } else if (($('#crumbs a:nth-child(2)')[0].text === "Wholesale Kids and Baby Pants") && ($(this).hasClass('sage_green'))) {
-                        $(sizes[0]).attr('data-id', 32226186372)
-                        $(sizes[1]).attr('data-id', 32226186436)
-                        $(sizes[2]).attr('data-id', 32226186500)
+                      console.log($(va_main[0]).html());
+                      console.log('in between 1');
+                      console.log($(va_main[1]).html());
+                      console.log($(va_main[2]).html());
+                        $(sizes[0]).attr('data-id', 32226186372);
+                        $(sizes[1]).attr('data-id', 32226186436);
+                        $(sizes[2]).attr('data-id', 32226186500);
                         // $(sizes[3]).attr('data-id', 21314741636)
+                        if ($('.kids_size.selected').data('varNum') === 0) {
+                          $('.art_price').html($(va_main[15]).html());
+                        } else if ($('.kids_size.selected').data('varNum') === 1) {
+                          $('.art_price').html($(va_main[16]).html());
+                        } else {
+                          $('.art_price').html($(va_main[17]).html());
+                        }
                     }
+                    console.log('end of if statement');
+                    console.log($('.art_price'));
                     change_tit(ch_main, numb_ar);
+
+                    $('.true_id').val($($('.kids_size.selected')[0]).attr('data-id'));
+
                     var ch_prise = $(ch_main).find('.pr_price').html();
                     var ch_id = $(ch_main).find('.pr_id').html();
                     var ch_url = $(ch_main).find('.pr_url').html();
@@ -845,7 +977,7 @@ console.log(wdt);
                     $('#crumbs').find('a:last').attr('href', ch_url);
                     // comment out line below -- was overriding price switches
                     // $('.art_price').html(ch_prise);
-                    $('.true_id').attr('value', ch_id);
+                    // $('.true_id').attr('value', ch_id);
 
                     history.pushState('', '', ch_url);
                     var ch_main_imgs = $(ch_main).find('.pr_thumb').eq(0);
@@ -901,26 +1033,26 @@ console.log(wdt);
                 $('.art_col').html('classic black');
                 var art = 'KidsPantsClassicBlack';
                 newKidsVariants('black-kids-pants');
-            } else if (($(asd_rew).find(".prd_title:contains('batik charcoal grey')").length > 0)) {
-                $('.art_col').html('batik charcoal grey');
+            } else if (($(asd_rew).find(".prd_title:contains('charcoal grey batik')").length > 0)) {
+                $('.art_col').html('charcoal grey batik');
                 var art = 'KidsPantsBatikCharcoalGrey';
                 newKidsVariants('charcoal-grey-kids-pants');
-            } else if (($(asd_rew).find(".prd_title:contains('batik jean blue')").length > 0)) {
-                $('.art_col').html('batik jean blue');
+            } else if (($(asd_rew).find(".prd_title:contains('jean blue batik')").length > 0)) {
+                $('.art_col').html('jean blue batik');
                 var art = 'KidsPantsBatikJeanBlue';
                 newKidsVariants('jean-blue-kids-pants-batik');
-            } else if (($(asd_rew).find(".prd_title:contains('batik magenta pink')").length > 0)) {
-                $('.art_col').html('batik magenta pink');
+            } else if (($(asd_rew).find(".prd_title:contains('pink batik')").length > 0)) {
+                $('.art_col').html('pink batik');
                 var art = 'KidsPantsBatikMagentaPink';
                 newKidsVariants('magenta-pink-kids-pants-batik');
             } else if (($(asd_rew).find(".prd_title:contains('classic moonbeam grey')").length > 0)) {
                 $('.art_col').html('classic moonbeam grey');
                 var art = 'KidsPantsclassicMoonbeamGrey';
                 newKidsVariants('grey-kids-pants');
-            } else if (($(asd_rew).find(".prd_title:contains('classic rose pink')").length > 0)) {
-                $('.art_col').html('classic rose pink');
-                var art = 'KidsPantsClassicRosePink';
-                newKidsVariants('rose-pink-kids-pants-solid');
+            // } else if (($(asd_rew).find(".prd_title:contains('classic rose pink')").length > 0)) {
+            //     $('.art_col').html('classic rose pink');
+            //     var art = 'KidsPantsClassicRosePink';
+            //     newKidsVariants('rose-pink-kids-pants-solid');
             } else if (($(asd_rew).find(".prd_title:contains('classic sage green')").length > 0)) {
                 $('.art_col').html('classic sage green');
                 var art = 'KidsPantsClassicSageGreen';
