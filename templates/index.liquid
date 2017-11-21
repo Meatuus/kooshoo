@@ -70,7 +70,7 @@
 			{% else %}
 			<h6 class="sixteen columns">{{ collection.title }}</h6>
 			{% endif %}-->
-			 <p>– featuring –</p>
+			 <p>– featuring –</p>			
 		{% endunless %}
 		<!--{% for product in collection.products limit: row_limit %}
 
@@ -78,80 +78,185 @@
 
 		{% endfor %}-->
 
-{% for product in collection.products limit: row_limit %}
-	   {% assign productnm = product.id %}
-			  {% for product in collections.aurea-headbands.products %}
+		{% for product in collection.products limit: row_limit %}
+	   		{% assign productnm = product.id %}
+	   		
+			{% for product in collections.organic-elastic-hairbands.products %} {% comment %} OLD - Aurea/Skinny - Women {% endcomment %}
+				{% if productnm == product.id %}
+					{% assign producturl = product.url | within: collections.organic-elastic-hairbands %}
+					{% include 'product-list-repeatable-item_a' with product %}
+				{% endif %}
+			{% endfor %}
+			{% for product in collections.skinny-headbands.products %} {% comment %} NEW - Aurea/Skinny - Women {% endcomment %}
+				{% if productnm == product.id %}
+					{% assign producturl = product.url | within: collections.skinny-headbands %}
+					{% include 'product-list-repeatable-item_a' with product %}
+				{% endif %}
+			{% endfor %}
+			{% for product in collections.enso-headbands-and-head-wraps.products %} {% comment %} OLD - Enso/Twist - Women {% endcomment %}
+				{% if productnm == product.id %}
+					{% assign producturl = product.url | within: collections.enso-headbands-and-head-wraps %}
+					{% include 'product-list-repeatable-item_a' with product %}
+				{% endif %}
+			{% endfor %}
+			{% for product in collections.yoga-headbands.products %} {% comment %} NEW - Enso/Twist - Women {% endcomment %}
+				{% if productnm == product.id %}
+					{% assign producturl = product.url | within: collections.yoga-headbands %}
+					{% include 'product-list-repeatable-item_a' with product %}
+				{% endif %}
+			{% endfor %}
+			{% for product in collections.yoga-headbands.products %} {% comment %} OLD - HU/Tie - Women {% endcomment %}
+				{% if productnm == product.id %}
+					{% assign producturl = product.url | within: collections.yoga-headbands %}
+					{% include 'product-list-repeatable-item_a' with product %}
+				{% endif %}
+			{% endfor %}
+			{% for product in collections.bow-headbands.products %} {% comment %} NEW - HU/Tie - Women {% endcomment %}
+				{% if productnm == product.id %}
+					{% assign producturl = product.url | within: collections.bow-headbands %}
+					{% include 'product-list-repeatable-item_a' with product %}
+				{% endif %}
+			{% endfor %}
+			{% for product in collections.organic-hair-ties.products %} {% comment %} Lila/Hair Ties - Women {% endcomment %}
+				{% if productnm == product.id %}
+					{% assign producturl = product.url | within: collections.organic-hair-ties %}
+					{% include 'product-list-repeatable-item_a' with product %}
+				{% endif %}
+			{% endfor %}
+			{% for product in collections.shawls.products %} {% comment %} Journey Shawls - Women {% endcomment %}
+				{% if productnm == product.id %}
+					{% assign producturl = product.url | within: collections.shawls %}
+					{% include 'product-list-repeatable-item_a' with product %}
+				{% endif %}
+			{% endfor %}
+			{% for product in collections.soccer-headbands-for-men.products %} {% comment %} OLD - Aurea/Skinny - Men {% endcomment %}
+				{% if productnm == product.id %}
+					{% assign producturl = product.url | within: collections.soccer-headbands-for-men %}
+					{% include 'product-list-repeatable-item_a' with product %}
+				{% endif %}
+			{% endfor %}
+			{% for product in collections.skinny-headbands-for-men.products %} {% comment %} NEW - Aurea/Skinny - Men {% endcomment %}
+				{% if productnm == product.id %}
+					{% assign producturl = product.url | within: collections.skinny-headbands-for-men %}
+					{% include 'product-list-repeatable-item_a' with product %}
+				{% endif %}
+			{% endfor %}
+			{% for product in collections.enso-headbands-mens-only.products %} {% comment %} OLD - Enso/Twist - Men {% endcomment %}
+				{% if productnm == product.id %}
+					{% assign producturl = product.url | within: collections.enso-headbands-mens-only %}
+					{% include 'product-list-repeatable-item_a' with product %}
+				{% endif %}
+			{% endfor %}
+			{% for product in collections.mens-headbands.products %} {% comment %} NEW - Enso/Twist - Men {% endcomment %}
+				{% if productnm == product.id %}
+					{% assign producturl = product.url | within: collections.mens-headbands %}
+					{% include 'product-list-repeatable-item_a' with product %}
+				{% endif %}
+			{% endfor %}
+			{% for product in collections.organic-bandanas.products %} {% comment %} OLD - HU/Tie - Men {% endcomment %}
+				{% if productnm == product.id %}
+					{% assign producturl = product.url | within: collections.organic-bandanas %}
+					{% include 'product-list-repeatable-item_a' with product %}
+				{% endif %}
+			{% endfor %}
+			{% for product in collections.tie-headband-for-men.products %} {% comment %} NEW - HU/Tie - Men {% endcomment %}
+				{% if productnm == product.id %}
+					{% assign producturl = product.url | within: collections.tie-headband-for-men %}
+					{% include 'product-list-repeatable-item_a' with product %}
+				{% endif %}
+			{% endfor %}
+			{% for product in collections.hair-ties-for-men.products %} {% comment %} Lila/Hair Ties - Men {% endcomment %}
+				{% if productnm == product.id %}
+					{% assign producturl = product.url | within: collections.hair-ties-for-men %}
+					{% include 'product-list-repeatable-item_a' with product %}
+				{% endif %}
+			{% endfor %}
+			{% for product in collections.organic-baby-pants.products %}
+				{% if productnm == product.id %}
+					{% assign producturl = product.url | within: collections.organic-baby-pants %}
+					{% include 'product-list-repeatable-item_a' with product %}
+				{% endif %}
+			{% endfor %}
+			
+
+			  {% comment %} {% for product in collections.aurea-headbands.products %}
 				  {% if productnm == product.id %}
 						  {% assign producturl = product.url | within: collections.aurea-headbands %}
 						{% include 'product-list-repeatable-item_a' with product %}
 				  {% endif %}
-			  {% endfor %}
-			  {% for product in collections.aurea-headbands-mensonly.products %}
+			  {% endfor %} {% endcomment %}
+			  {% comment %} {% for product in collections.aurea-headbands-mensonly.products %}
 				  {% if productnm == product.id %}
 						  {% assign producturl = product.url | within: collections.aurea-headbands-mensonly %}
 						{% include 'product-list-repeatable-item_a' with product %}
 				  {% endif %}
-			  {% endfor %}
-			  {% for product in collections.aurea-wholesale.products %}
+			  {% endfor %} {% endcomment %}
+			  {% comment %} {% for product in collections.aurea-wholesale.products %}
 				  {% if productnm == product.id %}
 						  {% assign producturl = product.url | within: collections.aurea-wholesale %}
 						{% include 'product-list-repeatable-item_a' with product %}
 				  {% endif %}
-			  {% endfor %}
-			  {% for product in collections.enso-headbands.products %}
+			  {% endfor %} {% endcomment %}
+			  {% comment %} {% for product in collections.enso-headbands.products %}			  
 				  {% if productnm == product.id %}
 						  {% assign producturl = product.url | within: collections.enso-headbands %}
 						{% include 'product-list-repeatable-item_a' with product %}
 				  {% endif %}
-			  {% endfor %}
-			  {% for product in collections.enso-headbands-mensonly.products %}
+			  {% endfor %} {% endcomment %}
+			  {% comment %} {% for product in collections.enso-headbands-mens-only.products %}
 				  {% if productnm == product.id %}
-						  {% assign producturl = product.url | within: collections.enso-headbands-mensonly %}
+						  {% assign producturl = product.url | within: collections.enso-headbands-mens-only %}
 						{% include 'product-list-repeatable-item_a' with product %}
 				  {% endif %}
-			  {% endfor %}
-			  {% for product in collections.enso-wholesale.products %}
+			  {% endfor %} {% endcomment %}
+			  {% comment %} {% for product in collections.enso-wholesale.products %}
 				  {% if productnm == product.id %}
 						  {% assign producturl = product.url | within: collections.enso-wholesale %}
 						{% include 'product-list-repeatable-item_a' with product %}
 				  {% endif %}
-			  {% endfor %}
-			{% for product in collections.hu-headbands.products %}
+			  {% endfor %} {% endcomment %}
+			{% comment %} {% for product in collections.hu-headbands.products %}
 				  {% if productnm == product.id %}
 						  {% assign producturl = product.url | within: collections.hu-headbands %}
 						{% include 'product-list-repeatable-item_a' with product %}
 				  {% endif %}
-			  {% endfor %}
-			  {% for product in collections.hu-headbands-mens-only.products %}
+			  {% endfor %} {% endcomment %}
+			  {% comment %} {% for product in collections.hu-headbands-mens-only.products %}
 				  {% if productnm == product.id %}
 						  {% assign producturl = product.url | within: collections.hu-headbands-mens-only %}
 						{% include 'product-list-repeatable-item_a' with product %}
 				  {% endif %}
-			  {% endfor %}
-			  {% for product in collections.hu-wholesale.products %}
+			  {% endfor %} {% endcomment %}
+			  {% comment %} {% for product in collections.hu-wholesale.products %}
 				  {% if productnm == product.id %}
 						  {% assign producturl = product.url | within: collections.hu-wholesale %}
 						{% include 'product-list-repeatable-item_a' with product %}
 				  {% endif %}
-			  {% endfor %}
-			  {% for product in collections.shawls.products %}
+			  {% endfor %} {% endcomment %}
+			  {% comment %} {% for product in collections.shawls.products %}
 				  {% if productnm == product.id %}
 						  {% assign producturl = product.url | within: collections.shawls %}
 						{% include 'product-list-repeatable-item_a' with product %}
 				  {% endif %}
-			  {% endfor %}
-			  {% for product in collections.wholesale-scarves-and-shawls.products %}
+			  {% endfor %} {% endcomment %}
+			  {% comment %} {% for product in collections.wholesale-scarves-and-shawls.products %}
 				  {% if productnm == product.id %}
 						  {% assign producturl = product.url | within: collections.wholesale-scarves-and-shawls %}
 						{% include 'product-list-repeatable-item_a' with product %}
 				  {% endif %}
-			  {% endfor %}
-			{% for product in collections.lila-hairties.products %}
+			  {% endfor %} {% endcomment %}
+			{% comment %} {% for product in collections.organic-hair-ties.products %}
 				  {% if productnm == product.id %}
-						  {% assign producturl = product.url | within: collections.lila-hairties %}
+						  {% assign producturl = product.url | within: collections.organic-hair-ties %}
 						{% include 'product-list-repeatable-item_a' with product %}
 				  {% endif %}
-			  {% endfor %}
+			  {% endfor %} {% endcomment %}
+			  {% comment %} {% for product in collections.hair-ties-for-men.products %}
+				  {% if productnm == product.id %}
+						  {% assign producturl = product.url | within: collections.hair-ties-for-men %}
+						{% include 'product-list-repeatable-item_a' with product %}
+				  {% endif %}
+			  {% endfor %}			   {% endcomment %}
 	  {% comment %}
 			  {% for product in collections.lila-hairties-men-s-only.products %}
 				  {% if productnm == product.id %}
@@ -160,7 +265,7 @@
 				  {% endif %}
 			  {% endfor %}
 	  {% endcomment %}
-			  {% for product in collections.lila-wholesale.products %}
+			  {% comment %} {% for product in collections.lila-wholesale.products %}
 				  {% if productnm == product.id %}
 						  {% assign producturl = product.url | within: collections.lila-wholesale %}
 						{% include 'product-list-repeatable-item_a' with product %}
@@ -172,6 +277,12 @@
 						{% include 'product-list-repeatable-item_a' with product %}
 				  {% endif %}
 			  {% endfor %}
+			  {% for product in collections.organic-baby-pants.products %}
+				  {% if productnm == product.id %}
+						  {% assign producturl = product.url | within: collections.organic-baby-pants %}
+						{% include 'product-list-repeatable-item_a' with product %}
+				  {% endif %}
+			  {% endfor %} {% endcomment %}
 
 	{% endfor %}
 
@@ -221,7 +332,7 @@
 		{% endif %}
 			{% unless settings.collrow_hide_titles %}
 			<a href="{{ link.url }}"><h6>{{ link.title }}</h6></a>
-			{% endunless %}
+			{% endunless %}			
 			<a class="highlight align" href="{{ link.url }}">{{ link.object.image.src | collection_img_url: 'large' | img_tag: link.object.image.alt }}</a>
 		</div>
 	{% endfor %}
