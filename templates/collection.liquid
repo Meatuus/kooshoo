@@ -359,7 +359,7 @@
 		  {% elsif collection.handle contains 'lila' or collection.handle == 'wholesale-organic-hair-ties' %}
 			<div class="cl_titm">LILA hairties</div>
 			{% for product in collection.products %}
-				  {% if product.title contains 'LILA' %}
+				  {% if product.title contains 'HAIR TIES' %}
 					{% include 'product-list-repeatable-item' with product %}
 				  {% endif %}
 			{% endfor %}
