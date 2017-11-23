@@ -308,21 +308,21 @@
 	<div class="sixteen columns">There are no products here.</div>
 {% else %}
 	<div class="productlist">
-		{% if collection.handle contains 'aurea' %}
+		{% if collection.handle contains 'aurea' or collection.handle contains 'skinny-headbands' %}
 			<div class="cl_titm">AUREA classic</div>
 			{% for product in collection.products %}
-				{% if product.title contains 'AUREA OMBRE' %}
+				{% if product.title contains 'SKINNY' and product.title contains 'ombre' %}
 				  {% else %}
 					{% include 'product-list-repeatable-item' with product %}
 				{% endif %}
 			   {% endfor %}
 			  <div class="cl_titm secms">AUREA ombre</div>
 			{% for product in collection.products %}
-				{% if product.title contains 'AUREA OMBRE' %}
+				{% if product.title contains 'SKINNY' and product.title contains 'ombre' %}
 					{% include 'product-list-repeatable-item' with product %}
 				{% endif %}
 			   {% endfor %}
-		{% elsif collection.handle contains 'enso' %}
+		{% elsif collection.handle contains 'enso' or collection.handle contains 'wholesale-yoga-headbands' %}
 			  <div class="cl_titm">ENSO classic</div>
 			{% for product in collection.products %}
 				{% if product.title contains 'batik' %}
@@ -352,7 +352,7 @@
 		{% elsif collection.handle contains 'hu' %}
 			<div class="cl_titm">HU headbands</div>
 			{% for product in collection.products %}
-				  {% if product.title contains 'HU' %}
+				  {% if product.title contains 'HU' or product.title contains 'TIE HEADBAND' %}
 					{% include 'product-list-repeatable-item' with product %}
 				  {% endif %}
 			{% endfor %}
