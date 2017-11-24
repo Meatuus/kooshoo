@@ -73,9 +73,9 @@
                 <img src="{{ product-list-repeatable-item_a.featured_image | product_img_url: 'large' }}" alt="{{ product-list-repeatable-item_a.featured_image.alt }}" />
             </a>
         {% endif %}
-        {% if product-list-repeatable-item_a.compare_at_price_max > product-list-repeatable-item_a.price and settings.prod_sale_mode != 'none' %}
+        {% comment %} {% if product-list-repeatable-item_a.compare_at_price_max > product-list-repeatable-item_a.price and settings.prod_sale_mode != 'none' %}
             <div class="salecontainer"><a class="sale" href="{{ producturl }}">{{ settings.text_sale }}</a></div>
-        {% endif %}
+        {% endif %} {% endcomment %}
     </div>
 
     <p class="title"><a href="{{ producturl }}">{{ product-list-repeatable-item_a.title }}</a></p>
