@@ -711,16 +711,19 @@ Shopify.linkOptionSelectors = function(product) {
 				$('.art_clr').eq([i]).addClass('walnut');
 				$('.art_clr.walnut').append('<img style="display:none;" src="{{ "clr_h_walnut.png" | asset_url }}">');
 			}
-
-			else if (($(asd_rew).find(".prd_title:contains('crown blue')").length > 0)) {
-			  {% if product.handle contains 'batik' %}
-				$('.art_clr').eq([i]).addClass('crown_en_blue');
-				$('.art_clr.crown_blue').append('<img style="display:none;" src="{{ "clr_h_en_crown_blue.png" | asset_url }}">');
-			  {% else %}
+			else if (($(asd_rew).find(".prd_title:contains('navy blue')").length > 0)) {
 				$('.art_clr').eq([i]).addClass('crown_blue');
 				$('.art_clr.crown_blue').append('<img style="display:none;" src="{{ "clr_h_crown_blue.png" | asset_url }}">');
-			  {% endif %}
 			}
+			else if (($(asd_rew).find(".prd_title:contains('crown blue batik')").length > 0)) {
+				$('.art_clr').eq([i]).addClass('crown_en_blue');
+				$('.art_clr.crown_blue').append('<img style="display:none;" src="{{ "clr_h_en_crown_blue.png" | asset_url }}">');		
+			}
+			else if (($(asd_rew).find(".prd_title:contains('crown blue')").length > 0)) {
+				$('.art_clr').eq([i]).addClass('crown_blue'); 
+                $('.art_clr.crown_blue').append('<img style="display:none;" src="{{ "clr_h_crown_blue.png" | asset_url }}">');		
+			}
+			
 			else if (($(asd_rew).find(".prd_title:contains('ether blue')").length > 0)) {
 			  {% if product.handle contains 'batik' %}
 				$('.art_clr').eq([i]).addClass('ether_en_blue');
@@ -1444,13 +1447,24 @@ Shopify.linkOptionSelectors = function(product) {
 						var art = 'HerCrownBlueHu';
 						$('.ht_tit').html(art);
 						$('.inst_cont').find('a').remove();
-						newInstagram(art);
+						// newInstagram(art);
 					{% elsif collection.title == "HU - Organic Bandana Headbands for Men" %}
 						var art = 'HisCrownBlueHu';
 						$('.ht_tit').html(art);
 						$('.inst_cont').find('a').remove();
-						newInstagram(art);
+						// newInstagram(art);
 					 {% endif %}
+			}
+			else if (($(asd_rew).find(".prd_title:contains('navy blue')").length > 0)) {
+				var art_f = ch_tit.replace("navy blue","")
+			    $('.am_titl').html(art_f);
+			    $('.art_col').html('navy blue');					
+				{% if collection.title == "ENSO - Our Best Selling Men's Headband" %}
+					var art = 'HisCrownBlueEnso';
+					$('.ht_tit').html(art);
+					$('.inst_cont').find('a').remove();
+					// newInstagram(art);					
+				{% endif %}
 			}
 			else if (($(asd_rew).find(".prd_title:contains('dusty purple')").length > 0)) {
 				var art_f = ch_tit.replace("dusty purple","")
