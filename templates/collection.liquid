@@ -16,7 +16,7 @@
 	</div>-->
 	{% endif %}
 
-{% if collection.handle == 'organic-elastic-hairbands' %}
+{% if collection.handle == 'organic-elastic-hairbands' or collection.handle == 'skinny-headbands' %}
 	{% if settings.slide_aurea_1 != false or settings.slide_aurea_2 != false or settings.slide_aurea_3 != false or settings.slide_aurea_4 != false %}
 		<section id="mainslider" class="sixteen columns flexslider slideshow row">
 			<ul class="slides">
@@ -56,7 +56,7 @@
 			</ul>
 		</section>
 	{% endif %}
-{% elsif collection.handle == 'yoga-headbands' %}
+{% elsif collection.handle == 'yoga-headbands' or collection.handle == 'bow-headbands' %}
 	{% if settings.slide_hu_1 != false or settings.slide_hu_2 != false or settings.slide_hu_3 != false or settings.slide_hu_4 != false %}
 		<section id="mainslider" class="sixteen columns flexslider slideshow row">
 			<ul class="slides">
@@ -76,7 +76,7 @@
 			</ul>
 		</section>
 	{% endif %}
-{% elsif collection.handle == 'hairties' or collection.handle == 'lila-hairties' or collection.handle == 'organic-hair-ties' or collection.handle == 'hair-ties-for-men' %}
+{% elsif collection.handle == 'organic-hair-ties' %}
 	{% if settings.slide_lila_1 != false or settings.slide_lila_2 != false or settings.slide_lila_3 != false or settings.slide_lila_4 != false %}
 		<section id="mainslider" class="sixteen columns flexslider slideshow row">
 			<ul class="slides">
@@ -116,7 +116,7 @@
 			</ul>
 		</section>
 	{% endif %}
-{% elsif collection.handle == 'soccer-headbands-for-men' %}
+{% elsif collection.handle == 'soccer-headbands-for-men' or collection.handle == 'skinny-headband-for-men' %}
 	{% if settings.slide_aurea_m_1 != false or settings.slide_aurea_m_2 != false or settings.slide_aurea_m_3 != false or settings.slide_aurea_m_4 != false %}
 		<section id="mainslider" class="sixteen columns flexslider slideshow row">
 			<ul class="slides">
@@ -136,7 +136,7 @@
 			</ul>
 		</section>
 	{% endif %}
-{% elsif collection.handle == 'enso-headbands-mens-only' %}
+{% elsif collection.handle == 'enso-headbands-mens-only' or collection.handle == 'mens-headbands' %}
 	{% if settings.slide_enso_m_1 != false or settings.slide_enso_m_2 != false or settings.slide_enso_m_3 != false or settings.slide_enso_m_4 != false %}
 		<section id="mainslider" class="sixteen columns flexslider slideshow row">
 			<ul class="slides">
@@ -156,7 +156,7 @@
 			</ul>
 		</section>
 	{% endif %}
-{% elsif collection.handle == 'organic-bandanas' %}
+{% elsif collection.handle == 'organic-bandanas' or collection.handle == 'tie-headband-for-men' %}
 	{% if settings.slide_hu_m_1 != false or settings.slide_hu_m_2 != false or settings.slide_hu_m_3 != false or settings.slide_hu_m_4 != false %}
 		<section id="mainslider" class="sixteen columns flexslider slideshow row">
 			<ul class="slides">
@@ -176,7 +176,7 @@
 			</ul>
 		</section>
 	{% endif %}
-{% elsif collection.handle == 'lila-hairties-men-s-only' %}
+{% elsif collection.handle == 'hair-ties-for-men' %}
 	{% if settings.slide_lila_m_1 != false or settings.slide_lila_m_2 != false or settings.slide_lila_m_3 != false or settings.slide_lila_m_4 != false %}
 		<section id="mainslider" class="sixteen columns flexslider slideshow row">
 			<ul class="slides">
