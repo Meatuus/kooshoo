@@ -217,7 +217,7 @@
 		</section>
 	{% endif %}
 
-{% elsif collection.handle == 'spring-radiance-sale' or collection.handle == 'headband-sale' or collection.handle contains 'sale' %}
+{% elsif collection.handle == 'spring-radiance-sale' or collection.handle == 'headband-sale' %}
 	{% if settings.slide_sale_1 != false or settings.slide_sale_2 != false or settings.slide_sale_3 != false or settings.slide_sale_4 != false %}
 		<section id="mainslider" class="sixteen columns flexslider slideshow row">
 			<ul class="slides">
@@ -308,29 +308,29 @@
 	<div class="sixteen columns">There are no products here.</div>
 {% else %}
 	<div class="productlist">
-		{% if collection.handle contains 'aurea' or collection.handle contains 'skinny-headbands' %}
-			<div class="cl_titm">AUREA classic</div>
+		{% if collection.handle contains 'aurea' or collection.handle contains 'organic-elastic-hairbands' or collection.handle contains 'soccer-headbands-for-men' or collection.handle contains 'skinny-headbands' or collection.handle contains 'skinny-headband-for-men' %}
+			<div class="cl_titm">SKINNY HEADBAND classic</div>
 			{% for product in collection.products %}
 				{% if product.title contains 'SKINNY' and product.title contains 'ombre' %}
 				  {% else %}
 					{% include 'product-list-repeatable-item' with product %}
 				{% endif %}
 			   {% endfor %}
-			  <div class="cl_titm secms">AUREA ombre</div>
+			  <div class="cl_titm secms">SKINNY HEADBAND ombre</div>
 			{% for product in collection.products %}
 				{% if product.title contains 'SKINNY' and product.title contains 'ombre' %}
 					{% include 'product-list-repeatable-item' with product %}
 				{% endif %}
 			   {% endfor %}
-		{% elsif collection.handle contains 'enso' or collection.handle contains 'wholesale-yoga-headbands' %}
-			  <div class="cl_titm">ENSO classic</div>
+		{% elsif collection.handle contains 'enso' or collection.handle contains 'mens-headbands' or collection.handle contains 'wholesale-yoga-headbands' %}
+			  <div class="cl_titm">TWIST HEADBAND classic</div>
 			{% for product in collection.products %}
 				{% if product.title contains 'batik' %}
 				  {% else %}
 					{% include 'product-list-repeatable-item' with product %}
 				{% endif %}
 			   {% endfor %}
-			  <div class="cl_titm secms">ENSO batik</div>
+			  <div class="cl_titm secms">TWIST HEADBAND batik</div>
 			  {% for product in collection.products %}
 				{% if product.title contains 'batik' %}
 					{% include 'product-list-repeatable-item' with product %}
@@ -343,21 +343,21 @@
 					{% include 'product-list-repeatable-item' with product %}
 			   {% endif %}
 			   {% endfor %}
-			  <div class="cl_titm secms">SMOKE shawls</div>
+			  {% comment %} <div class="cl_titm secms">SMOKE shawls</div> {% endcomment %}
 			{% for product in collection.products %}
 				{% if product.title contains 'SHAWL' %}
 					{% include 'product-list-repeatable-item' with product %}
 				{% endif %}
 			   {% endfor %}
-		{% elsif collection.handle contains 'hu' %}
-			<div class="cl_titm">HU headbands</div>
+		{% elsif collection.handle contains 'hu' or collection.handle contains 'yoga-headbands' or collection.handle contains 'organic-bandanas' or collection.handle contains 'bow-headbands' or collection.handle contains 'tie-headband-for-men' %}
+			<div class="cl_titm">TIE headbands</div>
 			{% for product in collection.products %}
 				  {% if product.title contains 'HU' or product.title contains 'TIE HEADBAND' %}
 					{% include 'product-list-repeatable-item' with product %}
 				  {% endif %}
 			{% endfor %}
-		  {% elsif collection.handle contains 'lila' or collection.handle == 'wholesale-organic-hair-ties' %}
-			<div class="cl_titm">LILA hairties</div>
+		  {% elsif collection.handle contains 'lila' or collection.handle == 'organic-hair-ties' or collection.handle == 'hair-ties-for-men'  or collection.handle == 'wholesale-organic-hair-ties' %}
+			<div class="cl_titm">ORGANIC hair ties</div>
 			{% for product in collection.products %}
 				  {% if product.title contains 'HAIR TIES' %}
 					{% include 'product-list-repeatable-item' with product %}
