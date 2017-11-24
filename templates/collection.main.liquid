@@ -147,104 +147,134 @@
 	<div class="productlist">
 		{% if collection.handle == 'ethical-accessories-for-women' %}
 			<div class="cl_titm"><a href="{{ collections.organic-elastic-hairbands.url }}">SKINNY headbands</a></div>
+			<div class="prodlist--container">
 				{% for product in collections.organic-elastic-hairbands.products %}
 					{% assign producturl = product.url | within: collections.organic-elastic-hairbands %}
 					{% include 'product-list-repeatable-item_a' with product %}
 				{% endfor %}
+			</div>
 		{% elsif collection.handle == 'men-headbands' %}
 			<div class="cl_titm"><a href="{{ collections.soccer-headbands-for-men.url }}">SKINNY headbands</a></div>
+			<div class="prodlist--container">
 				{% for product in collections.soccer-headbands-for-men.products %}
 					{% assign producturl = product.url | within: collections.soccer-headbands-for-men %}
 					{% include 'product-list-repeatable-item_a' with product %}
 				{% endfor %}
+			</div>
 		{% elsif collection.handle == 'wholesale-headbands-and-scarves' %}
 			<div class="cl_titm"><a href="{{ collections.aurea-wholesale.url }}">SKINNY headbands</a></div>
+			<div class="prodlist--container">
 				{% for product in collections.aurea-wholesale.products %}
 					{% assign producturl = product.url | within: collections.aurea-wholesale %}
 					{% include 'product-list-repeatable-item_a' with product %}
 				{% endfor %}
+			</div>
 		{% endif %}
 
 		{% if collection.handle == 'ethical-accessories-for-women' %}
 			<div class="cl_titm secms"><a href="{{ collections.enso-headbands-and-head-wraps.url }}">TWIST headbands</a></div>
+			<div class="prodlist--container">
 				{% for product in collections.enso-headbands-and-head-wraps.products %}
 					{% assign producturl = product.url | within: collections.enso-headbands-and-head-wraps %}
 					{% include 'product-list-repeatable-item_a' with product %}
 				{% endfor %}
+			</div>
 		{% elsif collection.handle == 'men-headbands' %}
 			<div class="cl_titm secms"><a href="{{ collections.enso-headbands-mens-only.url }}">TWIST headbands</a></div>
+			<div class="prodlist--container">
 				{% for product in collections.enso-headbands-mens-only.products %}
 					{% assign producturl = product.url | within: collections.enso-headbands-mens-only %}
 					{% include 'product-list-repeatable-item_a' with product %}
 				{% endfor %}
+			</div>				
 		{% elsif collection.handle == 'wholesale-headbands-and-scarves' %}
 			<div class="cl_titm secms"><a href="{{ collections.wholesale-yoga-headbands.url }}">TWIST headbands</a></div>
+			<div class="prodlist--container">
 				{% for product in collections.wholesale-yoga-headbands.products %}
 					{% assign producturl = product.url | within: collections.wholesale-yoga-headbands %}
 					{% include 'product-list-repeatable-item_a' with product %}
 				{% endfor %}
+			</div>				
 		{% endif %}
 
 		{% if collection.handle == 'ethical-accessories-for-women' %}
 			<div class="cl_titm secms"><a href="{{ collections.yoga-headbands.url }}">TIE headbands</a></div>
+			<div class="prodlist--container">
 				{% for product in collections.yoga-headbands.products %}
 					{% assign producturl = product.url | within: collections.yoga-headbands %}
 					{% include 'product-list-repeatable-item_a' with product %}
 				{% endfor %}
+			</div>				
 		{% elsif collection.handle == 'men-headbands' %}
 			<div class="cl_titm secms"><a href="{{ collections.organic-bandanas.url }}">TIE headbands</a></div>
+			<div class="prodlist--container">
 				{% for product in collections.organic-bandanas.products %}
 					{% assign producturl = product.url | within: collections.organic-bandanas %}
 					{% include 'product-list-repeatable-item_a' with product %}
 				{% endfor %}
+			</div>				
 		{% elsif collection.handle == 'wholesale-headbands-and-scarves' %}
 			<div class="cl_titm secms"><a href="{{ collections.hu-wholesale.url }}">TIE headbands</a></div>
+			<div class="prodlist--container">
 				{% for product in collections.hu-wholesale.products %}
 					{% assign producturl = product.url | within: collections.hu-wholesale %}
 					{% include 'product-list-repeatable-item_a' with product %}
 				{% endfor %}
+			</div>				
 		{% endif %}
 
 		{% if collection.handle == 'ethical-accessories-for-women' %}
 			<div class="cl_titm secms"><a href="{{ collections.travel-shawls.url }}">JOURNEY shawls</a></div>
+			<div class="prodlist--container">
 				{% for product in collections.travel-shawls.products %}
 					{% assign producturl = product.url | within: collections.travel-shawls %}
 					{% include 'product-list-repeatable-item_a' with product %}
 				{% endfor %}
+			</div>
 		{% elsif collection.handle == 'wholesale-headbands-and-scarves' %}
 			<div class="cl_titm"><a href="{{ collections.wholesale-scarves-and-shawls.url }}">JOURNEY shawls</a></div>
+			<div class="prodlist--container">
 				{% for product in collections.wholesale-scarves-and-shawls.products %}
 					{% assign producturl = product.url | within: collections.wholesale-scarves-and-shawls %}
 					{% include 'product-list-repeatable-item_a' with product %}
 				{% endfor %}
+			</div>
 		{% endif %}
 
 		{% if collection.handle == 'wholesale-headbands-and-scarves' %}
 			<div class="cl_titm"><a href="{{ collections.wholesale-kids-and-baby-pants.url }}">KIDS PANTS</a></div>
+			<div class="prodlist--container">
 				{% for product in collections.wholesale-kids-and-baby-pants.products %}
 					{% assign producturl = product.url | within: collections.wholesale-kids-and-baby-pants %}
 					{% include 'product-list-repeatable-item_a' with product %}
 				{% endfor %}
+			</div>
 		{% endif %}
 
 		{% if collection.handle == 'ethical-accessories-for-women' %}
 			<div class="cl_titm secms"><a href="{{ collections.hairties.url }}">ORGANIC hair ties</a></div>
+			<div class="prodlist--container">
 				{% for product in collections.hairties.products %}
 					{% assign producturl = product.url | within: collections.hairties %}
 					{% include 'product-list-repeatable-item_a' with product %}
 				{% endfor %}
+			</div>
 		{% elsif collection.handle == 'men-headbands' %}
 			<div class="cl_titm secms"><a href="{{ collections.hair-ties-for-men.url }}">ORGANIC hair ties</a></div>
+			<div class="prodlist--container">
 				{% for product in collections.hair-ties-for-men.products %}
 					{% assign producturl = product.url | within: collections.hair-ties-for-men %}
 					{% include 'product-list-repeatable-item_a' with product %}
 				{% endfor %}
+			</div>
 		{% elsif collection.handle == 'wholesale-headbands-and-scarves' %}
 			<div class="cl_titm"><a href="{{ collections.wholesale-organic-hair-ties.url }}">ORGANIC hair ties</a></div>
+			<div class="prodlist--container">
 				{% for product in collections.wholesale-organic-hair-ties.products %}
 					{% assign producturl = product.url | within: collections.wholesale-organic-hair-ties %}
 					{% include 'product-list-repeatable-item_a' with product %}
 				{% endfor %}
+			</div>
 		{% endif %}
 
 
