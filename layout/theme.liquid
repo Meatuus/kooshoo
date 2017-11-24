@@ -150,11 +150,12 @@ underIE9 = true;
 			var productsPerRowRightNow = $(window).width() >= vertSnapWidth ? productsPerRow : 1;
 			var collsPerRowRightNow = $(window).width() >= vertSnapWidth ? {{ settings.collrow_numperrow }} : 1;
 
-			$('.productlist').normaliseHeights({
-				numPerRow:productsPerRowRightNow,
-				itemClass:'.product',
-				textRegionClasses:'.imgcont, .title, .desc, .price'
-			});
+
+			//$('.productlist').normaliseHeights({
+			//	numPerRow:productsPerRowRightNow,
+			//	itemClass:'.product',
+			//	textRegionClasses:'.imgcont, .title, .desc, .price'
+			//});
 			$('.widgets:not(.collection-row)').normaliseHeights({
 				numPerRow:productsPerRowRightNow,
 				itemClass:'.widget',
