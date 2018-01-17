@@ -5213,8 +5213,7 @@ filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#4C000000,endCol
 		display: none
 	}
 	.ind_cent {
-		background: none repeat scroll 0 0 transparent;
-		display: none
+		background: url({{ 'ind_cent_wr.png' | asset_url }}) no-repeat scroll -8px -30px transparent;
 	}
 	.ICL{
 		background: none repeat scroll 0 0 transparent;
@@ -5231,6 +5230,52 @@ filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#4C000000,endCol
 	.IC_right {
 		background: none repeat scroll 0 0 transparent;
 		display: none
+	}
+
+	.ind_cent {
+		background:url({{ 'ind_cent_wr.png' | asset_url }}) no-repeat scroll -8px -30px/contain transparent;
+		margin: 30px auto 0;
+		width: 318px;
+		height: 320px;
+	}
+	.ind_text1 {
+		bottom: 188px;
+		left: -5px;
+	}
+	.ind_text2 {
+		bottom: 202px;
+		left: 96px;
+	}
+	.ind_text3 {
+		bottom: 188px;
+		left: 216px;
+	}
+	.ind_text4 {
+		bottom: 62px;
+		left: 225px;
+	}
+	.ind_text5 {
+		bottom: 40px;
+		left: 116px;
+	}
+	.ind_text6 {
+		bottom: 62px;
+		left: 0px;
+	}
+	.ICL{
+		  margin-right: 0;
+	}
+	.IC_left {
+		  <!-- background:url({{ 'ind_cent_ls.png' | asset_url }}) no-repeat scroll center 53px transparent; -->
+		height: 184px;
+		margin: 0 auto;
+		width: 436px;
+	}
+	.IC_right {
+		<!-- background:url({{ 'ind_cent_rs.png' | asset_url }}) no-repeat scroll center 49px transparent; -->
+		height: 184px;
+		margin: 30px auto 0;
+		width: 443px;
 	}
 
 	#pagefooter .registercont .contact-form {
