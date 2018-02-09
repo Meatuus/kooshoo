@@ -678,6 +678,10 @@ Shopify.linkOptionSelectors = function(product) {
 				$('.art_clr').eq([i]).addClass('colorful');
 				$('.art_clr.colorful').append('<img style="display:none;" src="{{ "clr_h_colorful.png" | asset_url }}">');
 			}
+			else if (($(asd_rew).find(".prd_title:contains('sea shepherd')").length > 0)) {
+				$('.art_clr').eq([i]).addClass('sea_shepherd');
+				$('.art_clr.sea_shepherd').append('<img style="display:none;" src="{{ "clr_h_sea_shepherd.png" | asset_url }}">');
+			}
 			else if (($(asd_rew).find(".prd_title:contains('dawn')").length > 0)) {
 				$('.art_clr').eq([i]).addClass('dawn');
 				$('.art_clr.dawn').append('<img style="display:none;" src="{{ "clr_h_dawn.png" | asset_url }}">');
@@ -1529,6 +1533,11 @@ Shopify.linkOptionSelectors = function(product) {
 						$('.inst_cont').find('a').remove();
 						newInstagram(art);
 					{% endif %}
+			}
+			else if (($(asd_rew).find(".prd_title:contains('sea shepherd')").length > 0)) {
+			   var art_f = ch_tit.replace("sea shepherd","")
+			   $('.am_titl').html(art_f);
+			   $('.art_col').html('sea shepherd');
 			}
 
 			else if (($(asd_rew).find(".prd_title:contains('dawn')").length > 0)) {
