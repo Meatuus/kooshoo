@@ -121,173 +121,182 @@
             </div>
 			{% for variant in product.variants %}
                 <div data-id="{{ variant.id }}" data-price="{{ variant.price | money }}" class="kids_size{% if forloop.first == true %}{% assign cur_id = variant.id %} selected{% endif %}" data-var-num="{% increment product.variants.size %}">
-                   {{ variant.option1 }}
-                </div>
+                    {{ variant.option1 }}
+                </div>  
+                {% comment %} {% if variant.available %}
+                    <div data-id="{{ variant.id }}" data-price="{{ variant.price | money }}" class="kids_size{% if forloop.first == true %}{% assign cur_id = variant.id %} selected{% endif %}" data-var-num="{% increment product.variants.size %}">
+                    {{ variant.option1 }} {{ variant.available }}
+                    </div>                    
+                {% else %}
+                    <div data-id="{{ variant.id }}" data-price="{{ variant.price | money }}" class="kids_size disabled" data-var-num="{% increment product.variants.size %}">
+                    {{ variant.option1 }} {{ variant.available }}
+                    </div>  
+                {% endif %} {% endcomment %}
             {% endfor %}
         </div>
         {% if product.available %}
-        <form action="/cart/add" method="post">
-            <div class="options">
-                <label class="jr_ac" for="quantity">QUANTITY:</label> <br>
-                <a href="javascript:modifyQuantity('#quantity', -1)" class="minibutton">-</a>
-                <input class="short" type="text" id="quantity" name="quantity" value="1" onfocus="this.select();" />
-                <a href="javascript:modifyQuantity('#quantity', 1)" class="minibutton art_right">+</a>
-                <input class="true_id" type="hidden" name="id" value="{{ cur_id }}" />
-            {% comment %}
-                {% if product.variants.size == 1 %}
-                    <input class="true_id" type="hidden" name="id" value="{{ product.variants.first.id }}" />
+            <form action="/cart/add" method="post">
+                <div class="options">
+                    <label class="jr_ac" for="quantity">QUANTITY:</label> <br>
+                    <a href="javascript:modifyQuantity('#quantity', -1)" class="minibutton">-</a>
+                    <input class="short" type="text" id="quantity" name="quantity" value="1" onfocus="this.select();" />
+                    <a href="javascript:modifyQuantity('#quantity', 1)" class="minibutton art_right">+</a>
+                    <input class="true_id" type="hidden" name="id" value="{{ cur_id }}" />
+                {% comment %}
+                    {% if product.variants.size == 1 %}
+                        <input class="true_id" type="hidden" name="id" value="{{ product.variants.first.id }}" />
 
-                {% else %}
-                    <div class="selectors">
-                        <label for="product-select">{{ product.options.first }}:</label>
-                        <select id="product-select" name="id" class="noreplace">
-                            {% for variant in product.variants %}
-                                <option value="{{ variant.id }}">{{ variant.title }} - {{ variant.price | money }}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-                    <script type="text/javascript">
-                        var selectCallback = function(variant, selector) {
-                            if (variant && variant.available == true) {
-                                // selected a valid variant
-                                $('#productinfo #detail #purchase').removeClass('disabled').removeAttr('disabled'); // remove unavailable class from add-to-cart button, and re-enable button
-                                var newHtml = Shopify.formatMoney(variant.price, "{{shop.money}}");
-                                if(variant.compare_at_price > variant.price) {
-                                    newHtml += '<div class="was-price">was ' + Shopify.formatMoney(variant.compare_at_price, "{{shop.money}}") + '</div>';
+                    {% else %}
+                        <div class="selectors">
+                            <label for="product-select">{{ product.options.first }}:</label>
+                            <select id="product-select" name="id" class="noreplace">
+                                {% for variant in product.variants %}
+                                    <option value="{{ variant.id }}">{{ variant.title }} - {{ variant.price | money }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <script type="text/javascript">
+                            var selectCallback = function(variant, selector) {
+                                if (variant && variant.available == true) {
+                                    // selected a valid variant
+                                    $('#productinfo #detail #purchase').removeClass('disabled').removeAttr('disabled'); // remove unavailable class from add-to-cart button, and re-enable button
+                                    var newHtml = Shopify.formatMoney(variant.price, "{{shop.money}}");
+                                    if(variant.compare_at_price > variant.price) {
+                                        newHtml += '<div class="was-price">was ' + Shopify.formatMoney(variant.compare_at_price, "{{shop.money}}") + '</div>';
+                                    }
+                                    $('#price-field').html(newHtml);  // update price field
+                                } else {
+                                    // variant doesn't exist
+                                    $('#productinfo #detail #purchase').addClass('disabled').attr('disabled', 'disabled'); // set add-to-cart button to unavailable class and disable button
+                                    var message = variant ? "Sold Out" : "Unavailable";
+                                    $('#price-field').text(message); // update price-field message
                                 }
-                                $('#price-field').html(newHtml);  // update price field
-                            } else {
-                                // variant doesn't exist
-                                $('#productinfo #detail #purchase').addClass('disabled').attr('disabled', 'disabled'); // set add-to-cart button to unavailable class and disable button
-                                var message = variant ? "Sold Out" : "Unavailable";
-                                $('#price-field').text(message); // update price-field message
-                            }
-                        };
+                            };
 
-                        //Set up product inputs
-                        $(function() {
-                            new Shopify.OptionSelectors("product-select", { product: {{ product | json }}, onVariantSelected: selectCallback });
-                            {% if settings.prod_enable_linked_options and product.options.size > 1 %}
-                            Shopify.linkOptionSelectors({{ product | json }});
-                            {% endif %}
-                            {% assign found_one_in_stock = false %}
-                            {% for variant in product.variants %}
-                                {% if variant.available and found_one_in_stock == false %}
-                                    {% assign found_one_in_stock = true %}
-                                    {% for option in product.options %}
-                                        jQuery('.single-option-selector:eq(' + {{ forloop.index0 }} + ')').val({{ variant.options[forloop.index0] | json }}).trigger('change');
-                                    {% endfor %}
+                            //Set up product inputs
+                            $(function() {
+                                new Shopify.OptionSelectors("product-select", { product: {{ product | json }}, onVariantSelected: selectCallback });
+                                {% if settings.prod_enable_linked_options and product.options.size > 1 %}
+                                Shopify.linkOptionSelectors({{ product | json }});
                                 {% endif %}
-                            {% endfor %}
+                                {% assign found_one_in_stock = false %}
+                                {% for variant in product.variants %}
+                                    {% if variant.available and found_one_in_stock == false %}
+                                        {% assign found_one_in_stock = true %}
+                                        {% for option in product.options %}
+                                            jQuery('.single-option-selector:eq(' + {{ forloop.index0 }} + ')').val({{ variant.options[forloop.index0] | json }}).trigger('change');
+                                        {% endfor %}
+                                    {% endif %}
+                                {% endfor %}
 
-                            //Hide original option label if we now have multiple options
-                            if($('.selector-wrapper .single-option-selector').length != 1) {
-                                $('#product-select').siblings('label[for="product-select"]').hide();
-                            }
+                                //Hide original option label if we now have multiple options
+                                if($('.selector-wrapper .single-option-selector').length != 1) {
+                                    $('#product-select').siblings('label[for="product-select"]').hide();
+                                }
 
-                            //Style any added select dropdowns
-                            $.selectReplace();
-                        });
-                    </script>
+                                //Style any added select dropdowns
+                                $.selectReplace();
+                            });
+                        </script>
+                    {% endif %}
+                {% endcomment %}
+                {% comment %} If you are using Shopify's custom options, add them here! {% endcomment %}
+                {% if settings.prod_customizr_compat %}
+                    {% include 'extra-product-options' %}
                 {% endif %}
-            {% endcomment %}
-            {% comment %} If you are using Shopify's custom options, add them here! {% endcomment %}
-            {% if settings.prod_customizr_compat %}
-                {% include 'extra-product-options' %}
-            {% endif %}
-            </div>
-
-            <div class="addbuttoncont">
-                <input type="submit" name ="add" id="purchase" class="button large plus" value="{{ settings.text_addtocart }}" />
-                <div class="art_buttext">
-                    FREE Shipping over $50 in North America
                 </div>
 
-            </div>
-            <div class="art_pr_soc">
-                <span class="socialitem facebookcont">
-                  <div id="socs_a"><fb:like send="false" layout="button_count" width="100" height="25" show_faces="true"></fb:like></div>
-                    <div id="fb-root"></div>
-                    <script>(function(d, s, id) {
-                      var js, fjs = d.getElementsByTagName(s)[0];
-                      if (d.getElementById(id)) return;
-                      js = d.createElement(s); js.id = id;
-                      js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
-                      fjs.parentNode.insertBefore(js, fjs);
-                    }(document, 'script', 'facebook-jssdk'));</script>
-                </span>
-                <span class="socialitem twittercont">
-                  <div id="socs_b"><a href="https://twitter.com/share" class="twitter-share-button" data-count="none">Tweet</a></div>
-                    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-                </span>
-            </div>
-            <script>
-                Shopify.money_format = '{{shop.money_format | replace: "'", '"'}}';
+                <div class="addbuttoncont">
+                    <input type="submit" name ="add" id="purchase" class="button large plus" value="{{ settings.text_addtocart }}" />
+                    <div class="art_buttext">
+                        FREE Shipping over $50 in North America
+                    </div>
 
-                {% unless settings.prod_disable_ajax %}
-                //Override for default Shopify function
-                Shopify.onItemAdded = function(line_item) {
-                    //Make buttons usable again
-                    $('form input[type="submit"]').attr('disabled', false).removeClass('disabled');
-                    //Adding to cart successful, update cart
-                    Shopify.getCart();
-                    //Show 'item added'
-                    $('#purchase').siblings('.added').remove();
-                    $('<div>').addClass('added').html('<span class="yay">{{ settings.text_ty }}</span><a class="basket" href="/cart">{{ settings.text_cart }} &rarr;</a>')
-                        .insertBefore($('#purchase')).fadeIn(200).delay(5000).fadeOut(500, function(){
-                            $(this).remove();
-                        });
-                    return false;
-                }
+                </div>
+                <div class="art_pr_soc">
+                    <span class="socialitem facebookcont">
+                    <div id="socs_a"><fb:like send="false" layout="button_count" width="100" height="25" show_faces="true"></fb:like></div>
+                        <div id="fb-root"></div>
+                        <script>(function(d, s, id) {
+                        var js, fjs = d.getElementsByTagName(s)[0];
+                        if (d.getElementById(id)) return;
+                        js = d.createElement(s); js.id = id;
+                        js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+                        fjs.parentNode.insertBefore(js, fjs);
+                        }(document, 'script', 'facebook-jssdk'));</script>
+                    </span>
+                    <span class="socialitem twittercont">
+                    <div id="socs_b"><a href="https://twitter.com/share" class="twitter-share-button" data-count="none">Tweet</a></div>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+                    </span>
+                </div>
+                <script>
+                    Shopify.money_format = '{{shop.money_format | replace: "'", '"'}}';
 
-                //Override for default Shopify function
-                Shopify.onError = function(XMLHttpRequest, textStatus) {
-                    //Make buttons usable again
-                    $('form input[type="submit"]').attr('disabled', false).removeClass('disabled');
-                    //Display error message
-                    var errmsg;
-                    var data = eval('(' + XMLHttpRequest.responseText + ')');
-                    if (!!data.message) {
-                        errmsg = data.message + '<br />' + data.description;
-                    } else {
-                        errmsg = Shopify.fullMessagesFromErrors(data).join('; ');
+                    {% unless settings.prod_disable_ajax %}
+                    //Override for default Shopify function
+                    Shopify.onItemAdded = function(line_item) {
+                        //Make buttons usable again
+                        $('form input[type="submit"]').attr('disabled', false).removeClass('disabled');
+                        //Adding to cart successful, update cart
+                        Shopify.getCart();
+                        //Show 'item added'
+                        $('#purchase').siblings('.added').remove();
+                        $('<div>').addClass('added').html('<span class="yay">{{ settings.text_ty }}</span><a class="basket" href="/cart">{{ settings.text_cart }} &rarr;</a>')
+                            .insertBefore($('#purchase')).fadeIn(200).delay(5000).fadeOut(500, function(){
+                                $(this).remove();
+                            });
+                        return false;
                     }
-                    $('#purchase').siblings('.added').remove();
-                    $('<div>').addClass('added').addClass('error').html('<span>'+errmsg+'</span>')
-                        .insertBefore($('#purchase')).fadeIn(200).delay(5000).fadeOut(500, function(){
-                            $(this).remove();
-                        });
-                };
 
-                //Override for default Shopify function
-                Shopify.onCartUpdate = function(cart) {
-                    //Update elements on screen that show cart info
-                    $('#headercartvals').html('(' + cart.item_count + ') ' + addCommas(Shopify.formatMoney(cart.total_price)));
-                }
+                    //Override for default Shopify function
+                    Shopify.onError = function(XMLHttpRequest, textStatus) {
+                        //Make buttons usable again
+                        $('form input[type="submit"]').attr('disabled', false).removeClass('disabled');
+                        //Display error message
+                        var errmsg;
+                        var data = eval('(' + XMLHttpRequest.responseText + ')');
+                        if (!!data.message) {
+                            errmsg = data.message + '<br />' + data.description;
+                        } else {
+                            errmsg = Shopify.fullMessagesFromErrors(data).join('; ');
+                        }
+                        $('#purchase').siblings('.added').remove();
+                        $('<div>').addClass('added').addClass('error').html('<span>'+errmsg+'</span>')
+                            .insertBefore($('#purchase')).fadeIn(200).delay(5000).fadeOut(500, function(){
+                                $(this).remove();
+                            });
+                    };
 
-                //Define the function that adds to the cart
-                function addToCart(e) {
-                    if (typeof e !== 'undefined') e.preventDefault();
-                    //Find variant id & quantity
-                    var $form = $(this).closest('form');
-                    var $inputs = $form.find('input[name="id"], select[name="id"]');
-                    if($inputs.length == 1) {
-                        Shopify.addItem($inputs.val(), $form.find('input[name="quantity"]').val());
-                    } else if($inputs.length > 1) {
-                        //Radios
-                        Shopify.addItem($inputs.is(':checked').val(), $form.find('input[name="quantity"]').val());
+                    //Override for default Shopify function
+                    Shopify.onCartUpdate = function(cart) {
+                        //Update elements on screen that show cart info
+                        $('#headercartvals').html('(' + cart.item_count + ') ' + addCommas(Shopify.formatMoney(cart.total_price)));
                     }
-                }
 
-                $(function(){
-                    //Action for clicking 'buy'
-                    $('#purchase').bind('click', addToCart);
-                });
-                {% endunless %}
-            </script>
-        </form>
+                    //Define the function that adds to the cart
+                    function addToCart(e) {
+                        if (typeof e !== 'undefined') e.preventDefault();
+                        //Find variant id & quantity
+                        var $form = $(this).closest('form');
+                        var $inputs = $form.find('input[name="id"], select[name="id"]');
+                        if($inputs.length == 1) {
+                            Shopify.addItem($inputs.val(), $form.find('input[name="quantity"]').val());
+                        } else if($inputs.length > 1) {
+                            //Radios
+                            Shopify.addItem($inputs.is(':checked').val(), $form.find('input[name="quantity"]').val());
+                        }
+                    }
+
+                    $(function(){
+                        //Action for clicking 'buy'
+                        $('#purchase').bind('click', addToCart);
+                    });
+                    {% endunless %}
+                </script>
+            </form>
         {% else %}
-        <h3>{{ settings.text_soldout }}</h3>
+            <h3>{{ settings.text_soldout }}</h3>
         {% endif %}
 
        <!-- <div class="description contentsection" itemprop="description">{% include 'process-html' with product.description %}</div>-->
@@ -350,145 +359,20 @@
             resize_fn();
         });
         var va_main = $('.art_cost').find('.pr_pr').find('.va_price'); //price of product variant
-        // var va_id = $('.art_cost').find('.pr_pr').find('.va_price').data('id'); //id of product variant
         $('.kids_size').click(function () {
             if(!$(this).hasClass('art_sold_out')){
                 $('.kids_size').removeClass('selected');
                 $(this).addClass('selected');
                 $('.true_id').val($(this).attr('data-id'));
-              // function pr_update() { //function to loop through variants and assign price accordingly TODO (this) is returning values from original selection, not changing with colour tabs
-              //   for (var i = 0; i < va_main.length; i++) {
-              //     console.log('inside loop');
-              //     console.log($('.kids_size.selected').data('id'));
-              //     if ( ($('.kids_size.selected').data('id')) === ($(va_main[i]).data('id')) ) {
-              //       $('.art_price').html(va_main[i]);
-              //       console.log("FINALLY!");
-              //       console.log($(va_main[i]).data('id'));
-              //       console.log(i);
-              //       console.log(va_main);
-              //     }
-              //   }
-              // }
-              // pr_update();
 
-              // change price shown to price of product variation when size changes
-                if (($('#crumbs a:nth-child(2)')[0].text === "Kids Pants - Expandable, Organic Baby Pants")) {
-                    if ($('.kids_size.selected').data('var-num') === 0) { // first size button                        
-                        if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS charcoal grey batik") {
-                            $('.art_price').html($(va_main[0]).html());                            
-                        } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS jean blue batik") {
-                            $('.art_price').html($(va_main[16]).html());
-                        } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS pink batik") {
-                            $('.art_price').html($(va_main[20]).html());
-                        } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS classic black") {
-                            $('.art_price').html($(va_main[4]).html());
-                        } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS classic moonbeam grey") {
-                            $('.art_price').html($(va_main[8]).html());
-                        } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS classic sage green") {
-                            $('.art_price').html($(va_main[12]).html());
-                        }
-                    } else if ($('.kids_size.selected').data('var-num') === 1) { // second size button                    
-                        if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS charcoal grey batik") {
-                            $('.art_price').html($(va_main[1]).html());                            
-                        } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS jean blue batik") {
-                            $('.art_price').html($(va_main[17]).html());
-                        } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS pink batik") {
-                            $('.art_price').html($(va_main[21]).html());
-                        } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS classic black") {
-                            $('.art_price').html($(va_main[5]).html());
-                        } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS classic moonbeam grey") {
-                            $('.art_price').html($(va_main[9]).html());
-                        } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS classic sage green") {
-                            $('.art_price').html($(va_main[13]).html());
-                        }
-                    } else if ($('.kids_size.selected').data('var-num') === 2) { // third size button                    
-                        if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS charcoal grey batik") {
-                            $('.art_price').html($(va_main[2]).html());                            
-                        } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS jean blue batik") {
-                            $('.art_price').html($(va_main[18]).html());
-                        } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS pink batik") {
-                            $('.art_price').html($(va_main[22]).html());
-                        } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS classic black") {
-                            $('.art_price').html($(va_main[6]).html());
-                        } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS classic moonbeam grey") {
-                            $('.art_price').html($(va_main[10]).html());
-                        } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS classic sage green") {
-                            $('.art_price').html($(va_main[14]).html());
-                        }
-                    } else if ($('.kids_size.selected').data('var-num') === 3) { // forth size button                    
-                        if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS charcoal grey batik") {
-                            $('.art_price').html($(va_main[3]).html());                            
-                        } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS jean blue batik") {
-                            $('.art_price').html($(va_main[19]).html());
-                        } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS pink batik") {
-                            $('.art_price').html($(va_main[23]).html());
-                        } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS classic black") {
-                            $('.art_price').html($(va_main[7]).html());
-                        } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS classic moonbeam grey") {
-                            $('.art_price').html($(va_main[11]).html());
-                        } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS classic sage green") {
-                            $('.art_price').html($(va_main[15]).html());
-                        }
-                    }
-                } else if (($('#crumbs a:nth-child(2)')[0].text === "Wholesale Kids and Baby Pants")) {
-                    if ($('.kids_size.selected').data('var-num') === 0) { // first size button
-                        if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS charcoal grey batik - Wholesale") {
-                            $('.art_price').html($(va_main[0]).html());
-                        } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS jean blue batik wholesale") {
-                            $('.art_price').html($(va_main[12]).html());
-                        } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS pink batik - Wholesale") {
-                            $('.art_price').html($(va_main[15]).html());
-                        } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS classic black - Wholesale") {
-                            $('.art_price').html($(va_main[3]).html());
-                        } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS classic moonbeam grey - Wholesale") {
-                            $('.art_price').html($(va_main[6]).html());
-                        } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS classic sage green - Wholesale") {
-                            $('.art_price').html($(va_main[9]).html());
-                        }
-                    } else if ($('.kids_size.selected').data('var-num') === 1) { // second size button
-                        if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS charcoal grey batik - Wholesale") {
-                            $('.art_price').html($(va_main[1]).html());
-                        } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS jean blue batik wholesale") {
-                            $('.art_price').html($(va_main[13]).html());
-                        } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS pink batik - Wholesale") {
-                            $('.art_price').html($(va_main[16]).html());
-                        } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS classic black - Wholesale") {
-                            $('.art_price').html($(va_main[4]).html());
-                        } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS classic moonbeam grey - Wholesale") {
-                            $('.art_price').html($(va_main[7]).html());
-                        } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS classic sage green - Wholesale") {
-                            $('.art_price').html($(va_main[10]).html());
-                        }
-                    } else if ($('.kids_size.selected').data('var-num') === 2) { // third size button
-                        if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS charcoal grey batik - Wholesale") {
-                            $('.art_price').html($(va_main[2]).html());
-                        } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS jean blue batik wholesale") {
-                            $('.art_price').html($(va_main[14]).html());
-                        } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS pink batik - Wholesale") {
-                            $('.art_price').html($(va_main[17]).html());
-                        } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS classic black - Wholesale") {
-                            $('.art_price').html($(va_main[5]).html());
-                        } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS classic moonbeam grey - Wholesale") {
-                            $('.art_price').html($(va_main[8]).html());
-                        } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS classic sage green - Wholesale") {
-                            $('.art_price').html($(va_main[11]).html());
-                        }
-                    } //else if ($('.kids_size.selected').data('var-num') === 3) { // forth size button
-                        // if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS charcoal grey batik - Wholesale") {
-                        //     $('.art_price').html(va_main[3]);
-                        // } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS jean blue batik wholesale") {
-                        //     $('.art_price').html(va_main[7]);
-                        // } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS pink batik - Wholesale") {
-                        //     $('.art_price').html(va_main[11]);
-                        // } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS classic black - Wholesale") {
-                        //     $('.art_price').html(va_main[15]);
-                        // } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS classic moonbeam grey - Wholesale") {
-                        //     $('.art_price').html(va_main[19]);
-                        // } else if ($('#crumbs a:nth-child(3)')[0].text === "KIDS PANTS classic sage green - Wholesale") {
-                        //     $('.art_price').html(va_main[23]);
-                        // }
-                    // }
-                }
+               function pr_update() { // updates price of current product based on selected size using ID
+                 for (var i = 0; i < va_main.length; i++) {
+                   if ( ( parseInt($('.true_id').val()) ) === ( $(va_main[i]).data('id') ) ) {
+                     $('.art_price').html($(va_main[i]).html());
+                   }
+                 }
+               }
+               pr_update();
             }
         });
     });
@@ -732,7 +616,32 @@ console.log(wdt);
                 } else if (($(asd_rew).find(".prd_title:contains('pink batik')").length > 0)) {
                     $('.art_clr').eq([i]).addClass('magenta_pink');
                     $('.art_clr.magenta_pink').append('<img style="display:none;" src="{{ "clr_h_magenta_pink.png" | asset_url }}">');
+                } else if (($(asd_rew).find(".prd_title:contains('dusty mauve')").length > 0)) {
+                    $('.art_clr').eq([i]).addClass('dusty_mauve');
+                    $('.art_clr.dusty_mauve').append('<img style="display:none;" src="{{ "clr_h_dusty_mauve.png" | asset_url }}">');
+                } else if (($(asd_rew).find(".prd_title:contains('black obsidian batik')").length > 0)) {
+                    $('.art_clr').eq([i]).addClass('black_obsidian_batik');
+                    $('.art_clr.black_obsidian_batik').append('<img style="display:none;" src="{{ "clr_h_black_obsidian_batik.png" | asset_url }}">');
+                } else if (($(asd_rew).find(".prd_title:contains('happy khaki')").length > 0)) {
+                    $('.art_clr').eq([i]).addClass('happy_khaki');
+                    $('.art_clr.happy_khaki').append('<img style="display:none;" src="{{ "clr_h_happy_khaki.png" | asset_url }}">');
+                } else if (($(asd_rew).find(".prd_title:contains('moonstone blue batik')").length > 0)) {
+                    $('.art_clr').eq([i]).addClass('moonstone_blue_batik');
+                    $('.art_clr.moonstone_blue_batik').append('<img style="display:none;" src="{{ "clr_h_moonstone_blue_batik.png" | asset_url }}">');
+                } else if (($(asd_rew).find(".prd_title:contains('purple amethyst batik')").length > 0)) {
+                    $('.art_clr').eq([i]).addClass('purple_amethyst_batik');
+                    $('.art_clr.purple_amethyst_batik').append('<img style="display:none;" src="{{ "clr_h_purple_amethyst_batik.png" | asset_url }}">');
+                } else if (($(asd_rew).find(".prd_title:contains('red earth')").length > 0)) {
+                    $('.art_clr').eq([i]).addClass('red_earth');
+                    $('.art_clr.red_earth').append('<img style="display:none;" src="{{ "clr_h_red_earth.png" | asset_url }}">');
+                } else if (($(asd_rew).find(".prd_title:contains('rose quartz pink batik')").length > 0)) {
+                    $('.art_clr').eq([i]).addClass('rose_quartz_pink_batik');
+                    $('.art_clr.rose_quartz_pink_batik').append('<img style="display:none;" src="{{ "clr_h_rose_quartz_pink_batik.png" | asset_url }}">');
+                } else if (($(asd_rew).find(".prd_title:contains('shadow gray')").length > 0)) {
+                    $('.art_clr').eq([i]).addClass('shadow_gray');
+                    $('.art_clr.shadow_gray').append('<img style="display:none;" src="{{ "clr_h_shadow_gray.png" | asset_url }}">');
                 }
+
 
                 if ($(asd_rew).hasClass('solded')){
                     var link_a = $('.pr_url').eq([i]).html();
@@ -757,176 +666,17 @@ console.log(wdt);
                     var numb_ar = [i];
                     var ch_tit = $(ch_main).find('.prd_title').html();
                     var sizes = document.getElementsByClassName('kids_size');
+                    var prodVariants = $($(ch_main[0]).find('.pr_icons')[0]).find('.va_price');
+                    
                     console.log('colour change!');
-                    // set each product variation data-id to relevant id
-                    if (($('#crumbs a:nth-child(2)')[0].text === "Kids Pants - Expandable, Organic Baby Pants") && ($(this).hasClass('batik_charcoal_grey'))) {
-                        $(sizes[0]).attr('data-id', $(va_main[0]).data('id'))
-                        $(sizes[1]).attr('data-id', $(va_main[1]).data('id'))
-                        $(sizes[2]).attr('data-id', $(va_main[2]).data('id'))
-                        $(sizes[3]).attr('data-id', $(va_main[3]).data('id'))
-                        if ($('.kids_size.selected').data('varNum') === 0) {
-                            $('.art_price').html($(va_main[0]).html());
-                        } else if ($('.kids_size.selected').data('varNum') === 1) {
-                            $('.art_price').html($(va_main[1]).html());
-                        } else if ($('.kids_size.selected').data('varNum') === 2) {
-                            $('.art_price').html($(va_main[2]).html());
-                        } else {
-                            $('.art_price').html($(va_main[3]).html());
-                        }
-                    } else if (($('#crumbs a:nth-child(2)')[0].text === "Kids Pants - Expandable, Organic Baby Pants") && ($(this).hasClass('jean_blue'))) {
-                        $(sizes[0]).attr('data-id', $(va_main[16]).data('id'));                    
-                        $(sizes[1]).attr('data-id', $(va_main[17]).data('id'));
-                        $(sizes[2]).attr('data-id', $(va_main[18]).data('id'));
-                        $(sizes[3]).attr('data-id', $(va_main[19]).data('id'));
 
-                        // $(sizes[0]).attr('data-price', $(va_main[16]).html());
-                        // $(sizes[1]).attr('data-price', $(va_main[17]).html());
-                        // $(sizes[2]).attr('data-price', $(va_main[18]).html());
-                        // $(sizes[3]).attr('data-price', $(va_main[19]).html());
+                    $.each(prodVariants, function(x) { // selects ID of current size selected of current item and changes displayed price
+                        $(sizes[x]).attr('data-id', parseInt($(prodVariants[x]).attr('data-id')));
 
-                        if ($('.kids_size.selected').data('varNum') === 0) {
-                            $('.art_price').html($(va_main[16]).html());
-                        } else if ($('.kids_size.selected').data('varNum') === 1) {
-                            $('.art_price').html($(va_main[17]).html());
-                        } else if ($('.kids_size.selected').data('varNum') === 2) {
-                            $('.art_price').html($(va_main[18]).html());
-                        } else {
-                            $('.art_price').html($(va_main[19]).html());
+                        if ($('.kids_size.selected').data('varNum') === x) {
+                            $('.art_price').html(prodVariants[x].innerHTML);
                         }
-                    } else if (($('#crumbs a:nth-child(2)')[0].text === "Kids Pants - Expandable, Organic Baby Pants") && ($(this).hasClass('magenta_pink'))) {
-                        $(sizes[0]).attr('data-id', $(va_main[20]).data('id'))
-                        $(sizes[1]).attr('data-id', $(va_main[21]).data('id'))
-                        $(sizes[2]).attr('data-id', $(va_main[22]).data('id'))
-                        $(sizes[3]).attr('data-id', $(va_main[23]).data('id'))
-                        if ($('.kids_size.selected').data('varNum') === 0) {
-                          $('.art_price').html($(va_main[20]).html());
-                        } else if ($('.kids_size.selected').data('varNum') === 1) {
-                          $('.art_price').html($(va_main[21]).html());
-                        } else if ($('.kids_size.selected').data('varNum') === 2) {
-                          $('.art_price').html($(va_main[22]).html());
-                        } else {
-                          $('.art_price').html($(va_main[23]).html());
-                        }
-                    } else if (($('#crumbs a:nth-child(2)')[0].text === "Kids Pants - Expandable, Organic Baby Pants") && ($(this).hasClass('black'))) {
-                        $(sizes[0]).attr('data-id', $(va_main[4]).data('id'))
-                        $(sizes[1]).attr('data-id', $(va_main[5]).data('id'))
-                        $(sizes[2]).attr('data-id', $(va_main[6]).data('id'))
-                        $(sizes[3]).attr('data-id', $(va_main[7]).data('id'))
-                        if ($('.kids_size.selected').data('varNum') === 0) {
-                            $('.art_price').html($(va_main[4]).html());
-                        } else if ($('.kids_size.selected').data('varNum') === 1) {
-                            $('.art_price').html($(va_main[5]).html());
-                        } else if ($('.kids_size.selected').data('varNum') === 2) {
-                            $('.art_price').html($(va_main[6]).html());
-                        } else {
-                            $('.art_price').html($(va_main[7]).html());
-                        }
-                    } else if (($('#crumbs a:nth-child(2)')[0].text === "Kids Pants - Expandable, Organic Baby Pants") && ($(this).hasClass('moonbeam_grey'))) {
-                        $(sizes[0]).attr('data-id', $(va_main[8]).data('id'))
-                        $(sizes[1]).attr('data-id', $(va_main[9]).data('id'))
-                        $(sizes[2]).attr('data-id', $(va_main[10]).data('id'))
-                        $(sizes[3]).attr('data-id', $(va_main[11]).data('id'))
-                        if ($('.kids_size.selected').data('varNum') === 0) {
-                            $('.art_price').html($(va_main[8]).html());
-                        } else if ($('.kids_size.selected').data('varNum') === 1) {
-                            $('.art_price').html($(va_main[9]).html());
-                        } else if ($('.kids_size.selected').data('varNum') === 2) {
-                            $('.art_price').html($(va_main[10]).html());
-                        } else {
-                            $('.art_price').html($(va_main[11]).html());
-                        }
-                    } else if (($('#crumbs a:nth-child(2)')[0].text === "Kids Pants - Expandable, Organic Baby Pants") && ($(this).hasClass('sage_green'))) {
-                        $(sizes[0]).attr('data-id', $(va_main[12]).data('id'))
-                        $(sizes[1]).attr('data-id', $(va_main[13]).data('id'))
-                        $(sizes[2]).attr('data-id', $(va_main[14]).data('id'))
-                        $(sizes[3]).attr('data-id', $(va_main[15]).data('id'))
-                        if ($('.kids_size.selected').data('varNum') === 0) {
-                            $('.art_price').html($(va_main[12]).html());
-                        } else if ($('.kids_size.selected').data('varNum') === 1) {
-                            $('.art_price').html($(va_main[13]).html());
-                        } else if ($('.kids_size.selected').data('varNum') === 2) {
-                            $('.art_price').html($(va_main[14]).html());
-                        } else {
-                            $('.art_price').html($(va_main[15]).html());
-                        }
-                    } else if (($('#crumbs a:nth-child(2)')[0].text === "Wholesale Kids and Baby Pants") && ($(this).hasClass('batik_charcoal_grey'))) {                 
-                        // $(sizes[0]).attr('data-id', 32137499780);
-                        // $(sizes[1]).attr('data-id', 32137499844);
-                        // $(sizes[2]).attr('data-id', 32137499908);
-                        $(sizes[0]).attr('data-id', $(va_main[0]).data('id'));
-                        $(sizes[1]).attr('data-id', $(va_main[1]).data('id'));
-                        $(sizes[2]).attr('data-id', $(va_main[2]).data('id'));
-                        // $(sizes[3]).attr('data-id', 21314263876)
-                        if ($('.kids_size.selected').data('varNum') === 0) {
-                          $('.art_price').html($(va_main[0]).html());
-                        } else if ($('.kids_size.selected').data('varNum') === 1) {
-                          $('.art_price').html($(va_main[1]).html());
-                        } else {
-                          $('.art_price').html($(va_main[2]).html());
-                        }
-                    } else if (($('#crumbs a:nth-child(2)')[0].text === "Wholesale Kids and Baby Pants") && ($(this).hasClass('jean_blue'))) {                      
-                        $(sizes[0]).attr('data-id', 32226450948);
-                        $(sizes[1]).attr('data-id', 32226451012);
-                        $(sizes[2]).attr('data-id', 32226451076);
-                        // $(sizes[3]).attr('data-id', 21314263876)
-                        if ($('.kids_size.selected').data('varNum') === 0) {
-                          $('.art_price').html($(va_main[12]).html());
-                        } else if ($('.kids_size.selected').data('varNum') === 1) {
-                          $('.art_price').html($(va_main[13]).html());
-                        } else {
-                          $('.art_price').html($(va_main[14]).html());
-                        }
-                    } else if (($('#crumbs a:nth-child(2)')[0].text === "Wholesale Kids and Baby Pants") && ($(this).hasClass('magenta_pink'))) {                      
-                        $(sizes[0]).attr('data-id', 32226912388);
-                        $(sizes[1]).attr('data-id', 32226912452);
-                        $(sizes[2]).attr('data-id', 32226912516);
-                        // $(sizes[3]).attr('data-id', 21314539716)
-                        if ($('.kids_size.selected').data('varNum') === 0) {
-                          $('.art_price').html($(va_main[15]).html());
-                        } else if ($('.kids_size.selected').data('varNum') === 1) {
-                          $('.art_price').html($(va_main[16]).html());
-                        } else {
-                          $('.art_price').html($(va_main[17]).html());
-                        }
-                    } else if (($('#crumbs a:nth-child(2)')[0].text === "Wholesale Kids and Baby Pants") && ($(this).hasClass('black'))) {           
-                        $(sizes[0]).attr('data-id', 32227251908);
-                        $(sizes[1]).attr('data-id', 32227251972);
-                        $(sizes[2]).attr('data-id', 32227252036);
-                        // $(sizes[3]).attr('data-id', 21314495364)
-                        if ($('.kids_size.selected').data('varNum') === 0) {
-                          $('.art_price').html($(va_main[3]).html());
-                        } else if ($('.kids_size.selected').data('varNum') === 1) {
-                          $('.art_price').html($(va_main[4]).html());
-                        } else {
-                          $('.art_price').html($(va_main[5]).html());
-                        }
-                    } else if (($('#crumbs a:nth-child(2)')[0].text === "Wholesale Kids and Baby Pants") && ($(this).hasClass('moonbeam_grey'))) {              
-                        $(sizes[0]).attr('data-id', 32227539780);
-                        $(sizes[1]).attr('data-id', 32227539844);
-                        $(sizes[2]).attr('data-id', 32227539908);
-                        // $(sizes[3]).attr('data-id', 21314575876)
-                        if ($('.kids_size.selected').data('varNum') === 0) {
-                          $('.art_price').html($(va_main[6]).html());
-                        } else if ($('.kids_size.selected').data('varNum') === 1) {
-                          $('.art_price').html($(va_main[7]).html());
-                        } else {
-                          $('.art_price').html($(va_main[8]).html());
-                        }
-                    } else if (($('#crumbs a:nth-child(2)')[0].text === "Wholesale Kids and Baby Pants") && ($(this).hasClass('sage_green'))) {                    
-                        $(sizes[0]).attr('data-id', 32226186372);
-                        $(sizes[1]).attr('data-id', 32226186436);
-                        $(sizes[2]).attr('data-id', 32226186500);
-                        // $(sizes[3]).attr('data-id', 21314741636)
-                        if ($('.kids_size.selected').data('varNum') === 0) {
-                          $('.art_price').html($(va_main[9]).html());
-                        } else if ($('.kids_size.selected').data('varNum') === 1) {
-                          $('.art_price').html($(va_main[10]).html());
-                        } else {
-                          $('.art_price').html($(va_main[11]).html());
-                        }
-                    }
-                    console.log('end of if statement');
-                    console.log($('.art_price'));
+                    });
                     change_tit(ch_main, numb_ar);
 
                     $('.true_id').val($($('.kids_size.selected')[0]).attr('data-id'));
