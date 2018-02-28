@@ -551,7 +551,7 @@ Shopify.linkOptionSelectors = function(product) {
             var divs = $('.clr_cont');
             var wdt = $('.art_clr').length;
             var wd_main = 48 * wdt;
-console.log(wdt);
+
             if (wd_main <= 240) {
                 $(divs).width(wd_main);
             }
@@ -591,6 +591,15 @@ console.log(wdt);
         function clr_clr() {
             var divs = $('.pr_pr');
             for (var i = 0; i < divs.length; i++) {
+                //if ($(asd_rew).hasClass('solded')){
+                //    var link_a = $('.pr_url').eq([i]).html();
+                //    $('.art_clr').eq([i]).wrap('<a href=' + link_a + '></div>');
+                //}
+                // {% unless product.available %} 
+                // {% endunless %}
+                    var link_a = $('.pr_url').eq([i]).html();
+                    $('.art_clr').eq([i]).wrap('<a href=' + link_a + '></div>');
+
                 var asd_rew = $(divs[i]);
                 if (($(asd_rew).find(".prd_title:contains('batik black')").length > 0)) {
                     $('.art_clr').eq([i]).addClass('kids_batik_black');
@@ -610,10 +619,7 @@ console.log(wdt);
                 } else if (($(asd_rew).find(".prd_title:contains('moonbeam grey')").length > 0)) {
                     $('.art_clr').eq([i]).addClass('moonbeam_grey');
                     $('.art_clr.moonbeam_grey').append('<img style="display:none;" src="{{ "clr_h_moonbeam_grey.png" | asset_url }}">');
-                } else if (($(asd_rew).find(".prd_title:contains('pink batik')").length > 0)) {
-                    $('.art_clr').eq([i]).addClass('magenta_pink');
-                    $('.art_clr.magenta_pink').append('<img style="display:none;" src="{{ "clr_h_magenta_pink.png" | asset_url }}">');
-                } else if (($(asd_rew).find(".prd_title:contains('dusty mauve')").length > 0)) {
+                }  else if (($(asd_rew).find(".prd_title:contains('dusty mauve')").length > 0)) {
                     $('.art_clr').eq([i]).addClass('dusty_mauve');
                     $('.art_clr.dusty_mauve').append('<img style="display:none;" src="{{ "clr_h_dusty_mauve.png" | asset_url }}">');
                 } else if (($(asd_rew).find(".prd_title:contains('black obsidian batik')").length > 0)) {
@@ -634,6 +640,9 @@ console.log(wdt);
                 } else if (($(asd_rew).find(".prd_title:contains('rose quartz pink batik')").length > 0)) {
                     $('.art_clr').eq([i]).addClass('rose_quartz_pink_batik');
                     $('.art_clr.rose_quartz_pink_batik').append('<img style="display:none;" src="{{ "clr_h_rose_quartz_pink_batik.png" | asset_url }}">');
+                } else if (($(asd_rew).find(".prd_title:contains('pink batik')").length > 0)) {
+                    $('.art_clr').eq([i]).addClass('magenta_pink');
+                    $('.art_clr.magenta_pink').append('<img style="display:none;" src="{{ "clr_h_magenta_pink.png" | asset_url }}">');
                 } else if (($(asd_rew).find(".prd_title:contains('shadow gray')").length > 0)) {
                     $('.art_clr').eq([i]).addClass('shadow_gray');
                     $('.art_clr.shadow_gray').append('<img style="display:none;" src="{{ "clr_h_shadow_gray.png" | asset_url }}">');
@@ -641,15 +650,6 @@ console.log(wdt);
                     $('.art_clr').eq([i]).addClass('black');
                     $('.art_clr.black').append('<img style="display:none;" src="{{ "clr_h_black.png" | asset_url }}">');
                 }
-
-                if ($(asd_rew).hasClass('solded')){
-                    var link_a = $('.pr_url').eq([i]).html();
-                    $('.art_clr').eq([i]).wrap('<a href=' + link_a + '></div>');
-                }
-                {% unless product.available %}
-                    var link_a = $('.pr_url').eq([i]).html();
-                    $('.art_clr').eq([i]).wrap('<a href=' + link_a + '></div>');
-                {% endunless %}
             }
         }
         clr_clr();
@@ -765,35 +765,67 @@ console.log(wdt);
             //     newKidsVariants('rose-pink-kids-pants-solid');
             } else if (($(asd_rew).find(".prd_title:contains('classic sage green - Wholesale')").length > 0)) {
                 $('.art_col').html('classic sage green');
-                var art = 'KidsPantsClassicSageGreen';
-                newKidsVariants('wholesale-green-organic-baby-pants');
+                //var art = 'KidsPantsClassicSageGreen';
+                //newKidsVariants('wholesale-green-organic-baby-pants');
             
             } else if (($(asd_rew).find(".prd_title:contains('classic black')").length > 0)) {
                 $('.art_col').html('classic black');
-                var art = 'KidsPantsClassicBlack';
-                newKidsVariants('black-kids-pants');
+                //var art = 'KidsPantsClassicBlack';
+                //newKidsVariants('black-kids-pants');
             } else if (($(asd_rew).find(".prd_title:contains('charcoal grey batik')").length > 0)) {
                 $('.art_col').html('charcoal grey batik');
-                var art = 'KidsPantsBatikCharcoalGrey';
-                newKidsVariants('charcoal-grey-kids-pants');
+                //var art = 'KidsPantsBatikCharcoalGrey';
+                //newKidsVariants('charcoal-grey-kids-pants');
             } else if (($(asd_rew).find(".prd_title:contains('jean blue batik')").length > 0)) {
                 $('.art_col').html('jean blue batik');
-                var art = 'KidsPantsBatikJeanBlue';
-                newKidsVariants('jean-blue-kids-pants-batik');
-            } else if (($(asd_rew).find(".prd_title:contains('pink batik')").length > 0)) {
-                $('.art_col').html('pink batik');
-                var art = 'KidsPantsBatikMagentaPink';
-                newKidsVariants('magenta-pink-kids-pants-batik');
+                //var art = 'KidsPantsBatikJeanBlue';
+                //newKidsVariants('jean-blue-kids-pants-batik');
             } else if (($(asd_rew).find(".prd_title:contains('classic moonbeam grey')").length > 0)) {
                 $('.art_col').html('classic moonbeam grey');
-                var art = 'KidsPantsclassicMoonbeamGrey';
-                newKidsVariants('grey-kids-pants');
+                //var art = 'KidsPantsclassicMoonbeamGrey';
+                //newKidsVariants('grey-kids-pants');
             } else if (($(asd_rew).find(".prd_title:contains('classic sage green')").length > 0)) {
                 $('.art_col').html('classic sage green');
-                var art = 'KidsPantsClassicSageGreen';
-                newKidsVariants('sage-green-baby-pants');
-            }
-            $('.ht_tit').html(art);
+                //var art = 'KidsPantsClassicSageGreen';
+                //newKidsVariants('sage-green-baby-pants');
+            } else if (($(asd_rew).find(".prd_title:contains('black obsidian batik')").length > 0)) {
+                $('.art_col').html('black obsidian batik');
+                //var art = 'KidsPantsClassicSageGreen';
+                //newKidsVariants('sage-green-baby-pants');
+            } else if (($(asd_rew).find(".prd_title:contains('happy khaki')").length > 0)) {
+                $('.art_col').html('happy khaki');
+                //var art = 'KidsPantsClassicSageGreen';
+                //newKidsVariants('sage-green-baby-pants');
+            } else if (($(asd_rew).find(".prd_title:contains('moonstone blue batik')").length > 0)) {
+                $('.art_col').html('moonstone blue batik');
+                //var art = 'KidsPantsClassicSageGreen';
+                //newKidsVariants('sage-green-baby-pants');
+            } else if (($(asd_rew).find(".prd_title:contains('purple amethyst batik')").length > 0)) {
+                $('.art_col').html('purple amethyst batik');
+                //var art = 'KidsPantsClassicSageGreen';
+                //newKidsVariants('sage-green-baby-pants');
+            } else if (($(asd_rew).find(".prd_title:contains('rose quartz pink batik')").length > 0)) {
+                $('.art_col').html('rose quartz pink batik');
+                //var art = 'KidsPantsClassicSageGreen';
+                //newKidsVariants('sage-green-baby-pants');
+            } else if (($(asd_rew).find(".prd_title:contains('pink batik')").length > 0)) {
+                $('.art_col').html('pink batik');
+                //var art = 'KidsPantsBatikMagentaPink';
+                //newKidsVariants('magenta-pink-kids-pants-batik');
+            } else if (($(asd_rew).find(".prd_title:contains('red earth')").length > 0)) {
+                $('.art_col').html('red earth');
+                //var art = 'KidsPantsClassicSageGreen';
+                //newKidsVariants('sage-green-baby-pants');
+            } else if (($(asd_rew).find(".prd_title:contains('shadow gray')").length > 0)) {
+                $('.art_col').html('shadow gray');
+                //var art = 'KidsPantsClassicSageGreen';
+                //newKidsVariants('sage-green-baby-pants');
+            } else if (($(asd_rew).find(".prd_title:contains('dusty mauve')").length > 0)) {
+                $('.art_col').html('dusty mauve');
+                //var art = 'KidsPantsClassicSageGreen';
+                //newKidsVariants('sage-green-baby-pants');
+            } 
+            //$('.ht_tit').html(art);
             $('.inst_cont').find('a').remove();
            // {% comment %} newInstagram(art);{% endcomment %}
         }
