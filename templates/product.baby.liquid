@@ -545,7 +545,7 @@ Shopify.linkOptionSelectors = function(product) {
 </div>
 {% endcomment %}
 <script type="text/javascript">
-  $(document).ready(function () {
+    $(document).ready(function () {
         {% unless collection.handle == 'kids' %}
         function width_clr() {
             var divs = $('.clr_cont');
@@ -591,14 +591,14 @@ Shopify.linkOptionSelectors = function(product) {
         function clr_clr() {
             var divs = $('.pr_pr');
             for (var i = 0; i < divs.length; i++) {
-                //if ($(asd_rew).hasClass('solded')){
-                //    var link_a = $('.pr_url').eq([i]).html();
-                //    $('.art_clr').eq([i]).wrap('<a href=' + link_a + '></div>');
-                //}
-                // {% unless product.available %} 
-                // {% endunless %}
+                if ($(asd_rew).hasClass('solded')){
                     var link_a = $('.pr_url').eq([i]).html();
                     $('.art_clr').eq([i]).wrap('<a href=' + link_a + '></div>');
+                }
+                {% unless product.available %} 
+                    var link_a = $('.pr_url').eq([i]).html();
+                    $('.art_clr').eq([i]).wrap('<a href=' + link_a + '></div>');
+                {% endunless %}
 
                 var asd_rew = $(divs[i]);
                 if (($(asd_rew).find(".prd_title:contains('batik black')").length > 0)) {
@@ -644,8 +644,8 @@ Shopify.linkOptionSelectors = function(product) {
                     $('.art_clr').eq([i]).addClass('magenta_pink');
                     $('.art_clr.magenta_pink').append('<img style="display:none;" src="{{ "clr_h_magenta_pink.png" | asset_url }}">');
                 } else if (($(asd_rew).find(".prd_title:contains('shadow gray')").length > 0)) {
-                    $('.art_clr').eq([i]).addClass('shadow_gray');
-                    $('.art_clr.shadow_gray').append('<img style="display:none;" src="{{ "clr_h_shadow_gray.png" | asset_url }}">');
+                    $('.art_clr').eq([i]).addClass('shadow_grey');
+                    $('.art_clr.shadow_grey').append('<img style="display:none;" src="{{ "clr_h_shadow_grey.png" | asset_url }}">');
                 } else if ($(asd_rew).find(".prd_title:contains('black')").length > 0) {
                     $('.art_clr').eq([i]).addClass('black');
                     $('.art_clr.black').append('<img style="display:none;" src="{{ "clr_h_black.png" | asset_url }}">');
@@ -658,7 +658,10 @@ Shopify.linkOptionSelectors = function(product) {
             var divs = $('.art_clr');
             var va_main = $('.art_cost').find('.pr_pr').find('.va_price'); //price of product variant
             console.log('colour loaded!');
-
+            {% unless collection.handle == 'kids' %}
+                        //<h1>%%%%</h1>
+                console.log('inside somth');
+            {% endunless %}
             $.each(divs, function (i) {
                 $(this).click(function () {
                     var ch_main = $('.art_cost').find('.pr_pr').eq([i]);
@@ -668,6 +671,7 @@ Shopify.linkOptionSelectors = function(product) {
                     var prodVariants = $($(ch_main[0]).find('.pr_icons')[0]).find('.va_price');
                     
                     console.log('colour change!');
+                    
 
                     $.each(prodVariants, function(x) { // selects ID of current size selected of current item and changes displayed price
                         $(sizes[x]).attr('data-id', parseInt($(prodVariants[x]).attr('data-id')));
