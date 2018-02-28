@@ -595,9 +595,6 @@ console.log(wdt);
                 if (($(asd_rew).find(".prd_title:contains('batik black')").length > 0)) {
                     $('.art_clr').eq([i]).addClass('kids_batik_black');
                     $('.art_clr.kids_batik_black').append('<img style="display:none;" src="{{ "clr_h_kids_batik_black.png" | asset_url }}">');
-                } else if ($(asd_rew).find(".prd_title:contains('black')").length > 0) {
-                    $('.art_clr').eq([i]).addClass('black');
-                    $('.art_clr.black').append('<img style="display:none;" src="{{ "clr_h_black.png" | asset_url }}">');
                 } else if (($(asd_rew).find(".prd_title:contains('charcoal grey batik')").length > 0)) {
                     $('.art_clr').eq([i]).addClass('batik_charcoal_grey');
                     $('.art_clr.batik_charcoal_grey').append('<img style="display:none;" src="{{ "clr_h_batik_charcoal_grey.png" | asset_url }}">');
@@ -626,8 +623,8 @@ console.log(wdt);
                     $('.art_clr').eq([i]).addClass('happy_khaki');
                     $('.art_clr.happy_khaki').append('<img style="display:none;" src="{{ "clr_h_happy_khaki.png" | asset_url }}">');
                 } else if (($(asd_rew).find(".prd_title:contains('moonstone blue batik')").length > 0)) {
-                    $('.art_clr').eq([i]).addClass('moonstone_blue_batik');
-                    $('.art_clr.moonstone_blue_batik').append('<img style="display:none;" src="{{ "clr_h_moonstone_blue_batik.png" | asset_url }}">');
+                    $('.art_clr').eq([i]).addClass('blue_moonstone_batik');
+                    $('.art_clr.blue_moonstone_batik').append('<img style="display:none;" src="{{ "clr_h_blue_moonstone_batik.png" | asset_url }}">');
                 } else if (($(asd_rew).find(".prd_title:contains('purple amethyst batik')").length > 0)) {
                     $('.art_clr').eq([i]).addClass('purple_amethyst_batik');
                     $('.art_clr.purple_amethyst_batik').append('<img style="display:none;" src="{{ "clr_h_purple_amethyst_batik.png" | asset_url }}">');
@@ -640,8 +637,10 @@ console.log(wdt);
                 } else if (($(asd_rew).find(".prd_title:contains('shadow gray')").length > 0)) {
                     $('.art_clr').eq([i]).addClass('shadow_gray');
                     $('.art_clr.shadow_gray').append('<img style="display:none;" src="{{ "clr_h_shadow_gray.png" | asset_url }}">');
+                } else if ($(asd_rew).find(".prd_title:contains('black')").length > 0) {
+                    $('.art_clr').eq([i]).addClass('black');
+                    $('.art_clr.black').append('<img style="display:none;" src="{{ "clr_h_black.png" | asset_url }}">');
                 }
-
 
                 if ($(asd_rew).hasClass('solded')){
                     var link_a = $('.pr_url').eq([i]).html();
