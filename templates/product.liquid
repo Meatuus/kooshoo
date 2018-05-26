@@ -137,7 +137,8 @@ $(document).ready(function() {
 			</div>
 		</div>
 		{% if product.available %}
-		<form action="/cart/add" method="post">
+		{% form 'product', product %}
+		
 			<div class="options">
 				<label class="jr_ac" for="quantity">QUANTITY:</label> <br>
 				<a href="javascript:modifyQuantity('#quantity', -1)" class="minibutton">-</a>
@@ -211,6 +212,9 @@ $(document).ready(function() {
 					FREE Shipping over $50 in North America
 				</div>
 
+			</div>
+			<div class="addbuttoncont">
+				{{ form | payment_button }}
 			</div>
 			<div class="art_pr_soc">
 				<span class="socialitem facebookcont">
@@ -293,7 +297,8 @@ $(document).ready(function() {
 				});
 				{% endunless %}
 			</script>
-		</form>
+		
+		{% endform %}
 		{% else %}
 		<h3>{{ settings.text_soldout }}</h3>
 		{% endif %}
