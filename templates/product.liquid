@@ -683,6 +683,10 @@ Shopify.linkOptionSelectors = function(product) {
 				$('.art_clr').eq([i]).addClass('colorful');
 				$('.art_clr.colorful').append('<img style="display:none;" src="{{ "clr_h_colorful.png" | asset_url }}">');
 			}
+			else if (($(asd_rew).find(".prd_title:contains('blond')").length > 0)) {
+				$('.art_clr').eq([i]).addClass('blond');
+				$('.art_clr.blond').append('<img style="display:none;" src="{{ "clr_h_blonde_ht.png" | asset_url }}">');
+			}
 			else if (($(asd_rew).find(".prd_title:contains('sea shepherd')").length > 0)) {
 				$('.art_clr').eq([i]).addClass('sea_shepherd');
 				$('.art_clr.sea_shepherd').append('<img style="display:none;" src="{{ "clr_h_sea_shepherd.png" | asset_url }}">');
@@ -1538,6 +1542,22 @@ Shopify.linkOptionSelectors = function(product) {
 						$('.inst_cont').find('a').remove();
 						newInstagram(art);
 					{% endif %}
+			}
+			else if (($(asd_rew).find(".prd_title:contains('blond')").length > 0)) {
+			   var art_f = ch_tit.replace("blond","")
+			   $('.am_titl').html(art_f);
+			   $('.art_col').html('blond');
+					// {% if collection.title == 'LILA - Organic Cotton, Plastic-Free Hairties' or collection.title == 'Hairties' or collection.handle == "lila-wholesale" %}
+						// var art = 'HerColorfulLila';
+						// $('.ht_tit').html(art);
+					// 	$('.inst_cont').find('a').remove();
+					// 	newInstagram(art);
+					// {% elsif collection.title == "LILA - Best Selling Hair Ties for Men" %}
+						// var art = 'HisColorfulLila';
+						// $('.ht_tit').html(art);
+					// 	$('.inst_cont').find('a').remove();
+					// 	newInstagram(art);
+					// {% endif %}
 			}
 			else if (($(asd_rew).find(".prd_title:contains('sea shepherd')").length > 0)) {
 			   var art_f = ch_tit.replace("sea shepherd","")
