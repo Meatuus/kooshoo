@@ -2730,17 +2730,56 @@ html* .productpilewidget .product a {
 .mfc_pr{
 	background:url({{ 'mf_pr.png' | asset_url }}) no-repeat scroll center center transparent;
 }
-
-
 #ab_body {
 	width:670px;
-	height:464px;
+	height:506px;
 	position: fixed;
 	top:50%;
 	left: 50%;
-	margin-top: -232px;
-	margin-left: -335px;
+	transform: translateX(-50%) translateY(-50%);
+	background:url({{ 'left_image.png' | asset_url }}) no-repeat scroll center center transparent;
+	background-size: contain;
 }
+.popup__form {
+	position: absolute;
+	bottom: 50px;
+	left: 50%;
+	transform: translateX(-50%);
+}
+.popup__form-fields {
+    display:  flex;
+    flex-direction:  row;
+    flex-wrap:  nowrap;
+    justify-content:  space-between;
+    align-items: flex-start;
+}
+
+.popup__row {
+    margin-right: 17px;
+}
+.popup__input {
+    border-radius: 0;
+    border: none;
+	width: 185px;
+}
+.popup__label {
+    color:  white;
+    text-transform:  uppercase;
+    letter-spacing:  1px;
+    font-size: 13px;
+    line-height: 26px;
+}
+.popup__btn .button {
+    border-radius: 0;
+    border: none;
+    background: #ed174a;
+    text-transform:  uppercase;
+    box-shadow: none;
+    font-size: 14px;
+    letter-spacing: 1px;
+	padding: 9px 30px;
+}
+
 #body_form {
 	top:50%;
 	left: 50%;
@@ -2755,31 +2794,38 @@ html* .productpilewidget .product a {
 	overflow: hidden;
 }
 #body_exit {
-	width: 40px;
-	height: 40px;
-	background:url({{ 'exitc.png' | asset_url }}) no-repeat scroll center bottom transparent;
-	margin-top: -449px;
-	margin-left: 636px;
+	width: 30px;
+    height: 30px;
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    border: 1px solid #bfbbb7;
+    border-radius: 30px;
+	cursor: pointer;
+}
+#body_exit:after {
 	position: absolute;
+	content: '';
+	height: 31px;
+	width: 30px;
+	border-left: 1px solid #bfbbb7;	
+	top: 10px;
+    right: 10px;
+    transform: rotate(135deg);
+}
+#body_exit:before {
+	position: absolute;
+	content: '';
+	height: 31px;
+	width: 30px;
+	border-left: 1px solid #bfbbb7;
+	top: 10px;
+    right: -11px;
+    transform: rotate(45deg);
 }
 #body_exit:hover {
-	 background:url({{ 'exitc.png' | asset_url }}) no-repeat scroll center top transparent;
 	 cursor:pointer;
-}
-
-#left_image{
-	background:url({{ 'left_image.png' | asset_url }}) no-repeat scroll center center transparent;
-	width: 270px;
-	height: 416px;
-	float: left;
-}
-#rigth_image{
-	width: 374px;
-	height: 416px;
-	float: left;
-	-moz-box-shadow: -20px 0 20px -1px #F2F2F2;
-	-webkit-box-shadow: -20px 0 20px -1px #F2F2F2;
-	box-shadow: -20px 0 20px -1px #F2F2F2;
+	 border-color: #f3698a;
 }
 .clear{
 	clear: left;
