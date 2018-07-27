@@ -2744,14 +2744,26 @@ html* .productpilewidget .product a {
 	position: absolute;
 	bottom: 50px;
 	left: 50%;
+	-webkit-transform: translateX(-50%);
+	-ms-transform: translateX(-50%);
 	transform: translateX(-50%);
 }
 .popup__form-fields {
+    display:  -webkit-box;
+    display:  -ms-flexbox;
     display:  flex;
-    flex-direction:  row;
-    flex-wrap:  nowrap;
-    justify-content:  space-between;
-    align-items: flex-start;
+    -webkit-box-orient:  horizontal;
+    -webkit-box-direction:  normal;
+        -ms-flex-direction:  row;
+            flex-direction:  row;
+    -ms-flex-wrap:  nowrap;
+        flex-wrap:  nowrap;
+    -webkit-box-pack:  justify;
+        -ms-flex-pack:  justify;
+            justify-content:  space-between;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
 }
 
 .popup__row {
@@ -2774,7 +2786,8 @@ html* .productpilewidget .product a {
     border: none;
     background: #ed174a;
     text-transform:  uppercase;
-    box-shadow: none;
+    -webkit-box-shadow: none;
+            box-shadow: none;
     font-size: 14px;
     letter-spacing: 1px;
 	padding: 9px 30px;
@@ -2811,7 +2824,9 @@ html* .productpilewidget .product a {
 	border-left: 1px solid #bfbbb7;	
 	top: 10px;
     right: 10px;
-    transform: rotate(135deg);
+    -webkit-transform: rotate(135deg);
+        -ms-transform: rotate(135deg);
+            transform: rotate(135deg);
 }
 #body_exit:before {
 	position: absolute;
@@ -2821,7 +2836,9 @@ html* .productpilewidget .product a {
 	border-left: 1px solid #bfbbb7;
 	top: 10px;
     right: -11px;
-    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+            transform: rotate(45deg);
 }
 #body_exit:hover {
 	 cursor:pointer;
