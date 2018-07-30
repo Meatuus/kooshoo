@@ -451,7 +451,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 		</div>
 		  <script type="text/javascript">
 			 $(document).ready(function() {
-				if($(window).width() >= 725 ){
+				 if ($(window).width() <= 725 ) {
+					 const input = document.getElementById('mce-EMAIL');
+					input.placeholder = 'EMAIL';					 
+				 }
+				 const modalDelay = {{ settings.modal_delay }} * 1000;				 
+				//if($(window).width() >= 725 ){
 				var str = $.cookie('suject');
 				console.log(str);
 				console.log('hi');
@@ -466,8 +471,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
 				//if (str === '1') {
-					$('#body_bacground').delay(150).fadeIn('slow');
-					}
+					$('#body_bacground').delay(modalDelay).fadeIn('slow');
+					//}
 					$("#body_exit").click(function() {
 						 $("#body_bacground").hide();
 						 createCookie("suject", '1');

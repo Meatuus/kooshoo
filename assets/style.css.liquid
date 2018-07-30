@@ -2737,7 +2737,7 @@ html* .productpilewidget .product a {
 	top:50%;
 	left: 50%;
 	transform: translateX(-50%) translateY(-50%);
-	background:url({{ 'left_image.png' | asset_url }}) no-repeat scroll center center transparent;
+	background:url({{ 'desktop_image.jpg' | asset_url }}) no-repeat scroll center center transparent;
 	background-size: contain;
 }
 .popup__form {
@@ -2842,6 +2842,46 @@ html* .productpilewidget .product a {
 #body_exit:hover {
 	 cursor:pointer;
 	 border-color: #f3698a;
+}
+@media screen and (max-width: 725px) {
+	#ab_body {
+		background:url({{ 'mobile_image.jpg' | asset_url }}) no-repeat scroll center center transparent;
+		background-size: contain;
+		
+		height: auto;
+		padding-top: 59%;
+		width: 100%;
+	}
+	.popup__form {
+		bottom: 40%;
+		width: 86%;
+	}
+	.popup__row {
+		width: 100%;
+	}
+	.popup__row:nth-of-type(2) {
+		display: none;
+	}
+	.popup__input {
+		background: rgba(255, 255, 255, 0.86);
+		width: 100%;
+
+		font-size: 14px;
+		letter-spacing: 0.5px;
+		padding-left: 5px;
+	}
+	.popup__label {
+		display: none;
+	}
+}
+@media screen and (max-width: 400px) {
+	.popup__form {
+		bottom: 38%;
+	}
+	#body_exit {
+		right: 10px;
+		top: 10px;
+	}
 }
 .clear{
 	clear: left;

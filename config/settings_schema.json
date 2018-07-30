@@ -2596,31 +2596,20 @@
 	"name": "KOOSHOO's menu - Welcome Pop-Up",
 	"settings": [
 	  {
-		"type": "image",
-		"id": "left_image.png",
-		"label": "Load Image of Pop Up Window",
-		"info": "(size 438x270)"
-	  },
-	  {
-		"type": "text",
-		"id": "pp_a",
-		"label": "Line 1 blue"
-	  },
-	  {
-		"type": "text",
-		"id": "pp_b",
-		"label": "Line 1 red"
-	  },
-	  {
-		"type": "textarea",
-		"id": "pp_c",
-		"label": "Line 3"
-	  },
-	  {
-		"type": "textarea",
-		"id": "pp_d",
-		"label": "Line 4 (under Submit Button)"
-	  }
+			"type": "image",
+			"id": "desktop_image.jpg",
+			"label": "Desktop Image of Pop Up Window"
+		},
+		{
+			"type": "image",
+			"id": "mobile_image.jpg",
+			"label": "Mobile Image of Pop Up Window"
+		},
+		{
+			"type": "text",
+			"id": "modal_delay",
+			"label": "Delay time (in seconds) before pop up window appears"
+		}
 	]
   },
   {
